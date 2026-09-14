@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FloatingNav from "../components/FloatingNav.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Privacy and Cookie Policy — TripEleven";
+const description = "TripEleven privacy and cookie policy. Learn how we collect, use and protect your data.";
+const canonical = "https://tripeleven.com/privacy";
+---
+
+<Layout {title} {description} {canonical}>
+  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
+    <main class="mx-auto max-w-3xl px-5 pb-[80px] pt-[110px] lg:px-[55px]">
+      <h1 class="mb-8 font-serif text-[32px] leading-tight lg:text-[40px]">Privacy and Cookie Policy</h1>
+      <p class="mb-6 text-sm leading-[1.8] text-muted-foreground">Last updated: September 14, 2026</p>
+
+      <div class="space-y-8 text-[15px] leading-[1.8]">
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">1. Who we are</h2>
+          <p>TripEleven (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the TripEleven platform, a trip-building and website-publishing service for tour and trekking agencies. This policy applies to all users of our platform, website and related services.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">2. Information we collect</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li><strong>Account information:</strong> name, email address, agency name and password when you create an account.</li>
+            <li><strong>Trip and catalog content:</strong> itineraries, images, descriptions and pricing you upload to the platform.</li>
+            <li><strong>Inquiry data:</strong> messages, phone numbers and WhatsApp details submitted through trip inquiry forms by your visitors.</li>
+            <li><strong>Payment information:</strong> processed through Stripe. We do not store credit card numbers on our servers.</li>
+            <li><strong>Usage data:</strong> pages viewed, features used and interaction patterns within the platform, collected to improve our service.</li>
+            <li><strong>Cookies:</strong> essential cookies for authentication and session management, and optional analytics cookies (see Section 6 below).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">3. How we use your information</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>To provide, maintain and improve the TripEleven platform.</li>
+            <li>To process transactions and send billing-related communications.</li>
+            <li>To send product updates, security alerts and support messages.</li>
+            <li>To respond to your inquiries and provide customer support.</li>
+            <li>To detect and prevent fraud, abuse or security issues.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">4. Data sharing</h2>
+          <p>We do not sell your personal information. We share data only with service providers who help us operate the platform (hosting, payment processing, analytics) and only to the extent necessary to deliver their services. We may disclose information if required by law or to protect the rights and safety of TripEleven and its users.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">5. Data retention</h2>
+          <p>We retain your account data for as long as your account is active. If you delete your account, we remove your personal data within 30 days, except where we are legally required to retain certain records (e.g., financial transactions).</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">6. Cookies</h2>
+          <p>We use the following categories of cookies:</p>
+          <ul class="list-disc space-y-2 pl-6">
+            <li><strong>Essential cookies:</strong> required for authentication, session management and security. These cannot be disabled.</li>
+            <li><strong>Analytics cookies:</strong> help us understand how visitors interact with the platform. We use Tawk.to for live-chat functionality, which may set its own cookies.</li>
+          </ul>
+          <p class="mt-3">You can control cookie settings through your browser. Disabling essential cookies may prevent the platform from functioning correctly.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">7. Your rights</h2>
+          <p>Depending on your jurisdiction, you may have the right to access, correct, delete or port your personal data. To exercise these rights, contact us at <a href="mailto:hello@tripeleven.com" class="underline underline-offset-2">hello@tripeleven.com</a>.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">8. Changes to this policy</h2>
+          <p>We may update this policy from time to time. Material changes will be communicated through the platform or by email. Continued use of the platform after changes take effect constitutes acceptance of the updated policy.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">9. Contact</h2>
+          <p>Questions about this policy? Email us at <a href="mailto:hello@tripeleven.com" class="underline underline-offset-2">hello@tripeleven.com</a>.</p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+    <FloatingNav />
+  </div>
+</Layout>

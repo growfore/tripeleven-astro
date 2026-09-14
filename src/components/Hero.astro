@@ -1,0 +1,46 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<section class="flex min-h-fit flex-col lg:min-h-[700px] lg:flex-row lg:gap-[72px]">
+  <div class="flex-1 px-7 py-[70px] lg:py-[125px] lg:pl-[72px]">
+    <h1 class="mb-[42px] font-serif text-[42px] leading-[0.98] lg:text-[clamp(58px,5vw,82px)]">
+      More trips sold.
+      <br />
+      Less admin.
+    </h1>
+    <p
+      class="mb-[42px] max-w-[420px] text-[18px] leading-[1.35] text-muted-foreground lg:text-[23px]"
+    >
+      Build your catalog, publish a full website, and collect trip inquiries — no code, no
+      developers. From trekking agencies to DMCs, the platform for real operators.
+    </p>
+    <a
+      href="https://app.tripeleven.com/signup"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-flex items-center justify-center gap-3 rounded-[20px] bg-[var(--ink)] px-[34px] py-[23px] text-[18px] font-semibold text-primary-foreground"
+    >
+      Get started for free <Icon name="arrow-right" class="size-[19px]" />
+    </a>
+    <div class="mt-7 flex flex-col gap-2.5 text-[13px] text-muted-foreground lg:flex-row lg:gap-[34px]">
+      <span class="flex items-center gap-2">
+        <Icon name="check" class="size-[22px] rounded-full bg-accent p-[5px] text-primary" />
+        No credit card required
+      </span>
+      <span class="flex items-center gap-2">
+        <Icon name="check" class="size-[22px] rounded-full bg-accent p-[5px] text-primary" />
+        Cancel anytime
+      </span>
+    </div>
+  </div>
+  <div class="relative flex flex-1 items-center">
+    <img
+      src="/mockups/hero-image.png"
+      width="1280"
+      height="720"
+      alt="TripEleven product interface"
+      class="relative mt-10 h-auto w-full object-contain lg:absolute lg:right-20 lg:mt-0 lg:h-full lg:-translate-x-9 lg:scale-135 lg:object-contain"
+    />
+  </div>
+</section>

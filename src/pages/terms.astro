@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FloatingNav from "../components/FloatingNav.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Terms & Conditions — TripEleven";
+const description = "TripEleven terms and conditions. Read the rules governing use of our platform and services.";
+const canonical = "https://tripeleven.com/terms";
+---
+
+<Layout {title} {description} {canonical}>
+  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
+    <main class="mx-auto max-w-3xl px-5 pb-[80px] pt-[110px] lg:px-[55px]">
+      <h1 class="mb-8 font-serif text-[32px] leading-tight lg:text-[40px]">Terms &amp; Conditions</h1>
+      <p class="mb-6 text-sm leading-[1.8] text-muted-foreground">Last updated: September 14, 2026</p>
+
+      <div class="space-y-8 text-[15px] leading-[1.8]">
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">1. Acceptance of terms</h2>
+          <p>By accessing or using the TripEleven platform, you agree to these Terms &amp; Conditions. If you do not agree, do not use the platform.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">2. Description of service</h2>
+          <p>TripEleven provides a platform for tour and trekking agencies to build trip catalogs, publish websites, collect inquiries and manage content. Features vary by plan and are described on our <a href="/pricing" class="underline underline-offset-2">pricing page</a>.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">3. Accounts</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>You must be at least 18 years old to create an account.</li>
+            <li>You are responsible for maintaining the confidentiality of your credentials.</li>
+            <li>You are responsible for all activity that occurs under your account.</li>
+            <li>You must provide accurate and complete information when creating an account.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">4. Your content</h2>
+          <p>You retain ownership of all content you upload to TripEleven (trips, images, text, branding). By uploading content, you grant us a limited license to host, display and serve that content through the platform and your published website. We do not use your content for our own purposes.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">5. Published websites</h2>
+          <p>When you publish a website through TripEleven, your content is served to your visitors. You are responsible for ensuring your published content complies with applicable laws, including consumer protection, data privacy and intellectual property regulations.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">6. Payments and billing</h2>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>Paid plans are billed monthly or annually in advance.</li>
+            <li>Enterprise plans may have custom billing terms agreed in writing.</li>
+            <li>Refund requests are handled on a case-by-case basis. Contact us at <a href="mailto:hello@tripeleven.com" class="underline underline-offset-2">hello@tripeleven.com</a>.</li>
+            <li>We reserve the right to change pricing with 30 days&rsquo; notice.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">7. Acceptable use</h2>
+          <p>You agree not to:</p>
+          <ul class="list-disc space-y-2 pl-6">
+            <li>Use the platform for any unlawful purpose.</li>
+            <li>Upload malicious code, spam or infringing content.</li>
+            <li>Attempt to gain unauthorized access to other accounts or systems.</li>
+            <li>Resell or redistribute TripEleven services without written permission.</li>
+            <li>Scrape, crawl or use automated tools to extract data from the platform.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">8. Intellectual property</h2>
+          <p>The TripEleven platform, its design, code, branding and documentation are owned by TripEleven. These terms do not grant you any rights to our trademarks, logos or other brand features.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">9. Service availability</h2>
+          <p>We aim for high availability but do not guarantee uninterrupted service. We may perform maintenance or make changes to the platform with reasonable notice. We are not liable for downtime or data loss beyond our reasonable control.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">10. Limitation of liability</h2>
+          <p>To the maximum extent permitted by law, TripEleven&rsquo;s total liability is limited to the amount you paid us in the 12 months preceding the claim. We are not liable for indirect, incidental or consequential damages, including loss of revenue, data or business opportunities.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">11. Termination</h2>
+          <p>You may cancel your account at any time from your dashboard. We may suspend or terminate your access if you violate these terms. Upon termination, your data will be handled per our <a href="/privacy" class="underline underline-offset-2">Privacy and Cookie Policy</a>.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">12. Changes to these terms</h2>
+          <p>We may update these terms from time to time. Material changes will be communicated through the platform or by email. Continued use after changes take effect constitutes acceptance.</p>
+        </section>
+
+        <section>
+          <h2 class="mb-3 font-serif text-xl font-semibold">13. Contact</h2>
+          <p>Questions about these terms? Email us at <a href="mailto:hello@tripeleven.com" class="underline underline-offset-2">hello@tripeleven.com</a>.</p>
+        </section>
+      </div>
+    </main>
+    <Footer />
+    <FloatingNav />
+  </div>
+</Layout>

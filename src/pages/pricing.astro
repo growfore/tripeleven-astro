@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Pricing from "../components/Pricing.astro";
+import Closing from "../components/Closing.astro";
+import FloatingNav from "../components/FloatingNav.astro";
+
+const title = "Pricing — TripEleven";
+const description =
+  "Start free. Scale when you're ready. Your branded website, trip catalog and inquiry engine — free. Add custom branding, AI itineraries and more when you grow.";
+const ogTitle = "Pricing — TripEleven";
+const ogDescription = "Plans for every stage of your travel business.";
+const canonical = "https://tripeleven.com/pricing";
+---
+
+<Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
+  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
+    <main id="top" class="pt-[80px]">
+      <Pricing />
+      <Closing />
+    </main>
+    <FloatingNav />
+  </div>
+</Layout>

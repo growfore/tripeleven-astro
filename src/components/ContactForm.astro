@@ -1,0 +1,122 @@
+---
+import Icon from "./Icon.astro";
+
+const TOPICS = ["General question", "Enterprise quote", "Walkthrough / demo", "Something else"];
+const CONTACT_EMAIL = "hello@tripeleven.com";
+---
+
+<form data-contact-form class="border border-border bg-card p-8 sm:p-10">
+  <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" />
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="name" class="mb-2 block text-sm font-semibold">Full name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+        placeholder="Jane Doe"
+      />
+    </div>
+    <div>
+      <label for="email" class="mb-2 block text-sm font-semibold">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+        placeholder="you@agency.com"
+      />
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <label for="agency" class="mb-2 block text-sm font-semibold">Agency name</label>
+    <input
+      id="agency"
+      name="agency"
+      type="text"
+      class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+      placeholder="Everest Trekking Co."
+    />
+  </div>
+
+  <div class="mt-5">
+    <label for="topic" class="mb-2 block text-sm font-semibold">What&apos;s this about?</label>
+    <select
+      id="topic"
+      name="topic"
+      class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+    >
+      {TOPICS.map((t) => (
+        <option value={t}>{t}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="mt-5">
+    <label for="message" class="mb-2 block text-sm font-semibold">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
+      placeholder="Tell us about your agency and what you're looking for…"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="mt-8 w-full cursor-pointer rounded-[2px] bg-ink py-6 text-base font-semibold text-primary-foreground transition-colors hover:bg-ink/90"
+    data-contact-submit
+  >
+    Send message
+  </button>
+
+  <p class="mt-4 hidden items-center justify-center gap-2 text-sm font-medium text-emerald-600" data-contact-sent>
+    <Icon name="check-circle" class="size-4" />
+    Thanks — your message is on its way. We&apos;ll reply within one business day.
+  </p>
+  <p class="mt-4 hidden text-center text-sm font-medium text-red-600" data-contact-error>
+    Something went wrong. Please email {CONTACT_EMAIL} directly.
+  </p>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const submitBtn = form?.querySelector<HTMLButtonElement>("[data-contact-submit]");
+  const sentMsg = form?.querySelector<HTMLElement>("[data-contact-sent]");
+  const errorMsg = form?.querySelector<HTMLElement>("[data-contact-error]");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+    sentMsg?.classList.add("hidden");
+    errorMsg?.classList.add("hidden");
+
+    try {
+      const body = new FormData(form);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(body.entries())),
+      });
+      const data = (await res.json()) as { ok: boolean };
+      if (!res.ok || !data.ok) throw new Error("submit failed");
+      sentMsg?.classList.remove("hidden");
+      sentMsg?.classList.add("flex");
+      form.reset();
+    } catch {
+      errorMsg?.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send message";
+    }
+  });
+</script>

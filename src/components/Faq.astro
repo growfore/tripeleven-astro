@@ -1,0 +1,124 @@
+---
+import Icon from "./Icon.astro";
+
+const faqs = [
+  {
+    q: "What is TripEleven?",
+    a: "TripEleven is an all-in-one platform for tour and trekking agencies to build, manage and sell trips online — a structured trip builder, AI itinerary generation, a full public website, inquiries and SEO in one workspace.",
+  },
+  {
+    q: "Do I need developers or coding skills?",
+    a: "No. Everything runs from a dashboard — build your catalog, publish your website, and collect inquiries without writing a line of code.",
+  },
+  {
+    q: "How is the trip builder different from a form?",
+    a: "It's a guided flow: Basic Info, Trip Facts, Itinerary, Inclusions/Exclusions, Meetings, Media, Pricing, Additional Info, FAQs, SEO and Featured. Every step is purpose-built, not a dump of fields.",
+  },
+  {
+    q: "How does AI trip generation work?",
+    a: "Drop in up to 10 trip topics and a style. Claude drafts full day-by-day itineraries in one batch, then every draft opens in the trip builder for your team to review, edit and publish.",
+  },
+  {
+    q: "Is the AI output ready to publish?",
+    a: "It's a strong first draft, not a finished product. Every generated itinerary lands in the same trip builder so your team reviews, edits and polishes before publishing.",
+  },
+  {
+    q: "How do trip inquiries get to me?",
+    a: "Every trip gets an inquiry form with your phone, email and WhatsApp in one place. Leads land in your dashboard as clean, trackable inquiries you respond to on your terms.",
+  },
+  {
+    q: "Can I use my own domain?",
+    a: "Yes. On Launch and higher you connect a custom domain, and your published site lives on it with full SEO — canonicals, sitemap and schema markup included.",
+  },
+  {
+    q: "What does my published website include?",
+    a: "A launch-ready, brandable website powered by your catalog — featured trips, menus, testimonials, team and reviews — curated from the dashboard with drag-and-drop tools.",
+  },
+  {
+    q: "Is the SEO toolkit built in?",
+    a: "Yes. Every trip ships with per-trip meta, canonical and Open Graph, JSON-LD schema, auto-slugs with permanent 301 redirects, and a redirect manager with cycle detection.",
+  },
+  {
+    q: "What happens when a trip slug changes?",
+    a: "A permanent 301 redirect is created automatically, so old links and search rankings never break.",
+  },
+  {
+    q: "Can multiple team members work together?",
+    a: "Yes. Every agency gets staff roles — Owner, Admin, Manager and Editor — with controlled access, plus a DRAFT → PUBLISHED pipeline and verification before publishing.",
+  },
+  {
+    q: "Can I process payments with my own Stripe keys?",
+    a: "Yes, on Enterprise you can receive payments through your own Stripe keys, and manage bookings and payments directly in the platform.",
+  },
+  {
+    q: "Is there a free plan?",
+    a: "Yes. Start free with a branded website, up to 5 trips and trip inquiries — no credit card required. Upgrade when you grow.",
+  },
+];
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+---
+
+<section
+  id="faq"
+  class="mx-auto grid max-w-5xl grid-cols-1 gap-[30px] border-t border-border px-5 py-[65px] lg:grid-cols-[1fr_1.4fr] lg:px-[55px] lg:py-[95px]"
+>
+  <h2 class="m-0 font-serif text-[32px] font-normal sm:text-[42px]">More Questions?</h2>
+  <div>
+    {faqs.map((faq, i) => (
+      <article data-faq>
+        <button
+          type="button"
+          data-faq-toggle
+          aria-expanded={i === 0 ? "true" : "false"}
+          class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium"
+        >
+          <span class="grid size-6 place-items-center border border-border" data-faq-mark>
+            {i === 0 ? "−" : "+"}
+          </span>
+          {faq.q}
+          <Icon name="chevron-down" class="size-4" />
+        </button>
+        <p
+          class="m-0 px-[35px] pb-[15px] leading-[1.5] text-muted-foreground"
+          data-faq-answer
+          hidden={i !== 0}
+        >
+          {faq.a}
+        </p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline></script>
+
+<script>
+  const section = document.querySelector("#faq");
+  const items = section ? Array.from(section.querySelectorAll<HTMLElement>("[data-faq]")) : [];
+  const answers = items.map((item) => item.querySelector<HTMLElement>("[data-faq-answer]"));
+  const marks = items.map((item) => item.querySelector<HTMLElement>("[data-faq-mark]"));
+  const toggles = items.map((item) => item.querySelector<HTMLElement>("[data-faq-toggle]"));
+
+  const setOpen = (idx: number) => {
+    items.forEach((_, i) => {
+      const open = i === idx;
+      if (answers[i]) answers[i].hidden = !open;
+      if (marks[i]) marks[i].textContent = open ? "−" : "+";
+      toggles[i]?.setAttribute("aria-expanded", String(open));
+    });
+  };
+
+  toggles.forEach((btn, i) => {
+    btn?.addEventListener("click", () => {
+      setOpen(answers[i]?.hidden ? i : -1);
+    });
+  });
+</script>
