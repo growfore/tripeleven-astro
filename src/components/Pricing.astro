@@ -10,6 +10,7 @@ interface Plan {
   badge?: string;
   tone: string;
   cta: string;
+  href: string;
   features: string[];
 }
 
@@ -21,6 +22,7 @@ const plans: Plan[] = [
     priceSuffix: "forever",
     tone: "bg-aqua",
     cta: "Start for free",
+    href: "https://app.tripeleven.com/signup",
     features: [
       "Branded trip website & catalog",
       "Up to 5 trips & 3 blog posts",
@@ -41,6 +43,7 @@ const plans: Plan[] = [
     badge: "Most Popular",
     tone: "bg-lime",
     cta: "Upgrade to Launch",
+    href: "https://app.tripeleven.com/login?upgrade=1",
     features: [
       "Everything in Free",
       "Up to 45 trips & 200 blog posts",
@@ -60,6 +63,7 @@ const plans: Plan[] = [
     annual: { price: "$63", totalLabel: "$756 billed yearly" },
     tone: "bg-violet",
     cta: "Upgrade to Scale",
+    href: "https://app.tripeleven.com/login?upgrade=1",
     features: [
       "Everything in Launch",
       "300 trips & 2,500 blog posts",
@@ -78,6 +82,7 @@ const plans: Plan[] = [
     priceSuffix: "",
     tone: "bg-peach",
     cta: "Contact us",
+    href: "https://app.tripeleven.com/signup",
     features: [
       "Everything in Scale",
       "White-label (remove TripEleven)",
@@ -298,7 +303,7 @@ function compareValue(row: CompareRow, planIdx: number): string {
           ))}
         </ul>
         <a
-          href="https://app.tripeleven.com/signup"
+          href={plan.href}
           target="_blank"
           rel="noreferrer"
           class="mx-[-28px] mb-0 mt-auto cursor-pointer border-0 bg-[oklch(0.2_0_0/0.1)] p-[18px] text-center font-semibold no-underline transition-colors duration-200 hover:bg-[var(--ink)] hover:text-primary-foreground"
