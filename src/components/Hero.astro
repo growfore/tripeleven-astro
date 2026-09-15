@@ -5,9 +5,26 @@ import Icon from "./Icon.astro";
 <section class="flex min-h-fit flex-col lg:min-h-[700px] lg:flex-row lg:gap-[72px]">
   <div class="flex-1 px-7 py-[70px] lg:py-[125px] lg:pl-[72px]">
     <h1 class="mb-[42px] font-serif text-[42px] leading-[0.98] lg:text-[clamp(58px,5vw,82px)]">
-      More trips sold.
+      <span class="inline-grid align-top">
+        <span
+          class="col-start-1 row-start-1 transition-all duration-700 ease-in-out"
+          data-hero-slide
+        >More <span class="text-primary">trips sold.</span></span>
+        <span
+          class="col-start-1 row-start-1 opacity-0 transition-all duration-700 ease-in-out"
+          data-hero-slide
+        >More <span class="text-aqua">bookings made.</span></span>
+        <span
+          class="col-start-1 row-start-1 opacity-0 transition-all duration-700 ease-in-out"
+          data-hero-slide
+        >More <span class="text-violet">revenue earned.</span></span>
+        <span
+          class="col-start-1 row-start-1 opacity-0 transition-all duration-700 ease-in-out"
+          data-hero-slide
+        >More <span class="text-lime">time saved.</span></span>
+      </span>
       <br />
-      Less admin.
+      <span class="text-ink">Less admin.</span>
     </h1>
     <p
       class="mb-[42px] max-w-[420px] text-[18px] leading-[1.35] text-muted-foreground lg:text-[23px]"
@@ -45,3 +62,19 @@ import Icon from "./Icon.astro";
     />
   </div>
 </section>
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>("[data-hero-slide]"));
+  if (slides.length) {
+    let active = 0;
+    for (let i = 0; i < slides.length; i++) slides[i].setAttribute("aria-hidden", String(i !== 0));
+    const cycle = () => {
+      slides[active].classList.add("opacity-0");
+      slides[active].setAttribute("aria-hidden", "true");
+      active = (active + 1) % slides.length;
+      slides[active].classList.remove("opacity-0");
+      slides[active].setAttribute("aria-hidden", "false");
+    };
+    setInterval(cycle, 3000);
+  }
+</script>
