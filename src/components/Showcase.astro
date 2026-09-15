@@ -28,11 +28,11 @@ const clientSites = [
         href={url}
         target="_blank"
         rel="noreferrer"
-        class="group relative block overflow-hidden rounded-md shadow-sm transition duration-300 hover:shadow-lg"
+        class="group relative block overflow-hidden rounded-md shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0"
         aria-label={`Visit ${name}`}
       >
         <img
-          class="mb-0 block h-auto w-full rounded-md bg-muted object-contain transition duration-300 group-hover:brightness-50"
+          class="mb-0 block h-auto w-full rounded-md bg-muted object-contain transition duration-500 group-hover:scale-[1.04] group-hover:brightness-50"
           src={img}
           loading="lazy"
           width="1440"

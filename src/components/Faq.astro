@@ -73,18 +73,18 @@ const faqSchema = {
   <h2 class="m-0 font-serif text-[32px] font-normal sm:text-[42px]">More Questions?</h2>
   <div>
     {faqs.map((faq, i) => (
-      <article data-faq>
+      <article data-faq class="group">
         <button
           type="button"
           data-faq-toggle
           aria-expanded={i === 0 ? "true" : "false"}
-          class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium"
+          class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium transition-colors duration-200 hover:text-foreground"
         >
-          <span class="grid size-6 place-items-center border border-border" data-faq-mark>
+          <span class="grid size-6 place-items-center border border-border transition-colors duration-200 group-hover:border-foreground/30" data-faq-mark>
             {i === 0 ? "−" : "+"}
           </span>
           {faq.q}
-          <Icon name="chevron-down" class="size-4" />
+          <Icon name="chevron-down" class="size-4 transition-transform duration-300" data-faq-chevron />
         </button>
         <p
           class="m-0 px-[35px] pb-[15px] leading-[1.5] text-muted-foreground"

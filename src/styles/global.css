@@ -29,3 +29,30 @@
     transform: translateY(0);
   }
 }
+
+@layer components {
+  .nav-link {
+    position: relative;
+    transition: color 0.2s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.35rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+[data-faq-toggle][aria-expanded="true"] [data-faq-chevron] {
+  transform: rotate(180deg);
+}

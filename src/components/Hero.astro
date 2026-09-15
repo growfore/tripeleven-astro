@@ -19,9 +19,10 @@ import Icon from "./Icon.astro";
       href="https://app.tripeleven.com/signup"
       target="_blank"
       rel="noreferrer"
-      class="inline-flex items-center justify-center gap-3 rounded-[20px] bg-[var(--ink)] px-[34px] py-[23px] text-[18px] font-semibold text-primary-foreground"
+      class="group inline-flex items-center justify-center gap-3 rounded-[20px] bg-[var(--ink)] px-[34px] py-[23px] text-[18px] font-semibold text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[var(--ink)]/20 active:translate-y-0 active:scale-[0.98]"
     >
-      Get started for free <Icon name="arrow-right" class="size-[19px]" />
+      Get started for free
+      <Icon name="arrow-right" class="size-[19px] transition-transform duration-200 group-hover:translate-x-1" />
     </a>
     <div class="mt-7 flex flex-col gap-2.5 text-[13px] text-muted-foreground lg:flex-row lg:gap-[34px]">
       <span class="flex items-center gap-2">
