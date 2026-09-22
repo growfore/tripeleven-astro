@@ -294,6 +294,9 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
                 {plan.annual.totalLabel}
               </small>
             )}
+            {plan.annual && (
+              <del class="mr-2 text-xl text-muted-foreground" data-monthly-price>{plan.price}</del>
+            )}
             <strong
               class="text-[46px] leading-tight"
               data-price-amount
@@ -420,7 +423,7 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
           ? (amount.dataset.annual ?? amount.dataset.monthly ?? "")
           : (amount.dataset.monthly ?? "");
       });
-      root?.querySelectorAll("small[data-total]").forEach((el) => {
+      root?.querySelectorAll("[data-monthly-price], [data-total]").forEach((el) => {
         (el as HTMLElement).hidden = !isAnnual;
       });
     };
