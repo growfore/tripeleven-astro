@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 192 158" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-963.480862,-237.022815)">
-        <g id="Background">
-        </g>
-        <g id="Logo">
-        </g>
-        <g transform="matrix(0.550359,0,0,0.550359,934.269587,208.037434)">
-            <path d="M202.856,125.111C205.938,125.11 238.555,62.798 241.739,60.935C256.525,52.282 204.972,126.855 207.025,131.705C208.499,135.187 293.92,277.809 301.516,290.491C308.339,301.882 307.299,306.591 320.421,304.132C325.375,303.204 312.701,177.034 318.502,176.513C325.108,175.918 322.991,303.691 328.499,303.508C350.018,302.793 397.135,295.011 394.108,301.346C392.276,305.181 69.173,327.86 65.464,330.453C59.851,334.375 58.676,325.598 64.45,325.137C84.733,323.517 87.702,326.863 94.674,314.607C190.484,146.191 192.109,147.144 200.001,132.26C202.068,128.361 162.134,68.394 162.116,64.5C162.071,54.704 171.813,72.005 202.856,125.111Z" style="fill:white;fill-opacity:0;stroke:rgb(2,132,199);stroke-width:15.14px;"/>
-        </g>
-    </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%" height="100%" viewBox="0 0 322 322" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path d="M322,38.64l0,244.72c0,21.326 -17.314,38.64 -38.64,38.64l-244.72,0c-21.326,0 -38.64,-17.314 -38.64,-38.64l0,-244.72c0,-21.326 17.314,-38.64 38.64,-38.64l244.72,0c21.326,0 38.64,17.314 38.64,38.64Z" style="fill:#fff;"/><rect x="40.607" y="83" width="81.437" height="199" style="fill:#0269e7;fill-rule:nonzero;"/><rect x="199.956" y="83" width="81.437" height="199" style="fill:#0269e7;fill-rule:nonzero;"/></svg>
