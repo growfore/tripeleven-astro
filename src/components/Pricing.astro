@@ -21,7 +21,6 @@ const plans: Plan[] = [
     price: "$29",
     priceSuffix: "month",
     annual: { price: "$23", totalLabel: "$276 billed yearly" },
-    badge: "Most Popular",
     tone: "bg-lime",
     cta: "Try 7 days free trial",
     href: "https://app.tripeleven.com/signup",
@@ -39,6 +38,7 @@ const plans: Plan[] = [
   },
   {
     name: "Scale",
+    badge: "Most Popular",
     description: "For large agencies managing a big catalog of packages.",
     price: "$79",
     priceSuffix: "month",
@@ -48,7 +48,7 @@ const plans: Plan[] = [
     href: "https://app.tripeleven.com/signup",
     features: [
       "Everything in Launch",
-      "300 trips & 2,500 blog posts",
+      "Unlimited trips & blog posts",
       "Read-only API access",
       "Large package catalogs",
       "Remove TripEleven branding",
@@ -121,13 +121,13 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Trips",
         launch: "45",
-        scale: "300",
+        scale: "Unlimited",
         enterprise: "Unlimited",
       },
       {
         label: "Blog posts",
         launch: "200",
-        scale: "2,500",
+        scale: "Unlimited",
         enterprise: "Unlimited",
       },
       {
@@ -232,7 +232,10 @@ const compareGroups: CompareGroup[] = [
   },
 ];
 
-function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): string {
+function compareValue(
+  row: CompareRow,
+  plan: (typeof comparePlans)[number],
+): string {
   return row[plan.toLowerCase() as keyof CompareRow];
 }
 ---
@@ -245,7 +248,8 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
     Start with a 7-day free trial.
   </h2>
   <p class="mt-4 text-[17px] text-muted-foreground">
-    Build your branded website, trip catalog and inquiry engine. Choose a plan when your trial ends.
+    Build your branded website, trip catalog and inquiry engine. Choose a plan
+    when your trial ends.
   </p>
   <div
     class="my-10 inline-flex rounded-full border border-border bg-muted p-1.5 shadow-sm"
@@ -277,7 +281,7 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
           class={`relative flex min-h-[540px] flex-col rounded-2xl px-[28px] pb-0 pt-14 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${plan.tone}`}
         >
           {plan.badge && (
-            <span class="absolute left-1/2 top-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
+            <span class="absolute left-1/2 -top-2 -translate-x-1/2 whitespace-nowrap rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
               <Icon name="star" class="mr-1 inline size-3 fill-current" />
               {plan.badge}
             </span>
@@ -288,27 +292,34 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
           <p class="m-0 text-center text-[13px] leading-[1.5] text-foreground/70">
             {plan.description}
           </p>
-          {plan.price && <div class="mt-[28px] text-center" data-price>
-            {plan.annual && (
-              <small class="block text-muted-foreground" data-total hidden>
-                {plan.annual.totalLabel}
-              </small>
-            )}
-            {plan.annual && (
-              <del class="mr-2 text-xl text-muted-foreground" data-monthly-price>{plan.price}</del>
-            )}
-            <strong
-              class="text-[46px] leading-tight"
-              data-price-amount
-              data-monthly={plan.price}
-              data-annual={plan.annual?.price}
-            >
-              {plan.annual ? plan.annual.price : plan.price}
-            </strong>
-            {plan.priceSuffix && (
-              <small class="ml-1 font-bold">/ {plan.priceSuffix}</small>
-            )}
-          </div>}
+          {plan.price && (
+            <div class="mt-[28px] text-center" data-price>
+              {plan.annual && (
+                <small class="block text-muted-foreground" data-total hidden>
+                  {plan.annual.totalLabel}
+                </small>
+              )}
+              {plan.annual && (
+                <del
+                  class="mr-2 text-xl text-muted-foreground"
+                  data-monthly-price
+                >
+                  {plan.price}
+                </del>
+              )}
+              <strong
+                class="text-[46px] leading-tight"
+                data-price-amount
+                data-monthly={plan.price}
+                data-annual={plan.annual?.price}
+              >
+                {plan.annual ? plan.annual.price : plan.price}
+              </strong>
+              {plan.priceSuffix && (
+                <small class="ml-1 font-bold">/ {plan.priceSuffix}</small>
+              )}
+            </div>
+          )}
           <ul class="m-0 list-none py-[22px] text-[14px] leading-[2]">
             {plan.features.map((x) => (
               <li>
@@ -423,9 +434,11 @@ function compareValue(row: CompareRow, plan: (typeof comparePlans)[number]): str
           ? (amount.dataset.annual ?? amount.dataset.monthly ?? "")
           : (amount.dataset.monthly ?? "");
       });
-      root?.querySelectorAll("[data-monthly-price], [data-total]").forEach((el) => {
-        (el as HTMLElement).hidden = !isAnnual;
-      });
+      root
+        ?.querySelectorAll("[data-monthly-price], [data-total]")
+        .forEach((el) => {
+          (el as HTMLElement).hidden = !isAnnual;
+        });
     };
     monthlyBtn.addEventListener("click", () => setActive(false));
     annualBtn.addEventListener("click", () => setActive(true));

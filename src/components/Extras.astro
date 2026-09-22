@@ -2,30 +2,55 @@
 import Icon from "./Icon.astro";
 
 const extras = [
-  { icon: "layout-grid" as const, title: "Catalog", text: "Organize everything you offer in one browsable catalog." },
-  { icon: "package-plus" as const, title: "Extras", text: "Bundle add-ons and sell them right alongside your trips." },
-  { icon: "tag" as const, title: "Tags", text: "Label content and services to keep everything easy to find." },
-  { icon: "sparkles" as const, title: "AI", text: "AI assistants that draft, organize, and polish your content." },
+  {
+    icon: "layout-grid" as const,
+    title: "Catalog",
+    text: "Organize everything you offer in one browsable catalog.",
+  },
+  {
+    icon: "package-plus" as const,
+    title: "Extras",
+    text: "Bundle add-ons and sell them right alongside your trips.",
+  },
+  {
+    icon: "tag" as const,
+    title: "Tags",
+    text: "Label content and services to keep everything easy to find.",
+  },
+  {
+    icon: "sparkles" as const,
+    title: "AI",
+    text: "AI assistants that draft, organize, and polish your content.",
+  },
 ];
 ---
 
 <section class="mx-auto max-w-5xl pt-0">
   <div class="px-5 py-[42px] text-center">
-    <h2 class="m-0 mb-[14px] font-serif text-[30px]">Plus everything else you need</h2>
+    <h2 class="m-0 mb-[14px] font-serif text-[30px]">
+      Plus everything else you need
+    </h2>
     <p class="m-0 text-[14px] leading-[1.5] text-muted-foreground">
-      From catalog and menu to analytics, every TripEleven label covers the rest of your setup — no
-      extra tools required.
+      From catalog and menu to analytics, every TripEleven label covers the rest
+      of your setup — no extra tools required.
     </p>
-    <div class="mt-[28px] grid grid-cols-1 gap-x-[18px] gap-y-[22px] text-left sm:grid-cols-2 lg:grid-cols-4">
-      {extras.map(({ icon, title, text }) => (
-        <article class="group flex min-h-[260px] flex-col justify-between rounded-[14px] bg-muted p-[26px] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-          <Icon name={icon} class="size-6 transition-transform duration-200 group-hover:scale-110 group-hover:text-primary" />
-          <div>
-            <span class="text-[13px] text-muted-foreground">{title}</span>
-            <p class="m-0 mt-2 text-[14px] leading-[1.4]">{text}</p>
-          </div>
-        </article>
-      ))}
+    <div
+      class="mt-[28px] grid grid-cols-1 gap-x-[18px] gap-y-[22px] text-left sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {
+        extras.map(({ icon, title, text }) => (
+          <article class="group flex min-h-[260px] flex-col justify-between rounded-[14px] bg-muted p-[26px] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <Icon
+              name={icon}
+              class="size-6 transition-transform duration-200 group-hover:scale-110 group-hover:text-primary"
+            />
+            <div>
+              <span class="text-[13px] text-muted-foreground">{title}</span>
+              <p class="m-0 mt-2 text-[14px] leading-[1.4]">{text}</p>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -70,42 +70,65 @@ const faqSchema = {
   id="faq"
   class="mx-auto grid max-w-5xl grid-cols-1 gap-[30px] border-t border-border px-5 py-[65px] lg:grid-cols-[1fr_1.4fr] lg:px-[55px] lg:py-[95px]"
 >
-  <h2 class="m-0 font-serif text-[32px] font-normal sm:text-[42px]">More Questions?</h2>
+  <h2 class="m-0 font-serif text-[32px] font-normal sm:text-[42px]">
+    More Questions?
+  </h2>
   <div>
-    {faqs.map((faq, i) => (
-      <article data-faq class="group">
-        <button
-          type="button"
-          data-faq-toggle
-          aria-expanded={i === 0 ? "true" : "false"}
-          class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium transition-colors duration-200 hover:text-foreground"
-        >
-          <span class="grid size-6 place-items-center border border-border transition-colors duration-200 group-hover:border-foreground/30" data-faq-mark>
-            {i === 0 ? "−" : "+"}
-          </span>
-          {faq.q}
-          <Icon name="chevron-down" class="size-4 transition-transform duration-300" data-faq-chevron />
-        </button>
-        <p
-          class="m-0 px-[35px] pb-[15px] leading-[1.5] text-muted-foreground"
-          data-faq-answer
-          hidden={i !== 0}
-        >
-          {faq.a}
-        </p>
-      </article>
-    ))}
+    {
+      faqs.map((faq, i) => (
+        <article data-faq class="group">
+          <button
+            type="button"
+            data-faq-toggle
+            aria-expanded={i === 0 ? "true" : "false"}
+            class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium transition-colors duration-200 hover:text-foreground"
+          >
+            <span
+              class="grid size-6 place-items-center  transition-colors duration-200 group-hover:border-foreground/30"
+              data-faq-mark
+            >
+              {i === 0 ? "−" : "+"}
+            </span>
+            {faq.q}
+            <Icon
+              name="chevron-down"
+              class="size-4 transition-transform duration-300"
+              data-faq-chevron
+            />
+          </button>
+          <p
+            class="m-0 px-[35px] pb-[15px] leading-[1.5] text-muted-foreground"
+            data-faq-answer
+            hidden={i !== 0}
+          >
+            {faq.a}
+          </p>
+        </article>
+      ))
+    }
   </div>
 </section>
 
-<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline></script>
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(faqSchema)}
+  is:inline
+/>
 
 <script>
   const section = document.querySelector("#faq");
-  const items = section ? Array.from(section.querySelectorAll<HTMLElement>("[data-faq]")) : [];
-  const answers = items.map((item) => item.querySelector<HTMLElement>("[data-faq-answer]"));
-  const marks = items.map((item) => item.querySelector<HTMLElement>("[data-faq-mark]"));
-  const toggles = items.map((item) => item.querySelector<HTMLElement>("[data-faq-toggle]"));
+  const items = section
+    ? Array.from(section.querySelectorAll<HTMLElement>("[data-faq]"))
+    : [];
+  const answers = items.map((item) =>
+    item.querySelector<HTMLElement>("[data-faq-answer]"),
+  );
+  const marks = items.map((item) =>
+    item.querySelector<HTMLElement>("[data-faq-mark]"),
+  );
+  const toggles = items.map((item) =>
+    item.querySelector<HTMLElement>("[data-faq-toggle]"),
+  );
 
   const setOpen = (idx: number) => {
     items.forEach((_, i) => {
