@@ -9,7 +9,8 @@ const canonical = "https://tripeleven.com";
 
 <Layout {title} {description} {canonical}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <main class="flex min-h-screen items-center justify-center bg-background px-4">
+    <FloatingNav />
+    <main class="flex min-h-[80vh] items-center justify-center bg-background px-4">
       <div class="max-w-md text-center">
         <h1 class="text-7xl font-bold text-foreground">404</h1>
         <h2 class="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
@@ -26,6 +27,5 @@ const canonical = "https://tripeleven.com";
         </div>
       </div>
     </main>
-    <FloatingNav />
   </div>
 </Layout>

@@ -23,7 +23,8 @@ const canonical = "https://tripeleven.com/";
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
     <Notice />
-    <main id="top" class="pt-[76px]">
+    <FloatingNav />
+    <main id="top">
       <Hero />
       <Showcase />
       <Platform />
@@ -34,6 +35,5 @@ const canonical = "https://tripeleven.com/";
       <Closing />
     </main>
     <Footer />
-    <FloatingNav />
   </div>
 </Layout>

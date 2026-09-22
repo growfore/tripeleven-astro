@@ -14,10 +14,10 @@ const canonical = "https://tripeleven.com/pricing";
 
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <main id="top" class="pt-[80px]">
+    <FloatingNav />
+    <main id="top">
       <Pricing />
       <Closing />
     </main>
-    <FloatingNav />
   </div>
 </Layout>
