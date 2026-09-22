@@ -255,21 +255,22 @@ function compareValue(row: CompareRow, planIdx: number): string {
     Your branded website, trip catalog and inquiry engine — free. Add custom branding, AI
     itineraries and more when you grow.
   </p>
-  <div class="my-10 inline-flex bg-muted p-[7px]" data-billing-toggle>
+  <div class="my-10 inline-flex rounded-full border border-border bg-muted p-1.5 shadow-sm" data-billing-toggle>
     <button
       type="button"
-      class="cursor-pointer border-0 bg-transparent px-[18px] py-[10px] sm:px-[26px]"
+      class="cursor-pointer rounded-full px-6 py-3 text-base font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8"
       data-billing-monthly
+      aria-pressed="false"
     >
       Monthly
     </button>
     <button
       type="button"
-      class="cursor-pointer border-0 bg-transparent px-[18px] py-[10px] underline decoration-2 underline-offset-4 sm:px-[26px]"
+      class="cursor-pointer rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8"
       data-billing-annual
       aria-pressed="true"
     >
-      Yearly <small class="ml-1">Save 20%</small>
+      Yearly <small class="ml-1 font-bold">Save 20%</small>
     </button>
   </div>
   <div class="grid grid-cols-1 gap-[20px] text-left lg:grid-cols-4 lg:gap-[24px]">
@@ -379,13 +380,13 @@ function compareValue(row: CompareRow, planIdx: number): string {
   const annualBtn = root?.querySelector("[data-billing-annual]");
   if (monthlyBtn && annualBtn) {
     const setActive = (isAnnual: boolean) => {
-      monthlyBtn.classList.toggle("underline", !isAnnual);
-      monthlyBtn.classList.toggle("decoration-2", !isAnnual);
-      monthlyBtn.classList.toggle("underline-offset-4", !isAnnual);
-      annualBtn.classList.toggle("underline", isAnnual);
-      annualBtn.classList.toggle("decoration-2", isAnnual);
-      annualBtn.classList.toggle("underline-offset-4", isAnnual);
-      annualBtn.setAttribute("aria-pressed", String(isAnnual));
+      for (const [button, active] of [[monthlyBtn, !isAnnual], [annualBtn, isAnnual]] as const) {
+        button.classList.toggle("bg-primary", active);
+        button.classList.toggle("text-primary-foreground", active);
+        button.classList.toggle("shadow-sm", active);
+        button.classList.toggle("text-muted-foreground", !active);
+        button.setAttribute("aria-pressed", String(active));
+      }
       root?.querySelectorAll("strong[data-price-amount]").forEach((el) => {
         const amount = el as HTMLElement;
         amount.textContent = isAnnual ? amount.dataset.annual ?? amount.dataset.monthly ?? "" : amount.dataset.monthly ?? "";
