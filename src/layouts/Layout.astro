@@ -12,6 +12,7 @@ interface Props {
   ogTitle?: string;
   ogDescription?: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   ogTitle = title,
   ogDescription = description,
   canonical = SITE_URL,
+  noindex = false,
 } = Astro.props;
 
 const jsonLd = {
@@ -57,8 +59,8 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index, follow" />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
     <meta name="theme-color" content="#ffffff" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -238,15 +238,17 @@ function compareValue(
 ): string {
   return row[plan.toLowerCase() as keyof CompareRow];
 }
+
+const Heading = Astro.props.heading ?? "h2";
 ---
 
 <section
   id="pricing"
   class="px-5 py-[65px] text-center lg:px-[55px] lg:py-[95px]"
 >
-  <h2 class="m-0 font-serif text-[35px] lg:text-[48px]">
+  <Heading class="m-0 font-serif text-[35px] lg:text-[48px]">
     Start with a 7-day free trial.
-  </h2>
+  </Heading>
   <p class="mt-4 text-[17px] text-muted-foreground">
     Build your branded website, trip catalog and inquiry engine. Choose a plan
     when your trial ends.
