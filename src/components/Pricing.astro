@@ -37,7 +37,7 @@ const plans: Plan[] = [
     ],
   },
   {
-    name: "Scale",
+    name: "Business",
     badge: "Most Popular",
     description: "For large agencies managing a big catalog of packages.",
     price: "$79",
@@ -66,7 +66,7 @@ const plans: Plan[] = [
     cta: "Contact us",
     href: "https://app.tripeleven.com/signup",
     features: [
-      "Everything in Scale",
+      "Everything in Business",
       "White-label (remove TripEleven)",
       "Unlimited storage",
       "Dedicated onboarding",
@@ -75,12 +75,12 @@ const plans: Plan[] = [
   },
 ];
 
-const comparePlans = ["Launch", "Scale", "Enterprise"] as const;
+const comparePlans = ["Launch", "Business", "Enterprise"] as const;
 
 type CompareRow = {
   label: string;
   launch: string;
-  scale: string;
+  business: string;
   enterprise: string;
 };
 type CompareGroup = { title: string; rows: CompareRow[] };
@@ -92,25 +92,25 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Branded trip website & catalog",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Custom domain",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Remove TripEleven branding",
         launch: "—",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Custom template, palette & fonts",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
     ],
@@ -121,31 +121,31 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Trips",
         launch: "45",
-        scale: "Unlimited",
+        business: "Unlimited",
         enterprise: "Unlimited",
       },
       {
         label: "Blog posts",
         launch: "200",
-        scale: "Unlimited",
+        business: "Unlimited",
         enterprise: "Unlimited",
       },
       {
         label: "Large package catalogs",
         launch: "—",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Per-trip SEO fields",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Read-only API access",
         launch: "—",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
     ],
@@ -156,13 +156,13 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Trip inquiries (email / WhatsApp)",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Bookings & payments",
         launch: "—",
-        scale: "—",
+        business: "—",
         enterprise: "Included",
       },
     ],
@@ -173,13 +173,13 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Media library with auto WebP",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Media storage",
         launch: "5 GB",
-        scale: "25 GB",
+        business: "25 GB",
         enterprise: "Unlimited",
       },
     ],
@@ -190,13 +190,13 @@ const compareGroups: CompareGroup[] = [
       {
         label: "AI itinerary generation (BYO key)",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Receive payments via own Stripe keys",
         launch: "—",
-        scale: "—",
+        business: "—",
         enterprise: "Included",
       },
     ],
@@ -207,25 +207,25 @@ const compareGroups: CompareGroup[] = [
       {
         label: "Staff seats",
         launch: "2",
-        scale: "25",
+        business: "25",
         enterprise: "Unlimited",
       },
       {
         label: "Priority support",
         launch: "Included",
-        scale: "Included",
+        business: "Included",
         enterprise: "Included",
       },
       {
         label: "Dedicated onboarding",
         launch: "—",
-        scale: "—",
+        business: "—",
         enterprise: "Included",
       },
       {
         label: "White-label",
         launch: "—",
-        scale: "—",
+        business: "—",
         enterprise: "Included",
       },
     ],
@@ -343,7 +343,7 @@ const Heading = Astro.props.heading ?? "h2";
     }
   </div>
   <small class="mt-[35px] block leading-[1.8] text-muted-foreground">
-    Yearly billing available on Launch and Scale. Your first 7 days are free.
+    Yearly billing available on Launch and Business. Your first 7 days are free.
   </small>
   <div class="mt-[60px] overflow-x-auto border border-border text-left">
     <table class="w-full min-w-[680px] border-collapse text-sm">
@@ -408,7 +408,7 @@ const Heading = Astro.props.heading ?? "h2";
   >
     <strong>TripEleven branding</strong> is the credit line (footer + &ldquo;Powered
     by TripEleven&rdquo; notice) shown on your published site and linked to tripeleven.com.
-    It is shown on Launch, and fully removed on Scale and Enterprise.
+    It is shown on Launch, and fully removed on Business and Enterprise.
   </small>
 </section>
 
