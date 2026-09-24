@@ -5,14 +5,14 @@
   --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--foreground);
   --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary); --color-secondary-foreground: var(--foreground);
   --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-accent: var(--accent); --color-accent-foreground: var(--foreground);
-  --color-border: var(--border); --color-input: var(--border); --color-ring: var(--primary); --font-sans: "Inter Tight", sans-serif; --font-serif: "Instrument Serif", serif;
+  --color-border: var(--border); --color-input: var(--border); --color-ring: var(--primary); --font-sans: "Inter Tight", sans-serif; --font-serif: "Instrument Sans", sans-serif;
   --color-aqua: var(--aqua); --color-lime: var(--lime); --color-violet: var(--violet); --color-peach: var(--peach); --color-ink: var(--ink);
   --breakpoint-lg: 56.25rem;
 }
 :root { --background: oklch(.985 .005 105); --foreground: oklch(.17 .014 75); --card: oklch(1 0 0); --primary: oklch(.30 .07 118); --primary-foreground: oklch(.99 .006 100); --secondary: oklch(.94 .032 116); --muted: oklch(.955 .006 85); --muted-foreground: oklch(.49 .01 80); --accent: oklch(.82 .17 127); --border: oklch(.88 .008 85); --aqua: oklch(.83 .11 178); --lime: oklch(.82 .16 127); --violet: oklch(.77 .16 314); --peach: oklch(.94 .037 55); --ink: oklch(.16 .006 75); --radius: .5rem; }
 
 @layer base {
-  h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 400; }
+  h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 700; }
 
   img {
     animation: fade-up 0.7s ease-out both;
