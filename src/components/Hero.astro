@@ -7,10 +7,10 @@ import Icon from "./Icon.astro";
     class="page-container flex flex-col items-center pb-8 text-center lg:pb-12"
   >
     <h1
-      class="mb-6 max-w-4xl font-serif text-[clamp(42px,6vw,64px)] font-semibold leading-[1.05] tracking-[-0.035em] text-deep-navy"
+      class="mb-6 w-full max-w-4xl font-serif text-[clamp(42px,6vw,64px)] font-semibold leading-[1.05] tracking-[-0.035em] text-deep-navy"
     >
-      More <br />
-      <span class="inline-grid align-top lg:whitespace-nowrap">
+      <span class="block">More</span>
+      <span class="grid w-full lg:whitespace-nowrap">
         <span
           class="col-start-1 row-start-1 transition-opacity duration-700 ease-in-out"
           data-hero-slide><span class="text-electric">trips sold.</span></span
@@ -30,8 +30,7 @@ import Icon from "./Icon.astro";
           data-hero-slide><span class="text-electric">time saved.</span></span
         >
       </span>
-      <br />
-      <span>Less admin.</span>
+      <span class="block">Less admin.</span>
     </h1>
     <p
       class="mb-7 max-w-[600px] text-lg leading-[1.55] text-deep-navy lg:text-xl"
