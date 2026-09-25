@@ -21,10 +21,10 @@ const canonical = "https://tripeleven.com/";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
+  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-background">
     <Notice />
     <FloatingNav />
-    <main id="top">
+    <main id="top" class="flex flex-col gap-12 md:gap-20">
       <Hero />
       <Showcase />
       <Platform />

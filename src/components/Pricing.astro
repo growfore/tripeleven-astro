@@ -9,6 +9,7 @@ interface Plan {
   annual?: { price: string; totalLabel: string };
   badge?: string;
   tone: string;
+  dark?: boolean;
   cta: string;
   href: string;
   features: string[];
@@ -21,7 +22,7 @@ const plans: Plan[] = [
     price: "$29",
     priceSuffix: "month",
     annual: { price: "$23", totalLabel: "$276 billed yearly" },
-    tone: "bg-lime",
+    tone: "bg-white",
     cta: "Try 7 days free trial",
     href: "https://app.tripeleven.com/signup",
     features: [
@@ -43,7 +44,8 @@ const plans: Plan[] = [
     price: "$79",
     priceSuffix: "month",
     annual: { price: "$63", totalLabel: "$756 billed yearly" },
-    tone: "bg-violet",
+    tone: "bg-navy",
+    dark: true,
     cta: "Try 7 days free trial",
     href: "https://app.tripeleven.com/signup",
     features: [
@@ -62,7 +64,7 @@ const plans: Plan[] = [
     description: "White-label, dedicated onboarding and custom terms.",
     price: "",
     priceSuffix: "",
-    tone: "bg-peach",
+    tone: "bg-light-blue",
     cta: "Contact us",
     href: "https://app.tripeleven.com/signup",
     features: [
@@ -242,24 +244,23 @@ function compareValue(
 const Heading = Astro.props.heading ?? "h2";
 ---
 
-<section
-  id="pricing"
-  class="px-5 py-[65px] text-center lg:px-[55px] lg:py-[95px]"
->
-  <Heading class="m-0 font-serif text-[35px] lg:text-[48px]">
+<section id="pricing" class="page-container bg-off-white text-center">
+  <Heading
+    class="m-0 font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+  >
     Start with a 7-day free trial.
   </Heading>
-  <p class="mt-4 text-[17px] text-muted-foreground">
+  <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-deep-navy">
     Build your branded website, trip catalog and inquiry engine. Choose a plan
     when your trial ends.
   </p>
   <div
-    class="my-10 inline-flex rounded-full border border-border bg-muted p-1.5 shadow-sm"
+    class="my-8 inline-flex rounded-full border border-light-blue bg-light-blue p-1.5"
     data-billing-toggle
   >
     <button
       type="button"
-      class="cursor-pointer rounded-full px-6 py-3 text-base font-semibold text-muted-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8"
+      class="cursor-pointer rounded-full px-6 py-3 text-base font-semibold text-deep-navy transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric sm:px-8"
       data-billing-monthly
       aria-pressed="false"
     >
@@ -267,43 +268,47 @@ const Heading = Astro.props.heading ?? "h2";
     </button>
     <button
       type="button"
-      class="cursor-pointer rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-8"
+      class="cursor-pointer rounded-full bg-deep-navy px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric sm:px-8"
       data-billing-annual
       aria-pressed="true"
     >
-      Yearly <small class="ml-1 font-bold">Save 20%</small>
+      Yearly <small class="ml-1 font-bold text-deep-navy">Save 20%</small>
     </button>
   </div>
-  <div
-    class="grid grid-cols-1 gap-[20px] text-left lg:grid-cols-3 lg:gap-[24px]"
-  >
+  <div class="grid grid-cols-1 gap-5 text-left lg:grid-cols-3">
     {
       plans.map((plan) => (
         <article
-          class={`relative flex min-h-[540px] flex-col rounded-2xl px-[28px] pb-0 pt-14 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${plan.tone}`}
+          class={`relative flex min-h-[520px] flex-col rounded-xl border px-7 pb-7 pt-14 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:scale-[0.98] ${plan.tone} ${plan.dark ? "border-navy text-white shadow-lg shadow-deep-navy/15" : "border-light-blue text-deep-navy"}`}
         >
           {plan.badge && (
-            <span class="absolute left-1/2 -top-2 -translate-x-1/2 whitespace-nowrap rounded-full bg-primary px-4 py-1 text-xs font-semibold text-primary-foreground">
+            <span class="absolute left-1/2 -top-3 -translate-x-1/2 whitespace-nowrap rounded-full bg-electric px-4 py-1.5 text-xs font-semibold text-deep-navy shadow-sm">
               <Icon name="star" class="mr-1 inline size-3 fill-current" />
               {plan.badge}
             </span>
           )}
-          <h3 class="m-0 mb-[10px] text-center font-serif text-[30px] font-bold">
+          <h3 class="m-0 mb-2 text-center font-serif text-[30px] font-bold">
             {plan.name}
           </h3>
-          <p class="m-0 text-center text-[13px] leading-[1.5] text-foreground/70">
+          <p
+            class={`m-0 text-center text-sm leading-relaxed ${plan.dark ? "text-light-blue" : "text-deep-navy"}`}
+          >
             {plan.description}
           </p>
           {plan.price && (
-            <div class="mt-[28px] text-center" data-price>
+            <div class="mt-7 text-center" data-price>
               {plan.annual && (
-                <small class="block text-muted-foreground" data-total hidden>
+                <small
+                  class={`block text-xs ${plan.dark ? "text-light-blue" : "text-deep-navy"}`}
+                  data-total
+                  hidden
+                >
                   {plan.annual.totalLabel}
                 </small>
               )}
               {plan.annual && (
                 <del
-                  class="mr-2 text-xl text-muted-foreground"
+                  class={`mr-2 text-xl ${plan.dark ? "text-light-blue" : "text-deep-navy"}`}
                   data-monthly-price
                 >
                   {plan.price}
@@ -322,11 +327,11 @@ const Heading = Astro.props.heading ?? "h2";
               )}
             </div>
           )}
-          <ul class="m-0 list-none py-[22px] text-[14px] leading-[2]">
-            {plan.features.map((x) => (
+          <ul class="m-0 list-none space-y-1 py-6 text-sm leading-relaxed">
+            {plan.features.map((feature) => (
               <li>
-                <Icon name="check" class="mr-2 inline size-4 text-primary" />
-                {x}
+                <Icon name="check" class="mr-2 inline size-4 text-electric" />
+                {feature}
               </li>
             ))}
           </ul>
@@ -334,7 +339,7 @@ const Heading = Astro.props.heading ?? "h2";
             href={plan.href}
             target="_blank"
             rel="noreferrer"
-            class="mb-6 mt-auto cursor-pointer rounded-full bg-ink p-[18px] text-center font-semibold text-primary-foreground no-underline transition-colors duration-200 hover:opacity-85"
+            class={`mt-auto rounded-lg p-4 text-center font-semibold no-underline transition-[background-color,transform] duration-200 active:scale-[0.98] ${plan.dark ? "bg-electric text-deep-navy hover:bg-white" : "bg-deep-navy text-white hover:bg-navy"}`}
           >
             {plan.cta}
           </a>
@@ -342,15 +347,16 @@ const Heading = Astro.props.heading ?? "h2";
       ))
     }
   </div>
-  <small class="mt-[35px] block leading-[1.8] text-muted-foreground">
+  <small class="mt-8 block text-sm leading-relaxed text-deep-navy">
     Yearly billing available on Launch and Business. Your first 7 days are free.
   </small>
-  <div class="mt-[60px] overflow-x-auto border border-border text-left">
+  <div
+    class="mt-12 overflow-x-auto rounded-xl border border-light-blue text-left"
+  >
     <table class="w-full min-w-[680px] border-collapse text-sm">
       <thead>
-        <tr class="border-b bg-muted/50">
-          <th class="px-4 py-3 text-left font-medium text-muted-foreground"
-            >Feature</th
+        <tr class="border-b border-light-blue bg-light-blue">
+          <th class="px-4 py-3 text-left font-medium text-deep-navy">Feature</th
           >
           {
             comparePlans.map((plan) => (
@@ -363,37 +369,36 @@ const Heading = Astro.props.heading ?? "h2";
         {
           compareGroups.map((group) => (
             <>
-              <tr class="border-t bg-card">
+              <tr class="border-t border-light-blue bg-off-white">
                 <td
                   colspan="4"
-                  class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+                  class="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-deep-navy"
                 >
                   {group.title}
                 </td>
               </tr>
               {group.rows.map((row) => (
-                <tr class="border-t">
-                  <td class="px-4 py-2.5 font-medium">{row.label}</td>
+                <tr class="border-t border-light-blue">
+                  <td class="px-4 py-3 font-medium">{row.label}</td>
                   {comparePlans.map((plan) => {
                     const value = compareValue(row, plan);
                     if (value === "Included") {
                       return (
-                        <td class="px-4 py-2.5">
-                          <Icon name="check" class="size-4 text-primary" />
+                        <td class="px-4 py-3">
+                          <Icon name="check" class="size-4 text-electric" />
+                          <span class="sr-only">Included</span>
                         </td>
                       );
                     }
                     if (value === "—") {
                       return (
-                        <td class="px-4 py-2.5">
-                          <Icon
-                            name="x"
-                            class="size-4 text-muted-foreground/50"
-                          />
+                        <td class="px-4 py-3">
+                          <Icon name="x" class="size-4 text-slate" />
+                          <span class="sr-only">Not included</span>
                         </td>
                       );
                     }
-                    return <td class="px-4 py-2.5">{value}</td>;
+                    return <td class="px-4 py-3">{value}</td>;
                   })}
                 </tr>
               ))}
@@ -404,7 +409,7 @@ const Heading = Astro.props.heading ?? "h2";
     </table>
   </div>
   <small
-    class="mt-4 block text-center text-xs leading-[1.8] text-muted-foreground"
+    class="mx-auto mt-4 block max-w-3xl text-center text-xs leading-relaxed text-deep-navy"
   >
     <strong>TripEleven branding</strong> is the credit line (footer + &ldquo;Powered
     by TripEleven&rdquo; notice) shown on your published site and linked to tripeleven.com.
@@ -424,10 +429,10 @@ const Heading = Astro.props.heading ?? "h2";
         [monthlyBtn, !isAnnual],
         [annualBtn, isAnnual],
       ] as const) {
-        button.classList.toggle("bg-primary", active);
-        button.classList.toggle("text-primary-foreground", active);
+        button.classList.toggle("bg-deep-navy", active);
+        button.classList.toggle("text-white", active);
         button.classList.toggle("shadow-sm", active);
-        button.classList.toggle("text-muted-foreground", !active);
+        button.classList.toggle("text-deep-navy", !active);
         button.setAttribute("aria-pressed", String(active));
       }
       root?.querySelectorAll("strong[data-price-amount]").forEach((el) => {

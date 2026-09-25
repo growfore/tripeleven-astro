@@ -68,36 +68,51 @@ const faqSchema = {
 
 <section
   id="faq"
-  class="mx-auto grid max-w-5xl grid-cols-1 gap-[30px] border-t border-border px-5 py-[65px] lg:grid-cols-[1fr_1.4fr] lg:px-[55px] lg:py-[95px]"
+  class="page-container grid grid-cols-1 gap-10 bg-off-white lg:grid-cols-[0.8fr_1.4fr] lg:gap-20"
 >
-  <h2 class="m-0 font-serif text-[32px] font-normal sm:text-[42px]">
-    More Questions?
-  </h2>
   <div>
+    <p
+      class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-deep-navy"
+    >
+      FAQ
+    </p>
+    <h2
+      class="m-0 font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+    >
+      Questions, answered.
+    </h2>
+    <p class="mt-4 max-w-sm text-base leading-relaxed text-deep-navy">
+      Everything you need to know before taking your travel business online.
+    </p>
+  </div>
+  <div class="border-t border-light-blue">
     {
       faqs.map((faq, i) => (
-        <article data-faq class="group">
+        <article data-faq class="group border-b border-light-blue">
           <button
             type="button"
             data-faq-toggle
             aria-expanded={i === 0 ? "true" : "false"}
-            class="grid w-full cursor-pointer grid-cols-[30px_1fr_20px] items-start border-0 bg-transparent p-[12px_0] text-left font-medium transition-colors duration-200 hover:text-foreground"
+            aria-controls={`faq-answer-${i}`}
+            class="grid w-full cursor-pointer grid-cols-[28px_1fr_20px] items-start gap-2 border-0 bg-transparent py-5 text-left font-semibold text-deep-navy transition-colors duration-150 hover:text-navy"
           >
             <span
-              class="grid size-6 place-items-center  transition-colors duration-200 group-hover:border-foreground/30"
+              class="grid size-6 place-items-center text-lg font-normal text-deep-navy"
               data-faq-mark
+              aria-hidden="true"
             >
               {i === 0 ? "−" : "+"}
             </span>
             {faq.q}
             <Icon
               name="chevron-down"
-              class="size-4 transition-transform duration-300"
+              class="mt-1 size-4 text-electric transition-transform duration-200"
               data-faq-chevron
             />
           </button>
           <p
-            class="m-0 px-[35px] pb-[15px] leading-[1.5] text-muted-foreground"
+            id={`faq-answer-${i}`}
+            class="m-0 pb-6 pl-8 pr-6 text-base leading-relaxed text-deep-navy"
             data-faq-answer
             hidden={i !== 0}
           >

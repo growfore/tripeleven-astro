@@ -1,7 +1,7 @@
-<header class="sticky top-0 z-50 border-b border-border bg-card">
+<header class="sticky top-0 z-50 bg-background/95 backdrop-blur-xl">
   <nav
     aria-label="Main navigation"
-    class="mx-auto max-w-7xl flex items-center justify-between gap-6 px-5 py-4"
+    class="mx-auto flex max-w-[1408px] items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-12"
   >
     <a href="/" class="shrink-0" aria-label="TripEleven home">
       <img
@@ -13,59 +13,64 @@
       />
     </a>
     <div class="hidden items-center gap-8 md:flex">
-      <a
-        href="/#features"
-        class="nav-link text-muted-foreground hover:text-foreground">Features</a
-      >
-      <a
-        href="/pricing"
-        class="nav-link text-muted-foreground hover:text-foreground">Pricing</a
-      >
-      <a
-        href="/#faq"
-        class="nav-link text-muted-foreground hover:text-foreground">FAQ</a
-      >
+      <a href="/#features" class="nav-link text-sm text-deep-navy">Features</a>
+      <a href="/#pricing" class="nav-link text-sm text-deep-navy">Pricing</a>
+      <a href="/#faq" class="nav-link text-sm text-deep-navy">FAQ</a>
     </div>
     <div class="hidden items-center gap-3 md:flex">
       <a
         href="https://app.tripeleven.com/login"
         target="_blank"
         rel="noreferrer"
-        class="px-3 py-2 font-semibold hover:text-primary">Login</a
+        class="rounded-lg px-3 py-2 text-sm font-semibold text-deep-navy hover:text-navy"
+        >Log in</a
       >
       <a
         href="https://app.tripeleven.com/signup"
         target="_blank"
         rel="noreferrer"
-        class="rounded-full bg-ink px-5 py-2 font-semibold text-primary-foreground hover:opacity-90"
-        >Get started</a
+        class="rounded-lg bg-deep-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-navy"
+        >Start free</a
       >
     </div>
-    <details class="group md:hidden">
+    <details id="mobile-menu" class="group md:hidden">
       <summary
-        class="cursor-pointer list-none rounded-md border border-border px-4 py-2 font-semibold [&::-webkit-details-marker]:hidden"
+        class="cursor-pointer list-none rounded-lg border border-light-blue bg-white px-4 py-2 text-sm font-semibold text-deep-navy [&::-webkit-details-marker]:hidden"
         >Menu</summary
       >
       <div
-        class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-border bg-card px-5 py-4 shadow-lg"
+        class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-light-blue bg-white px-5 py-4 shadow-xl"
       >
-        <a href="/#features" class="rounded-md px-3 py-2">Features</a>
-        <a href="/pricing" class="rounded-md px-3 py-2">Pricing</a>
-        <a href="/#faq" class="rounded-md px-3 py-2">FAQ</a>
+        <a href="/#features" class="rounded-lg px-3 py-2 hover:bg-light-blue"
+          >Features</a
+        >
+        <a href="/#pricing" class="rounded-lg px-3 py-2 hover:bg-light-blue"
+          >Pricing</a
+        >
+        <a href="/#faq" class="rounded-lg px-3 py-2 hover:bg-light-blue">FAQ</a>
         <a
           href="https://app.tripeleven.com/login"
           target="_blank"
           rel="noreferrer"
-          class="rounded-md px-3 py-2 hover:bg-muted">Login</a
+          class="rounded-lg px-3 py-2 hover:bg-light-blue">Log in</a
         >
         <a
           href="https://app.tripeleven.com/signup"
           target="_blank"
           rel="noreferrer"
-          class="rounded-md bg-ink px-3 py-2 font-semibold text-primary-foreground"
-          >Get started</a
+          class="rounded-lg bg-deep-navy px-3 py-2 text-center font-semibold text-white"
+          >Start free</a
         >
       </div>
     </details>
   </nav>
 </header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>("#mobile-menu");
+  menu?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      menu.open = false;
+    }),
+  );
+</script>

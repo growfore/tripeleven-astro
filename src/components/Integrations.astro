@@ -23,7 +23,8 @@ const features = [
   {
     title: ["Trust signals that", "turn interest into bookings"],
     text: "Build traveler confidence with reviews, credentials, associations, and other proof that shows your business is credible, established, and safe to book with.",
-    image: "/mockups/reviews-associations-testimonials-etc-for-trust-and-marketing.png",
+    image:
+      "/mockups/reviews-associations-testimonials-etc-for-trust-and-marketing.png",
   },
   {
     title: ["Your brand,", "on every touchpoint"],
@@ -43,48 +44,59 @@ const features = [
 ];
 ---
 
-<section id="features" class="mx-auto max-w-5xl px-5 py-[65px] text-center lg:px-[55px] lg:py-[95px]">
-  <small class="text-[10px] uppercase tracking-[3px] text-muted-foreground">FEATURES</small>
-  <h2 class="my-2 mb-20 font-serif text-[30px]">
-    A smarter label for
-    <br />
-    everything you sell
+<section id="features" class="page-container bg-off-white text-center">
+  <small
+    class="text-xs font-semibold uppercase tracking-[0.25em] text-deep-navy"
+  >
+    Features
+  </small>
+  <h2
+    class="m-0 mx-auto max-w-3xl font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+  >
+    One workspace for your whole travel business
   </h2>
-  {features.map((feature, i) => {
-    const flip = i % 2 === 1;
-    const image = (
-      <img
-        src={feature.image}
-        width="1944"
-        height="1304"
-        alt={`${feature.title[0]} preview`}
-        class="h-auto w-full object-contain max-h-[430px] transition-transform duration-300 group-hover:scale-[1.02] lg:max-h-none"
-      />
-    );
-    const copy = (
-      <div class="px-[25px] py-[35px] text-left lg:px-[55px] lg:py-[55px]">
-        <h3 class="m-0 mb-5 font-serif text-[30px] leading-none">
-          {feature.title[0]}
-          <br />
-          {feature.title[1]}
-        </h3>
-        <p class="text-[15px] leading-[1.5] text-muted-foreground">{feature.text}</p>
-      </div>
-    );
-    return (
-      <div class="group mb-[60px] grid grid-cols-1 items-center overflow-hidden rounded-[20px] transition-shadow duration-300 hover:shadow-xl last:mb-0 lg:grid-cols-2">
-        {flip ? (
-          <>
-            {copy}
-            {image}
-          </>
-        ) : (
-          <>
-            {image}
-            {copy}
-          </>
-        )}
-      </div>
-    );
-  })}
+  <div class="mt-8 flex flex-col gap-10 md:mt-12 md:gap-16">
+    {
+      features.map((feature, i) => {
+        const flip = i % 2 === 1;
+        const image = (
+          <img
+            src={feature.image}
+            width="1944"
+            height="1304"
+            alt={`${feature.title[0]} preview`}
+            loading="lazy"
+            class="max-h-[430px] h-auto w-full object-contain lg:max-h-none"
+          />
+        );
+        const copy = (
+          <div class="px-0 py-6 text-left sm:px-4 lg:px-12 lg:py-8">
+            <h3 class="m-0 mb-4 font-serif text-[28px] leading-tight text-deep-navy lg:text-[36px]">
+              {feature.title[0]}
+              <br />
+              {feature.title[1]}
+            </h3>
+            <p class="m-0 max-w-lg text-base leading-[1.6] text-deep-navy lg:text-[17px]">
+              {feature.text}
+            </p>
+          </div>
+        );
+        return (
+          <div class="grid grid-cols-1 items-center lg:grid-cols-2">
+            {flip ? (
+              <>
+                {copy}
+                {image}
+              </>
+            ) : (
+              <>
+                {image}
+                {copy}
+              </>
+            )}
+          </div>
+        );
+      })
+    }
+  </div>
 </section>

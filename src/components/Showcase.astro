@@ -1,51 +1,73 @@
 ---
-import Icon from "./Icon.astro";
-
 const clientSites = [
-  ["Essence Treks", "/clients/essence-treks.jpg", "https://essencetreksnepal.com"],
+  [
+    "Essence Treks",
+    "/clients/essence-treks.jpg",
+    "https://essencetreksnepal.com",
+  ],
   ["Hi Nepal Treks", "/clients/hi-nepal-treks.jpg", "https://hinepaltreks.com"],
-  ["Into Nepal Treks", "/clients/into-nepal-treks.jpg", "https://new.intonepaltreks.com"],
-  ["Limestone Treks", "/clients/limestone-treks.jpg", "https://limestonetreks.com"],
+  [
+    "Into Nepal Treks",
+    "/clients/into-nepal-treks.jpg",
+    "https://new.intonepaltreks.com",
+  ],
+  [
+    "Limestone Treks",
+    "/clients/limestone-treks.jpg",
+    "https://limestonetreks.com",
+  ],
   ["Lovely Trips", "/clients/lovely-trips.jpg", "https://lovelytrips.com.np"],
-  ["Summit Luxury Treks", "/clients/summit-luxury-treks.jpg", "https://summitluxurytreks.com"],
-  ["Walkthrough Nepal", "/clients/walkthrough-nepal.jpg", "https://walkthroughnepal.com"],
+  [
+    "Summit Luxury Treks",
+    "/clients/summit-luxury-treks.jpg",
+    "https://summitluxurytreks.com",
+  ],
+  [
+    "Walkthrough Nepal",
+    "/clients/walkthrough-nepal.jpg",
+    "https://walkthroughnepal.com",
+  ],
 ];
 ---
 
-<section
-  id="solutions"
-  class="mx-auto max-w-5xl px-5 py-[65px] text-center lg:px-[55px] lg:py-[95px]"
->
-  <h2 class="m-0 font-serif text-[35px] lg:text-[48px]">
+<section id="solutions" class="page-container bg-off-white text-center">
+  <p
+    class="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-deep-navy"
+  >
+    Trusted worldwide
+  </p>
+  <h2
+    class="m-0 mx-auto max-w-3xl font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+  >
     Made for tour operators like you
   </h2>
-  <p class="m-0 mt-4 text-[16px] leading-[1.5] text-muted-foreground lg:text-[17px]">
+  <p
+    class="m-0 mx-auto mt-4 max-w-xl text-base leading-relaxed text-deep-navy lg:text-lg"
+  >
     Real agency websites, live and selling on TripEleven.
   </p>
-  <div class="mt-10 grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {clientSites.map(([name, img, url]) => (
-      <a
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-        class="group relative block overflow-hidden rounded-md shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:translate-y-0"
-        aria-label={`Visit ${name}`}
-      >
-        <img
-          class="mb-0 block h-auto w-full rounded-md bg-muted object-contain transition duration-500 group-hover:scale-[1.04] group-hover:brightness-50"
-          src={img}
-          loading="lazy"
-          width="1440"
-          height="2000"
-          alt={`${name} website`}
-        />
-        <span
-          class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-primary-foreground opacity-0 transition duration-300 group-hover:opacity-100"
+  <div
+    class="mt-10 grid grid-cols-2 items-start gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4"
+  >
+    {
+      clientSites.map(([name, img, url]) => (
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          class="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+          aria-label={`Visit ${name}`}
         >
-          <Icon name="external-link" class="size-7" />
-          <span class="text-sm font-medium">Visit site</span>
-        </span>
-      </a>
-    ))}
+          <img
+            class="block h-auto w-full object-contain"
+            src={img}
+            loading="lazy"
+            width="1440"
+            height="1800"
+            alt={`${name} website`}
+          />
+        </a>
+      ))
+    }
   </div>
 </section>

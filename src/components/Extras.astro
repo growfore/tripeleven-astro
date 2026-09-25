@@ -25,29 +25,30 @@ const extras = [
 ];
 ---
 
-<section class="mx-auto max-w-5xl pt-0">
-  <div class="px-5 py-[42px] text-center">
-    <h2 class="m-0 mb-[14px] font-serif text-[30px]">
+<section class="page-container bg-off-white">
+  <div class="text-center">
+    <h2
+      class="m-0 font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+    >
       Plus everything else you need
     </h2>
-    <p class="m-0 text-[14px] leading-[1.5] text-muted-foreground">
-      From catalog and menu to analytics, every TripEleven label covers the rest
-      of your setup — no extra tools required.
+    <p class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-deep-navy">
+      From catalog and menus to analytics, TripEleven covers the rest of your
+      setup — no extra tools required.
     </p>
     <div
-      class="mt-[28px] grid grid-cols-1 gap-x-[18px] gap-y-[22px] text-left sm:grid-cols-2 lg:grid-cols-4"
+      class="mt-9 grid grid-cols-1 gap-8 text-left sm:grid-cols-2 lg:grid-cols-4"
     >
       {
         extras.map(({ icon, title, text }) => (
-          <article class="group flex min-h-[260px] flex-col justify-between rounded-[14px] bg-muted p-[26px] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-            <Icon
-              name={icon}
-              class="size-6 transition-transform duration-200 group-hover:scale-110 group-hover:text-primary"
-            />
-            <div>
-              <span class="text-[13px] text-muted-foreground">{title}</span>
-              <p class="m-0 mt-2 text-[14px] leading-[1.4]">{text}</p>
-            </div>
+          <article class="border-t border-light-blue pt-5">
+            <Icon name={icon} class="size-10 text-electric" />
+            <h3 class="m-0 mt-5 font-serif text-[22px] text-deep-navy">
+              {title}
+            </h3>
+            <p class="m-0 mt-2 max-w-xs text-sm leading-relaxed text-deep-navy">
+              {text}
+            </p>
           </article>
         ))
       }
