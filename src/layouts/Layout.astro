@@ -130,13 +130,15 @@ const jsonLd = {
     </a>
     <slot />
     <script is:inline>
-      (function () {
-        var s1 = document.createElement("script");
-        s1.async = true;
-        s1.src = "https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl";
-        s1.setAttribute("crossorigin", "*");
-        document.head.appendChild(s1);
-      })();
+      if (window.matchMedia("(min-width: 640px)").matches) {
+        (function () {
+          var s1 = document.createElement("script");
+          s1.async = true;
+          s1.src = "https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl";
+          s1.setAttribute("crossorigin", "*");
+          document.head.appendChild(s1);
+        })();
+      }
     </script>
   </body>
 </html>
