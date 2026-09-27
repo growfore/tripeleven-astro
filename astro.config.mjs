@@ -9,4 +9,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  redirects: {
+    "/signup": "https://app.tripeleven.com/signup"
+  }
 });
