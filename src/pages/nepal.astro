@@ -2,12 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import Showcase from "../components/Showcase.astro";
 import Icon from "../components/Icon.astro";
+import Faq from "../components/Faq.astro";
+import ContactForm from "../components/ContactForm.astro";
 
 const title =
   "Website & trip management for Nepal travel agencies — TripEleven";
 const description =
   "Build a branded website, publish trekking and tour packages, and collect inquiries with TripEleven. Nepal agency plans start at NPR 1,750/month.";
 const canonical = "https://tripeleven.com/nepal";
+const plan = Astro.url.searchParams.get("plan");
+const initialMessage =
+  plan === "launch" || plan === "business"
+    ? `I'm interested in the Nepal ${plan === "launch" ? "Launch" : "Business"} plan. Please share the next steps and final tax details.`
+    : "";
 
 const plans = [
   {
@@ -16,7 +23,7 @@ const plans = [
       "For agencies building their online presence and trip catalog.",
     monthly: "NPR 1,750/month",
     yearly: "NPR 18,000/year",
-    href: "/contact?plan=launch",
+    href: "?plan=launch#contact",
     features: [
       "Branded trip website & catalog",
       "Trip inquiries (email / WhatsApp)",
@@ -34,7 +41,7 @@ const plans = [
     description: "For agencies managing a larger catalog and team.",
     monthly: "NPR 3,500/month",
     yearly: "NPR 38,000/year",
-    href: "/contact?plan=business",
+    href: "?plan=business#contact",
     features: [
       "Everything in Launch",
       "Unlimited trips & blog posts",
@@ -85,6 +92,7 @@ const plans = [
     </section>
 
     <section
+      id="features"
       class="page-container py-16 lg:py-24"
       aria-labelledby="platform-heading"
     >
@@ -190,19 +198,25 @@ const plans = [
       </p>
     </section>
 
-    <section class="bg-deep-navy px-5 py-16 text-center text-white lg:py-20">
-      <h2 class="mx-auto max-w-2xl text-3xl lg:text-4xl">
-        Ready to put your trips in front of more travelers?
-      </h2>
-      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-light-blue">
-        Tell us about your agency and we’ll help you choose the right plan.
-      </p>
-      <a
-        href="/contact"
-        class="mt-7 inline-flex rounded-lg bg-electric px-7 py-3.5 font-semibold text-deep-navy hover:bg-white"
-      >
-        Contact TripEleven
-      </a>
+    <div class="bg-off-white py-16 lg:py-24">
+      <Faq />
+    </div>
+
+    <section id="contact" class="page-container py-16 lg:py-24">
+      <div class="mx-auto max-w-3xl">
+        <div class="text-center">
+          <h2 class="text-3xl text-deep-navy lg:text-4xl">
+            Let’s get your agency online.
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-deep-navy">
+            Ask about a Nepal plan, setup, or final tax details. We’ll reply to
+            your inquiry by email.
+          </p>
+        </div>
+        <div class="mt-10">
+          <ContactForm {initialMessage} />
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

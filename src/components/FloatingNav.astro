@@ -1,21 +1,22 @@
 ---
 import Notice from "../components/Notice.astro";
 
-const pricingHref =
-  Astro.url.pathname.replace(/\/$/, "") === "/nepal" ? "#pricing" : "/pricing";
-const mobilePricingHref =
-  pricingHref === "#pricing" ? pricingHref : "/#pricing";
+const isNepal = Astro.url.pathname.replace(/\/$/, "") === "/nepal";
 ---
 
 <header
   class="sticky top-0 z-50 bg-background/95 backdrop-blur-xl shadow w-full"
 >
-  <Notice />
+  {!isNepal && <Notice />}
   <nav
     aria-label="Main navigation"
     class="flex items-center justify-between gap-6 py-4 container mx-auto px-2"
   >
-    <a href="/" class="shrink-0" aria-label="TripEleven home">
+    <a
+      href={isNepal ? "#top" : "/"}
+      class="shrink-0"
+      aria-label={isNepal ? "TripEleven — back to top" : "TripEleven home"}
+    >
       <img
         src="/lettermark-logo.svg"
         width="229"
@@ -25,25 +26,49 @@ const mobilePricingHref =
       />
     </a>
     <div class="hidden items-center gap-8 md:flex">
-      <a href="/#features" class="nav-link text-sm text-deep-navy">Features</a>
-      <a href={pricingHref} class="nav-link text-sm text-deep-navy">Pricing</a>
-      <a href="/#faq" class="nav-link text-sm text-deep-navy">FAQ</a>
+      <a
+        href={isNepal ? "#features" : "/#features"}
+        class="nav-link text-sm text-deep-navy">Features</a
+      >
+      <a
+        href={isNepal ? "#pricing" : "/pricing"}
+        class="nav-link text-sm text-deep-navy">Pricing</a
+      >
+      <a
+        href={isNepal ? "#faq" : "/#faq"}
+        class="nav-link text-sm text-deep-navy">FAQ</a
+      >
     </div>
     <div class="hidden items-center gap-3 md:flex">
-      <a
-        href="https://app.tripeleven.com/login"
-        target="_blank"
-        rel="noreferrer"
-        class="rounded-lg px-3 py-2 text-sm font-semibold text-deep-navy hover:text-navy"
-        >Log in</a
-      >
-      <a
-        href="https://app.tripeleven.com/signup"
-        target="_blank"
-        rel="noreferrer"
-        class="rounded-lg bg-deep-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-navy"
-        >Start free</a
-      >
+      {
+        isNepal ? (
+          <a
+            href="#contact"
+            class="rounded-lg bg-deep-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-navy"
+          >
+            Contact us
+          </a>
+        ) : (
+          <>
+            <a
+              href="https://app.tripeleven.com/login"
+              target="_blank"
+              rel="noreferrer"
+              class="rounded-lg px-3 py-2 text-sm font-semibold text-deep-navy hover:text-navy"
+            >
+              Log in
+            </a>
+            <a
+              href="https://app.tripeleven.com/signup"
+              target="_blank"
+              rel="noreferrer"
+              class="rounded-lg bg-deep-navy px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-navy"
+            >
+              Start free
+            </a>
+          </>
+        )
+      }
     </div>
     <details id="mobile-menu" class="group md:hidden">
       <summary
@@ -53,27 +78,47 @@ const mobilePricingHref =
       <div
         class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-light-blue bg-white px-5 py-4 shadow-xl"
       >
-        <a href="/#features" class="rounded-lg px-3 py-2 hover:bg-light-blue"
-          >Features</a
+        <a
+          href={isNepal ? "#features" : "/#features"}
+          class="rounded-lg px-3 py-2 hover:bg-light-blue">Features</a
         >
         <a
-          href={mobilePricingHref}
+          href={isNepal ? "#pricing" : "/#pricing"}
           class="rounded-lg px-3 py-2 hover:bg-light-blue">Pricing</a
         >
-        <a href="/#faq" class="rounded-lg px-3 py-2 hover:bg-light-blue">FAQ</a>
         <a
-          href="https://app.tripeleven.com/login"
-          target="_blank"
-          rel="noreferrer"
-          class="rounded-lg px-3 py-2 hover:bg-light-blue">Log in</a
+          href={isNepal ? "#faq" : "/#faq"}
+          class="rounded-lg px-3 py-2 hover:bg-light-blue">FAQ</a
         >
-        <a
-          href="https://app.tripeleven.com/signup"
-          target="_blank"
-          rel="noreferrer"
-          class="rounded-lg bg-deep-navy px-3 py-2 text-center font-semibold text-white"
-          >Start free</a
-        >
+        {
+          isNepal ? (
+            <a
+              href="#contact"
+              class="rounded-lg bg-deep-navy px-3 py-2 text-center font-semibold text-white"
+            >
+              Contact us
+            </a>
+          ) : (
+            <>
+              <a
+                href="https://app.tripeleven.com/login"
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg px-3 py-2 hover:bg-light-blue"
+              >
+                Log in
+              </a>
+              <a
+                href="https://app.tripeleven.com/signup"
+                target="_blank"
+                rel="noreferrer"
+                class="rounded-lg bg-deep-navy px-3 py-2 text-center font-semibold text-white"
+              >
+                Start free
+              </a>
+            </>
+          )
+        }
       </div>
     </details>
   </nav>
