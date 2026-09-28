@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FloatingNav from "../components/FloatingNav.astro";
 
 const title = "Page not found — TripEleven";
 const description = "The page you're looking for doesn't exist or has been moved.";
@@ -8,7 +7,6 @@ const description = "The page you're looking for doesn't exist or has been moved
 
 <Layout {title} {description} noindex={true}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <FloatingNav />
     <main class="flex min-h-[80vh] items-center justify-center bg-background px-4">
       <div class="max-w-md text-center">
         <h1 class="text-7xl font-bold text-foreground">404</h1>
