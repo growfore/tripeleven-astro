@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 
@@ -6,10 +7,11 @@ export default defineConfig({
   site: "https://tripeleven.com",
   output: "server",
   adapter: vercel(),
+  integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
   },
   redirects: {
-    "/signup": "https://app.tripeleven.com/signup"
-  }
+    "/signup": "https://app.tripeleven.com/signup",
+  },
 });

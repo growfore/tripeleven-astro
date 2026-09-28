@@ -1,47 +1,5 @@
 ---
-const features = [
-  {
-    title: ["One library for", "everything on your labels"],
-    text: "Store all your media in a single library. Update a photo once and it refreshes on every label that uses it.",
-    image: "/mockups/media-gallery.png",
-  },
-  {
-    title: ["A service page", "that opens from any tap"],
-    text: "Build a clean info page and connect it to any label. Guests tap and land on your price list, hours, and details — no app to install.",
-    image: "/mockups/info-pages.png",
-  },
-  {
-    title: ["Publish updates", "travelers actually see"],
-    text: "Share offers, news, and trip updates. Publish a post and it appears right where your guests already look.",
-    image: "/mockups/posts.png",
-  },
-  {
-    title: ["Organization and", "member management"],
-    text: "Keep members, departments, and permissions in order so a growing business stays simple to manage.",
-    image: "/mockups/organization-and-departments.png",
-  },
-  {
-    title: ["Trust signals that", "turn interest into bookings"],
-    text: "Build traveler confidence with reviews, credentials, associations, and other proof that shows your business is credible, established, and safe to book with.",
-    image:
-      "/mockups/reviews-associations-testimonials-etc-for-trust-and-marketing.png",
-  },
-  {
-    title: ["Your brand,", "on every touchpoint"],
-    text: "Match your logo, colors, and style across every label, page, and post — everything feels like one business.",
-    image: "/mockups/brand-colors-basic-brand.png",
-  },
-  {
-    title: ["Your best services", "in the spotlight"],
-    text: "Highlight the features and departures that matter most, and guide travelers straight to what you want them to book.",
-    image: "/mockups/navigation.png",
-  },
-  {
-    title: ["Featured trips", "travelers can't miss"],
-    text: "Mark your top trips as featured so they stand out, fill faster, and sell more.",
-    image: "/mockups/featured-trips.png",
-  },
-];
+import FeatureStack from "./FeatureStack.jsx";
 ---
 
 <section id="features" class="page-container bg-off-white text-center">
@@ -55,48 +13,5 @@ const features = [
   >
     One workspace for your whole travel business
   </h2>
-  <div class="mt-8 flex flex-col gap-10 md:mt-12 md:gap-16">
-    {
-      features.map((feature, i) => {
-        const flip = i % 2 === 1;
-        const image = (
-          <img
-            src={feature.image}
-            width="1944"
-            height="1304"
-            alt={`${feature.title[0]} preview`}
-            loading="lazy"
-            class="max-h-[430px] h-auto w-full object-contain lg:max-h-none"
-          />
-        );
-        const copy = (
-          <div class="px-0 py-6 text-left sm:px-4 lg:px-12 lg:py-8">
-            <h3 class="m-0 mb-4 font-serif text-[28px] leading-tight text-deep-navy lg:text-[36px]">
-              {feature.title[0]}
-              <br />
-              {feature.title[1]}
-            </h3>
-            <p class="m-0 max-w-lg text-base leading-[1.6] text-deep-navy lg:text-[17px]">
-              {feature.text}
-            </p>
-          </div>
-        );
-        return (
-          <div class="grid grid-cols-1 items-center lg:grid-cols-2">
-            {flip ? (
-              <>
-                {copy}
-                {image}
-              </>
-            ) : (
-              <>
-                {image}
-                {copy}
-              </>
-            )}
-          </div>
-        );
-      })
-    }
-  </div>
+  <FeatureStack client:load />
 </section>
