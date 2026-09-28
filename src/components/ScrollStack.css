@@ -8,9 +8,10 @@
 }
 
 .scroll-stack-card {
-  position: relative;
+  position: sticky;
   display: grid;
   min-height: 28rem;
+  margin-bottom: 4.5rem;
   overflow: hidden;
   transform-origin: top center;
   backface-visibility: hidden;

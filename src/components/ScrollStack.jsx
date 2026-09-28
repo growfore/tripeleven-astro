@@ -1,11 +1,21 @@
 "use client";
 
-import React, { useCallback, useLayoutEffect, useRef } from "react";
+import React, {
+  Children,
+  cloneElement,
+  isValidElement,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+} from "react";
 import Lenis from "lenis";
 import "./ScrollStack.css";
 
-export const ScrollStackItem = ({ children, itemClassName = "" }) => (
-  <article className={`scroll-stack-card ${itemClassName}`.trim()}>
+export const ScrollStackItem = ({ children, itemClassName = "", style }) => (
+  <article
+    className={`scroll-stack-card ${itemClassName}`.trim()}
+    style={style}
+  >
     {children}
   </article>
 );
@@ -63,17 +73,10 @@ export default function ScrollStack({
         Math.min(1, (scrollTop - pinStart) / (scaleFinish - pinStart)),
       );
       const scale = 1 - progress * (1 - (baseScale + index * itemScale));
-      const translateY =
-        scrollTop < pinStart
-          ? 0
-          : Math.min(scrollTop, pinEnd) -
-            top +
-            stackTop +
-            itemStackDistance * index;
       const rotation = index * rotationAmount * progress;
       const blur = index < topCard ? (topCard - index) * blurAmount : 0;
 
-      card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale}) rotate(${rotation}deg)`;
+      card.style.transform = `scale(${scale}) rotate(${rotation}deg)`;
       card.style.filter = blur ? `blur(${blur}px)` : "";
 
       if (index === cards.length - 1) {
@@ -131,13 +134,24 @@ export default function ScrollStack({
     };
   }, [itemDistance, updateCards, useWindowScroll]);
 
+  const stackedChildren = Children.map(children, (child, index) =>
+    isValidElement(child)
+      ? cloneElement(child, {
+          style: {
+            ...child.props.style,
+            top: `calc(${stackPosition} + ${itemStackDistance * index}px)`,
+          },
+        })
+      : child,
+  );
+
   return (
     <div
       className={`scroll-stack-scroller ${className}`.trim()}
       ref={scrollerRef}
     >
       <div className="scroll-stack-inner">
-        {children}
+        {stackedChildren}
         <div className="scroll-stack-end" />
       </div>
     </div>
