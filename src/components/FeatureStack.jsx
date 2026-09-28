@@ -73,9 +73,9 @@ export default function FeatureStack() {
             height="1304"
             alt={`${lineOne} preview`}
             loading="lazy"
-            className={`h-full max-h-[28rem] w-full bg-light-blue/40 object-contain ${index % 2 ? "lg:order-2" : ""}`}
+            className={`feature-card-media h-full max-h-[28rem] w-full bg-light-blue/40 object-contain ${index % 2 ? "lg:order-2" : ""}`}
           />
-          <div className="flex flex-col justify-center px-6 py-8 text-left sm:px-10 lg:px-12">
+          <div className="feature-card-copy flex flex-col justify-center px-6 py-8 text-left sm:px-10 lg:px-12">
             <h3 className="m-0 mb-4 font-serif text-[28px] leading-tight text-deep-navy lg:text-[36px]">
               {lineOne}
               <br />
