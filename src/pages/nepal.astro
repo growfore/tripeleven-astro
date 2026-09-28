@@ -8,7 +8,7 @@ import ContactForm from "../components/ContactForm.astro";
 const title =
   "Website & trip management for Nepal travel agencies — TripEleven";
 const description =
-  "Build a branded website, publish trekking and tour packages, and collect inquiries with TripEleven. Nepal agency plans start at NPR 1,750/month.";
+  "Build a branded website, publish trekking and tour packages, and collect inquiries with TripEleven. Nepal agency plans start at NPR 2,000/month or NPR 18,000/year.";
 const canonical = "https://tripeleven.com/nepal";
 const plan = Astro.url.searchParams.get("plan");
 const initialMessage =
@@ -21,8 +21,9 @@ const plans = [
     name: "Launch",
     description:
       "For agencies building their online presence and trip catalog.",
-    monthly: "NPR 1,750/month",
+    monthly: "NPR 2,000/month",
     yearly: "NPR 18,000/year",
+    wasYearly: "NPR 24,000/year",
     href: "?plan=launch#contact",
     features: [
       "Branded trip website & catalog",
@@ -39,8 +40,9 @@ const plans = [
   {
     name: "Business",
     description: "For agencies managing a larger catalog and team.",
-    monthly: "NPR 3,500/month",
+    monthly: "NPR 3,250/month",
     yearly: "NPR 38,000/year",
+    wasYearly: "NPR 42,000/year",
     href: "?plan=business#contact",
     features: [
       "Everything in Launch",
@@ -83,7 +85,7 @@ const plans = [
               See Nepal plans <Icon name="arrow-right" class="size-5" />
             </a>
             <p class="mt-4 text-sm text-light-blue">
-              Local plans from NPR 1,750/month.
+              Local plans from NPR 2,000/month or NPR 18,000/year.
             </p>
           </div>
         </div>
@@ -353,10 +355,18 @@ const plans = [
                 )}
                 <h3 class="text-2xl text-deep-navy">{plan.name}</h3>
                 <p class="mt-2 text-deep-navy">{plan.description}</p>
-                <p class="mt-7 text-2xl font-bold text-deep-navy sm:text-3xl">
-                  {plan.monthly}
-                </p>
-                <p class="mt-1 text-base text-deep-navy">or {plan.yearly}</p>
+                <div class="mt-7">
+                  <p class="text-2xl font-bold text-deep-navy sm:text-3xl">
+                    {plan.yearly}
+                  </p>
+                  <p class="mt-1 text-sm text-deep-navy">
+                    Billed yearly{" "}
+                    <del class="ml-2 text-slate">{plan.wasYearly}</del>
+                  </p>
+                  <p class="mt-5 border-t border-border pt-4 text-base text-deep-navy">
+                    Monthly billing: <strong>{plan.monthly}</strong>
+                  </p>
+                </div>
                 <ul class="my-8 space-y-3 text-sm leading-relaxed text-deep-navy">
                   {plan.features.map((feature) => (
                     <li class="flex items-start gap-2">
