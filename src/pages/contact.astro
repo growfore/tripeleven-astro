@@ -9,6 +9,11 @@ const description =
 const ogTitle = "Contact — TripEleven";
 const ogDescription = "Talk to the TripEleven team.";
 const canonical = "https://tripeleven.com/contact";
+const plan = Astro.url.searchParams.get("plan");
+const initialMessage =
+  plan === "launch" || plan === "business"
+    ? `I'm interested in the Nepal ${plan === "launch" ? "Launch" : "Business"} plan. Please share the next steps and final tax details.`
+    : "";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
@@ -24,7 +29,7 @@ const canonical = "https://tripeleven.com/contact";
         message and we&apos;ll take it from there.
       </p>
       <div class="mx-auto mt-10 max-w-3xl text-left">
-        <ContactForm />
+        <ContactForm {initialMessage} />
         <p class="mt-8 text-center text-sm text-muted-foreground">
           Prefer email? Write to us directly at{" "}
           <a

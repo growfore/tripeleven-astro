@@ -1,16 +1,33 @@
 ---
 import Icon from "./Icon.astro";
 
-const TOPICS = ["General question", "Enterprise quote", "Walkthrough / demo", "Something else"];
+const TOPICS = [
+  "General question",
+  "Enterprise quote",
+  "Walkthrough / demo",
+  "Something else",
+];
 const CONTACT_EMAIL = "hello@tripeleven.com";
+interface Props {
+  initialMessage?: string;
+}
+const { initialMessage = "" } = Astro.props;
 ---
 
 <form data-contact-form class="border border-border bg-card p-8 sm:p-10">
-  <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" />
+  <input
+    type="text"
+    name="_honey"
+    tabindex="-1"
+    autocomplete="off"
+    class="hidden"
+  />
 
   <div class="grid gap-5 sm:grid-cols-2">
     <div>
-      <label for="name" class="mb-2 block text-sm font-semibold">Full name</label>
+      <label for="name" class="mb-2 block text-sm font-semibold"
+        >Full name</label
+      >
       <input
         id="name"
         name="name"
@@ -34,7 +51,9 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
   </div>
 
   <div class="mt-5">
-    <label for="agency" class="mb-2 block text-sm font-semibold">Agency name</label>
+    <label for="agency" class="mb-2 block text-sm font-semibold"
+      >Agency name</label
+    >
     <input
       id="agency"
       name="agency"
@@ -45,20 +64,21 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
   </div>
 
   <div class="mt-5">
-    <label for="topic" class="mb-2 block text-sm font-semibold">What&apos;s this about?</label>
+    <label for="topic" class="mb-2 block text-sm font-semibold"
+      >What&apos;s this about?</label
+    >
     <select
       id="topic"
       name="topic"
       class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
     >
-      {TOPICS.map((t) => (
-        <option value={t}>{t}</option>
-      ))}
+      {TOPICS.map((t) => <option value={t}>{t}</option>)}
     </select>
   </div>
 
   <div class="mt-5">
-    <label for="message" class="mb-2 block text-sm font-semibold">Message</label>
+    <label for="message" class="mb-2 block text-sm font-semibold">Message</label
+    >
     <textarea
       id="message"
       name="message"
@@ -66,7 +86,8 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
       rows="5"
       class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
       placeholder="Tell us about your agency and what you're looking for…"
-    ></textarea>
+      >{initialMessage}</textarea
+    >
   </div>
 
   <button
@@ -77,18 +98,26 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
     Send message
   </button>
 
-  <p class="mt-4 hidden items-center justify-center gap-2 text-sm font-medium text-emerald-600" data-contact-sent>
+  <p
+    class="mt-4 hidden items-center justify-center gap-2 text-sm font-medium text-emerald-600"
+    data-contact-sent
+  >
     <Icon name="check-circle" class="size-4" />
     Thanks — your message is on its way. We&apos;ll reply within one business day.
   </p>
-  <p class="mt-4 hidden text-center text-sm font-medium text-red-600" data-contact-error>
+  <p
+    class="mt-4 hidden text-center text-sm font-medium text-red-600"
+    data-contact-error
+  >
     Something went wrong. Please email {CONTACT_EMAIL} directly.
   </p>
 </form>
 
 <script>
   const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-  const submitBtn = form?.querySelector<HTMLButtonElement>("[data-contact-submit]");
+  const submitBtn = form?.querySelector<HTMLButtonElement>(
+    "[data-contact-submit]",
+  );
   const sentMsg = form?.querySelector<HTMLElement>("[data-contact-sent]");
   const errorMsg = form?.querySelector<HTMLElement>("[data-contact-error]");
 
