@@ -36,14 +36,13 @@ export default function ScrollStack({
 
     const scrollTop = useWindowScroll ? window.scrollY : scroller.scrollTop;
     const height = useWindowScroll ? window.innerHeight : scroller.clientHeight;
+    const scrollerTop = scroller.getBoundingClientRect().top + window.scrollY;
     const offset = (value) =>
       value.includes("%")
         ? (parseFloat(value) / 100) * height
         : parseFloat(value);
     const elementTop = (element) =>
-      useWindowScroll
-        ? element.getBoundingClientRect().top + window.scrollY
-        : element.offsetTop;
+      useWindowScroll ? scrollerTop + element.offsetTop : element.offsetTop;
     const stackTop = offset(stackPosition);
     const scaleEnd = offset(scaleEndPosition);
     const end = scroller.querySelector(".scroll-stack-end");
