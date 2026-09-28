@@ -1,4 +1,7 @@
 ---
+import FloatingNav from "@/components/FloatingNav.astro";
+import Footer from "../components/Footer.astro";
+
 import "@/styles/global.css";
 
 const SITE_NAME = "TripEleven";
@@ -128,7 +131,9 @@ const jsonLd = {
     >
       Skip to content
     </a>
+    <FloatingNav />
     <slot />
+    <Footer />
     <script is:inline>
       if (window.matchMedia("(min-width: 640px)").matches) {
         (function () {

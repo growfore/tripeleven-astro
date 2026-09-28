@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Notice from "../components/Notice.astro";
 import Hero from "../components/Hero.astro";
 import Showcase from "../components/Showcase.astro";
 import Platform from "../components/Platform.astro";
@@ -9,8 +8,6 @@ import Extras from "../components/Extras.astro";
 import Pricing from "../components/Pricing.astro";
 import Faq from "../components/Faq.astro";
 import Closing from "../components/Closing.astro";
-import Footer from "../components/Footer.astro";
-import FloatingNav from "../components/FloatingNav.astro";
 
 const title = "TripEleven — Build, manage and sell trips online";
 const description =
@@ -22,9 +19,7 @@ const canonical = "https://tripeleven.com/";
 
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-background">
-    <Notice />
-    <FloatingNav />
-    <main id="top" class="flex flex-col gap-12 md:gap-20">
+    <main id="top" class="flex flex-col gap-12 md:gap-20 items-center">
       <Hero />
       <Showcase />
       <Platform />
@@ -34,6 +29,5 @@ const canonical = "https://tripeleven.com/";
       <Faq />
       <Closing />
     </main>
-    <Footer />
   </div>
 </Layout>

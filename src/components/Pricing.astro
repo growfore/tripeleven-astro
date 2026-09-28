@@ -22,7 +22,7 @@ const plans: Plan[] = [
     price: "$29",
     priceSuffix: "month",
     annual: { price: "$23", totalLabel: "$276 billed yearly" },
-    tone: "bg-white",
+    tone: "bg-white shadow-md",
     cta: "Try 7 days free trial",
     href: "https://app.tripeleven.com/signup",
     features: [
@@ -44,7 +44,7 @@ const plans: Plan[] = [
     price: "$79",
     priceSuffix: "month",
     annual: { price: "$63", totalLabel: "$756 billed yearly" },
-    tone: "bg-navy",
+    tone: "bg-navy shadow-md",
     dark: true,
     cta: "Try 7 days free trial",
     href: "https://app.tripeleven.com/signup",
@@ -64,7 +64,7 @@ const plans: Plan[] = [
     description: "White-label, dedicated onboarding and custom terms.",
     price: "",
     priceSuffix: "",
-    tone: "bg-light-blue",
+    tone: "bg-white shadow-md",
     cta: "Contact us",
     href: "https://app.tripeleven.com/signup",
     features: [
@@ -244,9 +244,9 @@ function compareValue(
 const Heading = Astro.props.heading ?? "h2";
 ---
 
-<section id="pricing" class="page-container bg-off-white text-center">
+<section id="pricing" class="py-12 text-center container mx-auto px-4">
   <Heading
-    class="m-0 font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+    class="font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
   >
     Start with a 7-day free trial.
   </Heading>

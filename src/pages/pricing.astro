@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Pricing from "../components/Pricing.astro";
 import Closing from "../components/Closing.astro";
-import FloatingNav from "../components/FloatingNav.astro";
 
 const title = "Pricing — TripEleven";
 const description =
@@ -13,9 +12,8 @@ const canonical = "https://tripeleven.com/pricing";
 ---
 
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <FloatingNav />
-    <main id="top">
+  <div class="container mx-auto overflow-x-clip">
+    <main id="">
       <Pricing heading="h1" />
       <Closing />
     </main>
