@@ -159,6 +159,7 @@ const prices = [
     amount: "NPR 38,000",
     period: "/year",
     name: "Business",
+    badge: "Best Seller",
     description: "For larger catalogs and teams.",
     features: [
       "Unlimited trips and posts",
@@ -491,8 +492,17 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
         <div class="nepal-pricing-grid">
           {
             prices.map((price) => (
-              <article class="nepal-price-card">
+              <article
+                class={
+                  price.badge
+                    ? "nepal-price-card nepal-price-card-featured"
+                    : "nepal-price-card"
+                }
+              >
                 <>
+                  {price.badge && (
+                    <span class="nepal-price-badge">{price.badge}</span>
+                  )}
                   <h3>
                     {price.amount} <small>{price.period}</small>
                   </h3>
