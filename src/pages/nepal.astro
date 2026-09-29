@@ -205,7 +205,9 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
         </nav>
         <a href="#contact" class="nepal-button nepal-nav-cta">Talk to us</a>
         <details class="nepal-mobile-nav">
-          <summary aria-label="Open navigation">Menu</summary>
+          <summary aria-label="Toggle navigation">
+            <Icon name="menu" class="block size-6" />
+          </summary>
           <nav aria-label="Mobile Nepal navigation">
             <a href="#top">Home</a><a href="#features">Features</a><a
               href="#agencies">Agencies</a
@@ -657,4 +659,21 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
         if (menu) menu.open = false;
       }),
     );
+  const mobileMenu =
+    document.querySelector<HTMLDetailsElement>(".nepal-mobile-nav");
+  document.addEventListener("pointerdown", (event) => {
+    if (
+      mobileMenu?.open &&
+      event.target instanceof Node &&
+      !mobileMenu.contains(event.target)
+    ) {
+      mobileMenu.open = false;
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobileMenu?.open) {
+      mobileMenu.open = false;
+      mobileMenu.querySelector("summary")?.focus();
+    }
+  });
 </script>
