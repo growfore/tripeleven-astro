@@ -46,13 +46,11 @@
 }
 .nepal-wordmark {
   flex: none;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: var(--nepal-text);
 }
-.nepal-wordmark span {
-  color: var(--nepal-blue);
+.nepal-wordmark img {
+  display: block;
+  width: 10.5rem;
+  height: auto;
 }
 .nepal-desktop-nav {
   display: flex;
@@ -320,9 +318,13 @@
   margin: auto;
 }
 .nepal-tools > div {
-  display: grid;
-  place-items: center;
-  min-height: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  min-height: 8rem;
+  padding: 1rem;
   border-radius: 0.7rem;
   background: var(--white);
   box-shadow: 0 0.4rem 1.8rem
@@ -330,6 +332,19 @@
   color: var(--nepal-blue);
   text-align: center;
   font-weight: 700;
+}
+.nepal-tool-symbol {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.7rem;
+  background: var(--nepal-blue);
+  color: var(--white);
+}
+.nepal-tool-icon {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 .nepal-cta {
   display: flex;

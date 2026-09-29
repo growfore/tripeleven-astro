@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
+import Icon from "../components/Icon.astro";
 import "../styles/nepal.css";
 
 const title =
@@ -116,7 +117,13 @@ const tabs = [
     image: "/mockups/nepal-hero.png",
   },
 ];
-const tools = ["Trips", "Website", "Bookings", "Payments", "AI drafts"];
+const tools = [
+  { label: "Trips", icon: "package-plus" },
+  { label: "Website", icon: "layout-grid" },
+  { label: "Bookings", icon: "check-circle" },
+  { label: "Payments", icon: "tag" },
+  { label: "AI drafts", icon: "sparkles" },
+] as const;
 const faqs = [
   {
     question: "Do I need coding skills?",
@@ -182,9 +189,14 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
   <div class="nepal-page" id="top">
     <header class="nepal-header">
       <div class="nepal-container nepal-nav">
-        <a href="#top" class="nepal-wordmark" aria-label="TripEleven home"
-          >Trip<span>Eleven</span></a
-        >
+        <a href="#top" class="nepal-wordmark" aria-label="TripEleven home">
+          <img
+            src="/lettermark-logo.svg"
+            width="340"
+            height="65"
+            alt="TripEleven"
+          />
+        </a>
         <nav class="nepal-desktop-nav" aria-label="Nepal navigation">
           <a href="#top">Home</a><a href="#features">Features</a><a
             href="#agencies">Agencies</a
@@ -404,7 +416,20 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
             agency controls.
           </p>
         </div>
-        <div class="nepal-tools">{tools.map((tool) => <div>{tool}</div>)}</div>
+        <div class="nepal-tools">
+          {
+            tools.map((tool) => (
+              <div>
+                <>
+                  <span class="nepal-tool-symbol">
+                    <Icon name={tool.icon} class="nepal-tool-icon" />
+                  </span>
+                  <span>{tool.label}</span>
+                </>
+              </div>
+            ))
+          }
+        </div>
       </section>
 
       <section class="nepal-section nepal-container">
@@ -543,7 +568,15 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
     <footer class="nepal-footer">
       <div class="nepal-container nepal-footer-grid">
         <div>
-          <a href="#top" class="nepal-wordmark">Trip<span>Eleven</span></a><p>
+          <a href="#top" class="nepal-wordmark" aria-label="TripEleven home">
+            <img
+              src="/lettermark-logo.svg"
+              width="340"
+              height="65"
+              alt="TripEleven"
+              loading="lazy"
+            />
+          </a><p>
             Build trips, publish your website, and manage traveler bookings in
             one workspace.
           </p><h3>Contact</h3><a href="mailto:hello@tripeleven.com"
