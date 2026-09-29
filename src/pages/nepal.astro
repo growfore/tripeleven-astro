@@ -510,7 +510,12 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
                   <p>{price.description}</p>
                   <ul>
                     {price.features.map((feature) => (
-                      <li>{feature}</li>
+                      <li>
+                        {price.plan === "business" && (
+                          <Icon name="check-circle" class="nepal-price-check" />
+                        )}
+                        {feature}
+                      </li>
                     ))}
                   </ul>
                   <a
