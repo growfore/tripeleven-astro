@@ -27,7 +27,7 @@
   --color-slate: var(--slate);
   --color-ink: var(--ink);
   --font-sans: "Outfit", sans-serif;
-  --font-serif: "Instrument Sans", sans-serif;
+  --font-serif: "Outfit", sans-serif;
   --breakpoint-lg: 56.25rem;
 }
 
