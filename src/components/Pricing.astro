@@ -29,6 +29,7 @@ const plans: Plan[] = [
       "Branded trip website & catalog",
       "Trip inquiries (email / WhatsApp)",
       "Bookings & payments",
+      "Receive payments via own Stripe keys",
       "Up to 45 trips & 200 blog posts",
       "Custom domain",
       "Custom template, palette & fonts",
@@ -52,6 +53,7 @@ const plans: Plan[] = [
     features: [
       "Everything in Launch",
       "Bookings & payments",
+      "Receive payments via own Stripe keys",
       "Unlimited trips & blog posts",
       "Read-only API access",
       "Large package catalogs",
@@ -72,6 +74,7 @@ const plans: Plan[] = [
     features: [
       "Everything in Business",
       "Bookings & payments",
+      "Receive payments via own Stripe keys",
       "White-label (remove TripEleven)",
       "Unlimited storage",
       "Dedicated onboarding",
@@ -170,6 +173,12 @@ const compareGroups: CompareGroup[] = [
         business: "Included",
         enterprise: "Included",
       },
+      {
+        label: "Receive payments via own Stripe keys",
+        launch: "Included",
+        business: "Included",
+        enterprise: "Included",
+      },
     ],
   },
   {
@@ -196,12 +205,6 @@ const compareGroups: CompareGroup[] = [
         label: "AI itinerary generation (BYO key)",
         launch: "Included",
         business: "Included",
-        enterprise: "Included",
-      },
-      {
-        label: "Receive payments via own Stripe keys",
-        launch: "—",
-        business: "—",
         enterprise: "Included",
       },
     ],
