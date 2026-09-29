@@ -46,6 +46,11 @@ const agencies = [
     image: "/clients/summit-luxury-treks.jpg",
     url: "https://summitluxurytreks.com",
   },
+  {
+    name: "Walkthrough Nepal",
+    image: "/clients/walkthrough-nepal.jpg",
+    url: "https://walkthroughnepal.com",
+  },
 ];
 
 const steps = [
@@ -119,16 +124,6 @@ const plans = [
       class="relative overflow-hidden rounded-b-3xl bg-deep-navy text-white"
     >
       <div
-        class="pointer-events-none absolute -left-52 top-28 size-96 rounded-full border border-electric/20"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="pointer-events-none absolute -right-48 top-16 size-[36rem] rounded-full border border-electric/20"
-        aria-hidden="true"
-      >
-      </div>
-      <div
         class="page-container relative flex flex-col items-center pt-20 text-center lg:pt-28"
       >
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-light-blue">
@@ -163,14 +158,14 @@ const plans = [
           Local plans from NPR 2,000/month or NPR 18,000/year.
         </p>
         <div
-          class="mt-14 w-full max-w-5xl rounded-t-3xl border border-b-0 border-white/20 bg-light-blue p-2 pb-0 shadow-2xl shadow-black/20 sm:p-4 sm:pb-0 lg:mt-20"
+          class="mt-14 w-full max-w-5xl border border-b-0 border-white/20 bg-light-blue p-2 pb-0 shadow-2xl shadow-black/20 sm:p-4 sm:pb-0 lg:mt-20"
         >
           <img
             src="/mockups/hero-image.png"
             width="1926"
             height="1286"
             alt="TripEleven dashboard for managing trips and website content"
-            class="block h-auto w-full rounded-t-2xl"
+            class="block h-auto w-full"
             fetchpriority="high"
           />
         </div>
@@ -280,7 +275,7 @@ const plans = [
       </div>
       <div class="mt-5 grid gap-5 lg:grid-cols-2">
         <article
-          class="flex flex-col overflow-hidden rounded-3xl border border-border bg-light-blue"
+          class="flex flex-col overflow-hidden border border-border bg-light-blue"
         >
           <div class="p-7 sm:p-9">
             <p
@@ -306,7 +301,7 @@ const plans = [
           />
         </article>
         <article
-          class="flex flex-col overflow-hidden rounded-3xl border border-border bg-light-blue"
+          class="flex flex-col overflow-hidden border border-border bg-light-blue"
         >
           <div class="p-7 sm:p-9">
             <p
@@ -406,12 +401,12 @@ const plans = [
       </div>
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {
-          agencies.slice(0, 3).map((agency) => (
+          agencies.map((agency) => (
             <a
               href={agency.url}
               target="_blank"
               rel="noreferrer"
-              class="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
+              class="group overflow-hidden border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
             >
               <div class="h-64 overflow-hidden bg-light-blue sm:h-72">
                 <img
@@ -521,11 +516,6 @@ const plans = [
       class="relative overflow-hidden rounded-t-3xl bg-deep-navy py-20 text-white lg:py-28"
       aria-labelledby="contact-heading"
     >
-      <div
-        class="pointer-events-none absolute -top-60 left-1/2 size-[40rem] -translate-x-1/2 rounded-full border border-electric/20"
-        aria-hidden="true"
-      >
-      </div>
       <div
         class="page-container relative grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20"
       >
