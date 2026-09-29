@@ -10,11 +10,18 @@ const TOPICS = [
 const CONTACT_EMAIL = "hello@tripeleven.com";
 interface Props {
   initialMessage?: string;
+  compact?: boolean;
 }
-const { initialMessage = "" } = Astro.props;
+const { initialMessage = "", compact = false } = Astro.props;
 ---
 
-<form data-contact-form class="border border-border bg-card p-8 sm:p-10">
+<form
+  data-contact-form
+  class:list={[
+    "min-w-0",
+    compact ? "" : "border border-border bg-card p-8 sm:p-10",
+  ]}
+>
   <input
     type="text"
     name="_honey"
@@ -92,7 +99,10 @@ const { initialMessage = "" } = Astro.props;
 
   <button
     type="submit"
-    class="mt-8 w-full cursor-pointer rounded-[2px] bg-ink py-6 text-base font-semibold text-primary-foreground transition-colors hover:bg-ink/90"
+    class:list={[
+      "mt-8 w-full cursor-pointer bg-ink text-base font-semibold text-primary-foreground transition-colors hover:bg-ink/90",
+      compact ? "rounded-full py-3" : "rounded-[2px] py-6",
+    ]}
     data-contact-submit
   >
     Send message

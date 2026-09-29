@@ -1,13 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Icon from "../components/Icon.astro";
-import Faq from "../components/Faq.astro";
 import ContactForm from "../components/ContactForm.astro";
+import "../styles/nepal.css";
 
 const title =
   "Website & trip management for Nepal travel agencies — TripEleven";
 const description =
-  "Build a branded website, publish trekking and tour packages, and collect inquiries with TripEleven. Nepal agency plans start at NPR 2,000/month or NPR 18,000/year.";
+  "Build a branded website, publish trekking and tour packages, and accept bookings with TripEleven. Nepal plans start at NPR 2,000/month.";
 const canonical = "https://tripeleven.com/nepal";
 const plan = Astro.url.searchParams.get("plan");
 const initialMessage =
@@ -18,532 +17,598 @@ const initialMessage =
 const agencies = [
   {
     name: "Essence Treks",
+    logo: "/clients-logos/essence-treks-logo.webp",
     image: "/clients/essence-treks.jpg",
-    url: "https://essencetreksnepal.com",
+    href: "https://essencetreksnepal.com",
   },
   {
     name: "Hi Nepal Treks",
-    image: "/clients/hi-nepal-treks.jpg",
-    url: "https://hinepaltreks.com",
+    logo: "/clients-logos/hinepal-logo.avif",
+    href: "https://hinepaltreks.com",
   },
   {
     name: "Into Nepal Treks",
-    image: "/clients/into-nepal-treks.jpg",
-    url: "https://new.intonepaltreks.com",
+    logo: "/clients-logos/intonepal-logo.png",
+    href: "https://new.intonepaltreks.com",
   },
   {
     name: "Limestone Treks",
+    logo: "/clients-logos/limestone-treks-logo-transparent.webp",
     image: "/clients/limestone-treks.jpg",
-    url: "https://limestonetreks.com",
+    href: "https://limestonetreks.com",
   },
   {
     name: "Lovely Trips",
-    image: "/clients/lovely-trips.jpg",
-    url: "https://lovelytrips.com.np",
+    logo: "/clients-logos/lovely-trips-logo.webp",
+    href: "https://lovelytrips.com.np",
   },
   {
     name: "Summit Luxury Treks",
+    logo: "/clients-logos/summit-luxury-logo-white.webp",
     image: "/clients/summit-luxury-treks.jpg",
-    url: "https://summitluxurytreks.com",
+    href: "https://summitluxurytreks.com",
   },
   {
     name: "Walkthrough Nepal",
-    image: "/clients/walkthrough-nepal.jpg",
-    url: "https://walkthroughnepal.com",
+    logo: "/clients-logos/walkthrough-nepal-color-logo.svg",
+    href: "https://walkthroughnepal.com",
   },
 ];
-
-const steps = [
+const features = [
   {
-    number: "01",
-    title: "Build",
-    detail: "Add trip facts, day-by-day itineraries, pricing, and FAQs.",
+    title: "Trip builder",
+    description:
+      "Organize itineraries, trip facts, pricing, and FAQs in a guided workflow.",
+    icon: "/nepal-icons/icon-01.svg",
   },
   {
-    number: "02",
-    title: "Brand",
-    detail: "Choose a template, colors, fonts, and your own domain.",
+    title: "Branded website",
+    description:
+      "Publish trips, stories, reviews, and your team under your own domain.",
+    icon: "/nepal-icons/icon-02.svg",
   },
   {
-    number: "03",
-    title: "Publish",
-    detail: "Put trips and stories live when your team is ready.",
+    title: "Direct bookings",
+    description: "Travelers can book trips directly from your website.",
+    icon: "/nepal-icons/icon-03.svg",
   },
   {
-    number: "04",
-    title: "Connect",
-    detail: "Receive inquiries and follow up with travelers directly.",
+    title: "Content publishing",
+    description:
+      "Keep your catalog and travel advice current from one dashboard.",
+    icon: "/nepal-icons/icon-04.svg",
+  },
+  {
+    title: "Bookings and payments",
+    description:
+      "Manage bookings and receive payments with your own Stripe keys.",
+    icon: "/nepal-icons/icon-05.svg",
+  },
+  {
+    title: "AI itinerary drafts",
+    description:
+      "Draft day-by-day itineraries, then review and edit before publishing.",
+    icon: "/nepal-icons/icon-06.svg",
   },
 ];
-
-const plans = [
+const tabs = [
   {
+    name: "Build trips",
+    title: "Build detailed trips",
+    first:
+      "Keep trip facts, day-by-day itineraries, inclusions, pricing and FAQs together.",
+    second: "Your team can review drafts and publish when everything is ready.",
+    image: "/mockups/itinerary-form.png",
+  },
+  {
+    name: "Publish your website",
+    title: "Publish your own website",
+    first: "Choose a template, colors, fonts and your own domain.",
+    second:
+      "Feature trips, introduce your team, and share useful travel advice.",
+    image: "/mockups/website-demo-for-cta-card.png",
+  },
+  {
+    name: "Manage bookings",
+    title: "Turn visits into bookings",
+    first: "Give travelers a direct way to book each trek or tour.",
+    second: "Track bookings in your dashboard and follow up with travelers.",
+    image: "/mockups/nepal-hero.png",
+  },
+];
+const tools = ["Trips", "Website", "Bookings", "Payments", "AI drafts"];
+const faqs = [
+  {
+    question: "Do I need coding skills?",
+    answer:
+      "No. Build your catalog, publish your website, and manage bookings from a dashboard.",
+  },
+  {
+    question: "Can I use my own domain?",
+    answer: "Yes. Launch and Business plans include a custom domain.",
+  },
+  {
+    question: "How does my team manage bookings?",
+    answer:
+      "Travelers can book from trip pages. Your team can manage bookings in the dashboard.",
+  },
+];
+const prices = [
+  {
+    amount: "NPR 18,000",
+    period: "/year",
     name: "Launch",
     description:
       "For agencies building their online presence and trip catalog.",
-    monthly: "NPR 2,000/month",
-    yearly: "NPR 18,000/year",
-    wasYearly: "NPR 24,000/year",
-    href: "?plan=launch#contact",
     features: [
-      "Branded trip website & catalog",
-      "Trip inquiries (email / WhatsApp)",
-      "Bookings & payments",
-      "Receive payments via own Stripe keys",
-      "Up to 45 trips & 200 blog posts",
-      "Custom domain",
-      "Custom template, palette & fonts",
-      "AI itinerary generation (BYO key)",
-      "5 GB media storage",
-      "2 staff seats",
-      "Priority support",
+      "Up to 45 trips and 200 posts",
+      "2 staff seats and 5 GB storage",
+      "Own Stripe keys for payments",
+      "Remove TripEleven branding and template",
     ],
+    plan: "launch",
   },
   {
+    amount: "NPR 38,000",
+    period: "/year",
     name: "Business",
-    description: "For agencies managing a larger catalog and team.",
-    monthly: "NPR 3,250/month",
-    yearly: "NPR 38,000/year",
-    wasYearly: "NPR 42,000/year",
-    href: "?plan=business#contact",
+    description: "For larger catalogs and teams.",
     features: [
-      "Everything in Launch",
-      "Bookings & payments",
-      "Receive payments via own Stripe keys",
-      "Unlimited trips & blog posts",
+      "Unlimited trips and posts",
+      "25 staff seats and 25 GB storage",
       "Read-only API access",
-      "Large package catalogs",
-      "Remove TripEleven branding",
-      "25 GB media storage",
-      "25 staff seats",
-      "Priority support",
+      "Get plan guidance",
     ],
+    plan: "business",
+  },
+  {
+    amount: "Let’s talk",
+    period: "",
+    name: "Custom setup",
+    description: "Ask us about your setup and requirements.",
+    features: [
+      "Tell us about your catalog",
+      "Discuss your team needs",
+      "Review setup requirements",
+      "Custom domain",
+    ],
+    plan: "",
   },
 ];
+const liveAgencies = [agencies[0], agencies[3], agencies[5]];
 ---
 
-<Layout {title} {description} {canonical}>
-  <main id="top" class="mx-auto w-full max-w-[1510px] overflow-x-clip">
-    <section
-      class="relative overflow-hidden rounded-b-3xl bg-deep-navy text-white"
-    >
-      <div
-        class="page-container relative flex flex-col items-center pt-20 text-center lg:pt-28"
-      >
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-light-blue">
-          Built for Nepal’s travel agencies
-        </p>
-        <h1
-          class="mt-6 max-w-5xl font-serif text-5xl leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-7xl"
+<Layout {title} {description} {canonical} chrome={false}>
+  <div class="nepal-page" id="top">
+    <header class="nepal-header">
+      <div class="nepal-container nepal-nav">
+        <a href="#top" class="nepal-wordmark" aria-label="TripEleven home"
+          >Trip<span>Eleven</span></a
         >
-          Your next traveler starts with a <span class="text-electric"
-            >better website.</span
-          >
-        </h1>
-        <p
-          class="mt-6 max-w-2xl text-lg leading-relaxed text-light-blue lg:text-xl"
-        >
-          Give every trek and tour a place to shine. Publish your trips, tell
-          your story, and turn visits into inquiries from one dashboard.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="#features"
-            class="inline-flex items-center gap-2 rounded-full border border-white/50 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
-            >Explore platform <Icon name="arrow-right" class="size-4" /></a
-          >
-          <a
-            href="#pricing"
-            class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-deep-navy transition-colors hover:bg-light-blue"
-            >See Nepal plans <Icon name="arrow-right" class="size-4" /></a
-          >
-        </div>
-        <p class="mt-5 text-sm text-light-blue">
-          Local plans from NPR 2,000/month or NPR 18,000/year.
-        </p>
-        <div
-          class="mt-14 w-full max-w-5xl border border-b-0 border-white/20 bg-light-blue p-2 pb-0 shadow-2xl shadow-black/20 sm:p-4 sm:pb-0 lg:mt-20"
-        >
-          <img
-            src="/mockups/hero-image.png"
-            width="1926"
-            height="1286"
-            alt="TripEleven dashboard for managing trips and website content"
-            class="block h-auto w-full"
-            fetchpriority="high"
-          />
-        </div>
+        <nav class="nepal-desktop-nav" aria-label="Nepal navigation">
+          <a href="#top">Home</a><a href="#features">Features</a><a
+            href="#agencies">Agencies</a
+          ><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="nepal-button nepal-nav-cta">Talk to us</a>
+        <details class="nepal-mobile-nav">
+          <summary aria-label="Open navigation">Menu</summary>
+          <nav aria-label="Mobile Nepal navigation">
+            <a href="#top">Home</a><a href="#features">Features</a><a
+              href="#agencies">Agencies</a
+            ><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
+            <a href="#contact" class="nepal-button">Talk to us</a>
+          </nav>
+        </details>
       </div>
-    </section>
+    </header>
 
-    <section
-      class="page-container border-b border-border py-14 text-center lg:py-20"
-      aria-label="Nepal agencies using TripEleven"
-    >
-      <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate">
-        Websites for Nepal agencies
-      </p>
-      <div
-        class="mt-9 grid grid-cols-2 items-center gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-6"
-      >
-        {
-          agencies.map((agency) => (
-            <a
-              href={agency.url}
-              target="_blank"
-              rel="noreferrer"
-              class="font-serif text-base font-bold leading-tight text-deep-navy transition-colors hover:text-electric"
+    <main>
+      <section class="nepal-hero nepal-container">
+        <div>
+          <h1>
+            Your next traveler starts with a <span class="nepal-highlight"
+              >better website.</span
             >
-              {agency.name}
-            </a>
-          ))
-        }
-      </div>
-    </section>
+          </h1>
+          <p>
+            Give every trek and tour a place to shine. Publish your trips, tell
+            your story, and turn visits into bookings from one dashboard.
+          </p>
+          <a href="#pricing" class="nepal-button nepal-button-dark"
+            >See Nepal plans</a
+          >
+          <p class="nepal-plan-note">
+            Local plans from NPR 2,000/month or NPR 18,000/year.
+          </p>
+        </div>
+        <img
+          src="/mockups/nepal-hero.png"
+          width="2245"
+          height="1280"
+          alt="TripEleven trip and website dashboard"
+          fetchpriority="high"
+          class="nepal-hero-image"
+        />
+      </section>
 
-    <section
-      id="features"
-      class="page-container py-20 lg:py-28"
-      aria-labelledby="features-heading"
-    >
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
-          One simple journey
-        </p>
-        <h2
-          id="features-heading"
-          class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
-        >
-          From trip idea to <span class="text-electric">traveler inquiry.</span>
-        </h2>
-        <p class="mt-5 text-lg leading-relaxed text-slate">
-          Everything your agency needs to bring a trip online, in one connected
-          workflow.
-        </p>
-      </div>
-      <div
-        class="mt-12 overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-xl shadow-deep-navy/5 sm:p-8 lg:mt-16"
+      <section
+        class="nepal-brands"
+        aria-label="Nepal agencies using TripEleven"
       >
-        <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="nepal-container nepal-brand-grid">
           {
-            steps.map((step, index) => (
-              <li
-                class={`rounded-2xl border p-5 sm:p-6 ${index === 3 ? "border-electric bg-light-blue" : "border-border bg-off-white"}`}
+            agencies.map((agency) => (
+              <a
+                href={agency.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Visit ${agency.name}`}
+                class="nepal-brand-card"
               >
-                <span class="text-xs font-bold tracking-widest text-electric">
-                  {step.number} / 04
-                </span>
-                <div
-                  class="my-7 flex size-12 items-center justify-center rounded-xl bg-white text-electric shadow-sm"
-                  aria-hidden="true"
-                >
-                  <Icon
-                    name={
-                      index === 0
-                        ? "package-plus"
-                        : index === 1
-                          ? "layout-grid"
-                          : index === 2
-                            ? "sparkles"
-                            : "arrow-right"
-                    }
-                    class="size-6"
-                  />
-                </div>
-                <h3 class="text-xl text-deep-navy">{step.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-slate">
-                  {step.detail}
-                </p>
-              </li>
+                <img src={agency.logo} alt={agency.name} loading="lazy" />
+              </a>
             ))
           }
-        </ol>
-        <div
-          class="mt-8 border-t border-border pt-7 sm:flex sm:items-end sm:justify-between sm:gap-10"
-        >
-          <div>
-            <h3 class="text-2xl text-deep-navy">
-              One workspace. A complete trip presence.
-            </h3>
-            <p class="mt-2 max-w-2xl leading-relaxed text-slate">
-              Keep your catalog, website, and traveler inquiries connected as
-              your agency grows.
-            </p>
-          </div>
-          <a
-            href="#contact"
-            class="mt-5 inline-flex shrink-0 items-center gap-2 font-semibold text-electric hover:underline sm:mt-0"
-            >Talk to us <Icon name="arrow-right" class="size-4" /></a
-          >
         </div>
-      </div>
-      <div class="mt-5 grid gap-5 lg:grid-cols-2">
-        <article
-          class="flex flex-col overflow-hidden border border-border bg-light-blue"
-        >
-          <div class="p-7 sm:p-9">
-            <p
-              class="text-xs font-bold uppercase tracking-widest text-electric"
-            >
-              Trip builder
-            </p>
-            <h3 class="mt-4 text-2xl text-deep-navy sm:text-3xl">
-              Every detail, beautifully organized.
-            </h3>
-            <p class="mt-3 max-w-xl leading-relaxed text-slate">
-              Build itineraries, manage pricing and trip facts, then update your
-              catalog without chasing scattered documents.
-            </p>
-          </div>
-          <img
-            src="/mockups/itinerary-form.png"
-            width="1926"
-            height="1286"
-            loading="lazy"
-            alt="TripEleven itinerary editor"
-            class="mt-auto block h-auto w-full px-5 pb-5 sm:px-9 sm:pb-9"
-          />
-        </article>
-        <article
-          class="flex flex-col overflow-hidden border border-border bg-light-blue"
-        >
-          <div class="p-7 sm:p-9">
-            <p
-              class="text-xs font-bold uppercase tracking-widest text-electric"
-            >
-              Your website
-            </p>
-            <h3 class="mt-4 text-2xl text-deep-navy sm:text-3xl">
-              A home for your agency’s story.
-            </h3>
-            <p class="mt-3 max-w-xl leading-relaxed text-slate">
-              Showcase featured trips, your team, reviews, and useful travel
-              advice under your own brand and domain.
-            </p>
-          </div>
-          <img
-            src="/mockups/website-demo-for-cta-card.png"
-            width="1944"
-            height="1304"
-            loading="lazy"
-            alt="Travel agency website displayed on desktop and mobile"
-            class="mt-auto block h-auto w-full px-5 pb-5 sm:px-9 sm:pb-9"
-          />
-        </article>
-      </div>
-    </section>
+      </section>
 
-    <section
-      class="bg-off-white py-20 lg:py-28"
-      aria-labelledby="benefits-heading"
-    >
-      <div class="page-container">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
-            Built for how you work
-          </p>
-          <h2
-            id="benefits-heading"
-            class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
-          >
-            Your business, <span class="text-electric">front and center.</span>
-          </h2>
-        </div>
-        <div class="mt-14 grid gap-8 md:grid-cols-3 md:gap-0">
-          <div
-            class="border-b border-border pb-8 md:border-b-0 md:border-r md:px-8 md:pb-0"
-          >
-            <Icon name="layout-grid" class="size-9 text-electric" /><h3
-              class="mt-6 text-2xl text-deep-navy"
-            >
-              Your brand
-            </h3><p class="mt-3 leading-relaxed text-slate">
-              Own the look, the domain, and the story travelers see first.
-            </p>
-          </div>
-          <div
-            class="border-b border-border pb-8 md:border-b-0 md:border-r md:px-8 md:pb-0"
-          >
-            <Icon name="package-plus" class="size-9 text-electric" /><h3
-              class="mt-6 text-2xl text-deep-navy"
-            >
-              Your catalog
-            </h3><p class="mt-3 leading-relaxed text-slate">
-              Keep trip pages detailed, current, and easy to explore.
-            </p>
-          </div>
-          <div class="md:px-8">
-            <Icon name="arrow-right" class="size-9 text-electric" /><h3
-              class="mt-6 text-2xl text-deep-navy"
-            >
-              Your inquiries
-            </h3><p class="mt-3 leading-relaxed text-slate">
-              Let interested travelers reach your team directly from each trip.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="page-container py-20 lg:py-28"
-      aria-labelledby="stories-heading"
-    >
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
-          Made for real operators
-        </p>
-        <h2
-          id="stories-heading"
-          class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
-        >
-          See agencies <span class="text-electric">out in the world.</span>
-        </h2>
-        <p class="mt-5 text-lg leading-relaxed text-slate">
-          Explore live Nepal agency websites built with TripEleven.
-        </p>
-      </div>
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          agencies.map((agency) => (
-            <a
-              href={agency.url}
-              target="_blank"
-              rel="noreferrer"
-              class="group overflow-hidden border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
-            >
-              <div class="h-64 overflow-hidden bg-light-blue sm:h-72">
-                <img
-                  src={agency.image}
-                  width="1440"
-                  height="1800"
-                  loading="lazy"
-                  alt={`${agency.name} website`}
-                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                />
-              </div>
-              <span class="flex items-center justify-between gap-4 p-5">
-                <>
-                  <span class="font-semibold text-deep-navy">
-                    {agency.name}
-                  </span>
-                  <span class="inline-flex items-center gap-1 text-sm font-semibold text-electric">
-                    Visit site <Icon name="external-link" class="size-4" />
-                  </span>
-                </>
-              </span>
-            </a>
-          ))
-        }
-      </div>
-    </section>
-
-    <section
-      id="pricing"
-      class="bg-light-blue py-20 lg:py-28"
-      aria-labelledby="pricing-heading"
-    >
-      <div class="page-container">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
-            Simple local pricing
-          </p>
-          <h2
-            id="pricing-heading"
-            class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
-          >
-            Plans for Nepal agencies.
-          </h2>
-          <p class="mt-5 text-lg leading-relaxed text-slate">
-            Choose a plan for your catalog and team. Ask us about setup and
-            final tax details before you commit.
+      <section id="features" class="nepal-section nepal-container">
+        <div class="nepal-section-heading">
+          <h2>Everything your agency needs</h2><p>
+            Build trips, publish a branded website, and manage traveler bookings
+            from one connected workspace.
           </p>
         </div>
-        <div class="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">
+        <div class="nepal-feature-grid">
           {
-            plans.map((plan) => (
-              <article
-                class={`relative flex flex-col rounded-3xl bg-card p-7 shadow-lg shadow-deep-navy/5 sm:p-9 ${plan.name === "Business" ? "border-2 border-electric" : "border border-border"}`}
-              >
-                {plan.name === "Business" && (
-                  <span class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-electric px-4 py-1.5 text-xs font-bold text-white">
-                    Best value
-                  </span>
-                )}
-                <h3 class="text-2xl text-deep-navy">{plan.name}</h3>
-                <p class="mt-2 text-slate">{plan.description}</p>
-                <div class="mt-7">
-                  <>
-                    <p class="text-3xl font-bold text-deep-navy">
-                      {plan.yearly}
-                    </p>
-                    <p class="mt-1 text-sm text-slate">
-                      Billed yearly <del class="ml-2">{plan.wasYearly}</del>
-                    </p>
-                    <p class="mt-5 border-t border-border pt-4 text-deep-navy">
-                      Monthly billing: <strong>{plan.monthly}</strong>
-                    </p>
-                  </>
-                </div>
-                <ul class="my-8 space-y-3 text-sm leading-relaxed text-deep-navy">
-                  {plan.features.map((feature) => (
-                    <li class="flex items-start gap-2">
-                      <Icon
-                        name="check"
-                        class="mt-0.5 size-4 shrink-0 text-electric"
-                      />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={plan.href}
-                  class={`mt-auto block rounded-full px-6 py-3.5 text-center font-semibold transition-colors ${plan.name === "Business" ? "bg-electric text-white hover:bg-bright" : "bg-deep-navy text-white hover:bg-navy"}`}
-                >
-                  Ask about {plan.name}
-                </a>
+            features.map((feature) => (
+              <article class="nepal-feature-card">
+                <>
+                  <div class="nepal-feature-icon">
+                    <img
+                      src={feature.icon}
+                      alt=""
+                      width="36"
+                      height="36"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </>
               </article>
             ))
           }
         </div>
-        <p class="mt-6 text-center text-sm leading-relaxed text-slate">
-          Rates apply to Nepal based agencies. Final tax details are confirmed
-          on inquiry.
-        </p>
-      </div>
-    </section>
+      </section>
 
-    <div class="bg-off-white py-20 lg:py-28"><Faq /></div>
-
-    <section
-      id="contact"
-      class="relative overflow-hidden rounded-t-3xl bg-deep-navy py-20 text-white lg:py-28"
-      aria-labelledby="contact-heading"
-    >
-      <div
-        class="page-container relative grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20"
+      <section class="nepal-section nepal-about nepal-container">
+        <img
+          src="/mockups/itinerary-form.png"
+          width="1926"
+          height="1286"
+          loading="lazy"
+          alt="TripEleven itinerary builder"
+        />
+        <div>
+          <h2>
+            A complete home for your <span class="nepal-highlight"
+              >travel business</span
+            >
+          </h2><p>
+            Build your trip catalog, publish your story, and give travelers a
+            direct way to reach your team.
+          </p>
+          <div class="nepal-numbered">
+            <span>01</span><div>
+              <h3>Guided trip builder</h3><p>
+                Itineraries, facts, pricing, and FAQs in one flow.
+              </p>
+            </div>
+          </div>
+          <div class="nepal-numbered">
+            <span>02</span><div>
+              <h3>Your brand and domain</h3><p>
+                Choose your template, palette, fonts, and domain.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="nepal-section nepal-about nepal-about-reverse nepal-container"
       >
         <div>
-          <p
-            class="text-xs font-bold uppercase tracking-[0.2em] text-light-blue"
+          <h2>
+            Bring your trips and <span class="nepal-highlight"
+              >bookings together</span
+            >
+          </h2><p>
+            Build your trip catalog, publish your story, and give travelers a
+            direct way to reach your team.
+          </p><a class="nepal-text-link" href="#contact"
+            >Talk to us <span aria-hidden="true">→</span></a
           >
-            Ready when you are
-          </p>
-          <h2
-            id="contact-heading"
-            class="mt-5 font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
-          >
-            Let’s get your agency <span class="text-electric">online.</span>
-          </h2>
-          <p class="mt-6 max-w-lg text-lg leading-relaxed text-light-blue">
-            Ask about a Nepal plan, setup, or final tax details. Tell us what
-            you’re building and we’ll get back to you.
+        </div>
+        <img
+          src="/mockups/website-demo-for-cta-card.png"
+          width="1944"
+          height="1304"
+          loading="lazy"
+          alt="TripEleven agency website preview"
+        />
+      </section>
+
+      <section
+        class="nepal-section nepal-tabs nepal-container"
+        aria-label="How TripEleven works"
+      >
+        <div
+          class="nepal-tab-list"
+          role="tablist"
+          aria-label="TripEleven workflow"
+        >
+          {
+            tabs.map((tab, index) => (
+              <button
+                type="button"
+                role="tab"
+                id={`nepal-tab-${index}`}
+                aria-controls={`nepal-panel-${index}`}
+                aria-selected={index === 0 ? "true" : "false"}
+                tabindex={index === 0 ? "0" : "-1"}
+                data-nepal-tab={index}
+              >
+                <span class="nepal-tab-number">0{index + 1}</span>
+                {tab.name}
+              </button>
+            ))
+          }
+        </div>
+        {
+          tabs.map((tab, index) => (
+            <div
+              id={`nepal-panel-${index}`}
+              role="tabpanel"
+              aria-labelledby={`nepal-tab-${index}`}
+              data-nepal-panel={index}
+              hidden={index !== 0}
+              class="nepal-tab-panel"
+            >
+              <>
+                <div>
+                  <>
+                    <h2>{tab.title}</h2>
+                    <p>{tab.first}</p>
+                    <p>{tab.second}</p>
+                  </>
+                </div>
+                <img
+                  src={tab.image}
+                  width="1944"
+                  height="1304"
+                  loading="lazy"
+                  alt={tab.title}
+                />
+              </>
+            </div>
+          ))
+        }
+      </section>
+
+      <section class="nepal-section nepal-integration nepal-container">
+        <div class="nepal-section-heading">
+          <h2>Your agency tools, connected.</h2><p>
+            Publish trips, accept bookings, and receive payments with tools your
+            agency controls.
           </p>
         </div>
-        <div class="overflow-hidden rounded-2xl shadow-2xl shadow-black/20">
-          <ContactForm {initialMessage} />
+        <div class="nepal-tools">{tools.map((tool) => <div>{tool}</div>)}</div>
+      </section>
+
+      <section class="nepal-section nepal-container">
+        <div class="nepal-cta">
+          <div>
+            <h2>Ready to bring your agency online?</h2><p>
+              Ask us about a Nepal plan, setup, or final tax details. We will
+              help you get started.
+            </p>
+          </div>
+          <div class="nepal-cta-action">
+            <img
+              src="/nepal-icons/shape-06.png"
+              width="299"
+              height="299"
+              loading="lazy"
+              alt=""
+            />
+            <a href="#contact" class="nepal-button nepal-button-dark"
+              >Talk to us <span aria-hidden="true">→</span></a
+            >
+          </div>
         </div>
+      </section>
+
+      <section id="faq" class="nepal-section nepal-faq nepal-container">
+        <div>
+          <h2>
+            Before You Get Started <span class="nepal-highlight">Questions</span
+            >
+          </h2><a class="nepal-text-link" href="#contact"
+            >Ask a question <span aria-hidden="true">→</span></a
+          >
+        </div>
+        <div class="nepal-faq-list">
+          {
+            faqs.map((faq, index) => (
+              <details name="nepal-faq" open={index === 0}>
+                <>
+                  <summary>
+                    {faq.question}
+                    <span aria-hidden="true">+</span>
+                  </summary>
+                  <p>{faq.answer}</p>
+                </>
+              </details>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="pricing" class="nepal-section nepal-container">
+        <div class="nepal-section-heading">
+          <h2>Plans for Nepal agencies</h2><p>
+            Choose a plan for your catalog and team. Ask us about setup and
+            final tax details.
+          </p>
+        </div>
+        <div class="nepal-pricing-grid">
+          {
+            prices.map((price) => (
+              <article class="nepal-price-card">
+                <>
+                  <h3>
+                    {price.amount} <small>{price.period}</small>
+                  </h3>
+                  <h4>{price.name}</h4>
+                  <p>{price.description}</p>
+                  <ul>
+                    {price.features.map((feature) => (
+                      <li>{feature}</li>
+                    ))}
+                  </ul>
+                  <a
+                    class="nepal-text-link"
+                    href={
+                      price.plan ? `?plan=${price.plan}#contact` : "#contact"
+                    }
+                  >
+                    Ask about this plan <span aria-hidden="true">→</span>
+                  </a>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="contact" class="nepal-section nepal-contact nepal-container">
+        <div class="nepal-contact-form">
+          <h2>Ask about TripEleven</h2><ContactForm {initialMessage} compact />
+        </div><aside>
+          <h2>Contact us</h2><h3>Based in Nepal</h3><p>
+            Supporting Nepal travel agencies
+          </p><h3>Email Address</h3><p>
+            <a href="mailto:hello@tripeleven.com">hello@tripeleven.com</a>
+          </p><h3>Plan details</h3><p>
+            <a href="#pricing">See Nepal pricing</a>
+          </p>
+        </aside>
+      </section>
+
+      <section id="agencies" class="nepal-section nepal-container">
+        <div class="nepal-section-heading">
+          <h2>See TripEleven in the world</h2><p>
+            Visit live Nepal agency websites built with TripEleven.
+          </p>
+        </div><div class="nepal-live-grid">
+          {
+            liveAgencies.map((agency) => (
+              <article>
+                <>
+                  <a href={agency.href} target="_blank" rel="noreferrer">
+                    <>
+                      <img
+                        src={agency.image}
+                        alt={`${agency.name} website`}
+                        width="1440"
+                        height="1800"
+                        loading="lazy"
+                      />
+                      <h3>{agency.name}</h3>
+                    </>
+                  </a>
+                  <p>
+                    Visit a live Nepal trekking website built with TripEleven.
+                  </p>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+    </main>
+
+    <footer class="nepal-footer">
+      <div class="nepal-container nepal-footer-grid">
+        <div>
+          <a href="#top" class="nepal-wordmark">Trip<span>Eleven</span></a><p>
+            Build trips, publish your website, and manage traveler bookings in
+            one workspace.
+          </p><h3>Contact</h3><a href="mailto:hello@tripeleven.com"
+            >hello@tripeleven.com</a
+          >
+        </div><div>
+          <h3>Explore</h3><a href="#features">Features</a><a href="#agencies"
+            >Agencies</a
+          ><a href="#pricing">Nepal pricing</a>
+        </div><div>
+          <h3>Support</h3><a href="#contact">Contact us</a><a href="/privacy"
+            >Privacy policy</a
+          ><a href="/terms">Terms</a>
+        </div><div>
+          <h3>Get started</h3><p>
+            Tell us about your agency and the trips you want to share.
+          </p><a href="#contact" class="nepal-button">Talk to us</a>
+        </div>
+      </div><div class="nepal-container nepal-copyright">
+        © {new Date().getFullYear()} TripEleven. All rights reserved.
       </div>
-    </section>
-  </main>
+    </footer>
+  </div>
 </Layout>
+
+<script>
+  const tabs = [
+    ...document.querySelectorAll<HTMLButtonElement>("[data-nepal-tab]"),
+  ];
+  const panels = [
+    ...document.querySelectorAll<HTMLElement>("[data-nepal-panel]"),
+  ];
+  function activateTab(index: number) {
+    tabs.forEach((item, itemIndex) => {
+      const selected = itemIndex === index;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      panels[itemIndex].hidden = !selected;
+    });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateTab(index));
+    tab.addEventListener("keydown", (event) => {
+      const next =
+        event.key === "ArrowRight"
+          ? (index + 1) % tabs.length
+          : event.key === "ArrowLeft"
+            ? (index - 1 + tabs.length) % tabs.length
+            : event.key === "Home"
+              ? 0
+              : event.key === "End"
+                ? tabs.length - 1
+                : -1;
+      if (next < 0) return;
+      event.preventDefault();
+      activateTab(next);
+      tabs[next].focus();
+    });
+  });
+  document
+    .querySelectorAll<HTMLAnchorElement>(".nepal-mobile-nav a")
+    .forEach((link) =>
+      link.addEventListener("click", () => {
+        const menu = link.closest("details");
+        if (menu) menu.open = false;
+      }),
+    );
+</script>

@@ -16,6 +16,7 @@ interface Props {
   ogDescription?: string;
   canonical?: string;
   noindex?: boolean;
+  chrome?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   ogDescription = description,
   canonical = SITE_URL,
   noindex = false,
+  chrome = true,
 } = Astro.props;
 
 const jsonLd = {
@@ -131,9 +133,9 @@ const jsonLd = {
     >
       Skip to content
     </a>
-    <FloatingNav />
+    {chrome && <FloatingNav />}
     <slot />
-    <Footer />
+    {chrome && <Footer />}
     <script is:inline>
       if (window.matchMedia("(min-width: 640px)").matches) {
         (function () {
