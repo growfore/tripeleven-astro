@@ -465,7 +465,7 @@
 .nepal-price-card li + li {
   margin-top: 0.8rem;
 }
-.nepal-price-card-featured li {
+.nepal-price-card li {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
