@@ -15,7 +15,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   const { name, email, agency, topic, message } = data;
   if (!name?.trim() || !email || !EMAIL_RE.test(email) || !message?.trim()) {
-    return new Response(JSON.stringify({ ok: false, error: "missing fields" }), { status: 400 });
+    return new Response(
+      JSON.stringify({ ok: false, error: "missing fields" }),
+      { status: 400 },
+    );
   }
 
   const res = await fetch(RESEND_URL, {
@@ -29,14 +32,23 @@ export const POST: APIRoute = async ({ request }) => {
       to: TO,
       reply_to: email,
       subject: `TripEleven contact — ${topic ?? "General question"}`,
-      text: [`Name: ${name}`, `Email: ${email}`, agency ? `Agency: ${agency}` : null, topic ? `Topic: ${topic}` : null, "", message]
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        agency ? `Agency: ${agency}` : null,
+        topic ? `Topic: ${topic}` : null,
+        "",
+        message,
+      ]
         .filter(Boolean)
         .join("\n"),
     }),
   });
 
   if (!res.ok) {
-    return new Response(JSON.stringify({ ok: false, error: "send failed" }), { status: 502 });
+    return new Response(JSON.stringify({ ok: false, error: "send failed" }), {
+      status: 502,
+    });
   }
   return new Response(JSON.stringify({ ok: true }), { status: 200 });
 };
