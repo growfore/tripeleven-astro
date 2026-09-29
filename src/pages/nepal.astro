@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Showcase from "../components/Showcase.astro";
 import Icon from "../components/Icon.astro";
 import Faq from "../components/Faq.astro";
 import ContactForm from "../components/ContactForm.astro";
@@ -15,6 +14,62 @@ const initialMessage =
   plan === "launch" || plan === "business"
     ? `I'm interested in the Nepal ${plan === "launch" ? "Launch" : "Business"} plan. Please share the next steps and final tax details.`
     : "";
+
+const agencies = [
+  {
+    name: "Essence Treks",
+    image: "/clients/essence-treks.jpg",
+    url: "https://essencetreksnepal.com",
+  },
+  {
+    name: "Hi Nepal Treks",
+    image: "/clients/hi-nepal-treks.jpg",
+    url: "https://hinepaltreks.com",
+  },
+  {
+    name: "Into Nepal Treks",
+    image: "/clients/into-nepal-treks.jpg",
+    url: "https://new.intonepaltreks.com",
+  },
+  {
+    name: "Limestone Treks",
+    image: "/clients/limestone-treks.jpg",
+    url: "https://limestonetreks.com",
+  },
+  {
+    name: "Lovely Trips",
+    image: "/clients/lovely-trips.jpg",
+    url: "https://lovelytrips.com.np",
+  },
+  {
+    name: "Summit Luxury Treks",
+    image: "/clients/summit-luxury-treks.jpg",
+    url: "https://summitluxurytreks.com",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Build",
+    detail: "Add trip facts, day-by-day itineraries, pricing, and FAQs.",
+  },
+  {
+    number: "02",
+    title: "Brand",
+    detail: "Choose a template, colors, fonts, and your own domain.",
+  },
+  {
+    number: "03",
+    title: "Publish",
+    detail: "Put trips and stories live when your team is ready.",
+  },
+  {
+    number: "04",
+    title: "Connect",
+    detail: "Receive inquiries and follow up with travelers directly.",
+  },
+];
 
 const plans = [
   {
@@ -60,43 +115,61 @@ const plans = [
 
 <Layout {title} {description} {canonical}>
   <main id="top" class="mx-auto w-full max-w-[1510px] overflow-x-clip">
-    <section class="bg-deep-navy text-white">
-      <div class="page-container pt-16 lg:pt-24">
-        <div
-          class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16"
+    <section
+      class="relative overflow-hidden rounded-b-3xl bg-deep-navy text-white"
+    >
+      <div
+        class="pointer-events-none absolute -left-52 top-28 size-96 rounded-full border border-electric/20"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -right-48 top-16 size-[36rem] rounded-full border border-electric/20"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="page-container relative flex flex-col items-center pt-20 text-center lg:pt-28"
+      >
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-light-blue">
+          Built for Nepal’s travel agencies
+        </p>
+        <h1
+          class="mt-6 max-w-5xl font-serif text-5xl leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-7xl"
         >
-          <h1 class="max-w-4xl text-5xl leading-tight text-white lg:text-7xl">
-            Your trips deserve a website that <span class="text-electric"
-              >works as hard as you do.</span
-            >
-          </h1>
-          <div>
-            <p
-              class="max-w-xl text-lg leading-relaxed text-light-blue lg:text-xl"
-            >
-              For Nepal trekking and tour agencies: publish packages, show
-              travelers what makes your agency different, and receive inquiries
-              from your own branded site. Manage it all in one place.
-            </p>
-            <a
-              href="#pricing"
-              class="mt-7 inline-flex items-center gap-2 rounded-lg bg-electric px-7 py-3.5 font-semibold text-deep-navy hover:bg-white"
-            >
-              See Nepal plans <Icon name="arrow-right" class="size-5" />
-            </a>
-            <p class="mt-4 text-sm text-light-blue">
-              Local plans from NPR 2,000/month or NPR 18,000/year.
-            </p>
-          </div>
+          Your next traveler starts with a <span class="text-electric"
+            >better website.</span
+          >
+        </h1>
+        <p
+          class="mt-6 max-w-2xl text-lg leading-relaxed text-light-blue lg:text-xl"
+        >
+          Give every trek and tour a place to shine. Publish your trips, tell
+          your story, and turn visits into inquiries from one dashboard.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="#features"
+            class="inline-flex items-center gap-2 rounded-full border border-white/50 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
+            >Explore platform <Icon name="arrow-right" class="size-4" /></a
+          >
+          <a
+            href="#pricing"
+            class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-deep-navy transition-colors hover:bg-light-blue"
+            >See Nepal plans <Icon name="arrow-right" class="size-4" /></a
+          >
         </div>
+        <p class="mt-5 text-sm text-light-blue">
+          Local plans from NPR 2,000/month or NPR 18,000/year.
+        </p>
         <div
-          class="mt-12 overflow-hidden rounded-t-3xl bg-light-blue p-2 pb-0 sm:p-4 sm:pb-0 lg:mt-16"
+          class="mt-14 w-full max-w-5xl rounded-t-3xl border border-b-0 border-white/20 bg-light-blue p-2 pb-0 shadow-2xl shadow-black/20 sm:p-4 sm:pb-0 lg:mt-20"
         >
           <img
             src="/mockups/hero-image.png"
             width="1926"
             height="1286"
-            alt="TripEleven dashboard for managing trips, bookings and website content"
+            alt="TripEleven dashboard for managing trips and website content"
             class="block h-auto w-full rounded-t-2xl"
             fetchpriority="high"
           />
@@ -105,267 +178,313 @@ const plans = [
     </section>
 
     <section
+      class="page-container border-b border-border py-14 text-center lg:py-20"
+      aria-label="Nepal agencies using TripEleven"
+    >
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate">
+        Websites for Nepal agencies
+      </p>
+      <div
+        class="mt-9 grid grid-cols-2 items-center gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-6"
+      >
+        {
+          agencies.map((agency) => (
+            <a
+              href={agency.url}
+              target="_blank"
+              rel="noreferrer"
+              class="font-serif text-base font-bold leading-tight text-deep-navy transition-colors hover:text-electric"
+            >
+              {agency.name}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
       id="features"
-      class="page-container py-16 lg:py-24"
-      aria-labelledby="platform-heading"
+      class="page-container py-20 lg:py-28"
+      aria-labelledby="features-heading"
     >
       <div class="mx-auto max-w-3xl text-center">
-        <h2 id="platform-heading" class="text-3xl text-deep-navy lg:text-4xl">
-          From first visit to trip inquiry
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
+          One simple journey
+        </p>
+        <h2
+          id="features-heading"
+          class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
+        >
+          From trip idea to <span class="text-electric">traveler inquiry.</span>
         </h2>
-        <p class="mt-4 text-lg leading-relaxed text-deep-navy">
-          Give each itinerary room to shine, keep your catalog current, and make
-          it easy for travelers to inquire.
+        <p class="mt-5 text-lg leading-relaxed text-slate">
+          Everything your agency needs to bring a trip online, in one connected
+          workflow.
         </p>
       </div>
-      <div class="mt-12 grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+      <div
+        class="mt-12 overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-xl shadow-deep-navy/5 sm:p-8 lg:mt-16"
+      >
+        <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            steps.map((step, index) => (
+              <li
+                class={`rounded-2xl border p-5 sm:p-6 ${index === 3 ? "border-electric bg-light-blue" : "border-border bg-off-white"}`}
+              >
+                <span class="text-xs font-bold tracking-widest text-electric">
+                  {step.number} / 04
+                </span>
+                <div
+                  class="my-7 flex size-12 items-center justify-center rounded-xl bg-white text-electric shadow-sm"
+                  aria-hidden="true"
+                >
+                  <Icon
+                    name={
+                      index === 0
+                        ? "package-plus"
+                        : index === 1
+                          ? "layout-grid"
+                          : index === 2
+                            ? "sparkles"
+                            : "arrow-right"
+                    }
+                    class="size-6"
+                  />
+                </div>
+                <h3 class="text-xl text-deep-navy">{step.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate">
+                  {step.detail}
+                </p>
+              </li>
+            ))
+          }
+        </ol>
         <div
-          class="rounded-2xl border border-border bg-light-blue p-3 shadow-lg shadow-deep-navy/10"
+          class="mt-8 border-t border-border pt-7 sm:flex sm:items-end sm:justify-between sm:gap-10"
         >
+          <div>
+            <h3 class="text-2xl text-deep-navy">
+              One workspace. A complete trip presence.
+            </h3>
+            <p class="mt-2 max-w-2xl leading-relaxed text-slate">
+              Keep your catalog, website, and traveler inquiries connected as
+              your agency grows.
+            </p>
+          </div>
+          <a
+            href="#contact"
+            class="mt-5 inline-flex shrink-0 items-center gap-2 font-semibold text-electric hover:underline sm:mt-0"
+            >Talk to us <Icon name="arrow-right" class="size-4" /></a
+          >
+        </div>
+      </div>
+      <div class="mt-5 grid gap-5 lg:grid-cols-2">
+        <article
+          class="flex flex-col overflow-hidden rounded-3xl border border-border bg-light-blue"
+        >
+          <div class="p-7 sm:p-9">
+            <p
+              class="text-xs font-bold uppercase tracking-widest text-electric"
+            >
+              Trip builder
+            </p>
+            <h3 class="mt-4 text-2xl text-deep-navy sm:text-3xl">
+              Every detail, beautifully organized.
+            </h3>
+            <p class="mt-3 max-w-xl leading-relaxed text-slate">
+              Build itineraries, manage pricing and trip facts, then update your
+              catalog without chasing scattered documents.
+            </p>
+          </div>
           <img
             src="/mockups/itinerary-form.png"
             width="1926"
             height="1286"
-            alt="TripEleven itinerary editor for tour and trekking packages"
             loading="lazy"
-            class="h-auto w-full rounded-lg"
+            alt="TripEleven itinerary editor"
+            class="mt-auto block h-auto w-full px-5 pb-5 sm:px-9 sm:pb-9"
           />
-        </div>
-        <ol
-          class="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card"
+        </article>
+        <article
+          class="flex flex-col overflow-hidden rounded-3xl border border-border bg-light-blue"
         >
-          <li class="flex gap-4 p-6">
-            <span
-              class="shrink-0 font-serif text-2xl font-bold text-electric"
-              aria-hidden="true">01</span
+          <div class="p-7 sm:p-9">
+            <p
+              class="text-xs font-bold uppercase tracking-widest text-electric"
             >
-            <div>
-              <h3 class="text-xl text-deep-navy">Build detailed trips</h3>
-              <p class="mt-2 leading-relaxed text-deep-navy">
-                Organize itinerary days, pricing tiers, FAQs, and trip
-                information in one catalog.
-              </p>
-            </div>
-          </li>
-          <li class="flex gap-4 p-6">
-            <span
-              class="shrink-0 font-serif text-2xl font-bold text-electric"
-              aria-hidden="true">02</span
-            >
-            <div>
-              <h3 class="text-xl text-deep-navy">Publish under your brand</h3>
-              <p class="mt-2 leading-relaxed text-deep-navy">
-                Use your own domain, template, colors, and fonts for a site that
-                feels like your agency.
-              </p>
-            </div>
-          </li>
-          <li class="flex gap-4 p-6">
-            <span
-              class="shrink-0 font-serif text-2xl font-bold text-electric"
-              aria-hidden="true">03</span
-            >
-            <div>
-              <h3 class="text-xl text-deep-navy">
-                Hear from interested travelers
-              </h3>
-              <p class="mt-2 leading-relaxed text-deep-navy">
-                Receive trip inquiries and follow up with travelers.
-              </p>
-            </div>
-          </li>
-        </ol>
+              Your website
+            </p>
+            <h3 class="mt-4 text-2xl text-deep-navy sm:text-3xl">
+              A home for your agency’s story.
+            </h3>
+            <p class="mt-3 max-w-xl leading-relaxed text-slate">
+              Showcase featured trips, your team, reviews, and useful travel
+              advice under your own brand and domain.
+            </p>
+          </div>
+          <img
+            src="/mockups/website-demo-for-cta-card.png"
+            width="1944"
+            height="1304"
+            loading="lazy"
+            alt="Travel agency website displayed on desktop and mobile"
+            class="mt-auto block h-auto w-full px-5 pb-5 sm:px-9 sm:pb-9"
+          />
+        </article>
       </div>
     </section>
 
     <section
-      class="bg-light-blue py-16 lg:py-24"
-      aria-labelledby="website-heading"
+      class="bg-off-white py-20 lg:py-28"
+      aria-labelledby="benefits-heading"
     >
       <div class="page-container">
         <div class="mx-auto max-w-3xl text-center">
-          <h2 id="website-heading" class="text-3xl text-deep-navy lg:text-4xl">
-            More than a list of packages
-          </h2>
-          <p class="mt-4 text-lg leading-relaxed text-deep-navy">
-            Give travelers a place to explore your trips and learn who they’ll
-            travel with before they send an inquiry.
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
+            Built for how you work
           </p>
+          <h2
+            id="benefits-heading"
+            class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
+          >
+            Your business, <span class="text-electric">front and center.</span>
+          </h2>
         </div>
-        <div class="mt-10 grid gap-6 lg:grid-cols-3">
-          <article
-            class="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+        <div class="mt-14 grid gap-8 md:grid-cols-3 md:gap-0">
+          <div
+            class="border-b border-border pb-8 md:border-b-0 md:border-r md:px-8 md:pb-0"
           >
-            <img
-              src="/mockups/featured-trips.png"
-              width="1930"
-              height="1290"
-              loading="lazy"
-              alt="Featured trips section in a TripEleven website"
-              class="h-auto w-full"
-            />
-            <div class="p-6">
-              <h3 class="text-xl text-deep-navy">Put your best trips first</h3>
-              <p class="mt-3 leading-relaxed text-deep-navy">
-                Feature treks and tours on your homepage, then let visitors
-                browse your catalog and open a full page for each trip.
-              </p>
-            </div>
-          </article>
-          <article
-            class="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
+            <Icon name="layout-grid" class="size-9 text-electric" /><h3
+              class="mt-6 text-2xl text-deep-navy"
+            >
+              Your brand
+            </h3><p class="mt-3 leading-relaxed text-slate">
+              Own the look, the domain, and the story travelers see first.
+            </p>
+          </div>
+          <div
+            class="border-b border-border pb-8 md:border-b-0 md:border-r md:px-8 md:pb-0"
           >
-            <img
-              src="/mockups/info-pages.png"
-              width="1944"
-              height="1304"
-              loading="lazy"
-              alt="Agency information pages in a TripEleven website"
-              class="h-auto w-full"
-            />
-            <div class="p-6">
-              <h3 class="text-xl text-deep-navy">
-                Show the people behind the trip
-              </h3>
-              <p class="mt-3 leading-relaxed text-deep-navy">
-                Add agency information, team details, testimonials, and reviews
-                so travelers can get to know your business.
-              </p>
-            </div>
-          </article>
-          <article
-            class="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
-          >
-            <img
-              src="/mockups/posts.png"
-              width="1944"
-              height="1304"
-              loading="lazy"
-              alt="Blog posts managed in TripEleven"
-              class="h-auto w-full"
-            />
-            <div class="p-6">
-              <h3 class="text-xl text-deep-navy">Keep sharing useful advice</h3>
-              <p class="mt-3 leading-relaxed text-deep-navy">
-                Publish destination guides, travel advice, and agency updates
-                alongside your trip catalog. Manage both from one dashboard.
-              </p>
-            </div>
-          </article>
+            <Icon name="package-plus" class="size-9 text-electric" /><h3
+              class="mt-6 text-2xl text-deep-navy"
+            >
+              Your catalog
+            </h3><p class="mt-3 leading-relaxed text-slate">
+              Keep trip pages detailed, current, and easy to explore.
+            </p>
+          </div>
+          <div class="md:px-8">
+            <Icon name="arrow-right" class="size-9 text-electric" /><h3
+              class="mt-6 text-2xl text-deep-navy"
+            >
+              Your inquiries
+            </h3><p class="mt-3 leading-relaxed text-slate">
+              Let interested travelers reach your team directly from each trip.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="bg-off-white py-16 lg:py-24">
-      <Showcase />
-    </div>
-
     <section
-      class="page-container py-16 lg:py-24"
-      aria-labelledby="workflow-heading"
+      class="page-container py-20 lg:py-28"
+      aria-labelledby="stories-heading"
     >
-      <div class="max-w-3xl">
-        <h2 id="workflow-heading" class="text-3xl text-deep-navy lg:text-4xl">
-          From a new itinerary to a real conversation
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
+          Made for real operators
+        </p>
+        <h2
+          id="stories-heading"
+          class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
+        >
+          See agencies <span class="text-electric">out in the world.</span>
         </h2>
-        <p class="mt-4 text-lg leading-relaxed text-deep-navy">
-          One workflow keeps your trips, website, and inquiries connected as
-          your Nepal agency grows.
+        <p class="mt-5 text-lg leading-relaxed text-slate">
+          Explore live Nepal agency websites built with TripEleven.
         </p>
       </div>
-      <ol class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <li class="border-t border-electric pt-5">
-          <span
-            class="font-serif text-3xl font-bold text-electric"
-            aria-hidden="true">01</span
-          >
-          <h3 class="mt-3 text-xl text-deep-navy">Create the trip</h3>
-          <p class="mt-2 leading-relaxed text-deep-navy">
-            Add trip facts, day-by-day itinerary, inclusions, pricing, and FAQs
-            with a structured editor.
-          </p>
-        </li>
-        <li class="border-t border-electric pt-5">
-          <span
-            class="font-serif text-3xl font-bold text-electric"
-            aria-hidden="true">02</span
-          >
-          <h3 class="mt-3 text-xl text-deep-navy">Make it yours</h3>
-          <p class="mt-2 leading-relaxed text-deep-navy">
-            Set your domain, choose a template, and apply your agency’s colors
-            and fonts.
-          </p>
-        </li>
-        <li class="border-t border-electric pt-5">
-          <span
-            class="font-serif text-3xl font-bold text-electric"
-            aria-hidden="true">03</span
-          >
-          <h3 class="mt-3 text-xl text-deep-navy">Keep it current</h3>
-          <p class="mt-2 leading-relaxed text-deep-navy">
-            Review drafts, publish new trips, and update existing pages as your
-            offerings change.
-          </p>
-        </li>
-        <li class="border-t border-electric pt-5">
-          <span
-            class="font-serif text-3xl font-bold text-electric"
-            aria-hidden="true">04</span
-          >
-          <h3 class="mt-3 text-xl text-deep-navy">Hear from travelers</h3>
-          <p class="mt-2 leading-relaxed text-deep-navy">
-            New inquiries land in your dashboard, ready for your team to follow
-            up.
-          </p>
-        </li>
-      </ol>
-      <a
-        href="#contact"
-        class="mt-10 inline-flex items-center gap-2 font-semibold text-deep-navy underline decoration-electric underline-offset-4"
-      >
-        Talk to us about your agency <Icon name="arrow-right" class="size-5" />
-      </a>
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          agencies.slice(0, 3).map((agency) => (
+            <a
+              href={agency.url}
+              target="_blank"
+              rel="noreferrer"
+              class="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
+            >
+              <div class="h-64 overflow-hidden bg-light-blue sm:h-72">
+                <img
+                  src={agency.image}
+                  width="1440"
+                  height="1800"
+                  loading="lazy"
+                  alt={`${agency.name} website`}
+                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              </div>
+              <span class="flex items-center justify-between gap-4 p-5">
+                <>
+                  <span class="font-semibold text-deep-navy">
+                    {agency.name}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-sm font-semibold text-electric">
+                    Visit site <Icon name="external-link" class="size-4" />
+                  </span>
+                </>
+              </span>
+            </a>
+          ))
+        }
+      </div>
     </section>
 
     <section
       id="pricing"
-      class="bg-deep-navy py-16 lg:py-24"
+      class="bg-light-blue py-20 lg:py-28"
       aria-labelledby="pricing-heading"
     >
       <div class="page-container">
         <div class="mx-auto max-w-3xl text-center">
-          <h2 id="pricing-heading" class="text-3xl text-white lg:text-4xl">
-            Plans for Nepal based agencies
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-electric">
+            Simple local pricing
+          </p>
+          <h2
+            id="pricing-heading"
+            class="mt-4 font-serif text-4xl leading-tight text-deep-navy sm:text-5xl lg:text-6xl"
+          >
+            Plans for Nepal agencies.
           </h2>
-          <p class="mt-4 text-lg leading-relaxed text-light-blue">
+          <p class="mt-5 text-lg leading-relaxed text-slate">
             Choose a plan for your catalog and team. Ask us about setup and
             final tax details before you commit.
           </p>
         </div>
-        <div class="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-2">
+        <div class="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">
           {
             plans.map((plan) => (
               <article
-                class={`relative flex flex-col rounded-xl bg-card p-7 shadow-lg sm:p-9 ${plan.name === "Business" ? "border-2 border-electric" : "border border-border"}`}
+                class={`relative flex flex-col rounded-3xl bg-card p-7 shadow-lg shadow-deep-navy/5 sm:p-9 ${plan.name === "Business" ? "border-2 border-electric" : "border border-border"}`}
               >
                 {plan.name === "Business" && (
-                  <span class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-electric px-4 py-1.5 text-xs font-bold text-deep-navy">
+                  <span class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-electric px-4 py-1.5 text-xs font-bold text-white">
                     Best value
                   </span>
                 )}
                 <h3 class="text-2xl text-deep-navy">{plan.name}</h3>
-                <p class="mt-2 text-deep-navy">{plan.description}</p>
+                <p class="mt-2 text-slate">{plan.description}</p>
                 <div class="mt-7">
-                  <p class="text-2xl font-bold text-deep-navy sm:text-3xl">
-                    {plan.yearly}
-                  </p>
-                  <p class="mt-1 text-sm text-deep-navy">
-                    Billed yearly{" "}
-                    <del class="ml-2 text-slate">{plan.wasYearly}</del>
-                  </p>
-                  <p class="mt-5 border-t border-border pt-4 text-base text-deep-navy">
-                    Monthly billing: <strong>{plan.monthly}</strong>
-                  </p>
+                  <>
+                    <p class="text-3xl font-bold text-deep-navy">
+                      {plan.yearly}
+                    </p>
+                    <p class="mt-1 text-sm text-slate">
+                      Billed yearly <del class="ml-2">{plan.wasYearly}</del>
+                    </p>
+                    <p class="mt-5 border-t border-border pt-4 text-deep-navy">
+                      Monthly billing: <strong>{plan.monthly}</strong>
+                    </p>
+                  </>
                 </div>
                 <ul class="my-8 space-y-3 text-sm leading-relaxed text-deep-navy">
                   {plan.features.map((feature) => (
@@ -380,7 +499,7 @@ const plans = [
                 </ul>
                 <a
                   href={plan.href}
-                  class={`mt-auto block rounded-lg px-6 py-3.5 text-center font-semibold ${plan.name === "Business" ? "bg-electric text-deep-navy hover:bg-light-blue" : "bg-deep-navy text-white hover:bg-navy"}`}
+                  class={`mt-auto block rounded-full px-6 py-3.5 text-center font-semibold transition-colors ${plan.name === "Business" ? "bg-electric text-white hover:bg-bright" : "bg-deep-navy text-white hover:bg-navy"}`}
                 >
                   Ask about {plan.name}
                 </a>
@@ -388,31 +507,46 @@ const plans = [
             ))
           }
         </div>
-        <p class="mt-6 text-center text-sm leading-relaxed text-light-blue">
+        <p class="mt-6 text-center text-sm leading-relaxed text-slate">
           Rates apply to Nepal based agencies. Final tax details are confirmed
           on inquiry.
         </p>
       </div>
     </section>
 
-    <div class="bg-off-white py-16 lg:py-24">
-      <Faq />
-    </div>
+    <div class="bg-off-white py-20 lg:py-28"><Faq /></div>
 
-    <section id="contact" class="page-container py-16 lg:py-24">
-      <div class="mx-auto max-w-3xl">
-        <div class="text-center">
-          <h2 class="text-3xl text-deep-navy lg:text-4xl">
-            Let’s get your agency online.
+    <section
+      id="contact"
+      class="relative overflow-hidden rounded-t-3xl bg-deep-navy py-20 text-white lg:py-28"
+      aria-labelledby="contact-heading"
+    >
+      <div
+        class="pointer-events-none absolute -top-60 left-1/2 size-[40rem] -translate-x-1/2 rounded-full border border-electric/20"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="page-container relative grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-20"
+      >
+        <div>
+          <p
+            class="text-xs font-bold uppercase tracking-[0.2em] text-light-blue"
+          >
+            Ready when you are
+          </p>
+          <h2
+            id="contact-heading"
+            class="mt-5 font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+          >
+            Let’s get your agency <span class="text-electric">online.</span>
           </h2>
-          <p class="mt-4 text-lg leading-relaxed text-deep-navy">
-            Ask about a Nepal plan, setup, or final tax details. We’ll get back
-            to you.
+          <p class="mt-6 max-w-lg text-lg leading-relaxed text-light-blue">
+            Ask about a Nepal plan, setup, or final tax details. Tell us what
+            you’re building and we’ll get back to you.
           </p>
         </div>
-        <div
-          class="mt-10 overflow-hidden rounded-2xl shadow-xl shadow-deep-navy/10"
-        >
+        <div class="overflow-hidden rounded-2xl shadow-2xl shadow-black/20">
           <ContactForm {initialMessage} />
         </div>
       </div>
