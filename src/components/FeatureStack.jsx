@@ -1,5 +1,5 @@
-import React from "react";
-import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+import React, { useEffect, useRef, useState } from "react";
+import "./FeatureStack.css";
 
 const features = [
   [
@@ -52,41 +52,79 @@ const features = [
   ],
 ];
 
+const total = features.length;
+
 export default function FeatureStack() {
+  const textRefs = useRef([]);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const index = hit && textRefs.current.indexOf(hit.target);
+        if (index >= 0) setActive(index);
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+    textRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <ScrollStack
-      useWindowScroll
-      itemDistance={72}
-      itemStackDistance={18}
-      stackPosition="12%"
-      baseScale={0.88}
-      itemScale={0.016}
-    >
-      {features.map(([lineOne, lineTwo, text, image], index) => (
-        <ScrollStackItem
-          key={lineOne}
-          itemClassName="grid-cols-1 rounded-3xl border border-border bg-card shadow-xl shadow-deep-navy/10 lg:grid-cols-2"
-        >
-          <img
-            src={image}
-            width="1944"
-            height="1304"
-            alt={`${lineOne} preview`}
-            loading="lazy"
-            className={`feature-card-media h-full max-h-[28rem] w-full bg-light-blue/40 object-contain ${index % 2 ? "lg:order-2" : ""}`}
-          />
-          <div className="feature-card-copy flex flex-col justify-center px-6 py-8 text-left sm:px-10 lg:px-12">
-            <h3 className="m-0 mb-4 font-serif text-[28px] leading-tight text-deep-navy lg:text-[36px]">
-              {lineOne}
-              <br />
-              {lineTwo}
-            </h3>
-            <p className="m-0 max-w-lg text-base leading-[1.6] text-deep-navy lg:text-[17px]">
-              {text}
-            </p>
-          </div>
-        </ScrollStackItem>
-      ))}
-    </ScrollStack>
+    <div className="feature-grid">
+      <div className="feature-texts">
+        {features.map(([lineOne, lineTwo, text, image], index) => (
+          <article
+            className="feature-text"
+            key={lineOne}
+            ref={(el) => {
+              textRefs.current[index] = el;
+            }}
+          >
+            <div className="feature-text-body">
+              <p className="feature-counter">
+                {String(index + 1).padStart(2, "0")}
+                <span> / {total}</span>
+              </p>
+              <h3 className="m-0 font-serif text-[28px] leading-tight text-deep-navy lg:text-[40px]">
+                {lineOne}
+                <br />
+                {lineTwo}
+              </h3>
+              <p className="m-0 mt-4 max-w-sm text-base leading-[1.6] text-deep-navy lg:text-[17px]">
+                {text}
+              </p>
+            </div>
+            <img
+              className="feature-inline-media lg:hidden"
+              src={image}
+              width="1944"
+              height="1304"
+              alt={`${lineOne} preview`}
+              loading="lazy"
+            />
+          </article>
+        ))}
+      </div>
+      <div className="feature-sticky">
+        <div className="feature-stack">
+          {features.map(([lineOne, , , image], index) => (
+            <img
+              className={`feature-shot ${index === active ? "is-active" : ""}`}
+              aria-hidden={index !== active}
+              key={image}
+              src={image}
+              width="1944"
+              height="1304"
+              alt={`${lineOne} preview`}
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
