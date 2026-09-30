@@ -448,6 +448,21 @@
   font-size: 0.55em;
   font-weight: 400;
 }
+.nepal-price-card h3 s {
+  display: block;
+  color: var(--nepal-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-decoration-thickness: 1px;
+}
+.nepal-plan-note s {
+  text-decoration-thickness: 1px;
+}
+.nepal-price-note {
+  margin-top: 1.5rem;
+  color: var(--nepal-muted);
+  font-size: 0.9rem;
+}
 .nepal-price-card h4 {
   margin-top: 1.75rem;
   font-size: 1.15rem;

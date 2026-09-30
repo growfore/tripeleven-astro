@@ -142,7 +142,7 @@ const faqs = [
   {
     question: "What is the difference between Launch and Business?",
     answer:
-      "Launch includes up to 45 trips, 200 posts, and 2 staff seats. Business includes unlimited trips and posts, 25 staff seats, and read-only API access.",
+      "Launch includes up to 45 trips, 200 posts, and 2 staff seats. Business includes unlimited trips and posts, generous staff seats and storage, and read-only API access.",
   },
   {
     question: "Can I update trips after publishing?",
@@ -168,6 +168,7 @@ const faqs = [
 const prices = [
   {
     amount: "NPR 18,000",
+    compare: "NPR 24,000",
     period: "/year",
     name: "Launch",
     description:
@@ -182,13 +183,14 @@ const prices = [
   },
   {
     amount: "NPR 38,000",
+    compare: "NPR 48,000",
     period: "/year",
     name: "Business",
     badge: "Best Seller",
     description: "For larger catalogs and teams.",
     features: [
       "Unlimited trips and posts",
-      "25 staff seats and 25 GB storage",
+      "Generous staff seats and storage*",
       "Read-only API access",
       "Get plan guidance",
     ],
@@ -259,7 +261,7 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
             >See Nepal plans</a
           >
           <p class="nepal-plan-note">
-            Local plans from NPR 2,000/month or NPR 18,000/year.
+            Local plans from <s>NPR 2,000/month</s> or NPR 18,000/year.
           </p>
         </div>
         <img
@@ -532,6 +534,7 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
                   )}
                   <h3>
                     {price.amount} <small>{price.period}</small>
+                    {price.compare && <s>{price.compare}</s>}
                   </h3>
                   <h4>{price.name}</h4>
                   <p>{price.description}</p>
@@ -556,6 +559,9 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
             ))
           }
         </div>
+        <p class="nepal-price-note">
+          *Seats and storage scale with your catalog. Ask us for exact limits.
+        </p>
       </section>
 
       <section id="contact" class="nepal-section nepal-contact nepal-container">
