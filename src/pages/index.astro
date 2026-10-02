@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
+import HeroV2 from "../components/HeroV2.astro";
 import Showcase from "../components/Showcase.astro";
 import Platform from "../components/Platform.astro";
 import Integrations from "../components/Integrations.astro";
@@ -20,7 +20,7 @@ const canonical = "https://tripeleven.com/";
 <Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
   <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-background">
     <main id="top" class="flex flex-col gap-12 md:gap-20 items-center">
-      <Hero />
+      <HeroV2 />
       <Showcase />
       <Platform />
       <Integrations />
