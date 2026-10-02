@@ -2,14 +2,30 @@
 import Icon from "./Icon.astro";
 
 const stats = [
-  { icon: "package-plus", value: "12", label: "Trips published" },
-  { icon: "mail", value: "24", label: "New inquiries" },
+  {
+    icon: "package-plus",
+    value: "12",
+    label: "Trips published",
+    tint: "bg-light-blue text-electric",
+  },
+  {
+    icon: "mail",
+    value: "24",
+    label: "New inquiries",
+    tint: "bg-teal-soft text-teal",
+  },
   {
     icon: "sparkles",
     value: "AI itinerary ready",
     label: "Save hours of planning",
+    tint: "bg-violet-soft text-violet",
   },
-  { icon: "calendar", value: "8", label: "Bookings this month" },
+  {
+    icon: "calendar",
+    value: "8",
+    label: "Bookings this month",
+    tint: "bg-amber-soft text-amber",
+  },
 ] as const;
 
 const statPositions = [
@@ -113,7 +129,12 @@ const highlights = [
                   statPositions[i],
                 ]}
               >
-                <span class="grid size-9 shrink-0 place-items-center rounded-lg bg-light-blue text-electric lg:size-10">
+                <span
+                  class:list={[
+                    "grid size-9 shrink-0 place-items-center rounded-lg lg:size-10",
+                    stat.tint,
+                  ]}
+                >
                   <Icon name={stat.icon} class="size-4.5 lg:size-5" />
                 </span>
                 <span class="min-w-0">
@@ -141,14 +162,16 @@ const highlights = [
       {
         highlights.map(({ icon, title, copy }) => (
           <li class="flex items-start gap-3 lg:px-6 lg:first:pl-0 lg:last:pr-0">
-            <Icon name={icon} class="mt-0.5 size-6 shrink-0 text-electric" />
+            <Icon name={icon} class="mt-0.5 size-7 shrink-0 text-electric lg:size-6" />
             <span class="min-w-0">
-              <span class="block text-sm font-semibold text-deep-navy">
-                {title}
-              </span>
-              <span class="block text-xs leading-snug text-deep-navy/60">
-                {copy}
-              </span>
+              <span
+                class="block text-base font-semibold text-deep-navy lg:text-sm"
+                >{title}</span
+              >
+              <span
+                class="block text-sm leading-snug text-deep-navy/60 lg:text-xs"
+                >{copy}</span
+              >
             </span>
           </li>
         ))

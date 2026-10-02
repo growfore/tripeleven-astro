@@ -1,5 +1,6 @@
 ---
 import Notice from "../components/Notice.astro";
+import Icon from "./Icon.astro";
 
 const isNepal = Astro.url.pathname.replace(/\/$/, "") === "/nepal";
 ---
@@ -72,8 +73,14 @@ const isNepal = Astro.url.pathname.replace(/\/$/, "") === "/nepal";
     </div>
     <details id="mobile-menu" class="group md:hidden">
       <summary
-        class="cursor-pointer list-none rounded-lg border border-light-blue bg-white px-4 py-2 text-sm font-semibold text-deep-navy [&::-webkit-details-marker]:hidden"
-        >Menu</summary
+        class="flex cursor-pointer list-none items-center justify-center rounded-lg border border-light-blue bg-white p-2.5 text-deep-navy [&::-webkit-details-marker]:hidden"
+        ><Icon
+          name="menu"
+          class="size-5 group-open:hidden"
+        /><Icon
+          name="x"
+          class="hidden size-5 group-open:block"
+        /><span class="sr-only">Menu</span></summary
       >
       <div
         class="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-light-blue bg-white px-5 py-4 shadow-xl"

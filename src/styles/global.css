@@ -24,6 +24,12 @@
   --color-white: var(--white);
   --color-off-white: var(--off-white);
   --color-light-blue: var(--light-blue);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
   --color-slate: var(--slate);
   --color-ink: var(--ink);
   --font-sans: "Outfit", sans-serif;
@@ -51,6 +57,12 @@
   --white: #ffffff;
   --off-white: #f2f6fc;
   --light-blue: #eaf2fb;
+  --teal: #0f766e;
+  --teal-soft: #ddf3ef;
+  --amber: #b45309;
+  --amber-soft: #fdeeda;
+  --violet: #6d28d9;
+  --violet-soft: #eceafd;
   --slate: #6d7d97;
   --ink: #041d38;
   --radius: 0.75rem;
