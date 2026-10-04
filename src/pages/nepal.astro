@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Icon from "../components/Icon.astro";
+import Compare from "../components/Compare.astro";
 import "../styles/nepal.css";
 
 const title =
@@ -563,6 +564,11 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
           *Seats and storage scale with your catalog. Ask us for exact limits.
           The crossed-out price is what your plan renews at each year.
         </p>
+        <Compare
+          customLabel="Custom setup"
+          businessSeats="Ask us"
+          businessStorage="Ask us"
+        />
       </section>
 
       <section id="contact" class="nepal-section nepal-contact nepal-container">
