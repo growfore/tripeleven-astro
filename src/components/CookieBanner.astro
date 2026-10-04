@@ -1,0 +1,95 @@
+---
+// Cookie consent banner. Renders hidden; the inline script only reveals it when
+// no stored choice exists, and stores "essentials"/"all" only for those choices.
+// "Reject" stores nothing, so the banner asks again on the next visit.
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-desc"
+  class="fixed inset-x-0 bottom-0 z-[90] hidden p-3 sm:p-4"
+>
+  <div
+    class="page-container"
+  >
+    <div
+      class="flex flex-col gap-4 rounded-xl border border-light-blue bg-white p-5 shadow-xl sm:flex-row sm:items-center sm:gap-6"
+    >
+      <div class="flex-1">
+        <h2
+          id="cookie-banner-title"
+          class="font-serif text-base font-semibold text-deep-navy"
+        >
+          Your privacy, your choice
+        </h2>
+        <p id="cookie-banner-desc" class="mt-1 text-sm text-slate">
+          We use cookies to run this site and, with your permission, to understand
+          how it is used. Choose <strong>Reject</strong> to store nothing at all,
+          <strong>Essentials only</strong> for the bare minimum, or
+          <strong>Accept all</strong> to include analytics and live chat. See our
+          <a
+            href="/privacy#9-cookies-and-similar-technologies"
+            class="font-medium text-electric underline underline-offset-2 hover:text-deep-navy"
+            >cookie policy</a
+          >.
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
+        <button
+          type="button"
+          data-consent="reject"
+          class="min-h-11 rounded-lg border border-light-blue px-4 py-2 text-sm font-semibold text-deep-navy transition-colors hover:border-electric hover:text-electric"
+        >
+          Reject
+        </button>
+        <button
+          type="button"
+          data-consent="essentials"
+          class="min-h-11 rounded-lg border border-electric px-4 py-2 text-sm font-semibold text-electric transition-colors hover:bg-light-blue"
+        >
+          Essentials only
+        </button>
+        <button
+          type="button"
+          data-consent="all"
+          class="min-h-11 rounded-lg bg-electric px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-deep-navy"
+        >
+          Accept all
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById("cookie-banner");
+    var STORED = document.cookie.match(/(?:^|;\s*)te_consent=(essentials|all)/);
+
+    function store(value) {
+      document.cookie =
+        "te_consent=" + value +
+        "; path=/; max-age=31536000; samesite=lax" +
+        (location.protocol === "https:" ? "; secure" : "");
+    }
+
+    function choose(value) {
+      if (value !== "reject") store(value); // reject keeps nothing on disk
+      banner.remove();
+      if (value === "all") window.__teLoadNonEssential();
+    }
+
+    document.querySelectorAll("[data-consent]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        choose(btn.dataset.consent);
+      });
+    });
+
+    // Stored choice already made: leave the hidden banner alone.
+    if (STORED) return;
+    banner.classList.remove("hidden");
+  })();
+</script>

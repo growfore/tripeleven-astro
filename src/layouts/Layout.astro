@@ -1,6 +1,7 @@
 ---
 import FloatingNav from "@/components/FloatingNav.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 
 import "@/styles/global.css";
 
@@ -101,29 +102,44 @@ const jsonLd = {
       is:inline
     />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7TRDSVGQ7"
-    ></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+      // Consent gate for analytics (GA4), Microsoft Clarity and Tawk.to live
+      // chat. Nothing non-essential is requested until te_consent=all, so
+      // rejected and essentials-only visitors never hit a third party.
+      // ponytail: gate is one cookie read; revisit only if a CMP becomes
+      // legally required (e.g. IAB TCF regions).
+      window.__teLoadNonEssential = function () {
+        if (window.__teNonEssentialLoaded) return;
+        window.__teNonEssentialLoaded = true;
+
+        function load(src, attrs) {
+          var s = document.createElement("script");
+          s.async = true;
+          s.src = src;
+          for (var k in attrs) s.setAttribute(k, attrs[k]);
+          document.head.appendChild(s);
+        }
+
+        load("https://www.googletagmanager.com/gtag/js?id=G-H7TRDSVGQ7");
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+          window.dataLayer.push(arguments);
+        };
+        window.gtag("js", new Date());
+        window.gtag("config", "G-H7TRDSVGQ7");
+
+        load("https://www.clarity.ms/tag/y04juop5nc");
+
+        if (window.matchMedia("(min-width: 640px)").matches) {
+          load("https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl", {
+            crossorigin: "*",
+          });
+        }
+      };
+
+      if (/(?:^|;\s*)te_consent=all(?:;|$)/.test(document.cookie)) {
+        window.__teLoadNonEssential();
       }
-      gtag("js", new Date());
-      gtag("config", "G-H7TRDSVGQ7");
-    </script>
-    <script is:inline type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
-        c[a] =
-          c[a] ||
-          function () {
-            (c[a].q = c[a].q || []).push(arguments);
-          };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "y04juop5nc");
     </script>
   </head>
   <body class="m-0 overflow-x-hidden bg-background font-sans text-foreground">
@@ -136,16 +152,6 @@ const jsonLd = {
     {chrome && <FloatingNav />}
     <slot />
     {chrome && <Footer />}
-    <script is:inline>
-      if (window.matchMedia("(min-width: 640px)").matches) {
-        (function () {
-          var s1 = document.createElement("script");
-          s1.async = true;
-          s1.src = "https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl";
-          s1.setAttribute("crossorigin", "*");
-          document.head.appendChild(s1);
-        })();
-      }
-    </script>
+    <CookieBanner />
   </body>
 </html>
