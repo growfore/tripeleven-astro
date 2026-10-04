@@ -35,9 +35,11 @@ function throttled(key: string): boolean {
 }
 
 const ipOf = (request: Request): string => {
+  const realIp = request.headers.get("x-real-ip");
+  if (realIp) return realIp;
   const forwarded = request.headers.get("x-forwarded-for");
   const first = forwarded?.split(",")[0]?.trim();
-  return first || request.headers.get("x-real-ip") || "unknown";
+  return first || "unknown";
 };
 
 export const POST: APIRoute = async ({ request }) => {
