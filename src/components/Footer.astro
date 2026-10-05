@@ -1,22 +1,101 @@
-<footer
-  class="border-t border-light-blue/10 bg-deep-navy px-6 py-12 text-center text-xs text-light-blue sm:px-8 lg:px-12 lg:text-left"
->
-  <div
-    class="mx-auto grid max-w-[1408px] grid-cols-1 items-center gap-5 lg:grid-cols-3"
-  >
-    <span>Copyright © 2026 TripEleven. All rights reserved.</span>
-    <div class="-order-1 flex justify-center gap-6 lg:order-none">
-      <a href="/privacy" class="hover:text-white">Privacy and Cookie Policy</a>
-      <a href="/terms" class="hover:text-white">Terms &amp; Conditions</a>
+---
+import Icon from "./Icon.astro";
+
+const CONTACT_EMAIL = "hello@tripeleven.com";
+
+const groups = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Features", href: "/#features" },
+      { label: "Platform", href: "/#solutions" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "FAQ", href: "/#faq" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Contact", href: "/contact" },
+      { label: "Nepal program", href: "/nepal" },
+      { label: "Log in", href: "https://app.tripeleven.com/login" },
+      { label: "Start free", href: "https://app.tripeleven.com/signup" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacy and Cookie Policy", href: "/privacy" },
+      { label: "Terms & Conditions", href: "/terms" },
+    ],
+  },
+];
+
+const external = (href: string) => href.startsWith("http");
+---
+
+<footer class="bg-deep-navy text-light-blue">
+  <div class="page-container py-14 lg:py-16">
+    <div
+      class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.6fr_repeat(3,1fr)] lg:gap-12"
+    >
+      <div>
+        <a href="/" class="inline-block" aria-label="TripEleven home">
+          <img
+            src="/lettermark-logo.svg"
+            width="229"
+            height="45"
+            alt="TripEleven"
+            class="h-7 w-auto brightness-0 invert"
+          />
+        </a>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed">
+          The platform for tour and trekking agencies. Build your catalog, publish
+          a website, and collect trip inquiries — no code.
+        </p>
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-electric"
+        >
+          <Icon name="mail" class="size-4" />
+          {CONTACT_EMAIL}
+        </a>
+      </div>
+      {
+        groups.map(({ heading, links }) => (
+          <nav aria-label={`Footer ${heading.toLowerCase()} links`}>
+            <h2 class="m-0 text-xs font-semibold uppercase tracking-[0.2em] text-white">
+              {heading}
+            </h2>
+            <ul class="mt-5 flex flex-col gap-3 text-sm">
+              {links.map(({ label, href }) => (
+                <li>
+                  <a
+                    href={href}
+                    class="transition-colors hover:text-white"
+                    target={external(href) ? "_blank" : undefined}
+                    rel={external(href) ? "noreferrer" : undefined}
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
     </div>
-    <div class="justify-self-center lg:justify-self-end">
-      <img
-        src="/lettermark-logo.svg"
-        width="229"
-        height="45"
-        alt="TripEleven"
-        class="h-7 w-auto brightness-0 invert"
-      />
+
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-light-blue/15 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="m-0">Copyright © 2026 TripEleven. All rights reserved.</p>
+      <a
+        href="#top"
+        class="font-semibold text-white transition-colors hover:text-electric"
+      >
+        Back to top
+      </a>
     </div>
   </div>
 </footer>
