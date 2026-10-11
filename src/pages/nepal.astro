@@ -10,11 +10,6 @@ const title =
 const description =
   "Build a branded website, publish trekking and tour packages, and accept bookings with TripEleven. Nepal plans start at NPR 2,000/month.";
 const canonical = "https://tripeleven.com/nepal";
-const plan = Astro.url.searchParams.get("plan");
-const initialMessage =
-  plan === "launch" || plan === "business"
-    ? `I'm interested in the Nepal ${plan === "launch" ? "Launch" : "Business"} plan. Please share the next steps and final tax details.`
-    : "";
 
 const agencies = [
   {
@@ -212,9 +207,43 @@ const prices = [
   },
 ];
 const liveAgencies = [agencies[0], agencies[3], agencies[5]];
+
+const jsonLd = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  },
+  {
+    "@type": "SoftwareApplication",
+    name: "TripEleven",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: canonical,
+    offers: prices
+      .filter((price) => price.compare)
+      .map((price) => ({
+        "@type": "Offer",
+        name: price.name,
+        price: price.amount.replace(/[^0-9]/g, ""),
+        priceCurrency: "NPR",
+        areaServed: "NP",
+      })),
+  },
+];
 ---
 
-<Layout {title} {description} {canonical} chrome={false}>
+<Layout
+  {title}
+  {description}
+  {canonical}
+  {jsonLd}
+  ogImage="/og/nepal.jpg"
+  chrome={false}
+>
   <div class="nepal-page" id="top">
     <header class="nepal-header">
       <div class="nepal-container nepal-nav">
@@ -571,7 +600,7 @@ const liveAgencies = [agencies[0], agencies[3], agencies[5]];
 
       <section id="contact" class="nepal-section nepal-contact nepal-container">
         <div class="nepal-contact-form">
-          <h2>Ask about TripEleven</h2><ContactForm {initialMessage} compact />
+          <h2>Ask about TripEleven</h2><ContactForm compact />
         </div><aside>
           <h2>Contact us</h2><h3>Based in Nepal</h3><p>
             Supporting Nepal travel agencies

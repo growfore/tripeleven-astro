@@ -85,6 +85,24 @@ const plans: Plan[] = [
 ];
 
 const Heading = Astro.props.heading ?? "h2";
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "TripEleven",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  url: "https://tripeleven.com/pricing",
+  offers: plans
+    .filter((plan) => plan.price)
+    .map((plan) => ({
+      "@type": "Offer",
+      name: plan.name,
+      price: plan.price.replace(/[^0-9.]/g, ""),
+      priceCurrency: "USD",
+      url: plan.href,
+    })),
+};
 ---
 
 <section id="pricing" class="py-12 text-center container mx-auto px-4">
@@ -195,6 +213,12 @@ const Heading = Astro.props.heading ?? "h2";
   </small>
   <Compare />
 </section>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(pricingSchema)}
+  is:inline
+/>
 
 <script>
   const root = document

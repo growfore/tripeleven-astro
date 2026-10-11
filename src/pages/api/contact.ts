@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
 
+export const prerender = false;
+
 const RESEND_URL = "https://api.resend.com/emails";
 const FROM = "TripEleven <noreply@tripeleven.com>";
 const TO = "noreply@tripeleven.com";

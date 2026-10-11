@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tripeleven.com/sitemap.xml
+Sitemap: https://tripeleven.com/sitemap-index.xml
