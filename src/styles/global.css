@@ -110,6 +110,12 @@
     display: contents;
   }
 
+  /* With display: contents the <source> would surface as an empty grid/flex
+     item and push the <img> to the next track. */
+  picture > source {
+    display: none;
+  }
+
   section[id] {
     scroll-margin-top: 5rem;
   }
