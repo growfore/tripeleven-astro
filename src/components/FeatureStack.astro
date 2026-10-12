@@ -1,0 +1,139 @@
+---
+import { Picture } from "astro:assets";
+import { asset, screenshotWidths, pictureProps } from "../lib/images";
+import "./FeatureStack.css";
+
+const features = [
+  [
+    "One media library",
+    "for every trip and page",
+    "Upload your trek photos once and reuse them across trips, pages, and posts. Find any image by filename, alt text, or caption.",
+    "/mockups/media-gallery.webp",
+  ],
+  [
+    "Info pages for",
+    "everything beyond the trip",
+    "Publish visa guides, festival calendars, activities, and your about page. Group them by category and keep drafts until they're ready.",
+    "/mockups/info-pages.webp",
+  ],
+  [
+    "Travel guides",
+    "travelers actually read",
+    "Write trek guides and travel articles, file them by category, and credit each post to an author on your team.",
+    "/mockups/posts.webp",
+  ],
+  [
+    "Show the team",
+    "behind every trip",
+    "Add departments and team members with photos and roles so travelers meet your guides and staff. Authors and staff logins live in the same place.",
+    "/mockups/organization-and-departments.webp",
+  ],
+  [
+    "Trust signals that",
+    "turn interest into bookings",
+    "Build traveler confidence with reviews, credentials, associations, and other proof that shows your business is credible, established, and safe to book with.",
+    "/mockups/reviews-associations-testimonials-etc-for-trust-and-marketing.webp",
+  ],
+  [
+    "Your brand,",
+    "on every page",
+    "Match your logo, colors, and fonts across every trip, page, and post so your website looks like your agency, not a template.",
+    "/mockups/brand-colors-basic-brand.webp",
+  ],
+  [
+    "Navigation that",
+    "builds itself",
+    "Turn on auto nav to generate your header from your trips and pages, or arrange it yourself with nested items like Trekking → Annapurna Circuit.",
+    "/mockups/navigation.webp",
+  ],
+  [
+    "Featured trips",
+    "travelers can't miss",
+    "Mark your top trips as featured so they lead your website and guide travelers to the trips you most want to sell.",
+    "/mockups/featured-trips.webp",
+  ],
+];
+
+const total = features.length;
+const sizes = "(min-width: 1024px) 55vw, 100vw";
+---
+
+<div class="feature-grid" data-feature-stack>
+  <div class="feature-texts">
+    {
+      features.map(([lineOne, lineTwo, text, image], index) => (
+        <article class="feature-text" data-feature-text>
+          <div class="feature-text-body">
+            <p class="feature-counter">
+              {String(index + 1).padStart(2, "0")}
+              <span> / {total}</span>
+            </p>
+            <h3 class="m-0 font-display text-[28px] leading-tight text-deep-navy lg:text-[40px]">
+              {lineOne}
+              <br />
+              {lineTwo}
+            </h3>
+            <p class="m-0 mt-4 max-w-sm text-base leading-[1.6] text-deep-navy lg:text-[17px]">
+              {text}
+            </p>
+          </div>
+          <Picture
+            {...pictureProps}
+            class="feature-inline-media lg:hidden"
+            src={asset(image)}
+            widths={screenshotWidths}
+            sizes={sizes}
+            alt={`${lineOne} ${lineTwo}`}
+          />
+        </article>
+      ))
+    }
+  </div>
+  <div class="feature-sticky">
+    <div class="feature-stack">
+      {
+        features.map(([lineOne, lineTwo, , image], index) => (
+          <Picture
+            {...pictureProps}
+            class:list={["feature-shot", { "is-active": index === 0 }]}
+            aria-hidden={index === 0 ? undefined : "true"}
+            data-feature-shot
+            src={asset(image)}
+            widths={screenshotWidths}
+            sizes={sizes}
+            alt={`${lineOne} ${lineTwo}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  // Swap the pinned screenshot to match whichever feature text sits in the
+  // middle band of the viewport. Only the desktop sticky column uses this;
+  // below lg each text block carries its own image.
+  const root = document.querySelector("[data-feature-stack]");
+  const texts = [...(root?.querySelectorAll("[data-feature-text]") ?? [])];
+  const shots = [...(root?.querySelectorAll("[data-feature-shot]") ?? [])];
+
+  const setActive = (active: number) => {
+    shots.forEach((shot, index) => {
+      shot.classList.toggle("is-active", index === active);
+      if (index === active) shot.removeAttribute("aria-hidden");
+      else shot.setAttribute("aria-hidden", "true");
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const hit = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      const index = hit ? texts.indexOf(hit.target) : -1;
+      if (index >= 0) setActive(index);
+    },
+    { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+  );
+  texts.forEach((el) => observer.observe(el));
+</script>

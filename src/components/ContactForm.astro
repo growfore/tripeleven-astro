@@ -38,6 +38,8 @@ const { compact = false } = Astro.props;
         id="name"
         name="name"
         type="text"
+        autocomplete="name"
+        maxlength="120"
         required
         class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
         placeholder="Jane Doe"
@@ -49,6 +51,8 @@ const { compact = false } = Astro.props;
         id="email"
         name="email"
         type="email"
+        autocomplete="email"
+        maxlength="254"
         required
         class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
         placeholder="you@agency.com"
@@ -64,6 +68,8 @@ const { compact = false } = Astro.props;
       id="agency"
       name="agency"
       type="text"
+      autocomplete="organization"
+      maxlength="120"
       class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
       placeholder="Everest Trekking Co."
     />
@@ -88,6 +94,7 @@ const { compact = false } = Astro.props;
     <textarea
       id="message"
       name="message"
+      maxlength="5000"
       required
       rows="5"
       class="w-full border border-border bg-card px-4 py-3 text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
@@ -108,7 +115,7 @@ const { compact = false } = Astro.props;
   </button>
 
   <p
-    class="mt-4 hidden items-center justify-center gap-2 text-sm font-medium text-emerald-600"
+    class="mt-4 hidden items-center justify-center gap-2 text-sm font-medium text-emerald-700"
     data-contact-sent
     role="status"
     aria-live="polite"
@@ -122,7 +129,11 @@ const { compact = false } = Astro.props;
     role="alert"
     aria-live="assertive"
   >
-    Something went wrong. Please email {CONTACT_EMAIL} directly.
+    <span data-contact-error-text>Your message didn&apos;t send. Try again, or</span>
+    email us at <a
+      href={`mailto:${CONTACT_EMAIL}`}
+      class="underline underline-offset-2">{CONTACT_EMAIL}</a
+    > instead.
   </p>
 </form>
 
@@ -133,6 +144,26 @@ const { compact = false } = Astro.props;
   );
   const sentMsg = form?.querySelector<HTMLElement>("[data-contact-sent]");
   const errorMsg = form?.querySelector<HTMLElement>("[data-contact-error]");
+  const errorText = form?.querySelector<HTMLElement>(
+    "[data-contact-error-text]",
+  );
+
+  // Preselect the topic when arriving from a CTA such as /contact?topic=enterprise.
+  const topicParam = new URLSearchParams(location.search).get("topic");
+  const topicSelect = form?.querySelector<HTMLSelectElement>("#topic");
+  if (topicSelect && topicParam === "enterprise") {
+    topicSelect.value = "Enterprise quote";
+  }
+
+  const errorCopy = (status: number | null) => {
+    if (status === null)
+      return "You seem to be offline, so your message didn't send. Your text is still here; try again once you're connected, or";
+    if (status === 429)
+      return "Too many messages from this connection. Wait 10 minutes and try again, or";
+    if (status === 400)
+      return "Check your name, email and message, then try again, or";
+    return "Your message didn't send because of a problem on our side. Try again in a moment, or";
+  };
 
   // Prefill from ?plan= on the client so the page itself can be prerendered.
   const plan = new URLSearchParams(location.search).get("plan");
@@ -156,12 +187,19 @@ const { compact = false } = Astro.props;
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(body.entries())),
       });
-      const data = (await res.json()) as { ok: boolean };
-      if (!res.ok || !data.ok) throw new Error("submit failed");
+      const data = (await res.json().catch(() => ({ ok: false }))) as {
+        ok: boolean;
+      };
+      if (!res.ok || !data.ok) {
+        if (errorText) errorText.textContent = errorCopy(res.status);
+        errorMsg?.classList.remove("hidden");
+        return;
+      }
       sentMsg?.classList.remove("hidden");
       sentMsg?.classList.add("flex");
       form.reset();
     } catch {
+      if (errorText) errorText.textContent = errorCopy(null);
       errorMsg?.classList.remove("hidden");
     } finally {
       submitBtn.disabled = false;

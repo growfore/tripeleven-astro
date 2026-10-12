@@ -5,13 +5,18 @@ interface Props {
   customLabel?: string;
   businessSeats?: string;
   businessStorage?: string;
+  /** Level of the section heading; group titles sit one level below. */
+  headingLevel?: 2 | 3;
 }
 
 const {
   customLabel = "Enterprise",
   businessSeats = "25",
   businessStorage = "25 GB",
+  headingLevel = 3,
 } = Astro.props;
+const SectionHeading = `h${headingLevel}` as "h2" | "h3";
+const GroupHeading = `h${headingLevel + 1}` as "h3" | "h4";
 
 const comparePlans = ["Launch", "Business", "Enterprise"] as const;
 
@@ -195,14 +200,11 @@ function compareValue(
 
 <div data-compare>
   <div class="mx-auto max-w-3xl text-center">
-    <small
-      class="text-xs font-semibold uppercase tracking-[0.2em] text-electric"
+    <SectionHeading
+      class="m-0 mt-2 font-display text-[28px] text-deep-navy lg:text-[34px]"
     >
-      Full comparison
-    </small>
-    <h3 class="m-0 mt-2 font-serif text-[28px] text-deep-navy lg:text-[34px]">
       See exactly what every plan includes
-    </h3>
+    </SectionHeading>
     <p class="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-deep-navy">
       Compare limits, publishing tools, storage, team access, and support.
     </p>
@@ -244,12 +246,12 @@ function compareValue(
             <section
               aria-labelledby={`${plan.toLowerCase()}-${group.title.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}`}
             >
-              <h3
+              <GroupHeading
                 id={`${plan.toLowerCase()}-${group.title.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and")}`}
                 class="border-t border-border bg-light-blue px-5 py-4 text-xs font-semibold uppercase tracking-wider text-deep-navy first:border-t-0"
               >
                 {group.title}
-              </h3>
+              </GroupHeading>
               <dl>
                 {group.rows.map((row) => {
                   const value = compareValue(row, plan);

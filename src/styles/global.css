@@ -20,6 +20,7 @@
   --color-deep-navy: var(--deep-navy);
   --color-navy: var(--navy);
   --color-electric: var(--electric);
+  --color-electric-ink: var(--electric-ink);
   --color-bright: var(--bright);
   --color-white: var(--white);
   --color-off-white: var(--off-white);
@@ -33,7 +34,7 @@
   --color-slate: var(--slate);
   --color-ink: var(--ink);
   --font-sans: "Outfit Variable", sans-serif;
-  --font-serif: "Outfit Variable", sans-serif;
+  --font-display: "Outfit Variable", sans-serif;
   --breakpoint-lg: 56.25rem;
 }
 
@@ -42,7 +43,7 @@
   --foreground: #041d38;
   --card: #ffffff;
   --card-foreground: #041d38;
-  --primary: #1186e9;
+  --primary: #0a69bd; /* = --electric-ink: carries white text and text on light surfaces */
   --primary-foreground: #ffffff;
   --secondary: #eaf2fb;
   --muted: #eaf2fb;
@@ -53,6 +54,8 @@
   --deep-navy: #041d38;
   --navy: #071f3c;
   --electric: #1186e9;
+  /* Electric darkened for text and white-text fills on light surfaces (≥4.9:1 on #eaf2fb). */
+  --electric-ink: #0a69bd;
   --bright: #008cff;
   --white: #ffffff;
   --off-white: #f2f6fc;
@@ -63,7 +66,7 @@
   --amber-soft: #fdeeda;
   --violet: #6d28d9;
   --violet-soft: #eceafd;
-  --slate: #6d7d97;
+  --slate: #5b6b84;
   --ink: #041d38;
   --radius: 0.75rem;
 }
@@ -92,13 +95,19 @@
   h3,
   h4,
   h5 {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 700;
     text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
+  }
+
+  /* <Picture> wraps each screenshot; keep the <img> as the layout box so
+     grid/flex/absolute rules written for bare images still apply. */
+  picture {
+    display: contents;
   }
 
   section[id] {
@@ -137,7 +146,7 @@
 
   .prose :where(h2, h3) {
     margin-block: 2rem 0.75rem;
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 600;
     scroll-margin-top: 5rem;
   }
@@ -169,7 +178,7 @@
   }
 
   .prose a {
-    color: var(--electric);
+    color: var(--electric-ink);
     text-decoration: underline;
     text-underline-offset: 2px;
   }

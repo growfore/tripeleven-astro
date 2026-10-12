@@ -1,5 +1,7 @@
 ---
 import Icon from "./Icon.astro";
+import { Picture } from "astro:assets";
+import { asset, screenshotWidths, pictureProps } from "../lib/images";
 
 const stats = [
   {
@@ -66,14 +68,14 @@ const highlights = [
     <div class="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
       <div>
         <span
-          class="inline-flex items-center gap-2 rounded-full bg-light-blue px-3.5 py-1.5 text-xs font-semibold text-electric"
+          class="inline-flex items-center gap-2 rounded-full bg-light-blue px-3.5 py-1.5 text-xs font-semibold text-electric-ink"
         >
           <Icon name="zap" class="size-4" />
           Built for Tour &amp; Trekking Operators
         </span>
 
         <h1
-          class="mb-5 mt-6 font-serif text-[clamp(34px,4.2vw,52px)] font-bold leading-[1.05] tracking-[-0.03em] text-deep-navy"
+          class="mb-5 mt-6 font-display text-[clamp(34px,4.2vw,52px)] font-bold leading-[1.05] tracking-[-0.03em] text-deep-navy"
         >
           <span class="block">More</span>
           <span class="grid w-full lg:whitespace-nowrap">
@@ -114,7 +116,7 @@ const highlights = [
             rel="noreferrer"
             class="group inline-flex items-center gap-2 rounded-lg bg-deep-navy px-6 py-3.5 font-semibold text-white transition-colors duration-150 hover:bg-navy active:scale-[0.96]"
           >
-            Start free
+            Start free trial
             <Icon
               name="arrow-right"
               class="size-5 transition-transform duration-200 group-hover:translate-x-1"
@@ -124,19 +126,21 @@ const highlights = [
             href="#features"
             class="inline-flex items-center gap-2 rounded-lg border border-deep-navy/15 bg-white px-6 py-3.5 font-semibold text-deep-navy transition-colors duration-150 hover:bg-light-blue active:scale-[0.96]"
           >
-            <Icon name="circle-play" class="size-5 text-electric" />
-            See how it works
+            Explore features
+            <Icon name="chevron-down" class="size-5 text-electric" />
           </a>
         </div>
       </div>
 
       <div class="relative">
-        <img
-          src="/mockups/hero-image.webp"
-          width="1926"
-          height="1286"
+        <Picture
+          {...pictureProps}
+          src={asset("/mockups/hero-image.webp")}
+          widths={screenshotWidths}
+          sizes="(min-width: 900px) 55vw, 100vw"
           alt="TripEleven dashboard for managing trips, bookings and website content"
-          class="block w-full rounded-xl border border-border shadow-xl"
+          class="block h-auto w-full rounded-xl border border-border shadow-xl"
+          loading="eager"
           fetchpriority="high"
         />
 
@@ -146,7 +150,7 @@ const highlights = [
               <li
                 data-stat
                 class:list={[
-                  "absolute flex items-center gap-2.5 rounded-xl border border-border bg-white/95 p-2.5 shadow-lg backdrop-blur lg:gap-3 lg:p-3",
+                  "absolute hidden items-center gap-2.5 rounded-xl sm:flex border border-border bg-white/95 p-2.5 shadow-lg backdrop-blur lg:gap-3 lg:p-3",
                   statPositions[i],
                 ]}
               >
@@ -162,14 +166,10 @@ const highlights = [
                   <span class="block text-sm font-bold text-deep-navy lg:text-base">
                     {stat.value}
                   </span>
-                  <span class="block text-[11px] leading-tight text-deep-navy/60 lg:text-xs lg:leading-snug">
+                  <span class="block text-[11px] leading-tight text-slate lg:text-xs lg:leading-snug">
                     {stat.label}
                   </span>
                 </span>
-                <Icon
-                  name="chevron-right"
-                  class="ml-auto hidden size-4 text-deep-navy/40 lg:block"
-                />
               </li>
             ))
           }
@@ -190,7 +190,7 @@ const highlights = [
                 >{title}</span
               >
               <span
-                class="block text-sm leading-snug text-deep-navy/60 lg:text-xs"
+                class="block text-sm leading-snug text-slate lg:text-xs"
                 >{copy}</span
               >
             </span>

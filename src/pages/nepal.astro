@@ -4,50 +4,59 @@ import ContactForm from "../components/ContactForm.astro";
 import Icon from "../components/Icon.astro";
 import Compare from "../components/Compare.astro";
 import "../styles/nepal.css";
+import { Picture } from "astro:assets";
+import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
 
 const title =
   "Website & trip management for Nepal travel agencies — TripEleven";
 const description =
-  "Build a branded website, publish trekking and tour packages, and accept bookings with TripEleven. Nepal plans start at NPR 2,000/month.";
+  "Build a branded website, publish trekking and tour packages, and accept bookings with TripEleven. Nepal plans start at NPR 18,000/year.";
 const canonical = "https://tripeleven.com/nepal";
 
 const agencies = [
   {
     name: "Essence Treks",
     logo: "/clients-logos/essence-treks-logo.webp",
+    logoSize: [96, 93],
     image: "/clients/essence-treks.webp",
     href: "https://essencetreksnepal.com",
   },
   {
     name: "Hi Nepal Treks",
     logo: "/clients-logos/hinepal-logo.avif",
+    logoSize: [256, 128],
     href: "https://hinepaltreks.com",
   },
   {
     name: "Into Nepal Treks",
     logo: "/clients-logos/intonepal-logo.png",
+    logoSize: [77, 77],
     href: "https://new.intonepaltreks.com",
   },
   {
     name: "Limestone Treks",
     logo: "/clients-logos/limestone-treks-logo-transparent.webp",
+    logoSize: [640, 188],
     image: "/clients/limestone-treks.webp",
     href: "https://limestonetreks.com",
   },
   {
     name: "Lovely Trips",
     logo: "/clients-logos/lovely-trips-logo.webp",
+    logoSize: [410, 410],
     href: "https://lovelytrips.com.np",
   },
   {
     name: "Summit Luxury Treks",
     logo: "/clients-logos/summit-luxury-logo-white.webp",
+    logoSize: [640, 185],
     image: "/clients/summit-luxury-treks.webp",
     href: "https://summitluxurytreks.com",
   },
   {
     name: "Walkthrough Nepal",
     logo: "/clients-logos/walkthrough-nepal-color-logo.svg",
+    logoSize: [785, 292],
     href: "https://walkthroughnepal.com",
   },
 ];
@@ -164,7 +173,7 @@ const faqs = [
 const prices = [
   {
     amount: "NPR 18,000",
-    compare: "NPR 24,000",
+    renewal: "NPR 24,000",
     period: "/year",
     name: "Launch",
     description:
@@ -179,7 +188,7 @@ const prices = [
   },
   {
     amount: "NPR 38,000",
-    compare: "NPR 48,000",
+    renewal: "NPR 48,000",
     period: "/year",
     name: "Business",
     badge: "Best Seller",
@@ -224,7 +233,7 @@ const jsonLd = [
     operatingSystem: "Web",
     url: canonical,
     offers: prices
-      .filter((price) => price.compare)
+      .filter((price) => price.renewal)
       .map((price) => ({
         "@type": "Offer",
         name: price.name,
@@ -290,13 +299,15 @@ const jsonLd = [
           <a href="#pricing" class="nepal-button nepal-button-dark"
             >See Nepal plans</a
           >
-          <p class="nepal-plan-note">Local plans start from NPR 18,000/year.</p>
+          <p class="nepal-plan-note">Local plans start from NPR 18,000 for the first year.</p>
         </div>
-        <img
-          src="/mockups/nepal-hero.webp"
-          width="2245"
-          height="1280"
+        <Picture
+          {...pictureProps}
+          src={asset("/mockups/nepal-hero.webp")}
+          widths={screenshotWidths}
+          sizes="(min-width: 900px) 55vw, 100vw"
           alt="TripEleven trip and website dashboard"
+          loading="eager"
           fetchpriority="high"
           class="nepal-hero-image"
         />
@@ -316,7 +327,13 @@ const jsonLd = [
                 aria-label={`Visit ${agency.name}`}
                 class="nepal-brand-card"
               >
-                <img src={agency.logo} alt={agency.name} loading="lazy" />
+                <img
+                  src={agency.logo}
+                  alt={agency.name}
+                  width={agency.logoSize[0]}
+                  height={agency.logoSize[1]}
+                  loading="lazy"
+                />
               </a>
             ))
           }
@@ -354,11 +371,11 @@ const jsonLd = [
       </section>
 
       <section class="nepal-section nepal-about nepal-container">
-        <img
-          src="/mockups/itinerary-form.webp"
-          width="1926"
-          height="1286"
-          loading="lazy"
+        <Picture
+          {...pictureProps}
+          src={asset("/mockups/itinerary-form.webp")}
+          widths={screenshotWidths}
+          sizes="(min-width: 900px) 50vw, 100vw"
           alt="TripEleven itinerary builder"
         />
         <div>
@@ -401,11 +418,11 @@ const jsonLd = [
             >Talk to us <span aria-hidden="true">→</span></a
           >
         </div>
-        <img
-          src="/mockups/website-demo-for-cta-card.webp"
-          width="1944"
-          height="1304"
-          loading="lazy"
+        <Picture
+          {...pictureProps}
+          src={asset("/mockups/website-demo-for-cta-card.webp")}
+          widths={screenshotWidths}
+          sizes="(min-width: 900px) 50vw, 100vw"
           alt="TripEleven agency website preview"
         />
       </section>
@@ -454,11 +471,11 @@ const jsonLd = [
                     <p>{tab.second}</p>
                   </>
                 </div>
-                <img
-                  src={tab.image}
-                  width="1944"
-                  height="1304"
-                  loading="lazy"
+                <Picture
+                  {...pictureProps}
+                  src={asset(tab.image)}
+                  widths={screenshotWidths}
+                  sizes="(min-width: 900px) 55vw, 100vw"
                   alt={tab.title}
                 />
               </>
@@ -562,8 +579,12 @@ const jsonLd = [
                   )}
                   <h3>
                     {price.amount} <small>{price.period}</small>
-                    {price.compare && <s>{price.compare}</s>}
                   </h3>
+                  {price.renewal && (
+                    <p class="nepal-price-renewal">
+                      First year, then {price.renewal}/year
+                    </p>
+                  )}
                   <h4>{price.name}</h4>
                   <p>{price.description}</p>
                   <ul>
@@ -589,7 +610,6 @@ const jsonLd = [
         </div>
         <p class="nepal-price-note mb-4">
           *Seats and storage scale with your catalog. Ask us for exact limits.
-          The crossed-out price is what your plan renews at each year.
         </p>
         <Compare
           customLabel="Custom setup"
@@ -626,12 +646,12 @@ const jsonLd = [
                 <>
                   <a href={agency.href} target="_blank" rel="noreferrer">
                     <>
-                      <img
-                        src={agency.image}
+                      <Picture
+                        {...pictureProps}
+                        src={asset(agency.image!)}
+                        widths={cardWidths}
+                        sizes="(min-width: 900px) 30vw, 94vw"
                         alt={`${agency.name} website`}
-                        width="1440"
-                        height="1800"
-                        loading="lazy"
                       />
                       <h3>{agency.name}</h3>
                     </>
