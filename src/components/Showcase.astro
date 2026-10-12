@@ -1,5 +1,7 @@
 ---
 import Icon from "./Icon.astro";
+import { Picture } from "astro:assets";
+import { asset, cardWidths, pictureProps } from "../lib/images";
 
 const clientSites = [
   [
@@ -34,15 +36,14 @@ const clientSites = [
 
 <section id="solutions" class="page-container bg-off-white text-center">
   <h2
-    class="m-0 mx-auto max-w-3xl font-serif text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
+    class="m-0 mx-auto max-w-3xl font-display text-[32px] leading-[1.15] text-deep-navy lg:text-[40px]"
   >
     Made for tour operators like you
   </h2>
   <p
     class="m-0 mx-auto mt-4 max-w-xl text-base leading-relaxed text-deep-navy lg:text-lg"
   >
-    Explore live agency websites built with TripEleven. Select a card to visit
-    the site.
+    Live websites run by trekking and tour agencies on TripEleven.
   </p>
   <div
     class="mt-10 grid grid-cols-2 items-start gap-4 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4"
@@ -56,17 +57,17 @@ const clientSites = [
           class="group block overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
           aria-label={`Visit ${name}`}
         >
-          <img
+          <Picture
+            {...pictureProps}
             class="block h-auto w-full object-contain"
-            src={img}
-            loading="lazy"
-            width="1440"
-            height="1800"
+            src={asset(img)}
+            widths={cardWidths}
+            sizes="(min-width: 1280px) 22vw, (min-width: 900px) 30vw, 47vw"
             alt={`${name} website`}
           />
           <span class="flex flex-col gap-1 border-t border-border p-4 text-left sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <span class="text-sm font-semibold text-deep-navy">{name}</span>
-            <span class="inline-flex items-center gap-1 text-xs font-semibold text-electric group-hover:underline">
+            <span class="inline-flex items-center gap-1 text-xs font-semibold text-electric-ink group-hover:underline">
               Visit site <Icon name="external-link" class="size-3.5" />
             </span>
           </span>

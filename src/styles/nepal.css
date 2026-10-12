@@ -1,7 +1,7 @@
 .nepal-page {
   --nepal-text: var(--deep-navy);
   --nepal-muted: var(--slate);
-  --nepal-blue: var(--primary);
+  --nepal-blue: var(--electric-ink);
   --nepal-border: var(--border);
   background: var(--white);
   color: var(--nepal-text);
@@ -198,7 +198,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 0.35rem;
-  background: var(--nepal-blue);
+  background: var(--electric);
 }
 .nepal-feature-card h3 {
   margin-top: 1.65rem;
@@ -448,15 +448,10 @@
   font-size: 0.55em;
   font-weight: 400;
 }
-.nepal-price-card h3 s {
-  display: block;
+.nepal-price-card .nepal-price-renewal {
+  margin-top: 0.25rem;
   color: var(--nepal-muted);
   font-size: 0.85rem;
-  font-weight: 400;
-  text-decoration-thickness: 1px;
-}
-.nepal-plan-note s {
-  text-decoration-thickness: 1px;
 }
 .nepal-price-note {
   margin-top: 1.5rem;

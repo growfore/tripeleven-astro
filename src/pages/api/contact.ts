@@ -68,8 +68,16 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
   }
 
-  const { name, email, agency, topic, message } = data;
-  if (!name?.trim() || !email || !EMAIL_RE.test(email) || !message?.trim()) {
+  // Fields arrive as untrusted JSON: coerce to strings so a number or object
+  // cannot crash `.trim()`, and cap lengths to match the form's maxlength.
+  const field = (key: string, max: number) =>
+    typeof data[key] === "string" ? data[key].trim().slice(0, max) : "";
+  const name = field("name", 120);
+  const email = field("email", 254);
+  const agency = field("agency", 120);
+  const topic = field("topic", 120);
+  const message = field("message", 5000);
+  if (!name || !EMAIL_RE.test(email) || !message) {
     return new Response(
       JSON.stringify({ ok: false, error: "missing fields" }),
       { status: 400 },

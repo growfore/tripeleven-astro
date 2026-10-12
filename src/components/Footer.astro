@@ -8,7 +8,7 @@ const groups = [
     heading: "Product",
     links: [
       { label: "Features", href: "/#features" },
-      { label: "Platform", href: "/#solutions" },
+      { label: "Agency websites", href: "/#solutions" },
       { label: "Pricing", href: "/pricing" },
       { label: "FAQ", href: "/#faq" },
       { label: "User Manual", href: "https://help.tripeleven.com/" },
@@ -56,7 +56,7 @@ const external = (href: string) => href.startsWith("http");
         </p>
         <a
           href={`mailto:${CONTACT_EMAIL}`}
-          class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-electric"
+          class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-electric pointer-coarse:min-h-11"
         >
           <Icon name="mail" class="size-4" />
           {CONTACT_EMAIL}
@@ -68,12 +68,12 @@ const external = (href: string) => href.startsWith("http");
             <h2 class="m-0 text-xs font-semibold uppercase tracking-[0.2em] text-white">
               {heading}
             </h2>
-            <ul class="mt-5 flex flex-col gap-3 text-sm">
+            <ul class="mt-5 flex flex-col gap-3 text-sm pointer-coarse:mt-3 pointer-coarse:gap-0">
               {links.map(({ label, href }) => (
                 <li>
                   <a
                     href={href}
-                    class="transition-colors hover:text-white"
+                    class="inline-flex items-center transition-colors hover:text-white pointer-coarse:min-h-11"
                     target={external(href) ? "_blank" : undefined}
                     rel={external(href) ? "noreferrer" : undefined}
                   >
@@ -93,7 +93,7 @@ const external = (href: string) => href.startsWith("http");
       <p class="m-0">Copyright © 2026 TripEleven. All rights reserved.</p>
       <a
         href="#top"
-        class="font-semibold text-white transition-colors hover:text-electric"
+        class="inline-flex items-center font-semibold text-white transition-colors hover:text-electric pointer-coarse:min-h-11"
       >
         Back to top
       </a>

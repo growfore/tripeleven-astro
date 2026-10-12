@@ -1,10 +1,15 @@
-<section class="bg-navy text-white rounded-3xl max-w-7xl my-12">
+---
+import { Picture } from "astro:assets";
+import { asset, screenshotWidths, pictureProps } from "../lib/images";
+---
+
+<section class="my-12 w-[calc(100%-2rem)] max-w-7xl rounded-3xl bg-navy text-white">
   <div
     class="page-container grid grid-cols-1 items-center gap-8 py-12 lg:grid-cols-[0.9fr_1.2fr] lg:gap-12 lg:py-20"
   >
     <div class="flex flex-col items-start">
       <h2
-        class="m-0 font-serif text-[36px] leading-[1.05] text-white lg:text-[48px]"
+        class="m-0 font-display text-[36px] leading-[1.05] text-white lg:text-[48px]"
       >
         Get your travel business online in days.
       </h2>
@@ -21,13 +26,13 @@
         target="_blank"
         rel="noreferrer"
       >
-        Get started
+        Start free trial
       </a>
       <p class="mt-4 text-sm text-light-blue/80">
-        Is your business from Nepal? <a
+        Agency based in Nepal? <a
           href="/nepal"
           class="font-semibold text-white underline underline-offset-4 hover:text-electric"
-          >Then click this link</a
+          >See plans in NPR</a
         >
       </p>
       <p class="mt-2 text-sm text-light-blue/80">
@@ -38,11 +43,11 @@
         >
       </p>
     </div>
-    <img
-      src="/mockups/website-demo-for-cta-card.webp"
-      loading="lazy"
-      width="1944"
-      height="1304"
+    <Picture
+      {...pictureProps}
+      src={asset("/mockups/website-demo-for-cta-card.webp")}
+      widths={screenshotWidths}
+      sizes="(min-width: 900px) 50vw, 94vw"
       alt="Travel agency website displayed on desktop and mobile"
       class="mt-2 h-auto w-full object-contain lg:mt-0"
     />
