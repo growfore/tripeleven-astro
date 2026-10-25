@@ -134,6 +134,18 @@ const jsonLd = {
         window.gtag("js", new Date());
         window.gtag("config", "G-H7TRDSVGQ7");
 
+        // The Clarity tag calls window.clarity() as soon as it runs, so the
+        // queue stub must exist first (same as Microsoft's official snippet).
+        window.clarity =
+          window.clarity ||
+          function () {
+            (window.clarity.q = window.clarity.q || []).push(arguments);
+          };
+        // Only reached after "Accept all", so tell Clarity consent was given.
+        window.clarity("consentv2", {
+          ad_Storage: "granted",
+          analytics_Storage: "granted",
+        });
         load("https://www.clarity.ms/tag/y04juop5nc");
 
         if (window.matchMedia("(min-width: 640px)").matches) {
