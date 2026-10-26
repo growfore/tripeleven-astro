@@ -45,10 +45,10 @@ export const integrations: Integration[] = [
     category: "Chat",
     logo: { brand: "whatsapp" },
     blurb: "Floating chat and booking links",
-    metaTitle: "WhatsApp chat for tour websites | TripEleven",
+    metaTitle: "WhatsApp booking button for tour websites | TripEleven",
     metaDescription:
       "Add a floating WhatsApp chat button and WhatsApp booking links to your tour website, so travelers can message your agency from any trip page.",
-    headline: "WhatsApp chat on every page of your tour website",
+    headline: "A WhatsApp booking button on every page of your tour website",
     intro:
       "Travelers already plan trips on WhatsApp. Add a floating WhatsApp chat button and booking links to your TripEleven website so they can message your team in one tap.",
     summary:
@@ -73,7 +73,7 @@ export const integrations: Integration[] = [
     category: "Chat",
     logo: { icon: "message-circle" },
     blurb: "Live chat widget",
-    metaTitle: "Tawk.to live chat for tour websites | TripEleven",
+    metaTitle: "Live chat for tour websites with Tawk.to | TripEleven",
     metaDescription:
       "Add the Tawk.to live chat widget to your TripEleven tour website and answer traveler questions in real time.",
     headline: "Live chat on your tour website with Tawk.to",
@@ -213,7 +213,7 @@ export const integrations: Integration[] = [
     category: "Privacy",
     logo: { icon: "shield-check" },
     blurb: "Ask visitors before any analytics loads",
-    metaTitle: "Cookie consent banner for tour websites | TripEleven",
+    metaTitle: "Cookie consent banner for travel websites | TripEleven",
     metaDescription:
       "TripEleven's consent banner asks visitors before any analytics or tracking loads on your tour website.",
     headline: "A consent banner that asks before analytics load",

@@ -32,9 +32,9 @@ export interface Feature {
 export const features: Feature[] = [
   {
     slug: "online-booking-software",
-    eyebrow: "Online booking for tour operators",
-    metaTitle: "Online booking software for tour operators | TripEleven",
-    metaDescription: "Let travelers book treks and tours directly from your website, and manage every booking from one dashboard.",
+    eyebrow: "Online booking system for tour operators",
+    metaTitle: "Online booking system for tour operators | TripEleven",
+    metaDescription: "An online booking system for tour operators, built into your website. Travelers book treks and tours from the trip page; you manage every booking in one dashboard.",
     faqs: [
       { q: "Can travelers book directly on my website?", a: "Yes. Travelers can book from trip pages on your TripEleven website." },
       { q: "Where do I manage bookings?", a: "In your dashboard, where your team can track bookings and follow up." },
@@ -45,7 +45,7 @@ export const features: Feature[] = [
     blurb: "Travelers book straight from trip pages",
     image: "/mockups/help/bookings.png",
     detailImage: "/mockups/website-demo-for-cta-card.webp",
-    headline: "Take bookings directly from your tour website",
+    headline: "An online booking system built into your tour website",
     intro: "Travelers book each trek or tour from its trip page, and your team tracks every booking in the dashboard and follows up.",
     benefits: [
       {
@@ -65,9 +65,9 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-payments-stripe",
-    eyebrow: "Tour payments with Stripe",
-    metaTitle: "Tour payment software with Stripe | TripEleven",
-    metaDescription: "Connect your own Stripe keys to receive traveler payments and manage bookings from one dashboard.",
+    eyebrow: "Accept tour payments online",
+    metaTitle: "Accept tour payments online with Stripe | TripEleven",
+    metaDescription: "Accept online payments for tours and treks with your own Stripe account. Payments go to you and link to each booking in your TripEleven dashboard.",
     faqs: [
       { q: "How do I receive payments?", a: "Connect your own Stripe keys, then receive payments and manage bookings from your dashboard." },
       { q: "Do I need my own Stripe account?", a: "Yes. Payments use your own Stripe keys." },
@@ -78,7 +78,7 @@ export const features: Feature[] = [
     blurb: "Receive payments with your own Stripe keys",
     image: "/mockups/help/revenue.png",
     detailImage: "/mockups/help/bookings.png",
-    headline: "Receive tour payments with your own Stripe account",
+    headline: "Accept tour payments online with your own Stripe account",
     intro: "Connect your own Stripe keys so traveler payments go to you, and manage bookings and payments from the same dashboard.",
     benefits: [
       {
@@ -98,9 +98,9 @@ export const features: Feature[] = [
   },
   {
     slug: "trip-inquiry-management",
-    eyebrow: "Trip inquiry management",
-    metaTitle: "Trip inquiry management for tour agencies | TripEleven",
-    metaDescription: "Collect trip inquiries by form, email and WhatsApp, and track every lead in one dashboard.",
+    eyebrow: "Tour inquiry and lead management",
+    metaTitle: "Tour inquiry and lead management | TripEleven",
+    metaDescription: "Manage tour inquiries and leads in one dashboard. Every trip gets an inquiry form, with email, phone and WhatsApp shown together.",
     faqs: [
       { q: "How do inquiries reach me?", a: "Each trip has an inquiry form, and leads land in your dashboard as trackable inquiries." },
       { q: "Can travelers contact me on WhatsApp?", a: "Yes. Phone, email and WhatsApp are shown together." },
@@ -112,7 +112,7 @@ export const features: Feature[] = [
     image: "/mockups/help/inquiry.png",
     detailImage: "/clients/hi-nepal-treks.webp",
     detailCrop: true,
-    headline: "Turn trip inquiries into customers",
+    headline: "Manage tour inquiries and leads in one dashboard",
     intro: "Every trip gets an inquiry form with your phone, email and WhatsApp in one place. Leads land in your dashboard as clean, trackable inquiries.",
     benefits: [
       {
@@ -132,9 +132,9 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-itinerary-builder",
-    eyebrow: "Tour itinerary builder for trekking agencies",
-    metaTitle: "Tour & trekking itinerary builder software | TripEleven",
-    metaDescription: "Build day-by-day tour and trekking itineraries with drag-and-drop days, altitude charts, pricing tiers and FAQs. Publish straight to your website.",
+    eyebrow: "Itinerary builder software for tour operators",
+    metaTitle: "Itinerary builder software for tour operators | TripEleven",
+    metaDescription: "Itinerary builder software for tour and trekking operators: drag-and-drop days, altitude charts, pricing tiers and FAQs, published straight to your website.",
     faqs: [
       { q: "What is a tour itinerary builder?", a: "It's software for structuring a trip: days, inclusions, pricing tiers, FAQs and media in one guided editor, then publishing it to your website without code." },
       { q: "Can I add altitude charts for treks?", a: "Yes. The trip builder supports altitude charts so travelers can see the climb day by day." },
@@ -144,7 +144,7 @@ export const features: Feature[] = [
     name: "Trip builder",
     blurb: "Drag-and-drop days, altitude charts, pricing tiers",
     detailImage: "/mockups/help/trip-steps.png",
-    headline: "Build every itinerary in one structured editor",
+    headline: "Itinerary builder software for tour and trekking operators",
     intro:
       "A trip builder made for trekking and adventure operators. Lay out days, add altitude charts, FAQ groups and pricing tiers, and publish without touching code.",
     image: "/mockups/itinerary-form.webp",
@@ -166,9 +166,9 @@ export const features: Feature[] = [
   },
   {
     slug: "ai-itinerary-generator",
-    eyebrow: "AI itinerary generator for tour operators",
-    metaTitle: "AI itinerary generator for tour operators | TripEleven",
-    metaDescription: "Generate day-by-day tour and trek itineraries with AI, then edit every detail in the trip builder before publishing.",
+    eyebrow: "AI itinerary generator for travel agencies",
+    metaTitle: "AI itinerary generator for travel agencies | TripEleven",
+    metaDescription: "An AI itinerary generator for travel agencies and tour operators. Draft day-by-day itineraries with Claude, OpenAI or Gemini, then edit them in the trip builder.",
     faqs: [
       { q: "How does the AI itinerary generator work?", a: "Enter up to 10 trip topics and a style. the AI model you connect (Claude, OpenAI or Gemini) drafts full day-by-day itineraries in one batch, and each draft opens in the trip builder." },
       { q: "Is AI output ready to publish?", a: "It's a strong first draft. Your team reviews, edits and polishes it in the trip builder before publishing." },
@@ -178,7 +178,7 @@ export const features: Feature[] = [
     name: "AI itineraries",
     blurb: "Draft day-by-day plans, then refine them",
     detailImage: "/mockups/itinerary-form.webp",
-    headline: "Draft itineraries with AI, finish them your way",
+    headline: "AI itinerary generator for travel agencies and tour operators",
     intro:
       "Start from a destination and duration, get a day-by-day draft, then edit every detail in the trip builder. AI saves the blank page, you keep control.",
     image: "/mockups/help/ai-generate.png",
@@ -200,9 +200,9 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-media-library",
-    eyebrow: "Travel photo and media library",
-    metaTitle: "Travel media library for tour websites | TripEleven",
-    metaDescription: "Upload trek and tour photos once and reuse them across trips, pages and posts. Search by filename, alt text or caption.",
+    eyebrow: "Photo library for travel websites",
+    metaTitle: "Photo and media library for travel websites | TripEleven",
+    metaDescription: "A photo and media library for travel websites. Upload trek and tour photos once, reuse them across trips, pages and posts, and search by alt text or caption.",
     faqs: [
       { q: "Can I reuse one photo across many trips?", a: "Yes. Upload once, then reuse the image on any trip, page or post." },
       { q: "How do I find an image later?", a: "Search the library by filename, alt text or caption." },
@@ -212,7 +212,7 @@ export const features: Feature[] = [
     name: "Media library",
     blurb: "Upload once, reuse across trips and pages",
     detailImage: "/mockups/help/media-grid.png",
-    headline: "One media library for every trip and page",
+    headline: "A photo library for every trip, page and post",
     intro:
       "Upload your trek photos once and reuse them across trips, pages and posts. Find any image by filename, alt text or caption.",
     image: "/mockups/media-gallery.webp",
@@ -234,9 +234,9 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-info-pages",
-    eyebrow: "Info pages for travel websites",
-    metaTitle: "Travel info pages for tour websites | TripEleven",
-    metaDescription: "Publish visa guides, festival calendars, activities and an about page on your tour website. Group by category and keep drafts until ready.",
+    eyebrow: "Travel website CMS",
+    metaTitle: "Travel website CMS for guides and info pages | TripEleven",
+    metaDescription: "A travel website CMS for visa guides, festival calendars, activities and your about page. Organize pages by category and keep drafts until they are ready.",
     faqs: [
       { q: "What are info pages?", a: "Pages for everything beyond the trip itself: visa guides, festival calendars, activities, and your about page." },
       { q: "Can I keep pages as drafts?", a: "Yes. Drafts stay private until you publish them." },
@@ -246,7 +246,7 @@ export const features: Feature[] = [
     name: "Info pages",
     blurb: "Visa guides, festivals, activities, about page",
     detailImage: "/mockups/help/storefront-page.png",
-    headline: "Info pages for everything beyond the trip",
+    headline: "A travel website CMS for everything beyond the trip",
     intro:
       "Publish visa guides, festival calendars, activities and your about page. Group them by category and keep drafts until they're ready.",
     image: "/mockups/info-pages.webp",
@@ -268,9 +268,9 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-blog-software",
-    eyebrow: "Travel blog and guide software",
-    metaTitle: "Travel blog software for tour agencies | TripEleven",
-    metaDescription: "Publish trek guides and travel articles, file them by category and credit each post to an author on your team.",
+    eyebrow: "Travel blog software",
+    metaTitle: "Travel blog software for tour operators | TripEleven",
+    metaDescription: "Travel blog software for tour operators. Publish trek guides and travel articles on your own domain, file them by category and credit each post to an author.",
     faqs: [
       { q: "Can I run a travel blog on TripEleven?", a: "Yes. Write trek guides and travel articles, file them by category and publish them on your website." },
       { q: "Can posts have authors?", a: "Yes. Credit each post to a team member." },
@@ -280,7 +280,7 @@ export const features: Feature[] = [
     name: "Travel guides",
     blurb: "Trek guides and articles, filed by category",
     detailImage: "/mockups/help/post-editor.png",
-    headline: "Travel guides travelers actually read",
+    headline: "Travel blog software for guides travelers actually read",
     intro:
       "Write trek guides and travel articles, file them by category, and credit each post to an author on your team.",
     image: "/mockups/posts.webp",
@@ -302,9 +302,9 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-team-pages",
-    eyebrow: "Team and guide profiles",
-    metaTitle: "Team pages for tour operators | TripEleven",
-    metaDescription: "Introduce your guides and staff with photos, roles and departments so travelers know who they will travel with.",
+    eyebrow: "Tour guide and team profiles",
+    metaTitle: "Tour guide and team profile pages | TripEleven",
+    metaDescription: "Show your tour guides and staff with photos, roles and departments, so travelers know who they will travel with before they book.",
     faqs: [
       { q: "Can I show my guides on my website?", a: "Yes. Add team members with photos and roles, organized by department." },
       { q: "Are authors and staff logins separate?", a: "They are managed in the same place, alongside the public profiles." },
@@ -314,7 +314,7 @@ export const features: Feature[] = [
     name: "Team & authors",
     blurb: "Departments, guides, staff logins",
     detailImage: "/mockups/help/team-members.png",
-    headline: "Show the team behind every trip",
+    headline: "Tour guide profiles that show the team behind every trip",
     intro:
       "Add departments and team members with photos and roles so travelers meet your guides and staff. Authors and staff logins live in the same place.",
     image: "/mockups/organization-and-departments.webp",
@@ -336,9 +336,9 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-trust-signals",
-    eyebrow: "Trust signals for travel websites",
-    metaTitle: "Trust signals for tour websites | TripEleven",
-    metaDescription: "Show reviews, testimonials, credentials and associations on your tour website to build traveler confidence and win more bookings.",
+    eyebrow: "Reviews and testimonials for tour operators",
+    metaTitle: "Reviews and testimonials for tour operator websites | TripEleven",
+    metaDescription: "Show reviews, testimonials, licenses and associations on your tour operator website to build traveler trust and win more bookings.",
     faqs: [
       { q: "What trust signals can I add?", a: "Reviews, testimonials, credentials, associations and other proof that your business is established and safe to book with." },
       { q: "Where do trust signals appear?", a: "Across your trips, pages and homepage, from one set of content." },
@@ -348,7 +348,7 @@ export const features: Feature[] = [
     name: "Trust signals",
     blurb: "Reviews, credentials, associations",
     detailImage: "/mockups/help/testimonials.png",
-    headline: "Trust signals that turn interest into bookings",
+    headline: "Reviews, testimonials and credentials that win bookings",
     intro:
       "Build traveler confidence with reviews, credentials, associations and other proof that shows your business is credible, established and safe to book with.",
     image: "/mockups/reviews-associations-testimonials-etc-for-trust-and-marketing.webp",
@@ -370,9 +370,9 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-website-branding",
-    eyebrow: "Brand your tour website",
-    metaTitle: "Brandable tour website: logo, colors, fonts | TripEleven",
-    metaDescription: "Apply your logo, colors and fonts across every trip, page and post so your tour website looks like your agency, not a template.",
+    eyebrow: "Tour operator website builder",
+    metaTitle: "Tour operator website builder, fully branded | TripEleven",
+    metaDescription: "A tour operator website builder that matches your brand. Set your logo, colors and fonts once, on your own domain, with no developer or template look.",
     faqs: [
       { q: "Can I use my own logo and colors?", a: "Yes. Set your logo, colors and fonts once and they apply site-wide." },
       { q: "Do I need a designer?", a: "No. Brand settings update the whole website from one place." },
@@ -383,7 +383,7 @@ export const features: Feature[] = [
     blurb: "Logo, colors and fonts on every page",
     detailImage: "/clients/summit-luxury-treks.webp",
     detailCrop: true,
-    headline: "Your brand, on every page",
+    headline: "A tour operator website builder that looks like your brand",
     intro:
       "Match your logo, colors and fonts across every trip, page and post so your website looks like your agency, not a template.",
     image: "/mockups/brand-colors-basic-brand.webp",
@@ -405,9 +405,9 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-website-navigation",
-    eyebrow: "Website navigation for tour operators",
-    metaTitle: "Tour website navigation & menus | TripEleven",
-    metaDescription: "Generate your header automatically from trips and pages, or arrange nested menus yourself, such as Trekking → Annapurna Circuit.",
+    eyebrow: "Menu builder for tour websites",
+    metaTitle: "Tour website menu builder with auto navigation | TripEleven",
+    metaDescription: "Build your tour website menu automatically from your trips and pages, or arrange nested menus yourself, such as Trekking, then Annapurna Circuit.",
     faqs: [
       { q: "What is auto nav?", a: "A setting that builds your header from your trips and pages, so new content appears without manual edits." },
       { q: "Can I build the menu manually?", a: "Yes. Arrange items yourself, including nested items." },
@@ -418,7 +418,7 @@ export const features: Feature[] = [
     blurb: "Auto nav or hand-arranged menus",
     detailImage: "/clients/walkthrough-nepal.webp",
     detailCrop: true,
-    headline: "Navigation that builds itself",
+    headline: "A tour website menu that builds itself",
     intro:
       "Turn on auto nav to generate your header from your trips and pages, or arrange it yourself with nested items like Trekking → Annapurna Circuit.",
     image: "/mockups/navigation.webp",
@@ -440,9 +440,9 @@ export const features: Feature[] = [
   },
   {
     slug: "featured-trips",
-    eyebrow: "Featured trips",
-    metaTitle: "Featured trips: promote your best tours | TripEleven",
-    metaDescription: "Mark top trips as featured so they lead your tour website and guide travelers to the trips you most want to sell.",
+    eyebrow: "Featured tours",
+    metaTitle: "Featured tours: promote your best trips | TripEleven",
+    metaDescription: "Promote your best tours and treks. Mark trips as featured so they lead your website and guide travelers to the trips you most want to sell.",
     faqs: [
       { q: "How do I feature a trip?", a: "Toggle Featured on the trip. It then takes a prime spot on your website." },
       { q: "Can I change featured trips seasonally?", a: "Yes. Feature or unfeature any trip at any time." },
@@ -453,7 +453,7 @@ export const features: Feature[] = [
     blurb: "Lead with the trips you most want to sell",
     detailImage: "/clients/essence-treks.webp",
     detailCrop: true,
-    headline: "Featured trips travelers can't miss",
+    headline: "Featured tours travelers can't miss",
     intro:
       "Mark your top trips as featured so they lead your website and guide travelers to the trips you most want to sell.",
     image: "/mockups/featured-trips.webp",
