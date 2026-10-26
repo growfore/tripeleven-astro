@@ -1,0 +1,24 @@
+---
+import Icon from "../Icon.astro";
+import { brands } from "../../lib/brands";
+import type { Integration } from "../../lib/integrations";
+
+interface Props {
+  logo: Integration["logo"];
+  class?: string;
+}
+const { logo, class: className } = Astro.props;
+const brand = "brand" in logo ? brands[logo.brand] : undefined;
+---
+
+<span class:list={["inline-flex shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-line", className ?? "size-10"]}>
+  {
+    brand ? (
+      <svg viewBox="0 0 24 24" class="size-1/2" fill={brand.hex} role="img" aria-label={brand.title}>
+        <path d={brand.path} />
+      </svg>
+    ) : (
+      "icon" in logo && <Icon name={logo.icon} class="size-1/2 text-coal" />
+    )
+  }
+</span>

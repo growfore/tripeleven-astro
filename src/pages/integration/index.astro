@@ -1,37 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/Icon.astro";
-import PathCard from "../../components/site/PathCard.astro";
+import IntegrationLogo from "../../components/site/IntegrationLogo.astro";
+import SectionHead from "../../components/site/SectionHead.astro";
 import Shot from "../../components/site/Shot.astro";
 import Faq from "../../components/site/Faq.astro";
-import { integrationFeatures, featureGroups, featureHref } from "../../lib/features";
-import { content } from "../../lib/feature-content";
+import { integrationCards } from "../../lib/integrations";
 import { container, section, tagline, h1, lead, btnPrimary, btnSecondary, SIGNUP } from "../../lib/ui";
 
-const title = "Integrations for tour operator software | TripEleven";
+const title = "Integrations for tour operator websites | TripEleven";
 const description =
-  "Connect TripEleven to the tools your agency already uses: Stripe for payments, AI for itinerary drafts, and WhatsApp, email and phone for trip inquiries.";
+  "Connect WhatsApp, Tawk.to, Google Analytics, Google Tag Manager, Meta Pixel, Microsoft Clarity, Stripe, AI and SMTP email to your TripEleven tour website.";
 const canonical = "https://tripeleven.com/integration";
-
-const firstSentence = (slug: string) => `${content[slug].summary.split(". ")[0]}.`;
-const flagOf = (slug: string) => featureGroups.find((g) => g.slugs.includes(slug))!.flag;
 
 const faqs = [
   {
     q: "Which integrations does TripEleven support?",
-    a: "Payments through your own Stripe keys, AI itinerary drafts with Claude, and trip inquiries by form, email, phone and WhatsApp.",
+    a: "WhatsApp, Tawk.to live chat, Google Analytics 4, Google Tag Manager, Meta Pixel, Microsoft Clarity, a consent banner, Stripe payments, AI generation with Claude, OpenAI or Gemini, and email sending via SMTP.",
+  },
+  {
+    q: "Where do I set up integrations?",
+    a: "In the TripEleven dashboard, under Integrations. No code is needed.",
+  },
+  {
+    q: "Do analytics load before visitors consent?",
+    a: "The consent banner asks visitors before any analytics loads.",
   },
   {
     q: "Do payments go through TripEleven?",
-    a: "No. Payments are received through your own Stripe keys, so they go to your Stripe account.",
+    a: "No. Payments are collected with your own Stripe account.",
   },
   {
-    q: "Do I need my own AI key?",
-    a: "On the Launch plan, AI itinerary generation uses an API key that you provide.",
-  },
-  {
-    q: "Are integrations included in every plan?",
-    a: "Bookings, payments with your own Stripe keys and trip inquiries are included on every plan. AI itinerary generation is listed on every plan as bring-your-own-key.",
+    q: "Which AI providers can I use?",
+    a: "Bring your own Claude, OpenAI or Gemini key for AI itinerary generation.",
   },
 ];
 
@@ -46,12 +47,12 @@ const jsonLd = [
   {
     "@type": "ItemList",
     name: "TripEleven integrations",
-    itemListElement: integrationFeatures.map((f, i) => ({
+    itemListElement: integrationCards.map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      name: f.name,
-      description: firstSentence(f.slug),
-      url: `https://tripeleven.com${featureHref(f)}`,
+      name: c.name,
+      description: c.blurb,
+      url: `https://tripeleven.com${c.href}`,
     })),
   },
   {
@@ -64,50 +65,63 @@ const jsonLd = [
 <Layout {title} {description} {canonical} {jsonLd}>
   <main id="top" class="overflow-x-clip">
     <section class:list={[container, "pt-16 text-center lg:pt-24"]}>
-      <p class={tagline}>Integrations</p>
-      <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>Connect TripEleven to the tools your agency already uses</h1>
+      <p class={tagline}>{integrationCards.length} integrations</p>
+      <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>Connect the tools your agency already uses</h1>
       <p class:list={[lead, "mx-auto mt-6 max-w-2xl"]}>
-        Receive payments in your own Stripe account, draft itineraries with AI,
-        and answer travelers on WhatsApp, email or phone. All from the same
-        dashboard as your trips and website.
+        Chat with travelers on WhatsApp or Tawk.to, measure your website with
+        Google Analytics, GTM, Meta Pixel and Clarity, and add your own Stripe,
+        AI and email accounts. All from Integrations in the dashboard.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-2">
         <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>
         <a href="/product" class:list={[btnSecondary, "min-h-10 px-4"]}>Explore the product</a>
       </div>
-      <ul class="m-0 mx-auto mt-12 flex max-w-3xl list-none flex-wrap justify-center gap-2 p-0">
-        {
-          integrationFeatures.map((f) => (
-            <li>
-              <a href={featureHref(f)} class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-[14px] text-coal ring-1 ring-line transition hover:ring-coal">
-                <Icon name={f.icon} class="size-4" />
-                {f.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
-    <section class={section}>
-      <div class:list={[container, "flex flex-col gap-6"]}>
-        {
-          integrationFeatures.map((f, i) => (
-            <PathCard
-              flag={flagOf(f.slug)}
-              icon={f.icon}
-              label={f.eyebrow}
-              title={f.headline}
-              text={firstSentence(f.slug)}
-              href={featureHref(f)}
-              linkLabel={`Explore ${f.name.toLowerCase()}`}
-              items={f.benefits.map((b) => ({ icon: "check" as const, name: b.title, blurb: b.text, href: featureHref(f) }))}
-              reverse={i % 2 === 1}
-            >
-              <Shot src={f.image} alt={`${f.name} in TripEleven`} />
-            </PathCard>
-          ))
-        }
+    <section class:list={[container, "mt-14 lg:mt-16"]} aria-label="Integrations in the TripEleven dashboard">
+      <div class="relative overflow-hidden rounded-2xl bg-flag-blue px-4 pt-8 grid-paper sm:px-12 sm:pt-12">
+        <div class="mx-auto max-w-5xl">
+          <Shot src="/mockups/help/integrations.png" alt="Integrations page in the TripEleven dashboard" sizes="(min-width: 1100px) 1024px, 92vw" class="rounded-b-none" />
+        </div>
+      </div>
+    </section>
+
+    <section class={section} aria-labelledby="all-heading">
+      <div class={container}>
+        <SectionHead
+          id="all-heading"
+          align="split"
+          tagline="All integrations"
+          title="Chat, analytics, payments, AI and email"
+          text="Each integration is set up from the dashboard with no code. Open any one to see what it does and how to connect it."
+        />
+        <div class="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-3">
+          {
+            integrationCards.map((c) => (
+              <a href={c.href} class="group flex min-h-[210px] flex-col bg-paper p-7 transition-colors hover:bg-white">
+                <div class="flex items-start justify-between gap-4">
+                  <IntegrationLogo logo={c.logo} />
+                  <span class="rounded-md px-2 py-1 font-mono text-[11px] uppercase text-mute ring-1 ring-line">{c.category}</span>
+                </div>
+                <h3 class="m-0 mt-auto pt-10 text-[18px] font-normal text-coal">{c.name}</h3>
+                <p class="m-0 mt-1.5 text-[15px] leading-relaxed text-mute">{c.blurb}</p>
+                <span class="mt-4 inline-flex items-center gap-1 text-[14px] text-signal">
+                  Learn more <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </a>
+            ))
+          }
+          <a href="/contact" class="group relative flex min-h-[210px] flex-col overflow-hidden bg-flag-blue p-7 grid-paper sm:col-span-2 lg:col-span-2">
+            <span class="relative inline-flex size-10 items-center justify-center rounded-lg bg-white text-coal ring-1 ring-line">
+              <Icon name="mail" class="size-5" />
+            </span>
+            <h3 class="relative m-0 mt-auto pt-10 text-[18px] font-normal text-coal">Need another integration?</h3>
+            <p class="relative m-0 mt-1.5 max-w-md text-[15px] leading-relaxed text-coal/80">Tell us which tool your agency uses and we will look at adding it.</p>
+            <span class="relative mt-4 inline-flex items-center gap-1 text-[14px] text-coal">
+              Talk to us <Icon name="arrow-right" class="size-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 

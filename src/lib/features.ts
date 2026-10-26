@@ -170,7 +170,7 @@ export const features: Feature[] = [
     metaTitle: "AI itinerary generator for tour operators | TripEleven",
     metaDescription: "Generate day-by-day tour and trek itineraries with AI, then edit every detail in the trip builder before publishing.",
     faqs: [
-      { q: "How does the AI itinerary generator work?", a: "Enter up to 10 trip topics and a style. Claude drafts full day-by-day itineraries in one batch, and each draft opens in the trip builder." },
+      { q: "How does the AI itinerary generator work?", a: "Enter up to 10 trip topics and a style. the AI model you connect (Claude, OpenAI or Gemini) drafts full day-by-day itineraries in one batch, and each draft opens in the trip builder." },
       { q: "Is AI output ready to publish?", a: "It's a strong first draft. Your team reviews, edits and polishes it in the trip builder before publishing." },
       { q: "Do I need my own AI key?", a: "On the Launch plan, AI itinerary generation uses your own API key. See the pricing page for what each plan includes." },
     ],
@@ -483,7 +483,6 @@ export const getFeature = (slug: string) =>
 const integrationSlugs = new Set([
   "tour-payments-stripe",
   "ai-itinerary-generator",
-  "trip-inquiry-management",
 ]);
 export type Section = "product" | "integration";
 export const sectionOf = (feature: Feature): Section =>

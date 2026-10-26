@@ -220,16 +220,16 @@ export const content: Record<string, FeatureContent> = {
 
   "ai-itinerary-generator": {
     summary:
-      "TripEleven's AI itinerary generator drafts full day-by-day itineraries from a list of trip topics. You enter up to 10 topics and a style, Claude drafts the itineraries in one batch, and each draft opens in the trip builder for your team to review, edit and publish. AI itinerary generation on Launch uses your own API key.",
+      "TripEleven's AI itinerary generator drafts full day-by-day itineraries from a list of trip topics. You enter up to 10 topics and a style, the AI model you connect (Claude, OpenAI or Gemini) drafts the itineraries in one batch, and each draft opens in the trip builder for your team to review, edit and publish. AI itinerary generation on Launch uses your own API key.",
     facts: [
       { label: "Input", value: "Up to 10 trip topics and a style" },
       { label: "Output", value: "Day-by-day itinerary drafts" },
-      { label: "Model", value: "Claude" },
+      { label: "AI models", value: "Claude, OpenAI or Gemini" },
       { label: "Launch plan", value: "Bring your own key" },
     ],
     steps: [
       { title: "Enter topics", text: "Add up to 10 trip topics and choose a style." },
-      { title: "Generate a batch", text: "Claude drafts a full day-by-day itinerary for each topic in one batch." },
+      { title: "Generate a batch", text: "Your connected AI model drafts a full day-by-day itinerary for each topic in one batch." },
       { title: "Open in the builder", text: "Each draft opens in the same trip builder you use for hand-written trips." },
       { title: "Review and publish", text: "Your team edits the draft, adds the details only you know, and publishes." },
     ],
@@ -246,8 +246,8 @@ export const content: Record<string, FeatureContent> = {
         eyebrow: "Batch generation",
         title: "Draft many trips in one go",
         paragraphs: [
-          "Enter up to 10 trip topics and a style, and Claude drafts full day-by-day itineraries in one batch. That is useful when you are expanding a catalog or adding a new region and need many starting points quickly.",
-          "AI itinerary generation is listed on the Launch plan as bring-your-own-key, which means you supply your own API key for the AI provider.",
+          "Enter up to 10 trip topics and a style, and your connected AI model drafts full day-by-day itineraries in one batch. That is useful when you are expanding a catalog or adding a new region and need many starting points quickly.",
+          "AI itinerary generation is listed on the Launch plan as bring-your-own-key, which means you supply your own API key for Claude, OpenAI or Gemini.",
         ],
       },
     ],
@@ -262,7 +262,7 @@ export const content: Record<string, FeatureContent> = {
       { without: "AI text copied into the site by hand", with: "Drafts open directly in the trip builder" },
     ],
     moreFaqs: [
-      { q: "Which AI model writes the itineraries?", a: "Claude drafts the itineraries." },
+      { q: "Which AI models can I use?", a: "Bring your own Claude, OpenAI or Gemini key from Integrations in the dashboard." },
       { q: "Can I publish AI output without editing it?", a: "The output is meant as a first draft. Your team should review and edit it in the trip builder before publishing." },
       { q: "What does bring your own key mean?", a: "On the Launch plan, AI itinerary generation uses an API key that you provide." },
     ],
@@ -705,7 +705,7 @@ export const examples: Record<string, { title: string; paragraphs: string[] }> =
   "ai-itinerary-generator": {
     title: "Drafting a new region's catalog in an afternoon",
     paragraphs: [
-      "An agency wants to add ten treks in a region it has not sold online before. The owner enters ten trip topics and picks a style. Claude drafts a day-by-day itinerary for each in one batch.",
+      "An agency wants to add ten treks in a region it has not sold online before. The owner enters ten trip topics and picks a style. The connected AI model drafts a day-by-day itinerary for each in one batch.",
       "Each draft opens in the trip builder. The lead guide corrects the daily distances, adds the teahouses they actually use, and sets pricing. Nothing is published until the team has reviewed it, but nobody started from a blank page.",
     ],
   },
