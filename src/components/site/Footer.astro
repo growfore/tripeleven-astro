@@ -1,7 +1,7 @@
 ---
 import Icon from "../Icon.astro";
 import PixelEdge from "./PixelEdge.astro";
-import { featureGroups } from "../../lib/features";
+import { featureGroups, featureHref } from "../../lib/features";
 import { container, tagline, h2, lead, btnPrimary, btnSecondary, LOGIN, SIGNUP } from "../../lib/ui";
 
 const CONTACT_EMAIL = "hello@tripeleven.com";
@@ -9,12 +9,13 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
 const columns = [
   ...featureGroups.map((g) => ({
     heading: g.label,
-    links: g.items.map((f) => ({ label: f.name, href: `/product/${f.slug}` })),
+    links: g.items.map((f) => ({ label: f.name, href: featureHref(f) })),
   })),
   {
     heading: "Company",
     links: [
       { label: "All features", href: "/product" },
+      { label: "Integrations", href: "/integration" },
       { label: "Pricing", href: "/pricing" },
       { label: "Nepal program", href: "/nepal" },
       { label: "Contact", href: "/contact" },

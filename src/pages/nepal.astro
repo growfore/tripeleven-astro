@@ -10,7 +10,7 @@ import Shot from "../components/site/Shot.astro";
 import Faq from "../components/site/Faq.astro";
 import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
 import { clients, domain } from "../lib/clients";
-import { getFeature } from "../lib/features";
+import { getFeature, featureHref } from "../lib/features";
 import { compare } from "../lib/plans";
 import { container, section, h1, h4, lead, body, btnPrimary, btnSecondary, iconTile } from "../lib/ui";
 import type { ComponentProps } from "astro/types";
@@ -72,7 +72,7 @@ const features: { title: string; description: string; icon: IconName; slug: stri
 const pick = (slugs: string[]) =>
   slugs.map((s) => {
     const f = getFeature(s)!;
-    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` };
+    return { icon: f.icon, name: f.name, blurb: f.blurb, href: featureHref(f) };
   });
 
 const faqs = [
@@ -270,7 +270,7 @@ const jsonLd = [
         <div class="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-3">
           {
             features.map((f) => (
-              <a href={`/product/${f.slug}`} class="group flex min-h-[200px] flex-col bg-paper p-7 transition-colors hover:bg-white">
+              <a href={featureHref(getFeature(f.slug)!)} class="group flex min-h-[200px] flex-col bg-paper p-7 transition-colors hover:bg-white">
                 <span class={iconTile}><Icon name={f.icon} class="size-4" /></span>
                 <h3 class:list={[h4, "mt-auto pt-10 text-[18px]"]}>{f.title}</h3>
                 <p class:list={[body, "mt-2"]}>{f.description}</p>

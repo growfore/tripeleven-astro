@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { features } from "../lib/features";
+import { features, featureHref } from "../lib/features";
 import { content } from "../lib/feature-content";
 
 export const GET: APIRoute = () => {
@@ -11,11 +11,12 @@ export const GET: APIRoute = () => {
     "## Features",
     ...features.map(
       (f) =>
-        `- [${f.name}](https://tripeleven.com/product/${f.slug}): ${content[f.slug].summary.split(". ")[0]}.`,
+        `- [${f.name}](https://tripeleven.com${featureHref(f)}): ${content[f.slug].summary.split(". ")[0]}.`,
     ),
     "",
     "## Key pages",
-    "- [Features overview](https://tripeleven.com/product)",
+    "- [Product overview](https://tripeleven.com/product)",
+    "- [Integrations](https://tripeleven.com/integration): Stripe payments, AI itinerary drafts, and WhatsApp, email and phone inquiries",
     "- [Pricing](https://tripeleven.com/pricing): Launch, Business and Enterprise plans with a 7-day free trial",
     "- [Nepal program](https://tripeleven.com/nepal): plans in NPR for Nepal-based agencies",
     "- [Contact](https://tripeleven.com/contact)",

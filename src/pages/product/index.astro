@@ -4,7 +4,7 @@ import Icon from "../../components/Icon.astro";
 import PathCard from "../../components/site/PathCard.astro";
 import Shot from "../../components/site/Shot.astro";
 import SectionHead from "../../components/site/SectionHead.astro";
-import { features, featureGroups } from "../../lib/features";
+import { features, featureGroups, featureHref } from "../../lib/features";
 import { content } from "../../lib/feature-content";
 import { container, section, tagline, h1, lead, btnPrimary, btnSecondary, SIGNUP } from "../../lib/ui";
 
@@ -31,7 +31,7 @@ const jsonLd = [
       position: i + 1,
       name: f.name,
       description: firstSentence(f.slug),
-      url: `https://tripeleven.com/product/${f.slug}`,
+      url: `https://tripeleven.com${featureHref(f)}`,
     })),
   },
 ];
@@ -55,7 +55,7 @@ const jsonLd = [
         {
           featureGroups.flatMap((g) => g.items).map((f) => (
             <li>
-              <a href={`/product/${f.slug}`} class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-[14px] text-coal ring-1 ring-line transition hover:ring-coal">
+              <a href={featureHref(f)} class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-[14px] text-coal ring-1 ring-line transition hover:ring-coal">
                 <Icon name={f.icon} class="size-4" />
                 {f.name}
               </a>
@@ -80,9 +80,9 @@ const jsonLd = [
                     label={lead_.name}
                     title={lead_.headline}
                     text={firstSentence(lead_.slug)}
-                    href={`/product/${lead_.slug}`}
+                    href={featureHref(lead_)}
                     linkLabel={`Explore ${lead_.name.toLowerCase()}`}
-                    items={group.items.slice(1).map((f) => ({ icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` }))}
+                    items={group.items.slice(1).map((f) => ({ icon: f.icon, name: f.name, blurb: f.blurb, href: featureHref(f) }))}
                     reverse={i % 2 === 1}
                   >
                     <Shot src={lead_.image} alt={`${lead_.name} in TripEleven`} />

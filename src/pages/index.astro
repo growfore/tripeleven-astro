@@ -8,7 +8,7 @@ import PathCard from "../components/site/PathCard.astro";
 import PixelEdge from "../components/site/PixelEdge.astro";
 import Faq from "../components/site/Faq.astro";
 import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
-import { featureGroups, getFeature } from "../lib/features";
+import { featureGroups, getFeature, featureHref } from "../lib/features";
 import { clients, domain } from "../lib/clients";
 import { plans } from "../lib/plans";
 import { container, section, tagline, h1, h2, h4, lead, body, btnPrimary, btnSecondary, iconTile, SIGNUP } from "../lib/ui";
@@ -22,7 +22,7 @@ const [build, sell] = ["build", "sell"].map((k) => featureGroups.find((g) => g.k
 const pick = (slugs: string[]) =>
   slugs.map((s) => {
     const f = getFeature(s)!;
-    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` };
+    return { icon: f.icon, name: f.name, blurb: f.blurb, href: featureHref(f) };
   });
 
 const collage = {

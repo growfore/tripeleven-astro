@@ -1,12 +1,13 @@
 ---
 import { Picture } from "astro:assets";
 import Icon from "../Icon.astro";
-import { featureGroups } from "../../lib/features";
+import { featureGroups, featureHref } from "../../lib/features";
 import { asset, cardWidths, pictureProps } from "../../lib/images";
 import { container, btnPrimary, btnSecondary, iconTile, LOGIN, SIGNUP } from "../../lib/ui";
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 const links = [
+  { label: "Integrations", href: "/integration" },
   { label: "Customers", href: "/#customers" },
   { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "/contact" },
@@ -42,7 +43,7 @@ const navLink =
                     {group.items.map((f) => (
                       <li>
                         <a
-                          href={`/product/${f.slug}`}
+                          href={featureHref(f)}
                           class="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white"
                         >
                           <span class={iconTile}>
@@ -85,7 +86,7 @@ const navLink =
       </div>
       {
         links.map((l) => (
-          <a href={l.href} class:list={[navLink, path === l.href && "text-coal"]} aria-current={path === l.href ? "page" : undefined}>
+          <a href={l.href} class:list={[navLink, path.startsWith(l.href) && l.href !== "/#customers" && "text-coal"]} aria-current={path === l.href ? "page" : undefined}>
             {l.label}
           </a>
         ))
@@ -114,7 +115,7 @@ const navLink =
                 <p class="m-0 font-mono text-[12px] uppercase text-mute">{group.label}</p>
                 <div class="mt-2 grid grid-cols-2 gap-x-3">
                   {group.items.map((f) => (
-                    <a href={`/product/${f.slug}`} class="flex min-h-11 items-center gap-2 text-[15px] text-coal">
+                    <a href={featureHref(f)} class="flex min-h-11 items-center gap-2 text-[15px] text-coal">
                       <Icon name={f.icon} class="size-4 text-signal" />
                       {f.name}
                     </a>

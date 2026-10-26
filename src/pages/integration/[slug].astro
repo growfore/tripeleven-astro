@@ -1,0 +1,15 @@
+---
+import FeaturePage from "../../components/site/FeaturePage.astro";
+import { integrationFeatures } from "../../lib/features";
+
+export function getStaticPaths() {
+  return integrationFeatures.map((feature) => ({
+    params: { slug: feature.slug },
+    props: { feature },
+  }));
+}
+
+const { feature } = Astro.props;
+---
+
+<FeaturePage {feature} />

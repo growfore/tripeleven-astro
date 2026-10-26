@@ -478,6 +478,21 @@ export const features: Feature[] = [
 export const getFeature = (slug: string) =>
   features.find((feature) => feature.slug === slug);
 
+// Features that connect TripEleven to an outside service live under
+// /integration; everything else is part of the core product at /product.
+const integrationSlugs = new Set([
+  "tour-payments-stripe",
+  "ai-itinerary-generator",
+  "trip-inquiry-management",
+]);
+export type Section = "product" | "integration";
+export const sectionOf = (feature: Feature): Section =>
+  integrationSlugs.has(feature.slug) ? "integration" : "product";
+export const featureHref = (feature: Feature) =>
+  `/${sectionOf(feature)}/${feature.slug}`;
+export const productFeatures = features.filter((f) => sectionOf(f) === "product");
+export const integrationFeatures = features.filter((f) => sectionOf(f) === "integration");
+
 export const featureGroups = [
   {
     key: "sell",
