@@ -282,16 +282,16 @@ const jsonLd = [
           title="If you prefer clicking, open a real agency site."
           text="These agencies build and run their websites on TripEleven. Click through their trips, navigation and inquiry forms."
         />
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {
-            clients.slice(0, 6).map((c) => (
+            clients.map((c) => (
               <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl ring-1 ring-line">
                 <div class="overflow-hidden bg-white">
                   <Picture
                     {...pictureProps}
                     src={asset(c.image)}
                     widths={cardWidths}
-                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 92vw"
+                    sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 92vw"
                     alt={`${c.name} website homepage`}
                     class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   />
@@ -306,9 +306,7 @@ const jsonLd = [
                   </span>
                   <span class="min-w-0 flex-1">
                     <span class="block text-[15px] text-coal">{c.name}</span>
-                    <span class="block text-[13px] text-mute">
-                      TripEleven site · <span class="underline decoration-line-strong underline-offset-2">{domain(c.href)}</span>
-                    </span>
+                    <span class="block truncate text-[13px] text-mute underline decoration-line-strong underline-offset-2">{domain(c.href)}</span>
                   </span>
                   <Icon name="external-link" class="size-4 text-mute transition-colors group-hover:text-coal" />
                 </div>

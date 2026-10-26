@@ -346,16 +346,16 @@ const jsonLd = [
           title="See TripEleven in the world"
           text="Visit live Nepal agency websites built with TripEleven. Click through their treks, navigation and inquiry forms."
         />
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {
-            clients.slice(0, 6).map((c) => (
+            clients.map((c) => (
               <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl ring-1 ring-line">
                 <div class="overflow-hidden bg-white">
                   <Picture
                     {...pictureProps}
                     src={asset(c.image)}
                     widths={cardWidths}
-                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 92vw"
+                    sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 92vw"
                     alt={`${c.name} website homepage`}
                     class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
                   />
