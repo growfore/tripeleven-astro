@@ -38,7 +38,7 @@ export const content: Record<string, FeatureContent> = {
         eyebrow: "Direct bookings",
         title: "Turn trip-page visits into bookings",
         paragraphs: [
-          "Most trekking and tour agencies lose travelers between reading about a trip and actually committing to it. TripEleven puts a direct way to book on each trip page, so a traveler who has decided on the Annapurna Circuit does not have to email back and forth to reserve a place.",
+          "Most trekking and tour agencies lose travelers between reading about a trip and actually committing to it. TripEleven puts a direct way to book on each trip page, so a traveler who has decided on the Inca Trail does not have to email back and forth to reserve a place.",
           "Because the booking happens on your own website and under your own brand, the traveler stays in your experience from the first photo to the confirmed trip. You keep the customer relationship instead of handing it to a marketplace.",
         ],
       },
@@ -54,7 +54,7 @@ export const content: Record<string, FeatureContent> = {
     audience: [
       "Trekking and expedition agencies that want travelers to reserve directly",
       "Tour operators replacing email-only reservations with a booking flow",
-      "Agencies in Nepal and elsewhere that want to own their customer relationship",
+      "Agencies anywhere in the world that want to own their customer relationship",
     ],
     contrast: [
       { without: "Travelers email to ask if a date is available", with: "Travelers book from the trip page" },
@@ -114,7 +114,7 @@ export const content: Record<string, FeatureContent> = {
     moreFaqs: [
       { q: "Which payment provider does TripEleven use?", a: "Stripe. You connect your own Stripe keys to receive payments." },
       { q: "Does TripEleven hold my money?", a: "No. Payments are received through your own Stripe keys, so they go to your Stripe account." },
-      { q: "Can I use payments on the Nepal plans?", a: "Yes. The Nepal program lists bookings and receiving payments with your own Stripe keys as included." },
+      { q: "Do travelers pay on my own website?", a: "Yes. Travelers book from your trip pages, and payments are received through your own Stripe keys." },
     ],
   },
 
@@ -570,12 +570,12 @@ export const content: Record<string, FeatureContent> = {
 
   "tour-website-navigation": {
     summary:
-      "Navigation in TripEleven can build your website header automatically from your trips and pages, or you can arrange it yourself with nested items such as Trekking, then Annapurna Circuit. You choose auto or manual, and both support nested menus.",
+      "Navigation in TripEleven can build your website header automatically from your trips and pages, or you can arrange it yourself with nested items such as Trekking, then Tour du Mont Blanc. You choose auto or manual, and both support nested menus.",
     facts: [
       { label: "Modes", value: "Auto nav or manual" },
       { label: "Nesting", value: "Nested items supported" },
       { label: "Source", value: "Your trips and pages" },
-      { label: "Example", value: "Trekking, then Annapurna Circuit" },
+      { label: "Example", value: "Trekking, then Tour du Mont Blanc" },
     ],
     steps: [
       { title: "Choose a mode", text: "Turn on auto nav, or arrange the menu yourself." },
@@ -596,7 +596,7 @@ export const content: Record<string, FeatureContent> = {
         eyebrow: "Manual control",
         title: "Arrange nested menus when you want to",
         paragraphs: [
-          "If you want a specific structure, arrange the menu yourself with nested items, for example Trekking and then Annapurna Circuit.",
+          "If you want a specific structure, arrange the menu yourself with nested items, for example Trekking and then Tour du Mont Blanc.",
           "A clear menu helps travelers browse and also gives search engines a clean internal link structure to your trips.",
         ],
       },
@@ -684,15 +684,15 @@ export const examples: Record<string, { title: string; paragraphs: string[] }> =
   "tour-payments-stripe": {
     title: "Connecting Stripe before your first season online",
     paragraphs: [
-      "A Pokhara-based agency already has a Stripe account it uses for card payments. During setup, the owner adds those Stripe keys to TripEleven.",
+      "A small adventure agency in Cusco already has a Stripe account it uses for card payments. During setup, the owner adds those Stripe keys to TripEleven.",
       "From then on, when a traveler books a trip on the agency's website, the payment is received through that same Stripe account. The team reviews the booking and its payment together in the dashboard, and reconciles payouts in Stripe as they already do.",
     ],
   },
   "trip-inquiry-management": {
     title: "Three inquiries, three channels, one dashboard",
     paragraphs: [
-      "On a busy Monday, one traveler fills in the inquiry form on your Langtang trip, another messages your WhatsApp from the Manaslu page, and a third emails about Everest Base Camp.",
-      "The form inquiry lands in your dashboard tied to the Langtang trip, so whoever picks it up knows exactly what was asked about. WhatsApp and email stay visible on every trip page, so travelers always have the channel they prefer.",
+      "On a busy Monday, one traveler fills in the inquiry form on your Inca Trail trip, another messages your WhatsApp from the Kilimanjaro page, and a third emails about Everest Base Camp.",
+      "The form inquiry lands in your dashboard tied to the Inca Trail trip, so whoever picks it up knows exactly what was asked about. WhatsApp and email stay visible on every trip page, so travelers always have the channel they prefer.",
     ],
   },
   "tour-itinerary-builder": {
@@ -712,14 +712,14 @@ export const examples: Record<string, { title: string; paragraphs: string[] }> =
   "travel-media-library": {
     title: "One sunrise photo, used five times",
     paragraphs: [
-      "A guide shoots a sunrise over Annapurna South from Poon Hill. The marketing lead uploads it once, adds alt text and a caption, and uses it on three trips, an info page about the best season, and a guide post.",
-      "Months later, a new staff member searches the library for \"annapurna\" and finds it immediately, with the alt text already in place.",
+      "A guide shoots a sunrise over Machu Picchu from the Sun Gate. The marketing lead uploads it once, adds alt text and a caption, and uses it on three trips, an info page about the best season, and a guide post.",
+      "Months later, a new staff member searches the library for \"machu picchu\" and finds it immediately, with the alt text already in place.",
     ],
   },
   "travel-info-pages": {
     title: "Answering the visa question before it is asked",
     paragraphs: [
-      "Travelers keep emailing the same questions about Nepal visas and trekking permits. The agency writes a visa guide and a permits page, files both under a \"Visas & permits\" category, and keeps the permits page as a draft while a guide checks the details.",
+      "Travelers keep emailing the same questions about visas and Inca Trail permits. The agency writes a visa guide and a permits page, files both under a \"Visas & permits\" category, and keeps the permits page as a draft while a guide checks the details.",
       "Once published, both pages appear in the site navigation and can be linked from relevant trips. Travelers get answers earlier, and the team answers fewer repeat emails.",
     ],
   },
@@ -755,13 +755,13 @@ export const examples: Record<string, { title: string; paragraphs: string[] }> =
     title: "A new trek appears in the menu by itself",
     paragraphs: [
       "An agency turns on auto nav. Its header is generated from its trips and pages, with treks grouped by region.",
-      "When the team publishes a new Annapurna trek, it shows up in the navigation without anyone editing the menu. For a seasonal campaign, the team can switch to arranging the navigation by hand.",
+      "When the team publishes a new Patagonia trek, it shows up in the navigation without anyone editing the menu. For a seasonal campaign, the team can switch to arranging the navigation by hand.",
     ],
   },
   "featured-trips": {
     title: "Switching focus from spring to autumn",
     paragraphs: [
-      "In spring, an agency features Everest Base Camp and the Annapurna Circuit so they lead the website.",
+      "In spring, an agency features Everest Base Camp and the Tour du Mont Blanc so they lead the website.",
       "When the season changes, the owner turns Featured off on one trip and on for another in the trip builder. The website's lead trips change without redesigning a single page.",
     ],
   },

@@ -407,11 +407,11 @@ export const features: Feature[] = [
     slug: "tour-website-navigation",
     eyebrow: "Menu builder for tour websites",
     metaTitle: "Tour website menu builder with auto navigation | TripEleven",
-    metaDescription: "Build your tour website menu automatically from your trips and pages, or arrange nested menus yourself, such as Trekking, then Annapurna Circuit.",
+    metaDescription: "Build your tour website menu automatically from your trips and pages, or arrange nested menus yourself, such as Trekking, then Tour du Mont Blanc.",
     faqs: [
       { q: "What is auto nav?", a: "A setting that builds your header from your trips and pages, so new content appears without manual edits." },
       { q: "Can I build the menu manually?", a: "Yes. Arrange items yourself, including nested items." },
-      { q: "Can menus be nested?", a: "Yes, for example Trekking → Annapurna Circuit." },
+      { q: "Can menus be nested?", a: "Yes, for example Trekking → Tour du Mont Blanc." },
     ],
     icon: "compass",
     name: "Navigation",
@@ -420,7 +420,7 @@ export const features: Feature[] = [
     detailCrop: true,
     headline: "A tour website menu that builds itself",
     intro:
-      "Turn on auto nav to generate your header from your trips and pages, or arrange it yourself with nested items like Trekking → Annapurna Circuit.",
+      "Turn on auto nav to generate your header from your trips and pages, or arrange it yourself with nested items like Trekking → Tour du Mont Blanc.",
     image: "/mockups/navigation.webp",
     benefits: [
       {
