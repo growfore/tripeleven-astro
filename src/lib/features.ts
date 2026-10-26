@@ -34,7 +34,7 @@ export const features: Feature[] = [
     slug: "online-booking-software",
     eyebrow: "Online booking system for tour operators",
     metaTitle: "Online booking system for tour operators | TripEleven",
-    metaDescription: "An online booking system for tour operators, built into your website. Travelers book treks and tours from the trip page; you manage every booking in one dashboard.",
+    metaDescription: "An online booking system for tour operators, built into your website. Travelers book tours from the trip page and you manage every booking in one place.",
     faqs: [
       { q: "Can travelers book directly on my website?", a: "Yes. Travelers can book from trip pages on your TripEleven website." },
       { q: "Where do I manage bookings?", a: "In your dashboard, where your team can track bookings and follow up." },
@@ -337,7 +337,7 @@ export const features: Feature[] = [
   {
     slug: "travel-trust-signals",
     eyebrow: "Reviews and testimonials for tour operators",
-    metaTitle: "Reviews and testimonials for tour operator websites | TripEleven",
+    metaTitle: "Reviews and testimonials for tour websites | TripEleven",
     metaDescription: "Show reviews, testimonials, licenses and associations on your tour operator website to build traveler trust and win more bookings.",
     faqs: [
       { q: "What trust signals can I add?", a: "Reviews, testimonials, credentials, associations and other proof that your business is established and safe to book with." },

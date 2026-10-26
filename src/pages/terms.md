@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/Prose.astro
 title: Terms & Conditions — TripEleven
-description: TripEleven terms and conditions. Read the rules governing use of our platform and services.
+description: TripEleven terms and conditions. Read the rules for using our travel agency software, websites, bookings and payments, and your rights as a customer.
 canonical: https://tripeleven.com/terms
 updated: 4 October, 2026
 ---

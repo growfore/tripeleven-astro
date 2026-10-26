@@ -75,7 +75,7 @@ export const integrations: Integration[] = [
     blurb: "Live chat widget",
     metaTitle: "Live chat for tour websites with Tawk.to | TripEleven",
     metaDescription:
-      "Add the Tawk.to live chat widget to your TripEleven tour website and answer traveler questions in real time.",
+      "Add the Tawk.to live chat widget to your tour website with no code, and answer traveler questions in real time while they read your trips.",
     headline: "Live chat on your tour website with Tawk.to",
     intro:
       "Answer traveler questions while they are still on the trip page. Connect Tawk.to and its live chat widget appears on your TripEleven website.",
@@ -103,7 +103,7 @@ export const integrations: Integration[] = [
     blurb: "GA4 page analytics",
     metaTitle: "Google Analytics (GA4) for tour websites | TripEleven",
     metaDescription:
-      "Connect Google Analytics 4 to your TripEleven tour website to see which trips and pages travelers visit.",
+      "Connect Google Analytics 4 (GA4) to your tour website in minutes, with no code, and see which trips, guides and pages travelers visit most.",
     headline: "Google Analytics 4 for your tour website",
     intro:
       "See which treks, guides and pages travelers actually visit. Connect Google Analytics 4 to your TripEleven website from the dashboard.",
@@ -131,7 +131,7 @@ export const integrations: Integration[] = [
     blurb: "Manage tags from GTM",
     metaTitle: "Google Tag Manager for tour websites | TripEleven",
     metaDescription:
-      "Connect Google Tag Manager to your TripEleven tour website and manage marketing and analytics tags from GTM.",
+      "Connect Google Tag Manager to your tour website with no code, and manage marketing, analytics and ad tags for your agency from one GTM container.",
     headline: "Manage your tags with Google Tag Manager",
     intro:
       "Keep marketing and analytics tags in one place. Connect Google Tag Manager to your TripEleven website and manage tags from GTM.",
@@ -159,7 +159,7 @@ export const integrations: Integration[] = [
     blurb: "Facebook and Instagram ad tracking",
     metaTitle: "Meta Pixel for tour websites | TripEleven",
     metaDescription:
-      "Connect the Meta Pixel to your TripEleven tour website to track visits from your Facebook and Instagram ads.",
+      "Add the Meta Pixel to your tour website with no code and track visits and results from your Facebook and Instagram ads for treks and tours.",
     headline: "Track Facebook and Instagram ads with Meta Pixel",
     intro:
       "Running ads for your treks on Facebook or Instagram? Connect the Meta Pixel to your TripEleven website to track what those ads bring in.",
@@ -215,7 +215,7 @@ export const integrations: Integration[] = [
     blurb: "Ask visitors before any analytics loads",
     metaTitle: "Cookie consent banner for travel websites | TripEleven",
     metaDescription:
-      "TripEleven's consent banner asks visitors before any analytics or tracking loads on your tour website.",
+      "A cookie consent banner for travel websites, built into TripEleven. It asks visitors before Google Analytics, Clarity, Meta Pixel or any tracking loads.",
     headline: "A consent banner that asks before analytics load",
     intro:
       "Respect your visitors and keep analytics honest. TripEleven's consent banner asks visitors before any analytics loads on your website.",
@@ -243,7 +243,7 @@ export const integrations: Integration[] = [
     blurb: "Send site emails from your own address via SMTP",
     metaTitle: "Send website emails via SMTP | TripEleven",
     metaDescription:
-      "Send your TripEleven website's emails from your own address through SMTP, so travelers see your agency's domain.",
+      "Send your tour website emails from your own address through SMTP, so travelers see your agency domain instead of a platform address.",
     headline: "Send website emails from your own address",
     intro:
       "Emails from your website should come from your agency. Connect SMTP and TripEleven sends site emails from your own address.",
