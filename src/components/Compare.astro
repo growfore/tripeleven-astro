@@ -296,13 +296,13 @@ function compareValue(
       </caption>
       <thead>
         <tr class="border-b border-border bg-light-blue">
-          <th class="sticky top-20 z-10 w-[40%] bg-light-blue px-6 py-5 text-left font-semibold text-deep-navy shadow-[0_1px_0_var(--color-border)]"
+          <th class="sticky top-[76px] z-10 w-[40%] bg-light-blue px-6 py-5 text-left font-semibold text-deep-navy shadow-[0_1px_0_var(--color-border)]"
             >Feature</th
           >
           {
             comparePlans.map((plan) => (
               <th
-                class={`sticky top-20 z-10 px-6 py-5 text-left font-bold shadow-[0_1px_0_var(--color-border)] ${plan === "Business" ? "bg-deep-navy text-white" : "bg-light-blue text-deep-navy"}`}
+                class={`sticky top-[76px] z-10 px-6 py-5 text-left font-bold shadow-[0_1px_0_var(--color-border)] ${plan === "Business" ? "bg-deep-navy text-white" : "bg-light-blue text-deep-navy"}`}
               >
                 {planLabels[plan]}
                 {plan === "Business" && (
