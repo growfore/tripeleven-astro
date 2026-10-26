@@ -22,7 +22,7 @@ const [build, sell] = ["build", "sell"].map((k) => featureGroups.find((g) => g.k
 const pick = (slugs: string[]) =>
   slugs.map((s) => {
     const f = getFeature(s)!;
-    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/features/${f.slug}` };
+    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` };
   });
 
 const collage = {
@@ -115,7 +115,7 @@ const jsonLd = [
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-2">
         <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>
-        <a href="/features" class:list={[btnSecondary, "min-h-10 px-4"]}>Explore features</a>
+        <a href="/product" class:list={[btnSecondary, "min-h-10 px-4"]}>Explore features</a>
       </div>
       <p class="m-0 mt-4 text-[13px] text-mute">7-day free trial · Plans from $23/month · Bookings on every plan</p>
     </section>
@@ -191,7 +191,7 @@ const jsonLd = [
             label={build.label}
             title="Structured trips, not copy-pasted pages"
             text="A guided trip builder for itineraries, trip facts, altitude charts, pricing tiers and FAQs. Draft a batch with AI, then refine every day yourself."
-            href="/features/tour-itinerary-builder"
+            href="/product/tour-itinerary-builder"
             linkLabel="Explore trip builder"
             items={pick(["tour-itinerary-builder", "ai-itinerary-generator", "travel-media-library"])}
           >
@@ -203,7 +203,7 @@ const jsonLd = [
             label="Publish"
             title="A branded website from your catalog"
             text="Every trip becomes a page on your own domain, in your logo, colors and fonts, alongside travel guides, info pages and your team."
-            href="/features/travel-website-branding"
+            href="/product/travel-website-branding"
             linkLabel="Explore your website"
             items={pick(["travel-website-branding", "travel-blog-software", "travel-trust-signals"])}
             reverse
@@ -216,7 +216,7 @@ const jsonLd = [
             label={sell.label}
             title="Bookings, payments and inquiries in one place"
             text="Travelers book from the trip page or send a question. Payments go to your own Stripe account, and every lead lands in one dashboard."
-            href="/features/online-booking-software"
+            href="/product/online-booking-software"
             linkLabel="Explore online booking"
             items={pick(["online-booking-software", "tour-payments-stripe", "trip-inquiry-management"])}
           >

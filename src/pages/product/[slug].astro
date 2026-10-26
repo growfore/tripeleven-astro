@@ -39,7 +39,7 @@ const faqs = [...feature.faqs, ...copy.moreFaqs];
 const [deepA, deepB] = copy.sections;
 const group = featureGroups.find((g) => g.slugs.includes(feature.slug))!;
 const flag = flags[group.flag];
-const canonical = `https://tripeleven.com/features/${feature.slug}`;
+const canonical = `https://tripeleven.com/product/${feature.slug}`;
 const related = feature.related.map((slug) => getFeature(slug)).filter((f) => f !== undefined);
 const relatedFlag = (slug: string) => flags[featureGroups.find((g) => g.slugs.includes(slug))!.flag];
 const name = feature.name.toLowerCase();
@@ -50,7 +50,7 @@ const jsonLd = [
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://tripeleven.com/" },
-      { "@type": "ListItem", position: 2, name: "Features", item: "https://tripeleven.com/features" },
+      { "@type": "ListItem", position: 2, name: "Product", item: "https://tripeleven.com/product" },
       { "@type": "ListItem", position: 3, name: feature.name, item: canonical },
     ],
   },
@@ -87,7 +87,7 @@ const jsonLd = [
         <ol class="m-0 flex list-none flex-wrap items-center gap-2 p-0">
           <li><a href="/" class="hover:text-coal">Home</a></li>
           <li aria-hidden="true"><Icon name="chevron-right" class="size-3.5" /></li>
-          <li><a href="/features" class="hover:text-coal">Features</a></li>
+          <li><a href="/product" class="hover:text-coal">Product</a></li>
           <li aria-hidden="true"><Icon name="chevron-right" class="size-3.5" /></li>
           <li aria-current="page" class="text-coal">{feature.name}</li>
         </ol>
@@ -309,7 +309,7 @@ const jsonLd = [
               {related.map((f) => {
                 const rf = relatedFlag(f.slug);
                 return (
-                  <a href={`/features/${f.slug}`} class="group block overflow-hidden rounded-2xl ring-1 ring-line">
+                  <a href={`/product/${f.slug}`} class="group block overflow-hidden rounded-2xl ring-1 ring-line">
                     <div class:list={["relative h-[240px] overflow-hidden pl-6 pt-6 grid-paper", rf.panel]}>
                       <Picture
                         {...pictureProps}

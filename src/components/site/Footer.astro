@@ -9,12 +9,12 @@ const CONTACT_EMAIL = "hello@tripeleven.com";
 const columns = [
   ...featureGroups.map((g) => ({
     heading: g.label,
-    links: g.items.map((f) => ({ label: f.name, href: `/features/${f.slug}` })),
+    links: g.items.map((f) => ({ label: f.name, href: `/product/${f.slug}` })),
   })),
   {
     heading: "Company",
     links: [
-      { label: "All features", href: "/features" },
+      { label: "All features", href: "/product" },
       { label: "Pricing", href: "/pricing" },
       { label: "Nepal program", href: "/nepal" },
       { label: "Contact", href: "/contact" },

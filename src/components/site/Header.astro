@@ -27,7 +27,7 @@ const navLink =
           type="button"
           aria-expanded="false"
           aria-controls="mega-product"
-          class:list={[navLink, "gap-1 aria-expanded:bg-coal/5 aria-expanded:text-coal", path.startsWith("/features") && "text-coal"]}
+          class:list={[navLink, "gap-1 aria-expanded:bg-coal/5 aria-expanded:text-coal", path.startsWith("/product") && "text-coal"]}
         >
           Product
           <Icon name="chevron-down" class="size-4 transition-transform in-aria-expanded:rotate-180" />
@@ -42,7 +42,7 @@ const navLink =
                     {group.items.map((f) => (
                       <li>
                         <a
-                          href={`/features/${f.slug}`}
+                          href={`/product/${f.slug}`}
                           class="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white"
                         >
                           <span class={iconTile}>
@@ -76,7 +76,7 @@ const navLink =
                   </span>
                 </span>
               </a>
-              <a href="/features" class="flex items-center justify-between rounded-md bg-coal px-3.5 py-2.5 text-[14px] text-white hover:bg-signal">
+              <a href="/product" class="flex items-center justify-between rounded-md bg-coal px-3.5 py-2.5 text-[14px] text-white hover:bg-signal">
                 See all features <Icon name="arrow-right" class="size-4" />
               </a>
             </div>
@@ -114,7 +114,7 @@ const navLink =
                 <p class="m-0 font-mono text-[12px] uppercase text-mute">{group.label}</p>
                 <div class="mt-2 grid grid-cols-2 gap-x-3">
                   {group.items.map((f) => (
-                    <a href={`/features/${f.slug}`} class="flex min-h-11 items-center gap-2 text-[15px] text-coal">
+                    <a href={`/product/${f.slug}`} class="flex min-h-11 items-center gap-2 text-[15px] text-coal">
                       <Icon name={f.icon} class="size-4 text-signal" />
                       {f.name}
                     </a>
@@ -124,7 +124,7 @@ const navLink =
             ))
           }
           <div class="flex flex-col py-3">
-            <a href="/features" class="flex min-h-11 items-center text-[17px]">All features</a>
+            <a href="/product" class="flex min-h-11 items-center text-[17px]">All features</a>
             {links.map((l) => <a href={l.href} class="flex min-h-11 items-center text-[17px]">{l.label}</a>)}
             <a href={LOGIN} target="_blank" rel="noreferrer" class="flex min-h-11 items-center text-[17px]">Log in</a>
           </div>

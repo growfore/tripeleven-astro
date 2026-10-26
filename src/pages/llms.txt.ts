@@ -11,11 +11,11 @@ export const GET: APIRoute = () => {
     "## Features",
     ...features.map(
       (f) =>
-        `- [${f.name}](https://tripeleven.com/features/${f.slug}): ${content[f.slug].summary.split(". ")[0]}.`,
+        `- [${f.name}](https://tripeleven.com/product/${f.slug}): ${content[f.slug].summary.split(". ")[0]}.`,
     ),
     "",
     "## Key pages",
-    "- [Features overview](https://tripeleven.com/features)",
+    "- [Features overview](https://tripeleven.com/product)",
     "- [Pricing](https://tripeleven.com/pricing): Launch, Business and Enterprise plans with a 7-day free trial",
     "- [Nepal program](https://tripeleven.com/nepal): plans in NPR for Nepal-based agencies",
     "- [Contact](https://tripeleven.com/contact)",

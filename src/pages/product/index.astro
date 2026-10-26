@@ -11,7 +11,7 @@ import { container, section, tagline, h1, lead, btnPrimary, btnSecondary, SIGNUP
 const title = "Tour operator software features | TripEleven";
 const description =
   "Online booking, Stripe payments, trip inquiries, itinerary builder, AI itinerary generator, travel blog, trust signals and branding for tour and trekking agencies.";
-const canonical = "https://tripeleven.com/features";
+const canonical = "https://tripeleven.com/product";
 const firstSentence = (slug: string) => `${content[slug].summary.split(". ")[0]}.`;
 const groupIcon = { sell: "calendar", build: "route", grow: "globe" } as const;
 
@@ -20,7 +20,7 @@ const jsonLd = [
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://tripeleven.com/" },
-      { "@type": "ListItem", position: 2, name: "Features", item: canonical },
+      { "@type": "ListItem", position: 2, name: "Product", item: canonical },
     ],
   },
   {
@@ -31,7 +31,7 @@ const jsonLd = [
       position: i + 1,
       name: f.name,
       description: firstSentence(f.slug),
-      url: `https://tripeleven.com/features/${f.slug}`,
+      url: `https://tripeleven.com/product/${f.slug}`,
     })),
   },
 ];
@@ -55,7 +55,7 @@ const jsonLd = [
         {
           featureGroups.flatMap((g) => g.items).map((f) => (
             <li>
-              <a href={`/features/${f.slug}`} class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-[14px] text-coal ring-1 ring-line transition hover:ring-coal">
+              <a href={`/product/${f.slug}`} class="inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-[14px] text-coal ring-1 ring-line transition hover:ring-coal">
                 <Icon name={f.icon} class="size-4" />
                 {f.name}
               </a>
@@ -80,9 +80,9 @@ const jsonLd = [
                     label={lead_.name}
                     title={lead_.headline}
                     text={firstSentence(lead_.slug)}
-                    href={`/features/${lead_.slug}`}
+                    href={`/product/${lead_.slug}`}
                     linkLabel={`Explore ${lead_.name.toLowerCase()}`}
-                    items={group.items.slice(1).map((f) => ({ icon: f.icon, name: f.name, blurb: f.blurb, href: `/features/${f.slug}` }))}
+                    items={group.items.slice(1).map((f) => ({ icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` }))}
                     reverse={i % 2 === 1}
                   >
                     <Shot src={lead_.image} alt={`${lead_.name} in TripEleven`} />

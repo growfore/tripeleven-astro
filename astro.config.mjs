@@ -16,5 +16,8 @@ export default defineConfig({
   },
   redirects: {
     "/signup": "https://app.tripeleven.com/signup",
+    // Feature pages moved from /features to /product.
+    "/features": "/product",
+    "/features/[slug]": "/product/[slug]",
   },
 });

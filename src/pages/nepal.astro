@@ -72,7 +72,7 @@ const features: { title: string; description: string; icon: IconName; slug: stri
 const pick = (slugs: string[]) =>
   slugs.map((s) => {
     const f = getFeature(s)!;
-    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/features/${f.slug}` };
+    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/product/${f.slug}` };
   });
 
 const faqs = [
@@ -270,7 +270,7 @@ const jsonLd = [
         <div class="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-2 lg:grid-cols-3">
           {
             features.map((f) => (
-              <a href={`/features/${f.slug}`} class="group flex min-h-[200px] flex-col bg-paper p-7 transition-colors hover:bg-white">
+              <a href={`/product/${f.slug}`} class="group flex min-h-[200px] flex-col bg-paper p-7 transition-colors hover:bg-white">
                 <span class={iconTile}><Icon name={f.icon} class="size-4" /></span>
                 <h3 class:list={[h4, "mt-auto pt-10 text-[18px]"]}>{f.title}</h3>
                 <p class:list={[body, "mt-2"]}>{f.description}</p>
@@ -298,7 +298,7 @@ const jsonLd = [
             label="01 · Build trips"
             title="Build detailed trips"
             text="Keep trip facts, day-by-day itineraries, inclusions, pricing and FAQs together. Your team can review drafts and publish when everything is ready."
-            href="/features/tour-itinerary-builder"
+            href="/product/tour-itinerary-builder"
             linkLabel="Explore trip builder"
             cta={{ href: "#contact", label: "Talk to us" }}
             items={pick(["tour-itinerary-builder", "ai-itinerary-generator", "travel-media-library"])}
@@ -311,7 +311,7 @@ const jsonLd = [
             label="02 · Publish your website"
             title="Publish your own website"
             text="Choose a template, colors, fonts and your own domain. Feature trips, introduce your team, and share useful travel advice."
-            href="/features/travel-website-branding"
+            href="/product/travel-website-branding"
             linkLabel="Explore your website"
             cta={{ href: "#contact", label: "Talk to us" }}
             items={pick(["travel-website-branding", "travel-blog-software", "tour-team-pages"])}
@@ -325,7 +325,7 @@ const jsonLd = [
             label="03 · Manage bookings"
             title="Turn visits into bookings"
             text="Give travelers a direct way to book each trek or tour. Track bookings in your dashboard, follow up with travelers, and receive payments with your own Stripe keys."
-            href="/features/online-booking-software"
+            href="/product/online-booking-software"
             linkLabel="Explore online booking"
             cta={{ href: "#contact", label: "Talk to us" }}
             items={pick(["online-booking-software", "tour-payments-stripe", "trip-inquiry-management"])}
@@ -516,7 +516,7 @@ const jsonLd = [
       </div>
       <div class="flex flex-wrap gap-x-6 gap-y-2">
         <a href="/" class="hover:text-coal">Global site</a>
-        <a href="/features" class="hover:text-coal">All features</a>
+        <a href="/product" class="hover:text-coal">All features</a>
         <a href="mailto:hello@tripeleven.com" class="hover:text-coal">hello@tripeleven.com</a>
         <a href="/privacy" class="hover:text-coal">Privacy</a>
         <a href="/terms" class="hover:text-coal">Terms</a>
