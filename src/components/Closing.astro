@@ -11,8 +11,8 @@ const { centered = false } = Astro.props;
   >
     <div
       class:list={[
-        "flex flex-col",
-        centered ? "items-center text-center" : "items-start",
+        "flex flex-col items-start",
+        centered && "mx-auto w-full max-w-xl justify-self-center",
       ]}
     >
       <h2
@@ -21,7 +21,7 @@ const { centered = false } = Astro.props;
         Get your travel business online in days.
       </h2>
       <p
-        class:list={["mt-6 max-w-xl text-base leading-relaxed text-light-blue lg:text-lg", centered && "mx-auto"]}
+        class="mt-6 max-w-xl text-base leading-relaxed text-light-blue lg:text-lg"
       >
         Set up your website, add your trips and essential business information,
         configure booking and trust features, and get everything ready for
