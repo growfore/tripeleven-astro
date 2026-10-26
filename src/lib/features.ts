@@ -134,7 +134,7 @@ export const features: Feature[] = [
     slug: "tour-itinerary-builder",
     eyebrow: "Itinerary builder software for tour operators",
     metaTitle: "Itinerary builder software for tour operators | TripEleven",
-    metaDescription: "Itinerary builder software for tour and trekking operators: drag-and-drop days, altitude charts, pricing tiers and FAQs, published straight to your website.",
+    metaDescription: "Itinerary builder software for tour operators and travel agencies: build itineraries with drag-and-drop days and pricing, then take bookings on your website.",
     faqs: [
       { q: "What is a tour itinerary builder?", a: "It's software for structuring a trip: days, inclusions, pricing tiers, FAQs and media in one guided editor, then publishing it to your website without code." },
       { q: "Can I add altitude charts for treks?", a: "Yes. The trip builder supports altitude charts so travelers can see the climb day by day." },
@@ -168,7 +168,7 @@ export const features: Feature[] = [
     slug: "ai-itinerary-generator",
     eyebrow: "AI itinerary generator for travel agencies",
     metaTitle: "AI itinerary generator for travel agencies | TripEleven",
-    metaDescription: "An AI itinerary generator for travel agencies and tour operators. Draft day-by-day itineraries with Claude, OpenAI or Gemini, then edit them in the trip builder.",
+    metaDescription: "AI itinerary generator and automation for travel agencies and travel consultants. Draft day-by-day itineraries with Claude, OpenAI or Gemini, then edit them.",
     faqs: [
       { q: "How does the AI itinerary generator work?", a: "Enter up to 10 trip topics and a style. the AI model you connect (Claude, OpenAI or Gemini) drafts full day-by-day itineraries in one batch, and each draft opens in the trip builder." },
       { q: "Is AI output ready to publish?", a: "It's a strong first draft. Your team reviews, edits and polishes it in the trip builder before publishing." },
