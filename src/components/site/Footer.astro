@@ -1,0 +1,105 @@
+---
+import Icon from "../Icon.astro";
+import PixelEdge from "./PixelEdge.astro";
+import { featureGroups } from "../../lib/features";
+import { container, tagline, h2, lead, btnPrimary, btnSecondary, LOGIN, SIGNUP } from "../../lib/ui";
+
+const CONTACT_EMAIL = "hello@tripeleven.com";
+
+const columns = [
+  ...featureGroups.map((g) => ({
+    heading: g.label,
+    links: g.items.map((f) => ({ label: f.name, href: `/features/${f.slug}` })),
+  })),
+  {
+    heading: "Company",
+    links: [
+      { label: "All features", href: "/features" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Nepal program", href: "/nepal" },
+      { label: "Contact", href: "/contact" },
+      { label: "User manual", href: "https://help.tripeleven.com/" },
+      { label: "Log in", href: LOGIN },
+    ],
+  },
+];
+const external = (href: string) => href.startsWith("http");
+---
+
+<section class="overflow-hidden py-20 lg:py-32" aria-labelledby="cta-heading">
+  <div class:list={[container, "text-center"]}>
+    <p class={tagline}>Getting started</p>
+    <h2 id="cta-heading" class:list={[h2, "mx-auto mt-5 max-w-3xl text-[clamp(36px,4.4vw,60px)]"]}>
+      Get your agency online and taking bookings
+    </h2>
+    <p class:list={[lead, "mx-auto mt-6 max-w-xl"]}>
+      Start a 7-day free trial. Build your trips, publish your website and take
+      your first booking without a developer.
+    </p>
+    <div class="relative mx-auto mt-12 max-w-2xl">
+      <div class="relative rounded-2xl bg-flag-blue p-3 grid-paper">
+        <PixelEdge side="left" class="text-flag-blue" />
+        <PixelEdge side="right" class="text-flag-blue" />
+        <div class="flex flex-col items-stretch gap-3 rounded-xl bg-white p-4 text-left ring-1 ring-line sm:flex-row sm:items-center">
+          <span class="flex flex-1 items-center gap-2 font-mono text-[13px] text-mute">
+            <Icon name="globe" class="size-4" />
+            youragency.com
+          </span>
+          <div class="flex gap-2">
+            <a href="/contact" class={btnSecondary}>Talk to us</a>
+            <a href={SIGNUP} target="_blank" rel="noreferrer" class={btnPrimary}>
+              Start free trial <Icon name="arrow-right" class="size-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line">
+  <div class={container}>
+    <div class="grid grid-cols-2 gap-x-6 gap-y-12 py-16 md:grid-cols-3 lg:grid-cols-[1.6fr_repeat(4,1fr)]">
+      <div class="col-span-2 md:col-span-3 lg:col-span-1">
+        <a href="/" aria-label="TripEleven home" class="inline-block">
+          <img src="/lettermark-logo.svg" width="229" height="45" alt="TripEleven" class="h-6 w-auto" />
+        </a>
+        <p class="m-0 mt-5 max-w-xs text-[14px] leading-relaxed text-mute">
+          The platform for tour and trekking agencies. Build trips, publish a
+          branded website, take bookings and payments.
+        </p>
+        <a href={`mailto:${CONTACT_EMAIL}`} class="mt-5 inline-flex items-center gap-2 text-[14px] text-coal underline decoration-line-strong underline-offset-4 hover:decoration-coal">
+          {CONTACT_EMAIL}
+        </a>
+      </div>
+      {
+        columns.map((col) => (
+          <div>
+            <p class="m-0 font-mono text-[12px] uppercase text-signal">{col.heading}</p>
+            <ul class="m-0 mt-4 flex list-none flex-col gap-2 p-0">
+              {col.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={external(link.href) ? "_blank" : undefined}
+                    rel={external(link.href) ? "noreferrer" : undefined}
+                    class="text-[14px] text-coal/80 transition-colors hover:text-coal"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex flex-col gap-4 border-t border-line py-7 text-[13px] text-mute sm:flex-row sm:items-center sm:justify-between">
+      <p class="m-0">© {new Date().getFullYear()} TripEleven. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/privacy" class="hover:text-coal">Privacy and cookies</a>
+        <a href="/terms" class="hover:text-coal">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

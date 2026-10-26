@@ -1,0 +1,184 @@
+---
+import { Picture } from "astro:assets";
+import Icon from "../Icon.astro";
+import { featureGroups } from "../../lib/features";
+import { asset, cardWidths, pictureProps } from "../../lib/images";
+import { container, btnPrimary, btnSecondary, iconTile, LOGIN, SIGNUP } from "../../lib/ui";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const links = [
+  { label: "Customers", href: "/#customers" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Nepal", href: "/nepal" },
+  { label: "Contact", href: "/contact" },
+];
+const navLink =
+  "inline-flex min-h-9 items-center rounded-md px-2.5 text-[14px] text-coal transition-colors hover:bg-coal/5";
+---
+
+<header class="sticky top-0 z-50 bg-paper/90 backdrop-blur-xl">
+  <nav aria-label="Main navigation" class:list={[container, "flex h-16 items-center gap-6"]}>
+    <a href="/" class="inline-flex shrink-0 items-center" aria-label="TripEleven home">
+      <img src="/lettermark-logo.svg" width="229" height="45" alt="" class="h-7 w-auto" />
+    </a>
+
+    <div class="hidden flex-1 items-center justify-center gap-1 lg:flex">
+      <div data-mega>
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-controls="mega-product"
+          class:list={[navLink, "gap-1 aria-expanded:bg-coal/5 aria-expanded:text-coal", path.startsWith("/features") && "text-coal"]}
+        >
+          Product
+          <Icon name="chevron-down" class="size-4 transition-transform in-aria-expanded:rotate-180" />
+        </button>
+        <div id="mega-product" hidden class="absolute inset-x-0 top-full px-5 pt-1">
+          <div class="mx-auto grid max-w-[76rem] grid-cols-[1fr_1fr_1fr_280px] gap-6 rounded-2xl bg-paper p-6 shadow-[0_30px_60px_-20px_rgba(22,22,22,0.25)] ring-1 ring-line">
+            {
+              featureGroups.map((group) => (
+                <div>
+                  <p class="m-0 px-2.5 font-mono text-[12px] uppercase text-signal">{group.label}</p>
+                  <ul class="m-0 mt-3 flex list-none flex-col gap-0.5 p-0">
+                    {group.items.map((f) => (
+                      <li>
+                        <a
+                          href={`/features/${f.slug}`}
+                          class="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white"
+                        >
+                          <span class={iconTile}>
+                            <Icon name={f.icon} class="size-4" />
+                          </span>
+                          <span>
+                            <span class="block text-[14px] text-coal">{f.name}</span>
+                            <span class="mt-0.5 block text-[13px] leading-snug text-mute">{f.blurb}</span>
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+            <div class="flex flex-col gap-3">
+              <a href="https://walkthroughnepal.com" target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-xl bg-white ring-1 ring-line">
+                <Picture
+                  {...pictureProps}
+                  src={asset("/clients/walkthrough-nepal.webp")}
+                  widths={cardWidths}
+                  sizes="300px"
+                  alt=""
+                  class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <span class="block p-4">
+                  <span class="block font-mono text-[11px] uppercase text-mute">Live site</span>
+                  <span class="mt-1 flex items-center justify-between text-[14px] text-coal">
+                    Walkthrough Nepal <Icon name="external-link" class="size-4 text-mute" />
+                  </span>
+                </span>
+              </a>
+              <a href="/features" class="flex items-center justify-between rounded-md bg-coal px-3.5 py-2.5 text-[14px] text-white hover:bg-signal">
+                See all features <Icon name="arrow-right" class="size-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {
+        links.map((l) => (
+          <a href={l.href} class:list={[navLink, path === l.href && "text-coal"]} aria-current={path === l.href ? "page" : undefined}>
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="hidden items-center gap-2 lg:flex">
+      <a href={LOGIN} target="_blank" rel="noreferrer" class={btnSecondary}>Log in</a>
+      <a href={SIGNUP} target="_blank" rel="noreferrer" class={btnPrimary}>
+        Start free trial
+      </a>
+    </div>
+
+    <div class="ml-auto flex items-center gap-2 lg:hidden">
+      <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "px-4"]}>Start free</a>
+      <details id="mobile-menu" class="group">
+        <summary class="flex size-10 cursor-pointer list-none items-center justify-center rounded-md bg-white ring-1 ring-line [&::-webkit-details-marker]:hidden">
+          <Icon name="menu" class="size-5 group-open:hidden" />
+          <Icon name="x" class="hidden size-5 group-open:block" />
+          <span class="sr-only">Menu</span>
+        </summary>
+        <div class="absolute inset-x-0 top-full max-h-[calc(100dvh-64px)] overflow-y-auto border-b border-line bg-paper px-5 pb-6 pt-2 shadow-xl">
+          {
+            featureGroups.map((group) => (
+              <div class="border-b border-line py-4">
+                <p class="m-0 font-mono text-[12px] uppercase text-mute">{group.label}</p>
+                <div class="mt-2 grid grid-cols-2 gap-x-3">
+                  {group.items.map((f) => (
+                    <a href={`/features/${f.slug}`} class="flex min-h-11 items-center gap-2 text-[15px] text-coal">
+                      <Icon name={f.icon} class="size-4 text-signal" />
+                      {f.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+          <div class="flex flex-col py-3">
+            <a href="/features" class="flex min-h-11 items-center text-[17px]">All features</a>
+            {links.map((l) => <a href={l.href} class="flex min-h-11 items-center text-[17px]">{l.label}</a>)}
+            <a href={LOGIN} target="_blank" rel="noreferrer" class="flex min-h-11 items-center text-[17px]">Log in</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>("#mobile-menu");
+  menu?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      menu.open = false;
+    }),
+  );
+
+  // Desktop mega menu: hover on pointer devices, click/Enter everywhere,
+  // closes on Escape, outside click or focus leaving the menu.
+  const mega = document.querySelector<HTMLElement>("[data-mega]");
+  const trigger = mega?.querySelector<HTMLButtonElement>("button");
+  const panel = mega?.querySelector<HTMLElement>("#mega-product");
+  const canHover = window.matchMedia("(hover: hover)");
+  let closeTimer: number | undefined;
+
+  const setOpen = (open: boolean) => {
+    if (!trigger || !panel) return;
+    trigger.setAttribute("aria-expanded", String(open));
+    panel.hidden = !open;
+  };
+  const isOpen = () => trigger?.getAttribute("aria-expanded") === "true";
+
+  trigger?.addEventListener("click", () => setOpen(!isOpen()));
+  mega?.addEventListener("pointerenter", () => {
+    if (!canHover.matches) return;
+    window.clearTimeout(closeTimer);
+    setOpen(true);
+  });
+  mega?.addEventListener("pointerleave", () => {
+    if (!canHover.matches) return;
+    window.clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(() => setOpen(false), 150);
+  });
+  mega?.addEventListener("focusout", (event) => {
+    if (!mega.contains(event.relatedTarget as Node | null)) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen()) {
+      setOpen(false);
+      trigger?.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (mega && !mega.contains(event.target as Node)) setOpen(false);
+  });
+</script>

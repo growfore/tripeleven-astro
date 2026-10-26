@@ -1,41 +1,54 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
 import ContactForm from "../components/ContactForm.astro";
-import Closing from "../components/Closing.astro";
+import { container, tagline, h1, lead } from "../lib/ui";
 
 const title = "Contact — TripEleven";
 const description =
   "Contact TripEleven for a demo, Enterprise pricing or a question about the platform. Send us a message and we'll get back to you quickly.";
-const ogTitle = "Contact — TripEleven";
-const ogDescription = "Talk to the TripEleven team.";
 const canonical = "https://tripeleven.com/contact";
+
+const reasons = [
+  ["calendar", "Book a walkthrough", "See trips, the website and bookings working for an agency like yours."],
+  ["layers", "Enterprise and white-label", "Dedicated onboarding, custom volume and terms."],
+  ["globe", "Nepal program", "Yearly plans in NPR for Nepal-based agencies."],
+] as const;
 ---
 
-<Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <main id="top" class="px-5 pb-[80px] pt-16 text-center lg:px-[55px]">
-      <h1 class="mx-auto max-w-[640px] font-display text-[40px] leading-[1.03]">
-        Let&apos;s get your agency live.
-      </h1>
-      <p
-        class="mx-auto mt-4 max-w-[560px] text-[17px] leading-[1.5] text-muted-foreground"
-      >
-        Questions about the platform, a demo, or Enterprise pricing? Send us a
-        message and we&apos;ll take it from there.
-      </p>
-      <div class="mx-auto mt-10 max-w-3xl text-left">
-        <ContactForm />
-        <p class="mt-8 text-center text-sm text-muted-foreground">
-          Prefer email? Write to us directly at{" "}
-          <a
-            href="mailto:hello@tripeleven.com"
-            class="font-medium text-foreground underline underline-offset-2"
-          >
-            hello@tripeleven.com
-          </a>
+<Layout {title} {description} {canonical}>
+  <main id="top" class="relative overflow-x-clip">
+    <div class:list={[container, "relative grid grid-cols-1 gap-14 pb-24 pt-16 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:pb-32 lg:pt-24"]}>
+      <div>
+        <p class={tagline}>Contact</p>
+        <h1 class:list={[h1, "mt-6"]}>Let's get your agency live</h1>
+        <p class:list={[lead, "mt-7 max-w-lg"]}>
+          Questions about the platform, a walkthrough, or Enterprise pricing?
+          Send a message and we'll take it from there.
+        </p>
+        <ul class="m-0 mt-12 flex list-none flex-col border-t border-line p-0">
+          {
+            reasons.map(([icon, t, d]) => (
+              <li class="flex gap-4 border-b border-line py-5">
+                <span class="inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-white text-coal ring-1 ring-line">
+                  <Icon name={icon} class="size-5" />
+                </span>
+                <span>
+                  <span class="block text-[16px] text-coal">{t}</span>
+                  <span class="block text-[15px] text-mute">{d}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="m-0 mt-8 text-[15px] text-mute">
+          Prefer email?
+          <a href="mailto:hello@tripeleven.com" class="text-coal underline decoration-line-strong underline-offset-4 hover:decoration-coal">hello@tripeleven.com</a>
         </p>
       </div>
-      <Closing />
-    </main>
-  </div>
+      <div class="rounded-2xl p-6 ring-1 ring-line sm:p-10">
+        <ContactForm />
+      </div>
+    </div>
+  </main>
 </Layout>

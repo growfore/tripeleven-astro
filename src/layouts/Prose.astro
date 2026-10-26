@@ -16,15 +16,16 @@ const heading = title.split(" — ")[0];
 ---
 
 <Layout {title} {description} {canonical}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
+  <div class="mx-auto w-full overflow-x-clip">
     <main
       id="top"
-      class="prose mx-auto max-w-3xl px-5 pb-[80px] pt-16 lg:px-[55px]"
+      class="prose mx-auto max-w-3xl px-5 pb-24 pt-16 lg:pt-24"
     >
-      <h1 class="mb-8 font-display text-[32px] leading-tight lg:text-[40px]">
+      <p class="m-0 font-mono text-[13px] uppercase text-signal">Legal</p>
+      <h1 class="mb-4 mt-6 font-display text-[40px] font-medium leading-[1.1] tracking-[-0.03em] text-coal lg:text-[56px]">
         {heading}
       </h1>
-      <p class="mb-6 text-sm leading-[1.8] text-muted-foreground">
+      <p class="mb-12 font-mono text-[12px] uppercase text-mute">
         Last updated: {updated}
       </p>
       <slot />

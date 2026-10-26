@@ -13,26 +13,26 @@
   class="fixed inset-x-0 bottom-0 z-[90] hidden p-3 sm:p-4"
 >
   <div
-    class="page-container"
+    class="mx-auto w-full max-w-[80rem]"
   >
     <div
-      class="flex flex-col gap-3 rounded-xl border border-light-blue bg-white p-4 shadow-xl sm:flex-row sm:items-center sm:gap-6 sm:p-5"
+      class="flex flex-col gap-3 rounded-xl bg-white p-4 shadow-xl ring-1 ring-line sm:flex-row sm:items-center sm:gap-6 sm:p-5"
     >
       <div class="flex-1">
         <h2
           id="cookie-banner-title"
-          class="font-display text-base font-semibold text-deep-navy"
+          class="text-[15px] font-medium text-coal"
         >
           Your privacy, your choice
         </h2>
-        <p id="cookie-banner-desc" class="mt-1 text-sm text-slate">
+        <p id="cookie-banner-desc" class="mt-1 text-sm text-mute">
           We use cookies to run this site and, with your permission, to understand
           how it is used. Choose <strong>Reject</strong> to store only this choice,
           <strong>Essentials only</strong> for the bare minimum, or
           <strong>Accept all</strong> to include analytics and live chat. See our
           <a
             href="/privacy#9-cookies-and-similar-technologies"
-            class="font-medium text-electric-ink underline underline-offset-2 hover:text-deep-navy"
+            class="font-medium text-coal underline underline-offset-2 hover:text-signal"
             >cookie policy</a
           >.
         </p>
@@ -41,21 +41,21 @@
         <button
           type="button"
           data-consent="reject"
-          class="min-h-11 rounded-lg border border-light-blue px-2 py-2 leading-tight sm:px-4 text-sm font-semibold text-deep-navy transition-colors hover:border-electric-ink hover:text-electric-ink"
+          class="min-h-11 rounded-lg px-2 py-2 leading-tight sm:px-4 text-sm font-medium text-coal ring-1 ring-line-strong transition hover:ring-coal"
         >
           Reject
         </button>
         <button
           type="button"
           data-consent="essentials"
-          class="min-h-11 rounded-lg border border-electric-ink px-2 py-2 leading-tight sm:px-4 text-sm font-semibold text-electric-ink transition-colors hover:bg-light-blue"
+          class="min-h-11 rounded-lg px-2 py-2 leading-tight sm:px-4 text-sm font-medium text-coal ring-1 ring-line-strong transition hover:ring-coal"
         >
           Essentials only
         </button>
         <button
           type="button"
           data-consent="all"
-          class="min-h-11 rounded-lg bg-electric-ink px-2 py-2 leading-tight sm:px-4 text-sm font-semibold text-white transition-colors hover:bg-deep-navy"
+          class="min-h-11 rounded-lg bg-coal px-2 py-2 leading-tight sm:px-4 text-sm font-medium text-white transition-colors hover:bg-signal"
         >
           Accept all
         </button>

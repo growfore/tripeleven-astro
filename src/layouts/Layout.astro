@@ -1,9 +1,11 @@
 ---
-import FloatingNav from "@/components/FloatingNav.astro";
-import Footer from "../components/Footer.astro";
+import Header from "@/components/site/Header.astro";
+import Footer from "@/components/site/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 
-import "@fontsource-variable/outfit";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
+import "@fontsource-variable/mona-sans";
 import "@/styles/global.css";
 
 const SITE_NAME = "TripEleven";
@@ -81,7 +83,7 @@ const jsonLd = {
       name="robots"
       content={noindex ? "noindex, nofollow" : "index, follow"}
     />
-    <meta name="theme-color" content="#041D38" />
+    <meta name="theme-color" content="#f4f3ef" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -160,14 +162,14 @@ const jsonLd = {
       }
     </script>
   </head>
-  <body class="m-0 overflow-x-hidden bg-background font-sans text-foreground">
+  <body class="m-0 overflow-x-hidden bg-paper font-sans text-coal">
     <a
       href="#top"
-      class="fixed left-4 top-3 z-[100] -translate-y-20 rounded-lg bg-white px-4 py-2 font-semibold text-deep-navy shadow-lg transition-transform focus:translate-y-0"
+      class="fixed left-4 top-3 z-[100] -translate-y-20 rounded-lg bg-white px-4 py-2 font-medium text-coal shadow-lg transition-transform focus:translate-y-0"
     >
       Skip to content
     </a>
-    {chrome && <FloatingNav />}
+    {chrome && <Header />}
     <slot />
     {chrome && <Footer />}
     <CookieBanner />

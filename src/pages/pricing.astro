@@ -1,21 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Pricing from "../components/Pricing.astro";
-import Closing from "../components/Closing.astro";
+import Icon from "../components/Icon.astro";
+import SectionHead from "../components/site/SectionHead.astro";
+import Faq from "../components/site/Faq.astro";
+import { plans, compare } from "../lib/plans";
+import { container, section, tagline, h1, lead, btnPrimary, btnSecondary } from "../lib/ui";
 
-const title = "Pricing — TripEleven";
+const title = "Pricing for tour operator software | TripEleven";
 const description =
-  "Try TripEleven free for 7 days. Compare Launch, Business and Enterprise plans for your travel business.";
-const ogTitle = "Pricing — TripEleven";
-const ogDescription = "Plans for every stage of your travel business.";
+  "TripEleven plans for tour and trekking agencies: Launch $29/month, Business $79/month, Enterprise custom. Bookings and Stripe payments on every plan. 7-day free trial.";
 const canonical = "https://tripeleven.com/pricing";
+
+const faqs = [
+  { q: "Is there a free trial?", a: "Yes. Every plan starts with a 7-day free trial." },
+  { q: "How much is yearly billing?", a: "Launch is $23/month billed yearly ($276/year) and Business is $63/month billed yearly ($756/year). Monthly billing is $29 and $79." },
+  { q: "Are bookings and payments included?", a: "Yes. Bookings, payments and receiving payments through your own Stripe keys are included on every plan." },
+  { q: "Can I use my own domain?", a: "Yes, a custom domain is included on Launch and higher." },
+  { q: "What is the difference between Launch and Business?", a: "Launch includes up to 45 trips, 200 blog posts, 5 GB of storage and 2 staff seats. Business adds unlimited trips and posts, 25 GB of storage, 25 staff seats, read-only API access and the option to remove TripEleven branding." },
+  { q: "Do you have pricing for agencies in Nepal?", a: "Yes. The Nepal program offers yearly plans priced in NPR. See the Nepal page for details." },
+  { q: "What does Enterprise include?", a: "Everything in Business plus white-label, unlimited storage and staff seats, dedicated onboarding and custom volume and terms. Contact us for a quote." },
+];
+
+const jsonLd = [
+  {
+    "@type": "SoftwareApplication",
+    name: "TripEleven",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: canonical,
+    offers: plans
+      .filter((p) => p.monthly)
+      .map((p) => ({ "@type": "Offer", name: p.name, price: p.monthly!.slice(1), priceCurrency: "USD", url: canonical })),
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  },
+];
 ---
 
-<Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
-  <div class="container mx-auto overflow-x-clip">
-    <main id="top">
-      <Pricing heading="h1" />
-      <Closing />
-    </main>
-  </div>
+<Layout {title} {description} {canonical} {jsonLd}>
+  <main id="top" class="overflow-x-clip">
+    <section class="relative">
+      <div class:list={[container, "relative pb-16 pt-16 lg:pb-28 lg:pt-24"]} data-billing>
+        <div class="mx-auto max-w-4xl text-center">
+          <p class={tagline}>Pricing</p>
+          <h1 class:list={[h1, "mt-7"]}>Plans for every stage of your agency</h1>
+          <p class:list={[lead, "mx-auto mt-7 max-w-2xl"]}>
+            Start with a 7-day free trial. Bookings, payments through your own
+            Stripe keys and trip inquiries are included on every plan.
+          </p>
+          <div class="mt-10 inline-flex rounded-lg bg-white p-1 ring-1 ring-line" role="group" aria-label="Billing period">
+            <button type="button" data-period="monthly" aria-pressed="false" class="rounded-md px-4 py-2 text-[14px] text-mute transition-colors aria-pressed:bg-coal aria-pressed:text-white">
+              Monthly
+            </button>
+            <button type="button" data-period="annual" aria-pressed="true" class="rounded-md px-4 py-2 text-[14px] text-mute transition-colors aria-pressed:bg-coal aria-pressed:text-white">
+              Yearly <span class="ml-1 font-mono text-[11px] uppercase opacity-70">Save 20%</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {
+            plans.map((p, i) => {
+              const dark = false;
+              const featured = i === 1;
+              return (
+                <article class:list={["relative flex flex-col overflow-hidden rounded-2xl p-8 lg:p-10", featured ? "ring-2 ring-signal" : "ring-1 ring-line"]}>
+                  {featured && <div class="absolute inset-x-0 top-0 h-2 bg-flag-blue grid-paper" />}
+                  <h2 class:list={["m-0 font-mono text-[13px] font-normal uppercase", featured ? "text-signal" : "text-mute"]}>{p.name}</h2>
+                  <p class:list={["m-0 mt-4 min-h-[52px] text-[16px] leading-relaxed", dark ? "text-white/75" : "text-mute"]}>{p.description}</p>
+                  <div class="mt-8 min-h-[104px]">
+                    {p.annual ? (
+                      <>
+                        <p class="m-0 font-display text-[56px] font-medium leading-none tracking-[-0.04em]">
+                          <span data-price data-monthly={p.monthly} data-annual={p.annual.price}>{p.annual.price}</span>
+                          <span class:list={["text-[17px] tracking-normal", dark ? "text-white/55" : "text-mute"]}> /month</span>
+                        </p>
+                        <p class:list={["m-0 mt-3 text-[14px]", dark ? "text-white/55" : "text-mute"]} data-note data-monthly="Billed monthly" data-annual={p.annual.total}>
+                          {p.annual.total}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p class="m-0 font-display text-[56px] font-medium leading-none tracking-[-0.04em]">Custom</p>
+                        <p class="m-0 mt-3 text-[14px] text-mute">Volume pricing and terms</p>
+                      </>
+                    )}
+                  </div>
+                  <a
+                    href={p.href}
+                    target={p.href.startsWith("http") ? "_blank" : undefined}
+                    rel={p.href.startsWith("http") ? "noreferrer" : undefined}
+                    class:list={["mt-8", dark ? `${btnPrimary} min-h-11` : `${btnSecondary} min-h-11`]}
+                  >
+                    {p.cta}
+                  </a>
+                  <ul class:list={["m-0 mt-8 flex list-none flex-col gap-3 border-t p-0 pt-8", dark ? "border-white/10" : "border-line"]}>
+                    {p.highlights.map((h) => (
+                      <li class:list={["flex gap-3 text-[15px] leading-snug", dark ? "text-white/85" : "text-coal"]}>
+                        <Icon name="check" class:list={["mt-0.5 size-4 shrink-0", dark ? "text-signal-soft" : "text-signal"]} />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })
+          }
+        </div>
+        <p class="m-0 mt-8 text-center text-[15px] text-mute">
+          Agency based in Nepal? <a href="/nepal" class="font-medium text-coal underline decoration-line-strong underline-offset-4 hover:decoration-coal">See yearly plans in NPR</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="compare-heading">
+      <div class={container}>
+        <SectionHead id="compare-heading" align="split" tagline="Compare" title="Every plan, side by side" text="Everything included in Launch, Business and Enterprise." />
+        <div class="mt-12 overflow-x-auto rounded-2xl ring-1 ring-line">
+          <table class="w-full min-w-[640px] border-collapse text-left">
+            <thead>
+              <tr class="border-b border-line">
+                <th scope="col" class="w-2/5 p-5 font-mono text-[12px] font-medium uppercase text-mute lg:px-8">Feature</th>
+                {plans.map((p) => <th scope="col" class="p-5 text-[16px] font-normal text-coal">{p.name}</th>)}
+              </tr>
+            </thead>
+            {
+              compare.map((g) => (
+                <tbody>
+                  <tr class="bg-paper-2/50">
+                    <th scope="colgroup" colspan="4" class="px-5 py-3 font-mono text-[12px] font-medium uppercase text-mute lg:px-8">{g.title}</th>
+                  </tr>
+                  {g.rows.map(([label, ...vals]) => (
+                    <tr class="border-t border-line">
+                      <th scope="row" class="p-5 text-[15px] font-normal text-coal lg:px-8">{label}</th>
+                      {vals.map((v) => (
+                        <td class="p-5 text-[15px] text-coal">
+                          {v === "✓" ? <><Icon name="check" class="size-5 text-signal" /><span class="sr-only">Included</span></> : v === "—" ? <span class="text-mute/60" aria-label="Not included">—</span> : v}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              ))
+            }
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="faq-heading">
+      <div class={container}>
+        <Faq items={faqs} title="Pricing questions" />
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-billing]");
+  const buttons = root?.querySelectorAll<HTMLButtonElement>("[data-period]") ?? [];
+  const apply = (period: "monthly" | "annual") => {
+    buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.period === period)));
+    root?.querySelectorAll<HTMLElement>("[data-price], [data-note]").forEach((el) => {
+      el.textContent = el.dataset[period] ?? el.textContent;
+    });
+  };
+  buttons.forEach((b) => b.addEventListener("click", () => apply(b.dataset.period as "monthly" | "annual")));
+</script>

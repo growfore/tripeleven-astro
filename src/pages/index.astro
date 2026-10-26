@@ -1,33 +1,329 @@
 ---
+import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import HeroV2 from "../components/HeroV2.astro";
-import Showcase from "../components/Showcase.astro";
-import Platform from "../components/Platform.astro";
-import Integrations from "../components/Integrations.astro";
-import Extras from "../components/Extras.astro";
-import Pricing from "../components/Pricing.astro";
-import Faq from "../components/Faq.astro";
-import Closing from "../components/Closing.astro";
+import Icon from "../components/Icon.astro";
+import Shot from "../components/site/Shot.astro";
+import SectionHead from "../components/site/SectionHead.astro";
+import PathCard from "../components/site/PathCard.astro";
+import PixelEdge from "../components/site/PixelEdge.astro";
+import Faq from "../components/site/Faq.astro";
+import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
+import { featureGroups, getFeature } from "../lib/features";
+import { clients, domain } from "../lib/clients";
+import { plans } from "../lib/plans";
+import { container, section, tagline, h1, h2, h4, lead, body, btnPrimary, btnSecondary, iconTile, SIGNUP } from "../lib/ui";
 
-const title = "TripEleven — Build, manage and sell trips online";
+const title = "Booking website software for tour & trekking agencies | TripEleven";
 const description =
-  "The platform for tour and trekking agencies. Build your catalog, publish a full website, and collect trip inquiries — no code, no developers.";
-const ogTitle = "TripEleven — Build, manage and sell trips online";
-const ogDescription = "The platform for tour and trekking agencies.";
+  "TripEleven is tour operator software for trekking and tour agencies: build structured trips, publish a branded website, and take bookings and payments through your own Stripe account.";
 const canonical = "https://tripeleven.com/";
+
+const [build, sell] = ["build", "sell"].map((k) => featureGroups.find((g) => g.key === k)!);
+const pick = (slugs: string[]) =>
+  slugs.map((s) => {
+    const f = getFeature(s)!;
+    return { icon: f.icon, name: f.name, blurb: f.blurb, href: `/features/${f.slug}` };
+  });
+
+const collage = {
+  left: clients.slice(0, 2),
+  right: clients.slice(2, 4),
+};
+
+const engine = [
+  {
+    flag: "bg-flag-red",
+    edge: "text-flag-red",
+    image: "/mockups/featured-trips.webp",
+    icon: "globe" as const,
+    title: "Every trip becomes a page",
+    text: "Publish a trip and it appears on your website with its itinerary, pricing, FAQs and a way to book or ask. Feature your best trips so they lead.",
+  },
+  {
+    flag: "bg-flag-green",
+    edge: "text-flag-green",
+    image: "/mockups/navigation.webp",
+    icon: "compass" as const,
+    title: "Built for search, by default",
+    text: "Per-trip meta, canonical and Open Graph, JSON-LD schema, auto-slugs with 301 redirects, and navigation that builds itself from your trips.",
+  },
+];
+
+const faqs = [
+  {
+    q: "What is TripEleven?",
+    a: "TripEleven is an all-in-one platform for tour and trekking agencies. You build structured trips, publish a branded website from them, and take inquiries, bookings and payments from one dashboard.",
+  },
+  {
+    q: "Who is TripEleven for?",
+    a: "Tour and trekking agencies of any size, from small Kathmandu and Pokhara operators to agencies managing large catalogs worldwide. Agencies in Nepal can choose NPR plans through the Nepal program.",
+  },
+  { q: "Do I need a developer or coding skills?", a: "No. You build trips, brand your website, connect your domain and publish from the dashboard." },
+  {
+    q: "Can travelers book and pay on my website?",
+    a: "Yes. Travelers can book from trip pages, and payments are received through your own Stripe keys. Bookings and payments are included on every plan.",
+  },
+  {
+    q: "How do trip inquiries work?",
+    a: "Every trip has an inquiry form, with your phone, email and WhatsApp shown together. Form inquiries land in your dashboard as trackable leads.",
+  },
+  { q: "Can I use my own domain?", a: "Yes. You can connect a custom domain on Launch and higher." },
+  {
+    q: "Is TripEleven good for SEO?",
+    a: "Every trip has per-trip meta, canonical and Open Graph tags, JSON-LD schema, and auto-slugs with permanent 301 redirects, plus a redirect manager with cycle detection.",
+  },
+  {
+    q: "How does AI itinerary generation work?",
+    a: "Enter up to 10 trip topics and a style, and Claude drafts day-by-day itineraries in one batch. Each draft opens in the trip builder for review before publishing. On Launch it uses your own API key.",
+  },
+  {
+    q: "How much does TripEleven cost?",
+    a: "Launch is $29/month and Business is $79/month, or $23 and $63/month billed yearly. Enterprise is custom. Every plan starts with a 7-day free trial.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@type": "SoftwareApplication",
+    name: "TripEleven",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: canonical,
+    description,
+    featureList: featureGroups.flatMap((g) => g.items.map((f) => f.name)),
+    offers: plans
+      .filter((p) => p.monthly)
+      .map((p) => ({ "@type": "Offer", name: p.name, price: p.monthly!.slice(1), priceCurrency: "USD" })),
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  },
+];
 ---
 
-<Layout {title} {description} {ogTitle} {ogDescription} {canonical}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-background">
-    <main id="top" class="flex flex-col gap-12 md:gap-20 items-center">
-      <HeroV2 />
-      <Showcase />
-      <Platform />
-      <Integrations />
-      <Extras />
-      <Pricing />
-      <Faq />
-      <Closing />
-    </main>
-  </div>
+<Layout {title} {description} {canonical} {jsonLd}>
+  <main id="top" class="overflow-x-clip">
+    <!-- Hero -->
+    <section class:list={[container, "pt-16 text-center lg:pt-24"]}>
+      <p class={tagline}>Built for tour and trekking agencies</p>
+      <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>Booking website software for tour and trekking agencies</h1>
+      <p class:list={[lead, "mx-auto mt-6 max-w-2xl"]}>
+        Build structured trips, publish a branded website on your own domain,
+        and take bookings and payments through your own Stripe account. No
+        developers.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>
+        <a href="/features" class:list={[btnSecondary, "min-h-10 px-4"]}>Explore features</a>
+      </div>
+      <p class="m-0 mt-4 text-[13px] text-mute">7-day free trial · Plans from $23/month · Bookings on every plan</p>
+    </section>
+
+    <!-- Collage -->
+    <section class:list={[container, "mt-14 lg:mt-16"]} aria-label="TripEleven dashboard and agency websites">
+      <div class="relative h-[260px] overflow-hidden rounded-2xl bg-flag-blue grid-paper sm:h-[540px] lg:h-[620px]">
+        <div class="absolute inset-0 grid grid-cols-1 gap-4 px-4 sm:grid-cols-[1fr_2.4fr_1fr] sm:gap-6 sm:px-6">
+          <div class="-mt-16 hidden flex-col gap-6 sm:flex">
+            {
+              collage.left.map((c) => (
+                <Picture {...pictureProps} src={asset(c.image)} widths={cardWidths} sizes="22vw" alt={`${c.name} website`} class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg" />
+              ))
+            }
+          </div>
+          <div class="pt-6 sm:pt-14">
+            <Picture
+              {...pictureProps}
+              src={asset("/mockups/hero-image.webp")}
+              widths={screenshotWidths}
+              sizes="(min-width: 1280px) 640px, 54vw"
+              alt="TripEleven dashboard listing an agency's treks with duration, capacity, price and status"
+              class="block h-auto w-full rounded-xl shadow-[0_30px_60px_-20px_rgba(22,22,22,0.45)]"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="-mt-6 hidden flex-col gap-6 sm:flex">
+            {
+              collage.right.map((c) => (
+                <Picture {...pictureProps} src={asset(c.image)} widths={cardWidths} sizes="22vw" alt={`${c.name} website`} class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg" />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logos -->
+    <section class:list={[container, "mt-6"]} aria-labelledby="live-heading">
+      <div class="flex flex-col items-center gap-6 rounded-2xl px-6 py-6 ring-1 ring-line lg:flex-row lg:gap-10 lg:px-8">
+        <p id="live-heading" class="m-0 shrink-0 text-[14px] text-coal">Agencies live on TripEleven</p>
+        <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-10 gap-y-5 p-0 lg:justify-between">
+          {
+            clients
+              .filter((c) => c.logo)
+              .map((c) => (
+                <li>
+                  <a href={c.href} target="_blank" rel="noreferrer" title={c.name} class="block opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
+                    <img src={c.logo!.src} width={c.logo!.width} height={c.logo!.height} alt={c.name} loading="lazy" class:list={["h-8 w-auto max-w-[130px] object-contain", c.logo!.invert && "invert"]} />
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- Paths -->
+    <section class={section} aria-labelledby="platform-heading">
+      <div class={container}>
+        <SectionHead
+          id="platform-heading"
+          align="split"
+          tagline="The platform"
+          title="Build your trips, publish your website, sell online."
+          text="Everything starts from the same structured trip. Build it once, and it becomes a page on your branded website, an entry in your catalog, and a way to book or ask."
+        />
+        <div class="mt-12 flex flex-col gap-6">
+          <PathCard
+            flag="yellow"
+            icon="route"
+            label={build.label}
+            title="Structured trips, not copy-pasted pages"
+            text="A guided trip builder for itineraries, trip facts, altitude charts, pricing tiers and FAQs. Draft a batch with AI, then refine every day yourself."
+            href="/features/tour-itinerary-builder"
+            linkLabel="Explore trip builder"
+            items={pick(["tour-itinerary-builder", "ai-itinerary-generator", "travel-media-library"])}
+          >
+            <Shot src="/mockups/itinerary-form.webp" alt="TripEleven trip builder editing a trek itinerary day by day" />
+          </PathCard>
+          <PathCard
+            flag="green"
+            icon="globe"
+            label="Publish"
+            title="A branded website from your catalog"
+            text="Every trip becomes a page on your own domain, in your logo, colors and fonts, alongside travel guides, info pages and your team."
+            href="/features/travel-website-branding"
+            linkLabel="Explore your website"
+            items={pick(["travel-website-branding", "travel-blog-software", "travel-trust-signals"])}
+            reverse
+          >
+            <Shot src="/mockups/website-demo-for-cta-card.webp" alt="Walkthrough Nepal, an agency website published on TripEleven" />
+          </PathCard>
+          <PathCard
+            flag="blue"
+            icon="calendar"
+            label={sell.label}
+            title="Bookings, payments and inquiries in one place"
+            text="Travelers book from the trip page or send a question. Payments go to your own Stripe account, and every lead lands in one dashboard."
+            href="/features/online-booking-software"
+            linkLabel="Explore online booking"
+            items={pick(["online-booking-software", "tour-payments-stripe", "trip-inquiry-management"])}
+          >
+            <Shot src="/mockups/help/bookings.png" alt="TripEleven bookings list with trip, departure, travelers, total and payment status" />
+          </PathCard>
+        </div>
+      </div>
+    </section>
+
+    <!-- Engine -->
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="engine-heading">
+      <div class={container}>
+        <SectionHead
+          id="engine-heading"
+          align="split"
+          tagline="The engine"
+          title="One structured trip powers everything."
+          text="No pasting the same itinerary into five places. Change a trip once and the website, navigation and search data follow."
+        />
+        <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {
+            engine.map((e) => (
+              <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+                <div class:list={["relative flex h-[340px] items-center justify-center p-8 grid-paper sm:h-[400px]", e.flag]}>
+                  <div class="w-full max-w-lg">
+                    <Shot src={e.image} alt={`${e.title} in TripEleven`} sizes="(min-width: 1024px) 512px, 90vw" />
+                  </div>
+                  <PixelEdge side="bottom" class={e.edge} />
+                </div>
+                <div class="p-8 pt-24">
+                  <span class={iconTile}><Icon name={e.icon} class="size-4" /></span>
+                  <h3 class:list={[h4, "mt-4 text-[18px]"]}>{e.title}</h3>
+                  <p class:list={[body, "mt-2"]}>{e.text}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Statement -->
+    <section class:list={[section, "pt-8 text-center lg:pt-12"]}>
+      <div class={container}>
+        <h2 class:list={[h2, "mx-auto max-w-3xl text-[clamp(36px,4.4vw,60px)] leading-[1.1]"]}>A website your travelers actually book from</h2>
+        <p class:list={[lead, "mx-auto mt-6 max-w-xl"]}>
+          Live in days, on your own domain, with trips, guides and booking working from the first visit.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-2">
+          <a href={SIGNUP} target="_blank" rel="noreferrer" class={btnPrimary}>Start free trial</a>
+          <a href="/pricing" class={btnSecondary}>See pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customers -->
+    <section id="customers" class={section} aria-labelledby="customers-heading">
+      <div class={container}>
+        <SectionHead
+          id="customers-heading"
+          align="split"
+          tagline="Live sites"
+          title="If you prefer clicking, open a real agency site."
+          text="These agencies build and run their websites on TripEleven. Click through their trips, navigation and inquiry forms."
+        />
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            clients.slice(0, 6).map((c) => (
+              <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl ring-1 ring-line">
+                <div class="overflow-hidden bg-white">
+                  <Picture
+                    {...pictureProps}
+                    src={asset(c.image)}
+                    widths={cardWidths}
+                    sizes="(min-width: 1024px) 400px, (min-width: 640px) 46vw, 92vw"
+                    alt={`${c.name} website homepage`}
+                    class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div class="flex items-center gap-3 border-t border-line p-4">
+                  <span class="inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-line">
+                    {c.logo ? (
+                      <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt="" class:list={["max-h-5 w-auto max-w-7 object-contain", c.logo.invert && "invert"]} loading="lazy" />
+                    ) : (
+                      <Icon name="globe" class="size-4" />
+                    )}
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[15px] text-coal">{c.name}</span>
+                    <span class="block text-[13px] text-mute">
+                      TripEleven site · <span class="underline decoration-line-strong underline-offset-2">{domain(c.href)}</span>
+                    </span>
+                  </span>
+                  <Icon name="external-link" class="size-4 text-mute transition-colors group-hover:text-coal" />
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class={section} aria-labelledby="faq-heading">
+      <div class={container}>
+        <Faq items={faqs} title="Tour operator software FAQs" />
+      </div>
+    </section>
+  </main>
 </Layout>

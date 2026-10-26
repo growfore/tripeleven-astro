@@ -1,34 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { container, tagline, h1, lead, btnPrimary, btnSecondary } from "../lib/ui";
 
 const title = "Page not found — TripEleven";
-const description =
-  "The page you're looking for doesn't exist or has been moved.";
+const description = "The page you're looking for doesn't exist or has been moved.";
 ---
 
 <Layout {title} {description} noindex={true}>
-  <div class="mx-auto w-full max-w-[1510px] overflow-x-clip bg-card">
-    <main
-      id="top"
-      class="flex min-h-[80vh] items-center justify-center bg-background px-4"
-    >
-      <div class="max-w-md text-center">
-        <h1 class="text-7xl font-bold text-foreground">404</h1>
-        <h2 class="mt-4 text-xl font-semibold text-foreground">
-          Page not found
-        </h2>
-        <p class="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div class="mt-6">
-          <a
-            href="/"
-            class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </a>
-        </div>
+  <main id="top" class="relative overflow-hidden">
+    <div class:list={[container, "relative flex min-h-[70vh] flex-col items-center justify-center py-24 text-center"]}>
+      <p class={tagline}>404 · Off the trail</p>
+      <h1 class:list={[h1, "mt-7"]}>This page doesn't exist</h1>
+      <p class:list={[lead, "mt-6 max-w-lg"]}>It may have moved, or the link may be wrong. Head back and pick a route.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/" class={btnPrimary}>Go home <Icon name="arrow-right" class="size-4" /></a>
+        <a href="/features" class={btnSecondary}>See features</a>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </Layout>

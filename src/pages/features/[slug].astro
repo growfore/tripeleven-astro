@@ -1,0 +1,337 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/Icon.astro";
+import Shot from "../../components/site/Shot.astro";
+import SectionHead from "../../components/site/SectionHead.astro";
+import PixelEdge from "../../components/site/PixelEdge.astro";
+import Faq from "../../components/site/Faq.astro";
+import { asset, screenshotWidths, pictureProps } from "../../lib/images";
+import { features, getFeature, featureGroups } from "../../lib/features";
+import { content, examples } from "../../lib/feature-content";
+import {
+  container,
+  section,
+  tagline,
+  h1,
+  h3,
+  h4,
+  lead,
+  body,
+  btnPrimary,
+  btnSecondary,
+  iconTile,
+  flags,
+  SIGNUP,
+} from "../../lib/ui";
+
+export function getStaticPaths() {
+  return features.map((feature) => ({
+    params: { slug: feature.slug },
+    props: { feature },
+  }));
+}
+
+const { feature } = Astro.props;
+const copy = content[feature.slug];
+const example = examples[feature.slug];
+const faqs = [...feature.faqs, ...copy.moreFaqs];
+const [deepA, deepB] = copy.sections;
+const group = featureGroups.find((g) => g.slugs.includes(feature.slug))!;
+const flag = flags[group.flag];
+const canonical = `https://tripeleven.com/features/${feature.slug}`;
+const related = feature.related.map((slug) => getFeature(slug)).filter((f) => f !== undefined);
+const relatedFlag = (slug: string) => flags[featureGroups.find((g) => g.slugs.includes(slug))!.flag];
+const name = feature.name.toLowerCase();
+const [summaryLead, ...summaryRest] = copy.summary.split(/(?<=\.)\s/);
+
+const jsonLd = [
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://tripeleven.com/" },
+      { "@type": "ListItem", position: 2, name: "Features", item: "https://tripeleven.com/features" },
+      { "@type": "ListItem", position: 3, name: feature.name, item: canonical },
+    ],
+  },
+  {
+    "@type": "SoftwareApplication",
+    "@id": `${canonical}#feature`,
+    name: `TripEleven ${feature.name}`,
+    description: copy.summary,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: canonical,
+    isPartOf: { "@type": "SoftwareApplication", name: "TripEleven", url: "https://tripeleven.com/" },
+    featureList: feature.benefits.map((b) => `${b.title}: ${b.text}`),
+    audience: { "@type": "BusinessAudience", audienceType: "Tour and trekking agencies" },
+    offers: { "@type": "Offer", url: "https://tripeleven.com/pricing", description: "7-day free trial" },
+  },
+  {
+    "@type": "HowTo",
+    name: `How ${name} works in TripEleven`,
+    step: copy.steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.title, text: s.text })),
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  },
+];
+---
+
+<Layout title={feature.metaTitle} description={feature.metaDescription} {canonical} {jsonLd} ogTitle={feature.metaTitle}>
+  <main id="top" class="overflow-x-clip">
+    <!-- Hero -->
+    <section class:list={[container, "pt-8 lg:pt-10"]}>
+      <nav aria-label="Breadcrumb" class="text-[13px] text-mute">
+        <ol class="m-0 flex list-none flex-wrap items-center gap-2 p-0">
+          <li><a href="/" class="hover:text-coal">Home</a></li>
+          <li aria-hidden="true"><Icon name="chevron-right" class="size-3.5" /></li>
+          <li><a href="/features" class="hover:text-coal">Features</a></li>
+          <li aria-hidden="true"><Icon name="chevron-right" class="size-3.5" /></li>
+          <li aria-current="page" class="text-coal">{feature.name}</li>
+        </ol>
+      </nav>
+
+      <div class="mt-8 grid grid-cols-1 overflow-hidden rounded-2xl ring-1 ring-line lg:mt-10 lg:grid-cols-[1fr_1.1fr]">
+        <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
+          <span class:list={["inline-flex size-9 items-center justify-center rounded-lg text-white", flag.solid]}>
+            <Icon name={feature.icon} class="size-5" />
+          </span>
+          <p class:list={["m-0 mt-5 font-mono text-[13px] uppercase", flag.ink]}>{feature.eyebrow}</p>
+          <h1 class:list={[h1, "mt-4 text-[clamp(34px,3.4vw,48px)]"]}>{feature.headline}</h1>
+          <p class:list={[lead, "mt-5 max-w-lg"]}>{feature.intro}</p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>
+            <a href="/pricing" class:list={[btnSecondary, "min-h-10 px-4"]}>See pricing</a>
+          </div>
+          <p class="m-0 mt-4 text-[13px] text-mute">7-day free trial · No developers needed</p>
+        </div>
+        <div class:list={["relative flex min-h-[380px] items-center justify-center p-6 grid-paper sm:p-10", flag.panel]}>
+          <PixelEdge side="left" class={flag.edge} />
+          <div class="relative w-full">
+            <Picture
+              {...pictureProps}
+              src={asset(feature.image)}
+              widths={screenshotWidths}
+              sizes="(min-width: 900px) 46vw, 90vw"
+              alt={`${feature.name} in the TripEleven dashboard`}
+              class="block h-auto w-full rounded-xl shadow-[0_30px_60px_-20px_rgba(22,22,22,0.45)]"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+
+      <dl class="m-0 mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line lg:grid-cols-4">
+        {
+          copy.facts.map((fact) => (
+            <div class="bg-paper p-6">
+              <dt class="font-mono text-[12px] uppercase text-mute">{fact.label}</dt>
+              <dd class="m-0 mt-2 text-[15px] leading-snug text-coal">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- In short -->
+    <section class={section} aria-labelledby="summary-heading">
+      <div class={container}>
+        <p class={tagline}>In short</p>
+        <h2 id="summary-heading" class="sr-only">What is {name} in TripEleven?</h2>
+        <p class="m-0 mt-6 max-w-5xl font-display text-[clamp(26px,2.8vw,38px)] font-medium leading-[1.3] tracking-[-0.02em] text-coal">
+          {summaryLead}
+          <span class="text-mute"> {summaryRest.join(" ")}</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="how-heading">
+      <div class={container}>
+        <SectionHead
+          id="how-heading"
+          align="split"
+          tagline="How it works"
+          title={`How ${name} works`}
+          text="Four steps, all from the TripEleven dashboard. No developer and no extra tools."
+        />
+        <ol class="m-0 mt-12 grid list-none grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line p-0 ring-1 ring-line sm:grid-cols-2 lg:grid-cols-4">
+          {
+            copy.steps.map((step, i) => (
+              <li class="flex flex-col bg-paper p-7">
+                <span class:list={["font-mono text-[13px]", flag.ink]}>0{i + 1}</span>
+                <h3 class:list={[h4, "mt-12 text-[18px]"]}>{step.title}</h3>
+                <p class:list={[body, "mt-2"]}>{step.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <!-- Deep dive A -->
+    {
+      deepA && (
+        <section class:list={[section, "pt-0 lg:pt-0"]}>
+          <div class={container}>
+            <article class="grid grid-cols-1 overflow-hidden rounded-2xl ring-1 ring-line lg:grid-cols-2">
+              <div class:list={["relative order-2 flex min-h-[360px] items-center justify-center p-8 grid-paper sm:p-12 lg:order-1", flag.panel]}>
+                <PixelEdge side="right" class={flag.edge} />
+                <div class="relative w-full max-w-xl">
+                  <Shot src={feature.detailImage} crop={feature.detailCrop} alt={`${deepA.title}: ${feature.name} in TripEleven`} />
+                </div>
+              </div>
+              <div class="order-1 p-8 sm:p-12 lg:order-2 lg:p-14">
+                <p class:list={["m-0 font-mono text-[13px] uppercase", flag.ink]}>{deepA.eyebrow}</p>
+                <h2 class:list={[h3, "mt-4"]}>{deepA.title}</h2>
+                {deepA.paragraphs.map((p) => (
+                  <p class:list={[body, "mt-5 text-[16px] text-coal/80"]}>{p}</p>
+                ))}
+                <ul class="m-0 mt-10 flex list-none flex-col gap-5 p-0">
+                  {feature.benefits.map((b) => (
+                    <li class="flex gap-3">
+                      <span class={iconTile}><Icon name="check" class="size-4" /></span>
+                      <span>
+                        <span class="block text-[16px] text-coal">{b.title}</span>
+                        <span class="mt-0.5 block text-[14px] text-mute">{b.text}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Deep dive B -->
+    {
+      deepB && (
+        <section class:list={[section, "pt-0 lg:pt-0"]}>
+          <div class={container}>
+            <SectionHead align="split" tagline={deepB.eyebrow} title={deepB.title} text={deepB.paragraphs[0]} />
+            {deepB.paragraphs.slice(1).map((p) => (
+              <p class:list={[lead, "mt-6 lg:ml-[calc(50%+2.5rem)]"]}>{p}</p>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Example + difference -->
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="example-heading">
+      <div class:list={[container, "grid grid-cols-1 gap-6 lg:grid-cols-2"]}>
+        {
+          example && (
+            <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+              <div class="relative h-24 bg-flag-red grid-paper">
+                <PixelEdge side="bottom" class="text-flag-red" />
+              </div>
+              <div class="p-8 pt-20 sm:p-10 sm:pt-20">
+                <p class="m-0 font-mono text-[13px] uppercase text-flag-red-ink">Example</p>
+                <h2 id="example-heading" class:list={[h3, "mt-4"]}>{example.title}</h2>
+                <ol class="m-0 mt-8 list-none p-0">
+                  {example.paragraphs.map((p, i) => (
+                    <li class="relative border-l border-line-strong pb-8 pl-7 last:pb-0">
+                      <span class="absolute -left-[5px] top-1.5 size-2.5 rounded-full bg-flag-red-ink" />
+                      <p class="m-0 font-mono text-[12px] uppercase text-mute">{i === 0 ? "The situation" : "With TripEleven"}</p>
+                      <p class:list={[body, "mt-2 text-[16px] text-coal/85"]}>{p}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </article>
+          )
+        }
+        <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+          <div class:list={["relative h-24 grid-paper", flag.panel]}>
+            <PixelEdge side="bottom" class={flag.edge} />
+          </div>
+          <div class="p-8 pt-20 sm:p-10 sm:pt-20">
+            <p class:list={["m-0 font-mono text-[13px] uppercase", flag.ink]}>The difference</p>
+            <h2 class:list={[h3, "mt-4"]}>Without and with {name}</h2>
+            <ul class="m-0 mt-8 flex list-none flex-col gap-4 p-0">
+              {
+                copy.contrast.map((row) => (
+                  <li class="rounded-xl bg-white/60 p-5 ring-1 ring-line">
+                    <p class="m-0 flex items-start gap-2.5 text-[14px] text-mute line-through decoration-mute/40">
+                      <Icon name="x" class="mt-0.5 size-4 shrink-0" />
+                      {row.without}
+                    </p>
+                    <p class="m-0 mt-2.5 flex items-start gap-2.5 text-[16px] text-coal">
+                      <Icon name="check" class:list={["mt-0.5 size-4 shrink-0", flag.ink]} />
+                      {row.with}
+                    </p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Audience -->
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="audience-heading">
+      <div class={container}>
+        <SectionHead id="audience-heading" align="split" tagline="Who it's for" title="Built for tour and trekking agencies" text="TripEleven is made for agencies that sell structured, multi-day trips, from small teams to large catalogs." />
+        <div class="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line md:grid-cols-3">
+          {
+            copy.audience.map((line) => (
+              <div class="flex min-h-[180px] flex-col bg-paper p-7">
+                <span class={iconTile}><Icon name="users" class="size-4" /></span>
+                <p class="m-0 mt-auto pt-8 text-[18px] leading-snug text-coal">{line}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="faq-heading">
+      <div class={container}>
+        <Faq items={faqs} title={`${feature.name} FAQs`} />
+      </div>
+    </section>
+
+    <!-- Related -->
+    {
+      related.length > 0 && (
+        <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="related-heading">
+          <div class={container}>
+            <SectionHead id="related-heading" align="split" tagline="Works with" title="Features that pair well" text="Every TripEleven feature works from the same structured trip." />
+            <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {related.map((f) => {
+                const rf = relatedFlag(f.slug);
+                return (
+                  <a href={`/features/${f.slug}`} class="group block overflow-hidden rounded-2xl ring-1 ring-line">
+                    <div class:list={["relative h-[240px] overflow-hidden pl-6 pt-6 grid-paper", rf.panel]}>
+                      <Picture
+                        {...pictureProps}
+                        src={asset(f.image)}
+                        widths={screenshotWidths}
+                        sizes="560px"
+                        alt={`${f.name} in TripEleven`}
+                        class="block h-[260px] w-[560px] max-w-none rounded-tl-xl object-cover object-left-top shadow-[0_20px_40px_-15px_rgba(22,22,22,0.4)] transition-transform duration-500 group-hover:-translate-y-1"
+                      />
+                    </div>
+                    <div class="p-7">
+                      <span class={iconTile}><Icon name={f.icon} class="size-4" /></span>
+                      <h3 class:list={[h4, "mt-4 text-[18px]"]}>{f.name}</h3>
+                      <p class:list={[body, "mt-1.5"]}>{f.blurb}</p>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+</Layout>

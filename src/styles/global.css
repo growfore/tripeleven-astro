@@ -33,8 +33,25 @@
   --color-violet-soft: var(--violet-soft);
   --color-slate: var(--slate);
   --color-ink: var(--ink);
-  --font-sans: "Outfit Variable", sans-serif;
-  --font-display: "Outfit Variable", sans-serif;
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-coal: var(--coal);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
+  --color-flag-blue: var(--flag-blue);
+  --color-flag-green: var(--flag-green);
+  --color-flag-yellow: var(--flag-yellow);
+  --color-flag-red: var(--flag-red);
+  --color-flag-blue-ink: var(--flag-blue-ink);
+  --color-flag-green-ink: var(--flag-green-ink);
+  --color-flag-yellow-ink: var(--flag-yellow-ink);
+  --color-flag-red-ink: var(--flag-red-ink);
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Mona Sans Variable", "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
   --breakpoint-lg: 56.25rem;
 }
 
@@ -69,6 +86,28 @@
   --slate: #5b6b84;
   --ink: #041d38;
   --radius: 0.75rem;
+
+  /* Redesign palette: warm paper neutrals, near-black ink and one signal
+     blue taken from the TripEleven logo. */
+  --paper: #f1f0ee;
+  --paper-2: #e4e2df;
+  --coal: #161616;
+  --mute: #686868;
+  --line: rgb(22 22 22 / 0.1);
+  --line-strong: rgb(22 22 22 / 0.18);
+  --signal: #0a6fd8;
+  --signal-soft: #e0eefd;
+
+  /* Prayer-flag panels: the graph-paper backdrops behind product visuals.
+     -ink variants carry text on the paper background. */
+  --flag-blue: #8ecbff;
+  --flag-green: #a2e6b0;
+  --flag-yellow: #ffe07a;
+  --flag-red: #ffa391;
+  --flag-blue-ink: #0a6fd8;
+  --flag-green-ink: #17803d;
+  --flag-yellow-ink: #9a5b00;
+  --flag-red-ink: #c4321d;
 }
 
 .page-container {
@@ -132,6 +171,15 @@
 }
 
 @layer components {
+  /* Graph-paper panel. Set the colour with a bg-* utility. */
+  .grid-paper {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.55) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+  }
+
   .nav-link {
     transition: color 150ms ease;
   }
@@ -153,7 +201,8 @@
   .prose :where(h2, h3) {
     margin-block: 2rem 0.75rem;
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 500;
+    letter-spacing: -0.02em;
     scroll-margin-top: 5rem;
   }
 
@@ -184,13 +233,13 @@
   }
 
   .prose a {
-    color: var(--electric-ink);
+    color: var(--signal);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   .prose a:hover {
-    color: var(--deep-navy);
+    color: var(--coal);
   }
 
   .prose strong {

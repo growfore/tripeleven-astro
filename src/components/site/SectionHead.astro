@@ -1,0 +1,30 @@
+---
+import { tagline as taglineClass, h2, lead } from "../../lib/ui";
+
+interface Props {
+  tagline: string;
+  title: string;
+  text?: string;
+  align?: "left" | "center" | "split";
+  id?: string;
+}
+const { tagline, title, text, align = "left", id } = Astro.props;
+---
+
+{
+  align === "split" ? (
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-end lg:gap-20">
+      <div>
+        <p class={taglineClass}>{tagline}</p>
+        <h2 id={id} class:list={[h2, "mt-5"]}>{title}</h2>
+      </div>
+      {text && <p class:list={[lead, "lg:pb-1"]}>{text}</p>}
+    </div>
+  ) : (
+    <div class:list={["max-w-3xl", align === "center" && "mx-auto text-center"]}>
+      <p class={taglineClass}>{tagline}</p>
+      <h2 id={id} class:list={[h2, "mt-5"]}>{title}</h2>
+      {text && <p class:list={[lead, "mt-6", align === "center" && "mx-auto max-w-2xl"]}>{text}</p>}
+    </div>
+  )
+}

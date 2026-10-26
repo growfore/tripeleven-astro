@@ -1,0 +1,74 @@
+---
+// Two-column card: copy on one side, a graph-paper panel with a product
+// visual on the other. Mirrors Relume's "Publish / Export" cards.
+import Icon from "../Icon.astro";
+import PixelEdge from "./PixelEdge.astro";
+import { flags, type Flag, h3, body, btnPrimary, btnSecondary, iconTile, SIGNUP } from "../../lib/ui";
+
+import type { ComponentProps } from "astro/types";
+
+type IconName = ComponentProps<typeof Icon>["name"];
+interface Props {
+  flag: Flag;
+  icon: IconName;
+  label: string;
+  title: string;
+  text: string;
+  href: string;
+  linkLabel: string;
+  items: { icon: IconName; name: string; blurb: string; href?: string }[];
+  reverse?: boolean;
+  /** Primary button; defaults to the free trial. */
+  cta?: { href: string; label: string };
+}
+const {
+  flag,
+  icon,
+  label,
+  title,
+  text,
+  href,
+  linkLabel,
+  items,
+  reverse = false,
+  cta = { href: SIGNUP, label: "Start free trial" },
+} = Astro.props;
+const external = cta.href.startsWith("http");
+const f = flags[flag];
+---
+
+<article class="grid grid-cols-1 overflow-hidden rounded-2xl ring-1 ring-line lg:grid-cols-2">
+  <div class:list={["flex flex-col p-8 sm:p-12 lg:p-14", reverse && "lg:order-2"]}>
+    <span class:list={["inline-flex size-9 items-center justify-center rounded-lg text-white", f.solid]}>
+      <Icon name={icon} class="size-5" />
+    </span>
+    <p class:list={["m-0 mt-5 font-mono text-[13px] uppercase", f.ink]}>{label}</p>
+    <h3 class:list={[h3, "mt-4 max-w-md"]}>{title}</h3>
+    <p class:list={[body, "mt-5 max-w-md text-[16px] text-coal/80"]}>{text}</p>
+    <div class="mt-7 flex flex-wrap gap-2">
+      <a href={cta.href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} class={btnPrimary}>{cta.label}</a>
+      <a href={href} class={btnSecondary}>{linkLabel}</a>
+    </div>
+    <ul class="m-0 mt-12 flex list-none flex-col gap-5 p-0">
+      {
+        items.map((item) => (
+          <li>
+            <a href={item.href ?? href} class="group flex gap-3">
+              <span class={iconTile}><Icon name={item.icon} class="size-4" /></span>
+              <span>
+                <span class="block text-[16px] text-coal group-hover:underline group-hover:decoration-line-strong group-hover:underline-offset-4">{item.name}</span>
+                <span class="mt-0.5 block text-[14px] text-mute">{item.blurb}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class:list={["relative flex min-h-[380px] items-center justify-center p-8 sm:p-12 grid-paper", f.panel, reverse && "lg:order-1"]}>
+    <PixelEdge side={reverse ? "right" : "left"} class={f.edge} />
+    <div class="relative w-full max-w-xl">
+      <slot />
+    </div>
+  </div>
+</article>
