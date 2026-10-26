@@ -78,7 +78,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={feature.metaTitle} description={feature.metaDescription} {canonical} {jsonLd} ogTitle={feature.metaTitle}>
+<Layout title={feature.metaTitle} description={feature.metaDescription} {canonical} {jsonLd} ogTitle={feature.metaTitle} ogImage={`/og${featureHref(feature)}.jpg`}>
   <main id="top" class="overflow-x-clip">
     <!-- Hero -->
     <section class:list={[container, "pt-8 lg:pt-10"]}>

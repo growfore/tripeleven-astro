@@ -55,7 +55,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={it.metaTitle} description={it.metaDescription} {canonical} {jsonLd}>
+<Layout title={it.metaTitle} description={it.metaDescription} {canonical} {jsonLd} ogImage={`/og/integration/${it.slug}.jpg`}>
   <main id="top" class="overflow-x-clip">
     <section class:list={[container, "pt-8 lg:pt-10"]}>
       <nav aria-label="Breadcrumb" class="text-[13px] text-mute">
