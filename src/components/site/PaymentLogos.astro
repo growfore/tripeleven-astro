@@ -34,7 +34,7 @@ const providers: Provider[] = [
     <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-8 gap-y-4 p-0 lg:gap-x-12">
       {
         providers.map((p) => (
-          <li class="group flex items-center gap-2 opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
+          <li class="flex items-center gap-2">
             {"brand" in p ? (
               <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill={brands[p.brand].hex} aria-hidden="true">
                 <path d={brands[p.brand].path} />
