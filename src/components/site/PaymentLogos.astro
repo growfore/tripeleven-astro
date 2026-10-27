@@ -1,0 +1,53 @@
+---
+import Icon from "../Icon.astro";
+import { brands, type Brand } from "../../lib/brands";
+import { container } from "../../lib/ui";
+
+// Payment providers agencies can connect, shown like the customer logo rail.
+// These are integrations, not customers: the label says what they are.
+interface Props {
+  label?: string;
+  id?: string;
+}
+const { label = "Take payments with", id = "payments-heading" } = Astro.props;
+
+type Provider =
+  | { name: string; brand: Brand }
+  | { name: string; img: string }
+  | { name: string; icon: "landmark" };
+
+const providers: Provider[] = [
+  { name: "Stripe", brand: "stripe" },
+  { name: "PayPal", brand: "paypal" },
+  { name: "Razorpay", brand: "razorpay" },
+  // Paystack is not in the Simple Icons set, so it uses its own mark.
+  { name: "Paystack", img: "/payment-logos/paystack.png" },
+  { name: "Xendit", brand: "xendit" },
+  { name: "Mercado Pago", brand: "mercadopago" },
+  { name: "Bank transfer", icon: "landmark" },
+];
+---
+
+<section class:list={[container, "mt-3"]} aria-labelledby={id}>
+  <div class="flex flex-col items-center gap-6 rounded-2xl px-6 py-6 ring-1 ring-line lg:flex-row lg:gap-10 lg:px-8">
+    <p id={id} class="m-0 shrink-0 text-[14px] text-coal">{label}</p>
+    <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-8 gap-y-4 p-0 lg:justify-between">
+      {
+        providers.map((p) => (
+          <li class="group flex items-center gap-2 opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
+            {"brand" in p ? (
+              <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill={brands[p.brand].hex} aria-hidden="true">
+                <path d={brands[p.brand].path} />
+              </svg>
+            ) : "img" in p ? (
+              <img src={p.img} width="24" height="24" alt="" loading="lazy" class="size-6 shrink-0 object-contain" />
+            ) : (
+              <Icon name={p.icon} class="size-6 shrink-0 text-coal" />
+            )}
+            <span class="text-[15px] font-medium text-coal">{p.name}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
+import PaymentLogos from "../components/site/PaymentLogos.astro";
 import Icon from "../components/Icon.astro";
 import SectionHead from "../components/site/SectionHead.astro";
 import PathCard from "../components/site/PathCard.astro";
@@ -256,6 +257,9 @@ const jsonLd = [
         </ul>
       </div>
     </section>
+
+    <!-- Payment providers -->
+    <PaymentLogos />
 
     <!-- Features -->
     <section id="features" class={section} aria-labelledby="features-heading">

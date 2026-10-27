@@ -6,6 +6,7 @@ import Shot from "../components/site/Shot.astro";
 import SectionHead from "../components/site/SectionHead.astro";
 import PathCard from "../components/site/PathCard.astro";
 import PixelEdge from "../components/site/PixelEdge.astro";
+import PaymentLogos from "../components/site/PaymentLogos.astro";
 import Faq from "../components/site/Faq.astro";
 import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
 import { featureGroups, getFeature, featureHref } from "../lib/features";
@@ -173,6 +174,9 @@ const jsonLd = [
         </ul>
       </div>
     </section>
+
+    <!-- Payment providers -->
+    <PaymentLogos />
 
     <!-- Paths -->
     <section class={section} aria-labelledby="platform-heading">
