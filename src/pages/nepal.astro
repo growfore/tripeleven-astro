@@ -240,9 +240,9 @@ const jsonLd = [
 
     <!-- Logos -->
     <section class:list={[container, "mt-6"]} aria-labelledby="live-heading">
-      <div class="flex flex-col items-center gap-6 rounded-2xl px-6 py-6 ring-1 ring-line lg:flex-row lg:gap-10 lg:px-8">
-        <p id="live-heading" class="m-0 shrink-0 text-[14px] text-coal">Nepal agencies on TripEleven</p>
-        <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-10 gap-y-5 p-0 lg:justify-between">
+      <div class="flex flex-col items-center gap-6 rounded-2xl px-6 py-8 ring-1 ring-line lg:px-8">
+        <p id="live-heading" class="m-0 text-center text-[14px] text-coal">Nepal agencies on TripEleven</p>
+        <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-10 gap-y-5 p-0 lg:gap-x-14">
           {
             clients
               .filter((c) => c.logo)
@@ -257,9 +257,6 @@ const jsonLd = [
         </ul>
       </div>
     </section>
-
-    <!-- Payment providers -->
-    <PaymentLogos />
 
     <!-- Features -->
     <section id="features" class={section} aria-labelledby="features-heading">
@@ -284,6 +281,9 @@ const jsonLd = [
         </div>
       </div>
     </section>
+
+    <!-- Payment providers -->
+    <PaymentLogos />
 
     <!-- Workflow -->
     <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="workflow-heading">
