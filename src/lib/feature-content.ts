@@ -98,7 +98,7 @@ export const content: Record<string, FeatureContent> = {
         title: "See bookings and payments together",
         paragraphs: [
           "Payments are not a separate system. They sit alongside the bookings in your dashboard, so your team can answer a traveler's question without opening several tools.",
-          "Every provider has a test mode, so you can make a booking on your own site without real money moving. Because the feature is part of every plan, you can set all of this up during the 7-day free trial.",
+          "Every provider has a test mode, so you can make a booking on your own site without real money moving. Payments are part of every paid plan, so once you subscribe you can set all of this up the same day. They are not available during the 7-day free trial.",
         ],
       },
     ],

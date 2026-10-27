@@ -8,13 +8,13 @@ import { container, section, tagline, h1, lead, btnPrimary, btnSecondary } from 
 
 const title = "Pricing for tour operator software | TripEleven";
 const description =
-  "Tour operator software pricing: Launch $29/month, Business $79/month, Enterprise custom. Bookings and online payments on every plan, with a 7-day free trial.";
+  "Tour operator software pricing: Launch $29/month, Business $79/month, Enterprise custom. Bookings and online payments on every paid plan, with a 7-day free trial to build your site first.";
 const canonical = "https://tripeleven.com/pricing";
 
 const faqs = [
   { q: "Is there a free trial?", a: "Yes. Every plan starts with a 7-day free trial." },
   { q: "How much is yearly billing?", a: "Launch is $23/month billed yearly ($276/year) and Business is $63/month billed yearly ($756/year). Monthly billing is $29 and $79." },
-  { q: "Are bookings and payments included?", a: "Yes. Bookings, payments (Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago or bank transfer) and test mode are included on every plan." },
+  { q: "Are bookings and payments included?", a: "Yes, on every paid plan. Bookings, payments (Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago or bank transfer) and test mode are included. They switch on when you subscribe, not during the 7-day free trial." },
   { q: "Can I use my own domain?", a: "Yes, a custom domain is included on Launch and higher." },
   { q: "What is the difference between Launch and Business?", a: "Launch includes up to 45 trips, 200 blog posts, 5 GB of storage and 2 staff seats. Business adds unlimited trips and posts, 25 GB of storage, 25 staff seats, read-only API access and the option to remove TripEleven branding." },
   { q: "Do you have pricing for agencies in Nepal?", a: "Yes. The Nepal program offers yearly plans priced in NPR. See the Nepal page for details." },
@@ -48,7 +48,7 @@ const jsonLd = [
           <h1 class:list={[h1, "mt-7"]}>Tour operator software pricing</h1>
           <p class:list={[lead, "mx-auto mt-7 max-w-2xl"]}>
             Start with a 7-day free trial. Bookings, payments through your own
-            provider keys or bank transfer, and trip inquiries are included on every plan.
+            provider keys or bank transfer, and trip inquiries are included on every paid plan.
           </p>
           <div class="mt-10 inline-flex rounded-lg bg-white p-1 ring-1 ring-line" role="group" aria-label="Billing period">
             <button type="button" data-period="monthly" aria-pressed="false" class="rounded-md px-4 py-2 text-[14px] text-mute transition-colors aria-pressed:bg-coal aria-pressed:text-white">

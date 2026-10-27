@@ -38,7 +38,7 @@ export const features: Feature[] = [
     faqs: [
       { q: "Can travelers book directly on my website?", a: "Yes. Travelers can book from trip pages on your TripEleven website." },
       { q: "Where do I manage bookings?", a: "In your dashboard, where your team can track bookings and follow up." },
-      { q: "Are bookings included in every plan?", a: "Yes. Bookings and payments are included on every plan." },
+      { q: "Are bookings included in every plan?", a: "Yes, on every paid plan. Payments switch on when you subscribe, not during the 7-day free trial." },
     ],
     icon: "calendar",
     name: "Online booking",
@@ -91,7 +91,7 @@ export const features: Feature[] = [
       },
       {
         title: "On every plan",
-        text: "Receiving payments through your own provider keys is included on every plan.",
+        text: "Receiving payments through your own provider keys is included on every paid plan.",
       },
     ],
     related: ["online-booking-software", "trip-inquiry-management"],
