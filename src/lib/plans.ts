@@ -24,7 +24,7 @@ export const plans: Plan[] = [
       "Branded trip website and catalog",
       "Custom domain",
       "Trip inquiries by email and WhatsApp",
-      "Bookings and payments with your own Stripe keys",
+      "Bookings and payments with your own provider keys or bank transfer",
       "Up to 45 trips and 200 blog posts",
       "AI itinerary drafts (bring your own key)",
       "5 GB media storage · 2 staff seats",
@@ -86,7 +86,9 @@ export const compare: { title: string; rows: [string, Value, Value, Value][] }[]
     rows: [
       ["Trip inquiries (email / WhatsApp)", "✓", "✓", "✓"],
       ["Bookings and payments", "✓", "✓", "✓"],
-      ["Payments through your own Stripe keys", "✓", "✓", "✓"],
+      ["Online payments (Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago)", "✓", "✓", "✓"],
+      ["Bank transfer bookings", "✓", "✓", "✓"],
+      ["Test mode to try checkout before going live", "✓", "✓", "✓"],
     ],
   },
   {

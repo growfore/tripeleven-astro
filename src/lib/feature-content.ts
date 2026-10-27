@@ -20,18 +20,18 @@ export interface FeatureContent {
 export const content: Record<string, FeatureContent> = {
   "online-booking-software": {
     summary:
-      "Online booking in TripEleven lets travelers book a trek or tour directly from its trip page on your website. Every booking lands in your dashboard, where your team tracks it and follows up. Bookings are included on every plan, and payments are received through your own Stripe keys.",
+      "Online booking in TripEleven lets travelers book a trek or tour directly from its trip page on your website. Every booking lands in your dashboard, where your team tracks it and follows up. Bookings are included on every plan, and payments are received through your own provider keys or by bank transfer.",
     facts: [
       { label: "What it is", value: "Direct booking from trip pages" },
       { label: "Where you manage it", value: "The TripEleven dashboard" },
-      { label: "Payments", value: "Your own Stripe keys" },
+      { label: "Payments", value: "Your own provider keys or bank transfer" },
       { label: "Plans", value: "Included on every plan" },
     ],
     steps: [
       { title: "Publish your trip", text: "Build the trip in the trip builder and publish it to your website." },
       { title: "Traveler books", text: "A traveler opens the trip page and books it without leaving your site." },
       { title: "Booking arrives", text: "The booking appears in your dashboard as soon as it is made." },
-      { title: "Your team follows up", text: "Your team tracks the booking, contacts the traveler and receives payment through Stripe." },
+      { title: "Your team follows up", text: "Your team tracks the booking, contacts the traveler and receives payment through your own account." },
     ],
     sections: [
       {
@@ -68,28 +68,29 @@ export const content: Record<string, FeatureContent> = {
     ],
   },
 
-  "tour-payments-stripe": {
+  "tour-payments-online": {
     summary:
-      "TripEleven lets you receive traveler payments through your own Stripe keys. Payments connect to the bookings in your dashboard, so you manage both in one place. Receiving payments with your own Stripe keys is included on every plan.",
+      "TripEleven lets you receive traveler payments through your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by plain bank transfer. Payments connect to the bookings in your dashboard, so you manage both in one place. A test mode lets you try checkout before going live, and it is all included on every plan.",
     facts: [
-      { label: "Payment provider", value: "Stripe" },
+      { label: "Payment providers", value: "Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago" },
+      { label: "Offline option", value: "Bank transfer, no provider needed" },
       { label: "Whose account", value: "Yours, via your own keys" },
       { label: "Managed from", value: "The TripEleven dashboard" },
       { label: "Plans", value: "Included on every plan" },
     ],
     steps: [
-      { title: "Create or use your Stripe account", text: "Payments run through a Stripe account that belongs to your business." },
-      { title: "Add your keys", text: "Connect your own Stripe keys to TripEleven." },
-      { title: "Travelers book", text: "Travelers book from your trip pages." },
+      { title: "Pick your providers", text: "Use a payment account that belongs to your business, or skip providers and take bank transfers." },
+      { title: "Add your keys and test", text: "Paste test keys, make a test booking on your site, then add live keys and switch to live." },
+      { title: "Travelers choose how to pay", text: "Travelers book from your trip pages and pick from the methods you turned on." },
       { title: "You manage both", text: "Review bookings and their payments from your dashboard." },
     ],
     sections: [
       {
         eyebrow: "Your account",
-        title: "Payments go to your own Stripe account",
+        title: "Payments go to your own account",
         paragraphs: [
-          "TripEleven uses your own Stripe keys, which means the payment relationship is between your agency and your traveler. You are not routing money through a third-party marketplace account.",
-          "That setup suits agencies that already use Stripe or want to keep control over payouts, reconciliation and customer records in an account they own.",
+          "TripEleven uses your own provider keys, which means the payment relationship is between your agency and your traveler. You are not routing money through a third-party marketplace account.",
+          "Pick the providers that work in your travelers' countries: Razorpay for India, Paystack for Africa, Xendit for Southeast Asia, Mercado Pago for Latin America, plus Stripe and PayPal. You can always accept payment directly into your own bank account too.",
         ],
       },
       {
@@ -97,24 +98,25 @@ export const content: Record<string, FeatureContent> = {
         title: "See bookings and payments together",
         paragraphs: [
           "Payments are not a separate system. They sit alongside the bookings in your dashboard, so your team can answer a traveler's question without opening several tools.",
-          "Because the feature is part of every plan, you can start taking payments during the 7-day free trial setup rather than waiting for a higher tier.",
+          "Every provider has a test mode, so you can make a booking on your own site without real money moving. Because the feature is part of every plan, you can set all of this up during the 7-day free trial.",
         ],
       },
     ],
     audience: [
-      "Agencies that want payouts to land in their own Stripe account",
-      "Operators who already use Stripe for other parts of the business",
+      "Agencies that want payouts to land in their own payment or bank account",
+      "Operators selling to travelers in India, Africa, Southeast Asia or Latin America",
       "Teams that want bookings and payments reviewed in one dashboard",
     ],
     contrast: [
-      { without: "Payments handled through a platform's shared account", with: "Payments received through your own Stripe keys" },
+      { without: "Payments handled through a platform's shared account", with: "Payments received through your own provider keys or bank account" },
       { without: "Bookings in one tool and payments in another", with: "Bookings and payments managed in one dashboard" },
       { without: "Payment support locked behind a higher plan", with: "Included on every plan" },
     ],
     moreFaqs: [
-      { q: "Which payment provider does TripEleven use?", a: "Stripe. You connect your own Stripe keys to receive payments." },
-      { q: "Does TripEleven hold my money?", a: "No. Payments are received through your own Stripe keys, so they go to your Stripe account." },
-      { q: "Do travelers pay on my own website?", a: "Yes. Travelers book from your trip pages, and payments are received through your own Stripe keys." },
+      { q: "Which payment providers does TripEleven support?", a: "Stripe, PayPal, Razorpay, Paystack, Xendit and Mercado Pago, plus bank transfer. You connect your own keys and can turn on as many as you like." },
+      { q: "Can I test payments before going live?", a: "Yes. Each provider has test keys. Your store runs in test mode until you switch it live, and test bookings are kept out of your reports." },
+      { q: "Does TripEleven hold my money?", a: "No. Payments are received through your own provider keys, so they go to your own account. Bank transfers go straight to your bank." },
+      { q: "Do travelers pay on my own website?", a: "Yes. Travelers book from your trip pages and pay with the methods you turned on, and the payments are received through your own accounts." },
     ],
   },
 
@@ -678,14 +680,14 @@ export const examples: Record<string, { title: string; paragraphs: string[] }> =
     title: "A traveler books Everest Base Camp from your trip page",
     paragraphs: [
       "A traveler in Germany is comparing Everest Base Camp treks late at night. They land on your 14-day trip page, read the itinerary, check the altitude chart and the FAQs, and decide. Instead of sending an email and waiting a day for a reply, they book the trip on the page.",
-      "The next morning, your operations lead opens the TripEleven dashboard and sees the booking waiting. They follow up with the traveler about arrival details. Because payments run through your own Stripe keys, the payment is in your Stripe account, not a marketplace's.",
+      "The next morning, your operations lead opens the TripEleven dashboard and sees the booking waiting. They follow up with the traveler about arrival details. Because payments run through your own provider keys, the payment is in your own account, not a marketplace's.",
     ],
   },
-  "tour-payments-stripe": {
-    title: "Connecting Stripe before your first season online",
+  "tour-payments-online": {
+    title: "Two providers and a bank transfer before your first season online",
     paragraphs: [
-      "A small adventure agency in Cusco already has a Stripe account it uses for card payments. During setup, the owner adds those Stripe keys to TripEleven.",
-      "From then on, when a traveler books a trip on the agency's website, the payment is received through that same Stripe account. The team reviews the booking and its payment together in the dashboard, and reconciles payouts in Stripe as they already do.",
+      "A small adventure agency in Cusco already has a Stripe account for card payments, and many of its travelers prefer PayPal. During setup, the owner adds test keys for both, books a trip on their own site to check it works, then adds the live keys and switches to live.",
+      "From then on, travelers pick how to pay, and the money lands in the agency's own accounts. Guests who would rather wire money can use bank transfer. The team reviews every booking and its payment together in the dashboard.",
     ],
   },
   "trip-inquiry-management": {

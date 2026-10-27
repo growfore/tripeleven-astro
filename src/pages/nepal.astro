@@ -57,9 +57,9 @@ const features: { title: string; description: string; icon: IconName; slug: stri
   },
   {
     title: "Bookings and payments",
-    description: "Manage bookings and receive payments with your own Stripe keys.",
+    description: "Manage bookings and receive payments with your own provider keys, or by bank transfer.",
     icon: "credit-card",
-    slug: "tour-payments-stripe",
+    slug: "tour-payments-online",
   },
   {
     title: "AI itinerary drafts",
@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: "How do I receive payments?",
-    a: "Connect your own Stripe keys to receive payments and manage bookings from your dashboard.",
+    a: "Add your own Stripe, PayPal, Razorpay or other provider keys, or accept bank transfers, then manage bookings and payments from your dashboard.",
   },
   {
     q: "Does AI publish itineraries for me?",
@@ -115,7 +115,7 @@ const prices = [
     features: [
       "Up to 45 trips and 200 posts",
       "2 staff seats and 5 GB storage",
-      "Own Stripe keys for payments",
+      "Own provider keys or bank transfer for payments",
       "Remove TripEleven branding and template",
     ],
     plan: "launch",
@@ -324,11 +324,11 @@ const jsonLd = [
             icon="calendar"
             label="03 · Manage bookings"
             title="Turn visits into bookings"
-            text="Give travelers a direct way to book each trek or tour. Track bookings in your dashboard, follow up with travelers, and receive payments with your own Stripe keys."
+            text="Give travelers a direct way to book each trek or tour. Track bookings in your dashboard, follow up with travelers, and receive payments with your own provider keys or bank transfer."
             href="/product/online-booking-software"
             linkLabel="Explore online booking"
             cta={{ href: "#contact", label: "Talk to us" }}
-            items={pick(["online-booking-software", "tour-payments-stripe", "trip-inquiry-management"])}
+            items={pick(["online-booking-software", "tour-payments-online", "trip-inquiry-management"])}
           >
             <Shot src="/mockups/help/bookings.png" alt="TripEleven bookings list with trip, departure, travelers and payment status" />
           </PathCard>

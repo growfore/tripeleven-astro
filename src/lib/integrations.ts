@@ -1,5 +1,5 @@
 // Third-party integrations, mirroring Dashboard → Integrations in the app.
-// Stripe and AI have full feature pages (see features.ts); the rest use the
+// Payments and AI have full feature pages (see features.ts); the rest use the
 // lighter integration template. Keep claims to what the dashboard shows.
 import type { ComponentProps } from "astro/types";
 import type Icon from "../components/Icon.astro";
@@ -276,17 +276,17 @@ export interface IntegrationCard {
   href: string;
 }
 
-const stripe = getFeature("tour-payments-stripe")!;
+const payments = getFeature("tour-payments-online")!;
 const ai = getFeature("ai-itinerary-generator")!;
 
 export const integrationCards: IntegrationCard[] = [
   ...integrations.slice(0, 7).map((i) => ({ ...i, href: `/integration/${i.slug}` })),
   {
-    name: "Stripe payments",
+    name: "Online payments",
     category: "Payments",
-    blurb: "Collect booking payments with your own Stripe account",
-    logo: { brand: "stripe" },
-    href: featureHref(stripe),
+    blurb: "Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago or bank transfer",
+    logo: { icon: "credit-card" },
+    href: featureHref(payments),
   },
   {
     name: "AI generation",

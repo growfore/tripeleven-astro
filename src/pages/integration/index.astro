@@ -10,13 +10,13 @@ import { container, section, tagline, h1, lead, btnPrimary, btnSecondary, SIGNUP
 
 const title = "Tour booking software integrations | TripEleven";
 const description =
-  "Connect WhatsApp, Tawk.to, Google Analytics, Google Tag Manager, Meta Pixel, Microsoft Clarity, Stripe, AI and SMTP email to your TripEleven tour website.";
+  "Connect WhatsApp, Tawk.to, Google Analytics, Google Tag Manager, Meta Pixel, Microsoft Clarity, online payments (Stripe, PayPal, Razorpay and more), AI and SMTP email to your TripEleven tour website.";
 const canonical = "https://tripeleven.com/integration";
 
 const faqs = [
   {
     q: "Which integrations does TripEleven support?",
-    a: "WhatsApp, Tawk.to live chat, Google Analytics 4, Google Tag Manager, Meta Pixel, Microsoft Clarity, a consent banner, Stripe payments, AI generation with Claude, OpenAI or Gemini, and email sending via SMTP.",
+    a: "WhatsApp, Tawk.to live chat, Google Analytics 4, Google Tag Manager, Meta Pixel, Microsoft Clarity, a consent banner, online payments with Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago, AI generation with Claude, OpenAI or Gemini, and email sending via SMTP.",
   },
   {
     q: "Where do I set up integrations?",
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "Do payments go through TripEleven?",
-    a: "No. Payments are collected with your own Stripe account.",
+    a: "No. Payments are collected with your own provider account, or by bank transfer straight to your bank.",
   },
   {
     q: "Which AI providers can I use?",
@@ -69,8 +69,7 @@ const jsonLd = [
       <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>Tour booking software integrations for the tools you already use</h1>
       <p class:list={[lead, "mx-auto mt-6 max-w-2xl"]}>
         Chat with travelers on WhatsApp or Tawk.to, measure your website with
-        Google Analytics, GTM, Meta Pixel and Clarity, and add your own Stripe,
-        AI and email accounts. All from Integrations in the dashboard.
+        Google Analytics, GTM, Meta Pixel and Clarity, and add your own AI and email accounts. All from Integrations in the dashboard. Payments have their own Payments page.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-2">
         <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>

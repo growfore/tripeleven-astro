@@ -16,5 +16,8 @@ export default defineConfig({
   },
   redirects: {
     "/signup": "https://app.tripeleven.com/signup",
+    // Payments page covers more than Stripe now.
+    "/integration/tour-payments-stripe": "/integration/tour-payments-online",
+    "/product/tour-payments-stripe": "/product/tour-payments-online",
   },
 });

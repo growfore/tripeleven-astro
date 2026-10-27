@@ -61,29 +61,29 @@ export const features: Feature[] = [
         text: "Bookings are part of the platform, not a paid add-on.",
       },
     ],
-    related: ["tour-payments-stripe", "trip-inquiry-management", "tour-itinerary-builder"],
+    related: ["tour-payments-online", "trip-inquiry-management", "tour-itinerary-builder"],
   },
   {
-    slug: "tour-payments-stripe",
+    slug: "tour-payments-online",
     eyebrow: "Accept tour payments online",
-    metaTitle: "Accept tour payments online with Stripe | TripEleven",
-    metaDescription: "Accept online payments for tours and treks with your own Stripe account. Payments go to you and link to each booking in your TripEleven dashboard.",
+    metaTitle: "Accept tour payments online: Stripe, PayPal, Razorpay and more | TripEleven",
+    metaDescription: "Accept tour and trek payments with your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by bank transfer. Payments go to you and link to each booking in your TripEleven dashboard.",
     faqs: [
-      { q: "How do I receive payments?", a: "Connect your own Stripe keys, then receive payments and manage bookings from your dashboard." },
-      { q: "Do I need my own Stripe account?", a: "Yes. Payments use your own Stripe keys." },
-      { q: "Is payment support included in every plan?", a: "Yes. Bookings, payments and your own Stripe keys are included on every plan." },
+      { q: "How do I receive payments?", a: "Add your own keys for Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago, or let travelers pay you by bank transfer. Then manage bookings and payments from your dashboard." },
+      { q: "Can I try payments before going live?", a: "Yes. Every provider has a test mode, so you can make a test booking on your site with no real money moving, then switch to live." },
+      { q: "Do I need my own payment account?", a: "For online payments, yes. Payments use your own provider keys. Bank transfer needs no provider at all." },
     ],
     icon: "credit-card",
     name: "Payments",
-    blurb: "Receive payments with your own Stripe keys",
+    blurb: "Take payments with Stripe, PayPal, Razorpay and more, or by bank transfer",
     image: "/mockups/help/revenue.png",
     detailImage: "/mockups/help/bookings.png",
-    headline: "Accept tour payments online with your own Stripe account",
-    intro: "Connect your own Stripe keys so traveler payments go to you, and manage bookings and payments from the same dashboard.",
+    headline: "Accept tour payments online with your own payment account",
+    intro: "Connect your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago keys, or accept bank transfers, so traveler payments go to you. Manage bookings and payments from the same dashboard.",
     benefits: [
       {
-        title: "Your own Stripe keys",
-        text: "Payments are received through your Stripe account.",
+        title: "Six providers plus bank transfer",
+        text: "Choose the providers that suit your travelers. Payments are received through your own accounts.",
       },
       {
         title: "Linked to bookings",
@@ -91,7 +91,7 @@ export const features: Feature[] = [
       },
       {
         title: "On every plan",
-        text: "Receiving payments through your own Stripe keys is included on every plan.",
+        text: "Receiving payments through your own provider keys is included on every plan.",
       },
     ],
     related: ["online-booking-software", "trip-inquiry-management"],
@@ -128,7 +128,7 @@ export const features: Feature[] = [
         text: "Inquiries arrive in your dashboard so nothing is lost.",
       },
     ],
-    related: ["online-booking-software", "tour-payments-stripe", "travel-trust-signals"],
+    related: ["online-booking-software", "tour-payments-online", "travel-trust-signals"],
   },
   {
     slug: "tour-itinerary-builder",
@@ -481,7 +481,7 @@ export const getFeature = (slug: string) =>
 // Features that connect TripEleven to an outside service live under
 // /integration; everything else is part of the core product at /product.
 const integrationSlugs = new Set([
-  "tour-payments-stripe",
+  "tour-payments-online",
   "ai-itinerary-generator",
 ]);
 export type Section = "product" | "integration";
@@ -498,8 +498,8 @@ export const featureGroups = [
     flag: "blue" as const,
     label: "Sell",
     title: "Bookings, payments and inquiries",
-    text: "Turn trip-page visits into bookings, receive payments through your own Stripe account, and keep every inquiry in one dashboard.",
-    slugs: ["online-booking-software", "tour-payments-stripe", "trip-inquiry-management"],
+    text: "Turn trip-page visits into bookings, receive payments through your own payment accounts, and keep every inquiry in one dashboard.",
+    slugs: ["online-booking-software", "tour-payments-online", "trip-inquiry-management"],
   },
   {
     key: "build",

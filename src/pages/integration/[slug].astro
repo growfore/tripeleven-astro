@@ -4,7 +4,7 @@ import IntegrationPage from "../../components/site/IntegrationPage.astro";
 import { integrationFeatures } from "../../lib/features";
 import { integrations } from "../../lib/integrations";
 
-// Stripe and AI have full feature pages; the rest use the integration template.
+// Payments and AI have full feature pages; the rest use the integration template.
 export function getStaticPaths() {
   return [
     ...integrationFeatures.map((feature) => ({ params: { slug: feature.slug }, props: { feature } })),
