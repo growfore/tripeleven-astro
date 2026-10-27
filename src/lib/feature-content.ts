@@ -70,13 +70,13 @@ export const content: Record<string, FeatureContent> = {
 
   "tour-payments-online": {
     summary:
-      "TripEleven lets you receive traveler payments through your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by plain bank transfer. Payments connect to the bookings in your dashboard, so you manage both in one place. A test mode lets you try checkout before going live, and it is all included on every plan.",
+      "TripEleven lets you receive traveler payments through your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by plain bank transfer. Payments connect to the bookings in your dashboard, so you manage both in one place. A test mode lets you try checkout before going live, and it is all included on every paid plan.",
     facts: [
       { label: "Payment providers", value: "Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago" },
       { label: "Offline option", value: "Bank transfer, no provider needed" },
       { label: "Whose account", value: "Yours, via your own keys" },
       { label: "Managed from", value: "The TripEleven dashboard" },
-      { label: "Plans", value: "Included on every plan" },
+      { label: "Plans", value: "Included on every paid plan" },
     ],
     steps: [
       { title: "Pick your providers", text: "Use a payment account that belongs to your business, or skip providers and take bank transfers." },
@@ -110,7 +110,7 @@ export const content: Record<string, FeatureContent> = {
     contrast: [
       { without: "Payments handled through a platform's shared account", with: "Payments received through your own provider keys or bank account" },
       { without: "Bookings in one tool and payments in another", with: "Bookings and payments managed in one dashboard" },
-      { without: "Payment support locked behind a higher plan", with: "Included on every plan" },
+      { without: "Payment support locked behind a higher plan", with: "Included on every paid plan" },
     ],
     moreFaqs: [
       { q: "Which payment providers does TripEleven support?", a: "Stripe, PayPal, Razorpay, Paystack, Xendit and Mercado Pago, plus bank transfer. You connect your own keys and can turn on as many as you like." },

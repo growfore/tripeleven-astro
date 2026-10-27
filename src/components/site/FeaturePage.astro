@@ -92,7 +92,7 @@ const jsonLd = [
         </ol>
       </nav>
 
-      <div class="mt-8 grid grid-cols-1 overflow-hidden rounded-2xl ring-1 ring-line lg:mt-10 lg:grid-cols-[1fr_1.1fr]">
+      <div class="mt-8 grid grid-cols-1 overflow-hidden rounded-2xl bg-paper ring-1 ring-line lg:mt-10 lg:grid-cols-[1fr_1.1fr]">
         <div class="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
           <span class:list={["inline-flex size-9 items-center justify-center rounded-lg text-white", flag.solid]}>
             <Icon name={feature.icon} class="size-5" />
@@ -176,7 +176,7 @@ const jsonLd = [
       deepA && (
         <section class:list={[section, "pt-0 lg:pt-0"]}>
           <div class={container}>
-            <article class="grid grid-cols-1 overflow-hidden rounded-2xl ring-1 ring-line lg:grid-cols-2">
+            <article class="grid grid-cols-1 overflow-hidden rounded-2xl bg-paper ring-1 ring-line lg:grid-cols-2">
               <div class:list={["relative order-2 flex min-h-[360px] items-center justify-center p-8 grid-paper sm:p-12 lg:order-1", flag.panel]}>
                 <PixelEdge side="right" class={flag.edge} />
                 <div class="relative w-full max-w-xl">
@@ -226,7 +226,7 @@ const jsonLd = [
       <div class:list={[container, "grid grid-cols-1 gap-6 lg:grid-cols-2"]}>
         {
           example && (
-            <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+            <article class="overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
               <div class="relative h-24 bg-flag-red grid-paper">
                 <PixelEdge side="bottom" class="text-flag-red" />
               </div>
@@ -246,7 +246,7 @@ const jsonLd = [
             </article>
           )
         }
-        <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+        <article class="overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
           <div class:list={["relative h-24 grid-paper", flag.panel]}>
             <PixelEdge side="bottom" class={flag.edge} />
           </div>
@@ -308,7 +308,7 @@ const jsonLd = [
               {related.map((f) => {
                 const rf = relatedFlag(f.slug);
                 return (
-                  <a href={featureHref(f)} class="group block overflow-hidden rounded-2xl ring-1 ring-line">
+                  <a href={featureHref(f)} class="group block overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
                     <div class:list={["relative h-[240px] overflow-hidden pl-6 pt-6 grid-paper", rf.panel]}>
                       <Picture
                         {...pictureProps}

@@ -243,7 +243,7 @@ const jsonLd = [
         <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
           {
             engine.map((e) => (
-              <article class="overflow-hidden rounded-2xl ring-1 ring-line">
+              <article class="overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
                 <div class:list={["relative flex h-[340px] items-center justify-center p-8 grid-paper sm:h-[400px]", e.flag]}>
                   <div class="w-full max-w-lg">
                     <Shot src={e.image} alt={`${e.title} in TripEleven`} sizes="(min-width: 1024px) 512px, 90vw" />
@@ -289,7 +289,7 @@ const jsonLd = [
         <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {
             clients.map((c) => (
-              <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl ring-1 ring-line">
+              <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
                 <div class="overflow-hidden bg-white">
                   <Picture
                     {...pictureProps}

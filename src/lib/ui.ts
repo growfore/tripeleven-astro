@@ -23,7 +23,7 @@ export const btnDark = `${btn} bg-coal text-white hover:bg-signal`;
 export const btnSecondary = `${btn} bg-white text-coal ring-1 ring-line-strong hover:ring-coal`;
 
 /** Bordered card on the paper background, Relume style. */
-export const card = "rounded-2xl ring-1 ring-line";
+export const card = "rounded-2xl bg-paper ring-1 ring-line";
 /** Small bordered icon tile used beside list items. */
 export const iconTile =
   "inline-flex size-7 shrink-0 items-center justify-center rounded-md bg-white text-coal ring-1 ring-line";
