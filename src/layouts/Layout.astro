@@ -74,7 +74,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-chat-always={autoConsent ? "" : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -152,7 +152,11 @@ const jsonLd = {
         });
         load("https://www.clarity.ms/tag/y04juop5nc");
 
-        if (window.matchMedia("(min-width: 640px)").matches) {
+        // Chat is desktop-only by default; auto-consent pages opt in on every width.
+        if (
+          document.documentElement.hasAttribute("data-chat-always") ||
+          window.matchMedia("(min-width: 640px)").matches
+        ) {
           load("https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl", {
             crossorigin: "*",
           });
