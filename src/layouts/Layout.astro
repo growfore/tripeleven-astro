@@ -1,7 +1,6 @@
 ---
 import Header from "@/components/site/Header.astro";
 import Footer from "@/components/site/Footer.astro";
-import CookieBanner from "../components/CookieBanner.astro";
 
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
@@ -113,11 +112,8 @@ const jsonLd = {
     />
 
     <script is:inline>
-      // Consent gate for analytics (GA4), Microsoft Clarity and Tawk.to live
-      // chat. Nothing non-essential is requested until te_consent=all, so
-      // rejected and essentials-only visitors never hit a third party.
-      // ponytail: gate is one cookie read; revisit only if a CMP becomes
-      // legally required (e.g. IAB TCF regions).
+      // Loads Meta Pixel, GA4, Microsoft Clarity and Tawk.to live chat on
+      // every visit, with no consent gate.
       window.__teLoadNonEssential = function () {
         if (window.__teNonEssentialLoaded) return;
         window.__teNonEssentialLoaded = true;
@@ -178,7 +174,7 @@ const jsonLd = {
           function () {
             (window.clarity.q = window.clarity.q || []).push(arguments);
           };
-        // Only reached after "Accept all", so tell Clarity consent was given.
+        // No consent gate, so tell Clarity consent is granted.
         window.clarity("consentv2", {
           ad_Storage: "granted",
           analytics_Storage: "granted",
@@ -196,42 +192,8 @@ const jsonLd = {
         }
       };
 
-      // In-app browsers often drop first-party cookies, so the consent choice
-      // is mirrored to localStorage and read back from either place.
-      window.__teGetConsent = function () {
-        var m = document.cookie.match(/(?:^|;\s*)te_consent=(reject|essentials|all)/);
-        if (m) return m[1];
-        try {
-          return localStorage.getItem("te_consent");
-        } catch (e) {
-          return null;
-        }
-      };
-      window.__teSetConsent = function (value) {
-        document.cookie =
-          "te_consent=" + value +
-          "; path=/; max-age=31536000; samesite=lax" +
-          (location.protocol === "https:" ? "; secure" : "");
-        try {
-          localStorage.setItem("te_consent", value);
-        } catch (e) {}
-      };
-
-      if (window.__teGetConsent() === "all") {
-        window.__teLoadNonEssential();
-      }
+      window.__teLoadNonEssential();
     </script>
-    {
-      autoConsent && (
-        <script is:inline>
-          {`// Landing page opts visitors in without a banner: record "all" and load.
-          if (!window.__teGetConsent()) {
-            window.__teSetConsent("all");
-            window.__teLoadNonEssential();
-          }`}
-        </script>
-      )
-    }
   </head>
   <body class="m-0 overflow-x-hidden bg-white font-sans text-coal">
     <a
@@ -243,6 +205,5 @@ const jsonLd = {
     {chrome && <Header />}
     <slot />
     {chrome && <Footer />}
-    {!autoConsent && <CookieBanner />}
   </body>
 </html>
