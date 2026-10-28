@@ -140,7 +140,7 @@ const jsonLd = {
           transport_type: "beacon",
         });
 
-        // Meta Pixel (official snippet, loaded after consent)
+        // Meta Pixel (official snippet)
         !(function (f, b, e, v, n, t, s) {
           if (f.fbq) return;
           n = f.fbq = function () {
@@ -164,6 +164,8 @@ const jsonLd = {
           "script",
           "https://connect.facebook.net/en_US/fbevents.js",
         );
+        // Explicit grant, so Meta never holds events waiting for consent.
+        window.fbq("consent", "grant");
         window.fbq("init", "1598511262025969");
         window.fbq("track", "PageView");
 
