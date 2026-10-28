@@ -145,6 +145,8 @@ const nepalOverrides: Record<string, string> = {
   "Media storage": "Ask us",
 };
 
+const planNames = ["Launch", "Business", "Custom setup"];
+
 const contactRows = [
   { icon: "globe" as const, label: "Based in Nepal", value: "Supporting Nepal travel agencies" },
   { icon: "mail" as const, label: "Email", value: "hello@tripeleven.com", href: "mailto:hello@tripeleven.com" },
@@ -175,7 +177,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout {title} {description} {canonical} {jsonLd} ogImage="/og/nepal.jpg" chrome={false}>
+<Layout {title} {description} {canonical} {jsonLd} ogImage="/og/nepal.jpg" chrome={false} autoConsent>
   <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-xl">
     <nav aria-label="Nepal navigation" class:list={[container, "flex h-16 items-center gap-6"]}>
       <a href="#top" class="inline-flex shrink-0 items-center" aria-label="TripEleven, back to top">
@@ -424,12 +426,65 @@ const jsonLd = [
         </div>
         <p class="m-0 mt-6 text-center text-[14px] text-mute">*Seats and storage scale with your catalog. Ask us for exact limits.</p>
 
-        <div class="mt-12 overflow-x-auto rounded-2xl bg-paper ring-1 ring-line">
+        <div class="mt-12 md:hidden" id="compare-tabs">
+          <div role="tablist" aria-label="Compare plans" class="grid grid-cols-3 gap-1 rounded-xl bg-paper p-1 ring-1 ring-line">
+            {
+              planNames.map((n, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  id={`cmp-tab-${i}`}
+                  aria-controls={`cmp-panel-${i}`}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  tabindex={i === 0 ? 0 : -1}
+                  class="min-h-11 rounded-lg px-1 text-[14px] text-mute transition-colors aria-selected:bg-coal aria-selected:text-white"
+                >
+                  {n}
+                </button>
+              ))
+            }
+          </div>
+          {
+            planNames.map((n, i) => (
+              <div role="tabpanel" id={`cmp-panel-${i}`} aria-labelledby={`cmp-tab-${i}`} hidden={i !== 0} class="mt-4 overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
+                {compare.map((g) => (
+                  <section>
+                    <h4 class="m-0 bg-paper-2/50 px-5 py-3 font-mono text-[12px] font-normal uppercase text-mute">{g.title}</h4>
+                    <dl class="m-0">
+                      {g.rows.map(([label, ...vals]) => {
+                        const value = i === 1 && nepalOverrides[label] ? nepalOverrides[label] : vals[i];
+                        return (
+                          <div class="flex items-center justify-between gap-4 border-t border-line px-5 py-3.5 text-[15px]">
+                            <dt class="text-coal">{label}</dt>
+                            <dd class="m-0 shrink-0 text-right text-coal">
+                              {value === "✓" ? (
+                                <>
+                                  <Icon name="check" class="size-5 text-signal" />
+                                  <span class="sr-only">Included</span>
+                                </>
+                              ) : value === "—" ? (
+                                <span class="text-mute/60" aria-label="Not included">—</span>
+                              ) : (
+                                value
+                              )}
+                            </dd>
+                          </div>
+                        );
+                      })}
+                    </dl>
+                  </section>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-12 hidden overflow-x-auto rounded-2xl bg-paper ring-1 ring-line md:block">
           <table class="w-full min-w-[640px] border-collapse text-left">
             <thead>
               <tr class="border-b border-line">
                 <th scope="col" class="w-2/5 p-5 font-mono text-[12px] font-normal uppercase text-mute lg:px-8">Feature</th>
-                {["Launch", "Business", "Custom setup"].map((n) => <th scope="col" class="p-5 text-[16px] font-normal text-coal">{n}</th>)}
+                {planNames.map((n) => <th scope="col" class="p-5 text-[16px] font-normal text-coal">{n}</th>)}
               </tr>
             </thead>
             {
@@ -532,6 +587,24 @@ const jsonLd = [
 </Layout>
 
 <script>
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("#compare-tabs [role=tab]"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>("#compare-tabs [role=tabpanel]"));
+  const select = (n: number) =>
+    tabs.forEach((t, i) => {
+      t.setAttribute("aria-selected", String(i === n));
+      t.tabIndex = i === n ? 0 : -1;
+      panels[i].hidden = i !== n;
+    });
+  tabs.forEach((t, i) => {
+    t.addEventListener("click", () => select(i));
+    t.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const n = (i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
+      select(n);
+      tabs[n].focus();
+    });
+  });
+
   const menu = document.querySelector<HTMLDetailsElement>("#nepal-menu");
   menu?.querySelectorAll("a").forEach((link) =>
     link.addEventListener("click", () => {

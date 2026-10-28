@@ -23,6 +23,7 @@ interface Props {
   jsonLd?: Record<string, unknown>[];
   noindex?: boolean;
   chrome?: boolean;
+  autoConsent?: boolean;
 }
 
 const {
@@ -35,6 +36,7 @@ const {
   jsonLd: extraJsonLd = [],
   noindex = false,
   chrome = true,
+  autoConsent = false,
 } = Astro.props;
 
 const ogImageUrl = new URL(ogImage, SITE_URL).href;
@@ -161,6 +163,19 @@ const jsonLd = {
         window.__teLoadNonEssential();
       }
     </script>
+    {
+      autoConsent && (
+        <script is:inline>
+          {`// Landing page opts visitors in without a banner: record "all" and load.
+          if (!/(?:^|;\\s*)te_consent=/.test(document.cookie)) {
+            document.cookie =
+              "te_consent=all; path=/; max-age=31536000; samesite=lax" +
+              (location.protocol === "https:" ? "; secure" : "");
+            window.__teLoadNonEssential();
+          }`}
+        </script>
+      )
+    }
   </head>
   <body class="m-0 overflow-x-hidden bg-white font-sans text-coal">
     <a
@@ -172,6 +187,6 @@ const jsonLd = {
     {chrome && <Header />}
     <slot />
     {chrome && <Footer />}
-    <CookieBanner />
+    {!autoConsent && <CookieBanner />}
   </body>
 </html>
