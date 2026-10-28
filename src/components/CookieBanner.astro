@@ -67,13 +67,10 @@
 <script is:inline>
   (function () {
     var banner = document.getElementById("cookie-banner");
-    var STORED = document.cookie.match(/(?:^|;\s*)te_consent=(reject|essentials|all)/);
+    var STORED = window.__teGetConsent();
 
     function store(value) {
-      document.cookie =
-        "te_consent=" + value +
-        "; path=/; max-age=31536000; samesite=lax" +
-        (location.protocol === "https:" ? "; secure" : "");
+      window.__teSetConsent(value);
     }
 
     function choose(value) {

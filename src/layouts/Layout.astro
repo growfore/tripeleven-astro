@@ -136,7 +136,40 @@ const jsonLd = {
           window.dataLayer.push(arguments);
         };
         window.gtag("js", new Date());
-        window.gtag("config", "G-H7TRDSVGQ7");
+        // In-app webviews (Facebook, Instagram, TikTok...) can be sandboxed
+        // or cross-site; SameSite=None;Secure keeps the GA cookie writable
+        // and "beacon" survives pages torn down by the webview.
+        window.gtag("config", "G-H7TRDSVGQ7", {
+          cookie_flags: "SameSite=None;Secure",
+          transport_type: "beacon",
+        });
+
+        // Meta Pixel (official snippet, loaded after consent)
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod
+              ? n.callMethod.apply(n, arguments)
+              : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(
+          window,
+          document,
+          "script",
+          "https://connect.facebook.net/en_US/fbevents.js",
+        );
+        window.fbq("init", "1598511262025969");
+        window.fbq("track", "PageView");
 
         // The Clarity tag calls window.clarity() as soon as it runs, so the
         // queue stub must exist first (same as Microsoft's official snippet).
@@ -163,7 +196,28 @@ const jsonLd = {
         }
       };
 
-      if (/(?:^|;\s*)te_consent=all(?:;|$)/.test(document.cookie)) {
+      // In-app browsers often drop first-party cookies, so the consent choice
+      // is mirrored to localStorage and read back from either place.
+      window.__teGetConsent = function () {
+        var m = document.cookie.match(/(?:^|;\s*)te_consent=(reject|essentials|all)/);
+        if (m) return m[1];
+        try {
+          return localStorage.getItem("te_consent");
+        } catch (e) {
+          return null;
+        }
+      };
+      window.__teSetConsent = function (value) {
+        document.cookie =
+          "te_consent=" + value +
+          "; path=/; max-age=31536000; samesite=lax" +
+          (location.protocol === "https:" ? "; secure" : "");
+        try {
+          localStorage.setItem("te_consent", value);
+        } catch (e) {}
+      };
+
+      if (window.__teGetConsent() === "all") {
         window.__teLoadNonEssential();
       }
     </script>
@@ -171,10 +225,8 @@ const jsonLd = {
       autoConsent && (
         <script is:inline>
           {`// Landing page opts visitors in without a banner: record "all" and load.
-          if (!/(?:^|;\\s*)te_consent=/.test(document.cookie)) {
-            document.cookie =
-              "te_consent=all; path=/; max-age=31536000; samesite=lax" +
-              (location.protocol === "https:" ? "; secure" : "");
+          if (!window.__teGetConsent()) {
+            window.__teSetConsent("all");
             window.__teLoadNonEssential();
           }`}
         </script>
