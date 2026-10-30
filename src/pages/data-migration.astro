@@ -1,0 +1,336 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import SectionHead from "../components/site/SectionHead.astro";
+import Faq from "../components/site/Faq.astro";
+import { container, section, tagline, h1, h3, h4, lead, body, btnPrimary, btnSecondary, iconTile, SIGNUP } from "../lib/ui";
+
+const title = "Website migration and redesign for tour operators | TripEleven";
+const description =
+  "Move your trips, itineraries, blog posts and images from your current website into TripEleven, or have us redesign the whole site. One-time service from USD 100, with a fixed quote first.";
+const canonical = "https://tripeleven.com/data-migration";
+const QUOTE = "/contact?topic=migration";
+
+const options = [
+  {
+    icon: "database",
+    label: "Option 1",
+    name: "Content migration",
+    text: "We copy what you already have into TripEleven, keeping your current structure and wording. Best when your content is in good shape and you just want to switch platforms.",
+    includes: [
+      "Trips, itineraries and trip facts moved as they are",
+      "Blog posts with their headings and images",
+      "Photos uploaded to your media library",
+      "Your existing page titles and descriptions",
+      "Template, palette and fonts set to match your brand",
+    ],
+  },
+  {
+    icon: "palette",
+    label: "Option 2",
+    name: "Migration and full redesign",
+    text: "We rebuild your website on TripEleven instead of copying it one to one. Best when your current site looks dated, is hard to navigate, or your catalog has grown messy.",
+    includes: [
+      "Everything in content migration",
+      "New look: template, palette, fonts and homepage layout chosen for your brand",
+      "Catalog reorganised into clear destinations, activities and trip types",
+      "Trip pages restructured so itineraries, trip facts, pricing and FAQs read the same way",
+      "Photos selected, cropped and ordered for each trip",
+      "Copy tidied or rewritten where you ask for it",
+    ],
+  },
+] as const;
+
+const moves = [
+  { icon: "route", name: "Trips and itineraries", blurb: "Day-by-day itineraries, trip facts, duration, difficulty and highlights." },
+  { icon: "tag", name: "Pricing and inclusions", blurb: "Prices, what's included and excluded, and trip FAQs." },
+  { icon: "file-text", name: "Blog posts", blurb: "Articles and travel guides, with text, headings and images." },
+  { icon: "image", name: "Images", blurb: "Trip galleries, cover photos and blog images, saved as WebP." },
+  { icon: "layout-grid", name: "Pages", blurb: "About, contact, team and other pages your agency relies on." },
+  { icon: "globe", name: "SEO Essentials", blurb: "Page titles and descriptions where your current site has them." },
+] as const;
+
+const factors = [
+  {
+    icon: "route",
+    name: "Number of trips",
+    text: "The biggest factor. A catalog of 10 trips and one of 150 are very different jobs.",
+  },
+  {
+    icon: "calendar",
+    name: "Itinerary length and detail",
+    text: "A 21-day trek with a detailed day-by-day plan takes longer than a short day tour.",
+  },
+  {
+    icon: "file-text",
+    name: "Number of blog posts and pages",
+    text: "Each post and page is moved and checked, so a large blog adds time.",
+  },
+  {
+    icon: "image",
+    name: "Number and quality of images",
+    text: "Many photos per trip, or photos that need resizing, cropping or replacing, add work.",
+  },
+  {
+    icon: "layers",
+    name: "Where your content lives now",
+    text: "A well-built WordPress or Wix site is quicker than a custom site, PDFs, spreadsheets or Word documents.",
+  },
+  {
+    icon: "layout-grid",
+    name: "How consistent your content is",
+    text: "Trips written in the same format move fast. Mixed formats need restructuring before they fit cleanly.",
+  },
+  {
+    icon: "tag",
+    name: "Pricing structure",
+    text: "One price per trip is simple. Group-size pricing, seasonal rates or many options take longer to set up.",
+  },
+  {
+    icon: "palette",
+    name: "Redesign scope",
+    text: "Copying your current look is cheaper than a new homepage, new navigation and reorganised catalog.",
+  },
+  {
+    icon: "sparkles",
+    name: "Copywriting",
+    text: "Moving text as it is costs less than tidying, shortening or rewriting trip descriptions.",
+  },
+  {
+    icon: "credit-card",
+    name: "Setup beyond content",
+    text: "Help connecting your domain, payment provider, WhatsApp, analytics or email sending.",
+  },
+  {
+    icon: "zap",
+    name: "Deadline",
+    text: "If you need the site live by a fixed date, such as before a season or a trade fair, tell us early.",
+  },
+  {
+    icon: "check-circle",
+    name: "Rounds of changes",
+    text: "The quote includes a review round. Large changes after that are quoted separately.",
+  },
+] as const;
+
+const needs = [
+  "Your current website link, or the files your content lives in",
+  "Which trips, posts and pages to move, and which to leave behind",
+  "Your logo and brand colours, if you have them",
+  "Login access to your current site if content is not public",
+  "For a redesign: sites you like and how you want your catalog grouped",
+];
+
+const steps = [
+  { name: "Tell us what you have", text: "Send your website link and say whether you want a migration or a full redesign." },
+  { name: "Get a fixed quote", text: "We review your content against the factors below and send a fixed price and timeline." },
+  { name: "We do the work", text: "Our team moves your content, and for a redesign, rebuilds the site in your TripEleven account." },
+  { name: "Review and publish", text: "Check everything in your dashboard, ask for changes, then publish when you're ready." },
+];
+
+const faqs = [
+  {
+    q: "How much does it cost?",
+    a: "Prices start from USD 100 for a small content migration. A full redesign, a large catalog or content that needs restructuring costs more. You get a fixed quote before any work starts, so the price does not change unless you change the scope.",
+  },
+  {
+    q: "What's the difference between migration and redesign?",
+    a: "Migration copies your existing content and structure into TripEleven. A redesign also gives your site a new look, reorganises your catalog and restructures trip pages so they read consistently.",
+  },
+  {
+    q: "Which websites can you migrate from?",
+    a: "Most public websites, including WordPress, Wix, Squarespace and custom-built sites. We can also work from PDFs, spreadsheets or Word documents if you don't have a website yet.",
+  },
+  {
+    q: "Do I need a TripEleven account first?",
+    a: "Yes, we need an account to move your content into. Start a free trial on Launch or Business, before or after asking for a quote. If neither plan fits your catalog, team or terms, choose Enterprise and we'll set up a custom plan. Migration can be part of its dedicated onboarding.",
+  },
+  {
+    q: "Is this included in any plan?",
+    a: "No. Migration and redesign are one-time services paid separately from your plan. Enterprise customers can discuss it as part of dedicated onboarding.",
+  },
+  {
+    q: "Will my old website stay online?",
+    a: "Yes. We only copy content. Your current site stays as it is until you decide to point your domain to TripEleven.",
+  },
+  {
+    q: "Can I move only part of my site?",
+    a: "Yes. Many agencies leave old or retired trips behind. Moving less content lowers the price.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@type": "Service",
+    name: "TripEleven website migration and redesign",
+    serviceType: "Website content migration and redesign",
+    provider: { "@type": "Organization", name: "TripEleven", url: "https://tripeleven.com" },
+    url: canonical,
+    description,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: { "@type": "PriceSpecification", minPrice: 100, priceCurrency: "USD" },
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://tripeleven.com/" },
+      { "@type": "ListItem", position: 2, name: "Pricing", item: "https://tripeleven.com/pricing" },
+      { "@type": "ListItem", position: 3, name: "Migration and redesign", item: canonical },
+    ],
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+  },
+];
+---
+
+<Layout {title} {description} {canonical} {jsonLd}>
+  <main id="top" class="overflow-x-clip">
+    <section class="relative">
+      <div class:list={[container, "pb-16 pt-16 lg:pb-24 lg:pt-24"]}>
+        <div class="mx-auto max-w-3xl text-center">
+          <p class={tagline}>Migration and redesign</p>
+          <h1 class:list={[h1, "mt-7"]}>Bring your website with you, or start fresh</h1>
+          <p class:list={[lead, "mx-auto mt-7 max-w-2xl"]}>
+            We move your trips, itineraries, blog posts and images from your current website into
+            TripEleven. Or we redesign the whole site, so you launch with a full catalog and a
+            website that looks the part.
+          </p>
+          <div class="mt-10 flex flex-wrap justify-center gap-2">
+            <a href={QUOTE} class:list={[btnPrimary, "min-h-11 px-5"]}>Get a quote</a>
+            <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnSecondary, "min-h-11 px-5"]}>Start free trial</a>
+          </div>
+          <p class="m-0 mt-5 text-[14px] text-mute">One-time service from USD 100. Fixed quote before we start.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="options-heading">
+      <div class={container}>
+        <SectionHead id="options-heading" align="split" tagline="Two ways to switch" title="Copy what you have, or rebuild it" text="Pick the one that fits. Not sure? Send us your site and we'll recommend one in the quote." />
+        <div class="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          {
+            options.map((o) => (
+              <article class="flex flex-col rounded-2xl bg-paper p-8 ring-1 ring-line lg:p-10">
+                <span class={iconTile}><Icon name={o.icon} class="size-4" /></span>
+                <p class="m-0 mt-5 font-mono text-[13px] uppercase text-mute">{o.label}</p>
+                <h3 class:list={[h3, "mt-3"]}>{o.name}</h3>
+                <p class:list={[body, "mt-4 text-[16px]"]}>{o.text}</p>
+                <ul class="m-0 mt-8 flex list-none flex-col gap-3 border-t border-line p-0 pt-8">
+                  {o.includes.map((item) => (
+                    <li class="flex gap-3 text-[15px] leading-snug text-coal">
+                      <Icon name="check" class="mt-0.5 size-4 shrink-0 text-signal" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="moves-heading">
+      <div class={container}>
+        <SectionHead id="moves-heading" align="split" tagline="What we move" title="Your content, ready to edit" text="Everything lands in your dashboard as normal TripEleven content you can edit, reorder and publish." />
+        <ul class="m-0 mt-12 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            moves.map((m) => (
+              <li class="rounded-2xl bg-paper p-6 ring-1 ring-line lg:p-8">
+                <span class={iconTile}><Icon name={m.icon} class="size-4" /></span>
+                <h3 class:list={[h4, "mt-5"]}>{m.name}</h3>
+                <p class:list={[body, "mt-2"]}>{m.blurb}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="factors-heading">
+      <div class={container}>
+        <SectionHead id="factors-heading" align="split" tagline="What affects the price" title="Every site is different" text="These are the things we look at when we quote. Most small migrations land near the starting price; the more of these apply, the bigger the job." />
+        <ul class="m-0 mt-12 grid list-none grid-cols-1 border-t border-line p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            factors.map((f) => (
+              <li class="flex gap-4 border-b border-line py-6 sm:pr-8">
+                <span class={iconTile}><Icon name={f.icon} class="size-4" /></span>
+                <span>
+                  <h3 class={h4}>{f.name}</h3>
+                  <p class:list={[body, "mt-1.5"]}>{f.text}</p>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="steps-heading">
+      <div class={container}>
+        <SectionHead id="steps-heading" align="split" tagline="How it works" title="Four steps, no surprises" text="You see the price before we start, and nothing goes live until you publish it." />
+        <ol class="m-0 mt-12 grid list-none grid-cols-1 border-t border-line p-0 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            steps.map((s, i) => (
+              <li class="border-b border-line py-8 sm:pr-8 lg:border-b-0">
+                <p class="m-0 font-mono text-[13px] text-signal">{String(i + 1).padStart(2, "0")}</p>
+                <h3 class:list={[h4, "mt-4"]}>{s.name}</h3>
+                <p class:list={[body, "mt-2"]}>{s.text}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="price-heading">
+      <div class={container}>
+        <div class="grid grid-cols-1 gap-10 rounded-2xl bg-paper p-8 ring-1 ring-line sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-14">
+          <div class="flex flex-col">
+            <p class={tagline}>Pricing</p>
+            <h2 id="price-heading" class="m-0 mt-5 font-display text-[56px] font-medium leading-none tracking-[-0.04em] text-coal">
+              <span class="text-[17px] tracking-normal text-mute">From </span>$100
+            </h2>
+            <p class:list={[body, "mt-5 max-w-lg text-[16px]"]}>
+              A one-time fee in USD, paid separately from your plan. USD 100 covers a small content
+              migration. A full redesign, a large catalog, content that needs restructuring or extra
+              setup is quoted higher, based on the factors above.
+            </p>
+            <p class:list={[body, "mt-4 max-w-lg text-[16px]"]}>
+              You get a fixed price and timeline before any work starts. The price only changes if
+              you add to the scope.
+            </p>
+            <div class="mt-8">
+              <a href={QUOTE} class:list={[btnPrimary, "min-h-11 px-5"]}>
+                Get a quote <Icon name="arrow-right" class="size-4" />
+              </a>
+            </div>
+          </div>
+          <div class="border-t border-line pt-10 lg:border-l lg:border-t-0 lg:pl-16 lg:pt-0">
+            <h3 class={h4}>What we need from you</h3>
+            <ul class="m-0 mt-6 flex list-none flex-col gap-3 p-0">
+              {
+                needs.map((n) => (
+                  <li class="flex gap-3 text-[15px] leading-snug text-coal">
+                    <Icon name="check" class="mt-0.5 size-4 shrink-0 text-signal" />
+                    {n}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="faq-heading">
+      <div class={container}>
+        <Faq items={faqs} title="Migration and redesign questions" contactHref={QUOTE} />
+      </div>
+    </section>
+  </main>
+</Layout>

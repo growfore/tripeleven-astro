@@ -17,6 +17,7 @@ const faqs = [
   { q: "Are bookings and payments included?", a: "Yes, on every paid plan. Bookings, payments (Stripe, PayPal, Razorpay, Paystack, Xendit, Mercado Pago or bank transfer) and test mode are included. They switch on when you subscribe, not during the 7-day free trial." },
   { q: "Can I use my own domain?", a: "Yes, a custom domain is included on Launch and higher." },
   { q: "What is the difference between Launch and Business?", a: "Launch includes up to 45 trips, 200 blog posts, 5 GB of storage and 2 staff seats. Business adds unlimited trips and posts, 25 GB of storage, 25 staff seats, read-only API access and the option to remove TripEleven branding." },
+  { q: "Can you move my current website or redesign it?", a: "Yes. Migration and redesign is a one-time service starting from $100. We move your trips, itineraries, blog posts and images into TripEleven, or rebuild the whole site with a new look. The price depends on your catalog size, content and redesign scope, and you get a fixed quote first." },
   { q: "Do you have pricing for agencies in Nepal?", a: "Yes. The Nepal program offers yearly plans priced in NPR. See the Nepal page for details." },
   { q: "What does Enterprise include?", a: "Everything in Business plus white-label, unlimited storage and staff seats, dedicated onboarding and custom volume and terms. Contact us for a quote." },
 ];
@@ -109,6 +110,34 @@ const jsonLd = [
             })
           }
         </div>
+
+        <article class="mt-4 grid grid-cols-1 gap-8 rounded-2xl bg-paper p-8 ring-1 ring-line lg:grid-cols-[1.4fr_1fr_auto] lg:items-center lg:gap-12 lg:p-10">
+          <div>
+            <h2 class="m-0 flex items-center gap-3 font-mono text-[13px] font-normal uppercase text-mute">
+              <span class="inline-flex size-7 items-center justify-center rounded-md bg-white text-coal ring-1 ring-line">
+                <Icon name="database" class="size-4" />
+              </span>
+              Migration and redesign
+            </h2>
+            <p class="m-0 mt-4 max-w-xl text-[16px] leading-relaxed text-mute">
+              Already have a website? We move your trips, itineraries, blog posts and images into
+              TripEleven, or redesign the whole site for you, so you don't start from an empty catalog.
+            </p>
+          </div>
+          <div>
+            <p class="m-0 font-display text-[40px] font-medium leading-none tracking-[-0.04em]">
+              <span class="text-[17px] tracking-normal text-mute">From </span>$100
+            </p>
+            <p class="m-0 mt-3 text-[14px] text-mute">One-time · fixed quote first</p>
+          </div>
+          <div class="flex flex-wrap gap-2 lg:flex-col">
+            <a href="/contact?topic=migration" class:list={[btnSecondary, "min-h-11"]}>Get a quote</a>
+            <a href="/data-migration" class="inline-flex min-h-11 items-center justify-center gap-1.5 px-3.5 text-[14px] text-coal underline decoration-line-strong underline-offset-4 hover:decoration-coal">
+              How it works
+            </a>
+          </div>
+        </article>
+
         <p class="m-0 mt-8 text-center text-[15px] text-mute">
           Agency based in Nepal? <a href="/nepal" class="font-medium text-coal underline decoration-line-strong underline-offset-4 hover:decoration-coal">See yearly plans in NPR</a>.
         </p>

@@ -19,6 +19,7 @@ export const GET: APIRoute = () => {
     "- [Product overview](https://tripeleven.com/product)",
     "- [Integrations](https://tripeleven.com/integration)",
     "- [Pricing](https://tripeleven.com/pricing): Launch, Business and Enterprise plans with a 7-day free trial",
+    "- [Migration and redesign](https://tripeleven.com/data-migration): we move trips, blog posts and images from your current website, or redesign the whole site, from USD 100",
     "- [Nepal program](https://tripeleven.com/nepal): plans in NPR for Nepal-based agencies",
     "- [Contact](https://tripeleven.com/contact)",
     "",

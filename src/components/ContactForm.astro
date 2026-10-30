@@ -1,9 +1,12 @@
 ---
 import Icon from "./Icon.astro";
 
+// Data migration is a USD service, so the Nepal page leaves it out.
+const isNepal = Astro.url.pathname.startsWith("/nepal");
 const TOPICS = [
   "General question",
   "Enterprise quote",
+  ...(isNepal ? [] : ["Migration or redesign"]),
   "Walkthrough / demo",
   "Something else",
 ];
@@ -151,8 +154,12 @@ const { compact = false } = Astro.props;
   // Preselect the topic when arriving from a CTA such as /contact?topic=enterprise.
   const topicParam = new URLSearchParams(location.search).get("topic");
   const topicSelect = form?.querySelector<HTMLSelectElement>("#topic");
-  if (topicSelect && topicParam === "enterprise") {
-    topicSelect.value = "Enterprise quote";
+  const topicFromParam: Record<string, string> = {
+    enterprise: "Enterprise quote",
+    migration: "Migration or redesign",
+  };
+  if (topicSelect && topicParam && topicFromParam[topicParam]) {
+    topicSelect.value = topicFromParam[topicParam];
   }
 
   const errorCopy = (status: number | null) => {
