@@ -68,6 +68,7 @@ const jsonLd = {
     ...extraJsonLd,
   ],
 };
+import WhatsAppButton from "../components/WhatsAppButton.astro";
 ---
 
 <!doctype html>
@@ -181,9 +182,16 @@ const jsonLd = {
         });
         load("https://www.clarity.ms/tag/y04juop5nc");
 
-        load("https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl", {
-          crossorigin: "*",
-        });
+        // Chat is desktop-only, docked bottom-left so WhatsApp can take the right.
+        if (window.matchMedia("(min-width: 640px)").matches) {
+          window.Tawk_API = window.Tawk_API || {};
+          window.Tawk_API.customStyle = {
+            visibility: { desktop: { position: "bl", xOffset: 20, yOffset: 20 } },
+          };
+          load("https://embed.tawk.to/69c90275e246401c3606c780/1k27va0nl", {
+            crossorigin: "*",
+          });
+        }
       };
 
       window.__teLoadNonEssential();
@@ -199,5 +207,6 @@ const jsonLd = {
     {chrome && <Header />}
     <slot />
     {chrome && <Footer />}
+    <WhatsAppButton />
   </body>
 </html>
