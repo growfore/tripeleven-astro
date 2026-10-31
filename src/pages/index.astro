@@ -286,10 +286,14 @@ const jsonLd = [
           title="If you prefer clicking, open a real agency site."
           text="These agencies build and run their websites on TripEleven. Click through their trips, navigation and inquiry forms."
         />
-        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div data-carousel class="mt-12">
+        <div
+          data-carousel-track
+          class="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden"
+        >
           {
             clients.map((c) => (
-              <a href={c.href} target="_blank" rel="noreferrer" class="group block overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
+              <a href={c.href} target="_blank" rel="noreferrer" class="group block w-[82%] shrink-0 snap-start overflow-hidden rounded-2xl bg-paper ring-1 ring-line sm:w-auto">
                 <div class="overflow-hidden bg-white">
                   <Picture
                     {...pictureProps}
@@ -318,6 +322,15 @@ const jsonLd = [
             ))
           }
         </div>
+        <div class="mt-5 flex justify-end gap-2 sm:hidden">
+          <button type="button" data-carousel-prev aria-label="Previous site" class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40">
+            <Icon name="chevron-left" class="size-4" />
+          </button>
+          <button type="button" data-carousel-next aria-label="Next site" class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40">
+            <Icon name="chevron-right" class="size-4" />
+          </button>
+        </div>
+        </div>
       </div>
     </section>
 
@@ -329,3 +342,29 @@ const jsonLd = [
     </section>
   </main>
 </Layout>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((root) => {
+    const track = root.querySelector<HTMLElement>("[data-carousel-track]");
+    const prev = root.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+    const next = root.querySelector<HTMLButtonElement>("[data-carousel-next]");
+    if (!track || !prev || !next) return;
+
+    const step = () => {
+      const card = track.firstElementChild as HTMLElement | null;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.offsetWidth + gap : track.clientWidth;
+    };
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth - 1;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= max;
+    };
+
+    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
+    next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+</script>
