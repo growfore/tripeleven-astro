@@ -32,7 +32,7 @@ export interface Feature {
 export const features: Feature[] = [
   {
     slug: "online-booking-software",
-    eyebrow: "Online booking system for tour operators",
+    eyebrow: "Direct bookings",
     metaTitle: "Online booking system for tour operators | TripEleven",
     metaDescription: "An online booking system for tour operators, built into your website. Travelers book tours from the trip page and you manage every booking in one place.",
     faqs: [
@@ -65,7 +65,7 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-payments-online",
-    eyebrow: "Accept tour payments online",
+    eyebrow: "Payments",
     metaTitle: "Accept tour payments online: Stripe, PayPal, Razorpay and more | TripEleven",
     metaDescription: "Accept tour and trek payments with your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by bank transfer. Payments go to you and link to each booking in your TripEleven dashboard.",
     faqs: [
@@ -98,7 +98,7 @@ export const features: Feature[] = [
   },
   {
     slug: "trip-inquiry-management",
-    eyebrow: "Tour inquiry and lead management",
+    eyebrow: "Lead capture",
     metaTitle: "Tour inquiry and lead management | TripEleven",
     metaDescription: "Manage tour inquiries and leads in one dashboard. Every trip gets an inquiry form, with email, phone and WhatsApp shown together.",
     faqs: [
@@ -132,9 +132,9 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-itinerary-builder",
-    eyebrow: "Itinerary builder software for tour operators",
-    metaTitle: "Itinerary builder software for tour operators | TripEleven",
-    metaDescription: "Itinerary builder software for tour operators and travel agencies: build itineraries with drag-and-drop days and pricing, then take bookings on your website.",
+    eyebrow: "Trip builder",
+    metaTitle: "Itinerary Builder Software For Tour Operators - TripEleven",
+    metaDescription: "Build day-by-day itineraries, organize trip details, and manage tour packages with TripEleven’s itinerary builder software for tour operators.",
     faqs: [
       { q: "What is a tour itinerary builder?", a: "It's software for structuring a trip: days, inclusions, pricing tiers, FAQs and media in one guided editor, then publishing it to your website without code." },
       { q: "Can I add altitude charts for treks?", a: "Yes. The trip builder supports altitude charts so travelers can see the climb day by day." },
@@ -166,7 +166,7 @@ export const features: Feature[] = [
   },
   {
     slug: "ai-itinerary-generator",
-    eyebrow: "AI itinerary generator for travel agencies",
+    eyebrow: "AI drafting",
     metaTitle: "AI itinerary generator for travel agencies | TripEleven",
     metaDescription: "AI itinerary generator and automation for travel agencies and travel consultants. Draft day-by-day itineraries with Claude, OpenAI or Gemini, then edit them.",
     faqs: [
@@ -200,7 +200,7 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-media-library",
-    eyebrow: "Photo library for travel websites",
+    eyebrow: "Media library",
     metaTitle: "Photo and media library for travel websites | TripEleven",
     metaDescription: "A photo and media library for travel websites. Upload trek and tour photos once, reuse them across trips, pages and posts, and search by alt text or caption.",
     faqs: [
@@ -234,7 +234,7 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-info-pages",
-    eyebrow: "Travel website CMS",
+    eyebrow: "Info pages",
     metaTitle: "Travel website CMS for guides and info pages | TripEleven",
     metaDescription: "A travel website CMS for visa guides, festival calendars, activities and your about page. Organize pages by category and keep drafts until they are ready.",
     faqs: [
@@ -268,7 +268,7 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-blog-software",
-    eyebrow: "Travel blog software",
+    eyebrow: "Travel guides",
     metaTitle: "Travel blog software for tour operators | TripEleven",
     metaDescription: "Travel blog software for tour operators. Publish trek guides and travel articles on your own domain, file them by category and credit each post to an author.",
     faqs: [
@@ -302,7 +302,7 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-team-pages",
-    eyebrow: "Tour guide and team profiles",
+    eyebrow: "Team & authors",
     metaTitle: "Tour guide and team profile pages | TripEleven",
     metaDescription: "Show your tour guides and staff with photos, roles and departments, so travelers know who they will travel with before they book.",
     faqs: [
@@ -336,7 +336,7 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-trust-signals",
-    eyebrow: "Reviews and testimonials for tour operators",
+    eyebrow: "Social proof",
     metaTitle: "Reviews and testimonials for tour websites | TripEleven",
     metaDescription: "Show reviews, testimonials, licenses and associations on your tour operator website to build traveler trust and win more bookings.",
     faqs: [
@@ -370,7 +370,7 @@ export const features: Feature[] = [
   },
   {
     slug: "travel-website-branding",
-    eyebrow: "Tour operator website builder",
+    eyebrow: "Brand & themes",
     metaTitle: "Tour operator website builder, fully branded | TripEleven",
     metaDescription: "A tour operator website builder that matches your brand. Set your logo, colors and fonts once, on your own domain, with no developer or template look.",
     faqs: [
@@ -405,7 +405,7 @@ export const features: Feature[] = [
   },
   {
     slug: "tour-website-navigation",
-    eyebrow: "Menu builder for tour websites",
+    eyebrow: "Navigation",
     metaTitle: "Tour website menu builder with auto navigation | TripEleven",
     metaDescription: "Build your tour website menu automatically from your trips and pages, or arrange nested menus yourself, such as Trekking, then Tour du Mont Blanc.",
     faqs: [
@@ -440,7 +440,7 @@ export const features: Feature[] = [
   },
   {
     slug: "featured-trips",
-    eyebrow: "Featured tours",
+    eyebrow: "Homepage spotlight",
     metaTitle: "Featured tours: promote your best trips | TripEleven",
     metaDescription: "Promote your best tours and treks. Mark trips as featured so they lead your website and guide travelers to the trips you most want to sell.",
     faqs: [
