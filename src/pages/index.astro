@@ -8,18 +8,38 @@ import PathCard from "../components/site/PathCard.astro";
 import PixelEdge from "../components/site/PixelEdge.astro";
 import PaymentLogos from "../components/site/PaymentLogos.astro";
 import Faq from "../components/site/Faq.astro";
-import { asset, screenshotWidths, cardWidths, pictureProps } from "../lib/images";
+import {
+  asset,
+  screenshotWidths,
+  cardWidths,
+  pictureProps,
+} from "../lib/images";
 import { featureGroups, getFeature, featureHref } from "../lib/features";
 import { clients, domain } from "../lib/clients";
 import { plans } from "../lib/plans";
-import { container, section, tagline, h1, h2, h4, lead, body, btnPrimary, btnSecondary, iconTile, SIGNUP } from "../lib/ui";
+import {
+  container,
+  section,
+  tagline,
+  h1,
+  h2,
+  h4,
+  lead,
+  body,
+  btnPrimary,
+  btnSecondary,
+  iconTile,
+  SIGNUP,
+} from "../lib/ui";
 
 const title = "Travel Booking Software for Tour Operators - TripEleven";
 const description =
   "Travel booking software to manage tour bookings, build your travel website, create itineraries, and organize your business. Everything tour operators need in one platform.";
 const canonical = "https://tripeleven.com/";
 
-const [build, sell] = ["build", "sell"].map((k) => featureGroups.find((g) => g.key === k)!);
+const [build, sell] = ["build", "sell"].map((k) =>
+  featureGroups.find((g) => g.key === k)!,
+);
 const pick = (slugs: string[]) =>
   slugs.map((s) => {
     const f = getFeature(s)!;
@@ -59,7 +79,10 @@ const faqs = [
     q: "Who is TripEleven for?",
     a: "Tour operators, trekking and adventure agencies, and DMCs of any size, from small local teams to agencies managing large catalogs across several countries. Agencies based in Nepal can also choose NPR plans through the Nepal program.",
   },
-  { q: "Do I need a developer or coding skills?", a: "No. You build trips, brand your website, connect your domain and publish from the dashboard." },
+  {
+    q: "Do I need a developer or coding skills?",
+    a: "No. You build trips, brand your website, connect your domain and publish from the dashboard.",
+  },
   {
     q: "Can travelers book and pay on my website?",
     a: "Yes. Travelers can book from trip pages, and payments are received through your own Stripe, PayPal, Razorpay, Paystack, Xendit or Mercado Pago account, or by bank transfer. Bookings and payments are included on every plan.",
@@ -68,7 +91,10 @@ const faqs = [
     q: "How do trip inquiries work?",
     a: "Every trip has an inquiry form, with your phone, email and WhatsApp shown together. Form inquiries land in your dashboard as trackable leads.",
   },
-  { q: "Can I use my own domain?", a: "Yes. You can connect a custom domain on Launch and higher." },
+  {
+    q: "Can I use my own domain?",
+    a: "Yes. You can connect a custom domain on Launch and higher.",
+  },
   {
     q: "Is TripEleven good for SEO?",
     a: "Every trip has per-trip meta, canonical and Open Graph tags, JSON-LD schema, and auto-slugs with permanent 301 redirects, plus a redirect manager with cycle detection.",
@@ -94,11 +120,20 @@ const jsonLd = [
     featureList: featureGroups.flatMap((g) => g.items.map((f) => f.name)),
     offers: plans
       .filter((p) => p.monthly)
-      .map((p) => ({ "@type": "Offer", name: p.name, price: p.monthly!.slice(1), priceCurrency: "USD" })),
+      .map((p) => ({
+        "@type": "Offer",
+        name: p.name,
+        price: p.monthly!.slice(1),
+        priceCurrency: "USD",
+      })),
   },
   {
     "@type": "FAQPage",
-    mainEntity: faqs.map(({ q, a }) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
+    mainEntity: faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
   },
 ];
 ---
@@ -108,27 +143,52 @@ const jsonLd = [
     <!-- Hero -->
     <section class:list={[container, "pt-16 text-center lg:pt-24"]}>
       <p class={tagline}>All-in-one travel agency software</p>
-      <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>Travel Booking Software for Tour Operators, DMCs &amp; Adventure Travel Companies</h1>
+      <h1 class:list={[h1, "mx-auto mt-6 max-w-4xl"]}>
+        Travel Booking Software for Tour Operators.
+      </h1>
       <p class:list={[lead, "mx-auto mt-6 max-w-2xl"]}>
         Build structured trips, publish a branded website on your own domain,
         and take bookings and payments through your own payment accounts. No
         developers.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-2">
-        <a href={SIGNUP} target="_blank" rel="noreferrer" class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a>
-        <a href="/product" class:list={[btnSecondary, "min-h-10 px-4"]}>Explore features</a>
+        <a
+          href={SIGNUP}
+          target="_blank"
+          rel="noreferrer"
+          class:list={[btnPrimary, "min-h-10 px-4"]}>Start free trial</a
+        >
+        <a href="/product" class:list={[btnSecondary, "min-h-10 px-4"]}
+          >Explore features</a
+        >
       </div>
-      <p class="m-0 mt-4 text-[13px] text-mute">7-day free trial · Plans from $23/month · Bookings on every paid plan</p>
+      <p class="m-0 mt-4 text-[13px] text-mute">
+        7-day free trial · Plans from $23/month · Bookings on every paid plan
+      </p>
     </section>
 
     <!-- Collage -->
-    <section class:list={[container, "mt-14 lg:mt-16"]} aria-label="TripEleven dashboard and agency websites">
-      <div class="relative h-[260px] overflow-hidden rounded-2xl bg-flag-blue grid-paper sm:h-[540px] lg:h-[620px]">
-        <div class="absolute inset-0 grid grid-cols-1 gap-4 px-4 sm:grid-cols-[1fr_2.4fr_1fr] sm:gap-6 sm:px-6">
+    <section
+      class:list={[container, "mt-14 lg:mt-16"]}
+      aria-label="TripEleven dashboard and agency websites"
+    >
+      <div
+        class="relative h-[260px] overflow-hidden rounded-2xl bg-flag-blue grid-paper sm:h-[540px] lg:h-[620px]"
+      >
+        <div
+          class="absolute inset-0 grid grid-cols-1 gap-4 px-4 sm:grid-cols-[1fr_2.4fr_1fr] sm:gap-6 sm:px-6"
+        >
           <div class="-mt-16 hidden flex-col gap-6 sm:flex">
             {
               collage.left.map((c) => (
-                <Picture {...pictureProps} src={asset(c.image)} widths={cardWidths} sizes="22vw" alt={`${c.name} website`} class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg" />
+                <Picture
+                  {...pictureProps}
+                  src={asset(c.image)}
+                  widths={cardWidths}
+                  sizes="22vw"
+                  alt={`${c.name} website`}
+                  class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg"
+                />
               ))
             }
           </div>
@@ -147,7 +207,14 @@ const jsonLd = [
           <div class="-mt-6 hidden flex-col gap-6 sm:flex">
             {
               collage.right.map((c) => (
-                <Picture {...pictureProps} src={asset(c.image)} widths={cardWidths} sizes="22vw" alt={`${c.name} website`} class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg" />
+                <Picture
+                  {...pictureProps}
+                  src={asset(c.image)}
+                  widths={cardWidths}
+                  sizes="22vw"
+                  alt={`${c.name} website`}
+                  class="block aspect-[3/4] w-full rounded-lg object-cover object-top shadow-lg"
+                />
               ))
             }
           </div>
@@ -158,15 +225,35 @@ const jsonLd = [
     <!-- Logos -->
     <section class:list={[container, "mt-6"]} aria-labelledby="live-heading">
       <div class="flex flex-col items-center gap-6 px-6 py-8 lg:px-8">
-        <p id="live-heading" class="m-0 text-center text-[14px] text-coal">Agencies live on TripEleven</p>
-        <ul class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-10 gap-y-5 p-0 lg:gap-x-14">
+        <p id="live-heading" class="m-0 text-center text-[14px] text-coal">
+          Agencies live on TripEleven
+        </p>
+        <ul
+          class="m-0 flex w-full list-none flex-wrap items-center justify-center gap-x-10 gap-y-5 p-0 lg:gap-x-14"
+        >
           {
             clients
               .filter((c) => c.logo)
               .map((c) => (
                 <li>
-                  <a href={c.href} target="_blank" rel="noreferrer" title={c.name} class="block transition hover:opacity-80">
-                    <img src={c.logo!.src} width={c.logo!.width} height={c.logo!.height} alt={c.name} loading="lazy" class:list={["h-8 w-auto max-w-[130px] object-contain", c.logo!.invert && "invert"]} />
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={c.name}
+                    class="block transition hover:opacity-80"
+                  >
+                    <img
+                      src={c.logo!.src}
+                      width={c.logo!.width}
+                      height={c.logo!.height}
+                      alt={c.name}
+                      loading="lazy"
+                      class:list={[
+                        "h-8 w-auto max-w-[130px] object-contain",
+                        c.logo!.invert && "invert",
+                      ]}
+                    />
                   </a>
                 </li>
               ))
@@ -194,9 +281,16 @@ const jsonLd = [
             text="A guided trip builder for itineraries, trip facts, altitude charts, pricing tiers and FAQs. Draft a batch with AI, then refine every day yourself."
             href="/product/tour-itinerary-builder"
             linkLabel="Explore trip builder"
-            items={pick(["tour-itinerary-builder", "ai-itinerary-generator", "travel-media-library"])}
+            items={pick([
+              "tour-itinerary-builder",
+              "ai-itinerary-generator",
+              "travel-media-library",
+            ])}
           >
-            <Shot src="/mockups/itinerary-form.webp" alt="TripEleven trip builder editing a trek itinerary day by day" />
+            <Shot
+              src="/mockups/itinerary-form.webp"
+              alt="TripEleven trip builder editing a trek itinerary day by day"
+            />
           </PathCard>
           <PathCard
             flag="green"
@@ -206,10 +300,17 @@ const jsonLd = [
             text="Every trip becomes a page on your own domain, in your logo, colors and fonts, alongside travel guides, info pages and your team."
             href="/product/travel-website-branding"
             linkLabel="Explore your website"
-            items={pick(["travel-website-branding", "travel-blog-software", "travel-trust-signals"])}
+            items={pick([
+              "travel-website-branding",
+              "travel-blog-software",
+              "travel-trust-signals",
+            ])}
             reverse
           >
-            <Shot src="/mockups/website-demo-for-cta-card.webp" alt="Walkthrough Nepal, an agency website published on TripEleven" />
+            <Shot
+              src="/mockups/website-demo-for-cta-card.webp"
+              alt="Walkthrough Nepal, an agency website published on TripEleven"
+            />
           </PathCard>
           <PathCard
             flag="blue"
@@ -219,9 +320,16 @@ const jsonLd = [
             text="Travelers book from the trip page or send a question. Payments go to your own account or your bank, and every lead lands in one dashboard."
             href="/product/online-booking-software"
             linkLabel="Explore online booking"
-            items={pick(["online-booking-software", "tour-payments-online", "trip-inquiry-management"])}
+            items={pick([
+              "online-booking-software",
+              "tour-payments-online",
+              "trip-inquiry-management",
+            ])}
           >
-            <Shot src="/mockups/help/bookings.png" alt="TripEleven bookings list with trip, departure, travelers, total and payment status" />
+            <Shot
+              src="/mockups/help/bookings.png"
+              alt="TripEleven bookings list with trip, departure, travelers, total and payment status"
+            />
           </PathCard>
         </div>
       </div>
@@ -231,7 +339,10 @@ const jsonLd = [
     <PaymentLogos />
 
     <!-- Engine -->
-    <section class:list={[section, "pt-0 lg:pt-0"]} aria-labelledby="engine-heading">
+    <section
+      class:list={[section, "pt-0 lg:pt-0"]}
+      aria-labelledby="engine-heading"
+    >
       <div class={container}>
         <SectionHead
           id="engine-heading"
@@ -244,14 +355,25 @@ const jsonLd = [
           {
             engine.map((e) => (
               <article class="overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
-                <div class:list={["relative flex h-[340px] items-center justify-center p-8 grid-paper sm:h-[400px]", e.flag]}>
+                <div
+                  class:list={[
+                    "relative flex h-[340px] items-center justify-center p-8 grid-paper sm:h-[400px]",
+                    e.flag,
+                  ]}
+                >
                   <div class="w-full max-w-lg">
-                    <Shot src={e.image} alt={`${e.title} in TripEleven`} sizes="(min-width: 1024px) 512px, 90vw" />
+                    <Shot
+                      src={e.image}
+                      alt={`${e.title} in TripEleven`}
+                      sizes="(min-width: 1024px) 512px, 90vw"
+                    />
                   </div>
                   <PixelEdge side="bottom" class={e.edge} />
                 </div>
                 <div class="p-8 pt-24">
-                  <span class={iconTile}><Icon name={e.icon} class="size-4" /></span>
+                  <span class={iconTile}>
+                    <Icon name={e.icon} class="size-4" />
+                  </span>
                   <h3 class:list={[h4, "mt-4 text-[18px]"]}>{e.title}</h3>
                   <p class:list={[body, "mt-2"]}>{e.text}</p>
                 </div>
@@ -265,12 +387,22 @@ const jsonLd = [
     <!-- Statement -->
     <section class:list={[section, "pt-8 text-center lg:pt-12"]}>
       <div class={container}>
-        <h2 class:list={[h2, "mx-auto max-w-3xl text-[clamp(36px,4.4vw,60px)] leading-[1.1]"]}>A website your travelers actually book from</h2>
+        <h2
+          class:list={[
+            h2,
+            "mx-auto max-w-3xl text-[clamp(36px,4.4vw,60px)] leading-[1.1]",
+          ]}
+        >
+          A website your travelers actually book from
+        </h2>
         <p class:list={[lead, "mx-auto mt-6 max-w-xl"]}>
-          Live in days, on your own domain, with trips, guides and booking working from the first visit.
+          Live in days, on your own domain, with trips, guides and booking
+          working from the first visit.
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-2">
-          <a href={SIGNUP} target="_blank" rel="noreferrer" class={btnPrimary}>Start free trial</a>
+          <a href={SIGNUP} target="_blank" rel="noreferrer" class={btnPrimary}
+            >Start free trial</a
+          >
           <a href="/pricing" class={btnSecondary}>See pricing</a>
         </div>
       </div>
@@ -287,49 +419,79 @@ const jsonLd = [
           text="These agencies build and run their websites on TripEleven. Click through their trips, navigation and inquiry forms."
         />
         <div data-carousel class="mt-12">
-        <div
-          data-carousel-track
-          class="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden"
-        >
-          {
-            clients.map((c) => (
-              <a href={c.href} target="_blank" rel="noreferrer" class="group block w-[82%] shrink-0 snap-start overflow-hidden rounded-2xl bg-paper ring-1 ring-line sm:w-auto">
-                <div class="overflow-hidden bg-white">
-                  <Picture
-                    {...pictureProps}
-                    src={asset(c.image)}
-                    widths={cardWidths}
-                    sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 92vw"
-                    alt={`${c.name} website homepage`}
-                    class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div class="flex items-center gap-3 border-t border-line p-4">
-                  <span class="inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-line">
-                    {c.logo ? (
-                      <img src={c.logo.src} width={c.logo.width} height={c.logo.height} alt="" class:list={["max-h-5 w-auto max-w-7 object-contain", c.logo.invert && "invert"]} loading="lazy" />
-                    ) : (
-                      <Icon name="globe" class="size-4" />
-                    )}
-                  </span>
-                  <span class="min-w-0 flex-1">
-                    <span class="block text-[15px] text-coal">{c.name}</span>
-                    <span class="block truncate text-[13px] text-mute underline decoration-line-strong underline-offset-2">{domain(c.href)}</span>
-                  </span>
-                  <Icon name="external-link" class="size-4 text-mute transition-colors group-hover:text-coal" />
-                </div>
-              </a>
-            ))
-          }
-        </div>
-        <div class="mt-5 flex justify-end gap-2 sm:hidden">
-          <button type="button" data-carousel-prev aria-label="Previous site" class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40">
-            <Icon name="chevron-left" class="size-4" />
-          </button>
-          <button type="button" data-carousel-next aria-label="Next site" class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40">
-            <Icon name="chevron-right" class="size-4" />
-          </button>
-        </div>
+          <div
+            data-carousel-track
+            class="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden"
+          >
+            {
+              clients.map((c) => (
+                <a
+                  href={c.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="group block w-[82%] shrink-0 snap-start overflow-hidden rounded-2xl bg-paper ring-1 ring-line sm:w-auto"
+                >
+                  <div class="overflow-hidden bg-white">
+                    <Picture
+                      {...pictureProps}
+                      src={asset(c.image)}
+                      widths={cardWidths}
+                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 46vw, 92vw"
+                      alt={`${c.name} website homepage`}
+                      class="block aspect-[4/3] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div class="flex items-center gap-3 border-t border-line p-4">
+                    <span class="inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white ring-1 ring-line">
+                      {c.logo ? (
+                        <img
+                          src={c.logo.src}
+                          width={c.logo.width}
+                          height={c.logo.height}
+                          alt=""
+                          class:list={[
+                            "max-h-5 w-auto max-w-7 object-contain",
+                            c.logo.invert && "invert",
+                          ]}
+                          loading="lazy"
+                        />
+                      ) : (
+                        <Icon name="globe" class="size-4" />
+                      )}
+                    </span>
+                    <span class="min-w-0 flex-1">
+                      <span class="block text-[15px] text-coal">{c.name}</span>
+                      <span class="block truncate text-[13px] text-mute underline decoration-line-strong underline-offset-2">
+                        {domain(c.href)}
+                      </span>
+                    </span>
+                    <Icon
+                      name="external-link"
+                      class="size-4 text-mute transition-colors group-hover:text-coal"
+                    />
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+          <div class="mt-5 flex justify-end gap-2 sm:hidden">
+            <button
+              type="button"
+              data-carousel-prev
+              aria-label="Previous site"
+              class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40"
+            >
+              <Icon name="chevron-left" class="size-4" />
+            </button>
+            <button
+              type="button"
+              data-carousel-next
+              aria-label="Next site"
+              class="inline-flex size-10 items-center justify-center rounded-full bg-white text-coal ring-1 ring-line transition disabled:opacity-40"
+            >
+              <Icon name="chevron-right" class="size-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -361,8 +523,12 @@ const jsonLd = [
       next.disabled = track.scrollLeft >= max;
     };
 
-    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior: "smooth" }));
-    next.addEventListener("click", () => track.scrollBy({ left: step(), behavior: "smooth" }));
+    prev.addEventListener("click", () =>
+      track.scrollBy({ left: -step(), behavior: "smooth" }),
+    );
+    next.addEventListener("click", () =>
+      track.scrollBy({ left: step(), behavior: "smooth" }),
+    );
     track.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     update();
