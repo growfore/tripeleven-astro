@@ -111,8 +111,9 @@ import WhatsAppButton from "../components/WhatsAppButton.astro";
     />
 
     <script is:inline>
-      // Loads Meta Pixel, GA4, Microsoft Clarity and Tawk.to live chat on
-      // every visit, with no consent gate.
+      // Loads Meta Pixel, GA4, Microsoft Clarity and Tawk.to live chat with no
+      // consent gate. Deferred to first user interaction (or a late idle
+      // fallback) so third-party JS stays off the critical path / main thread.
       window.__teLoadNonEssential = function () {
         if (window.__teNonEssentialLoaded) return;
         window.__teNonEssentialLoaded = true;
@@ -194,7 +195,25 @@ import WhatsAppButton from "../components/WhatsAppButton.astro";
         }
       };
 
-      window.__teLoadNonEssential();
+      (function () {
+        var events = ["pointerdown", "keydown", "scroll", "touchstart"];
+        var timer;
+        function start() {
+          clearTimeout(timer);
+          events.forEach(function (e) {
+            window.removeEventListener(e, start);
+          });
+          window.__teLoadNonEssential();
+        }
+        events.forEach(function (e) {
+          window.addEventListener(e, start, { once: true, passive: true });
+        });
+        function arm() {
+          timer = setTimeout(start, 8000);
+        }
+        if (document.readyState === "complete") arm();
+        else window.addEventListener("load", arm, { once: true });
+      })();
     </script>
   </head>
   <body class="m-0 overflow-x-hidden bg-white font-sans text-coal">
